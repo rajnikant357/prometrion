@@ -1,0 +1,88 @@
+---
+// services/seo-geo.astro - SEO & Generative Engine Optimization (GEO)
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="SEO & GEO Services — Prometrion"
+  description="Search Engine Optimization and Generative Engine Optimization (GEO) ensuring your business dominates Google, ChatGPT, and AI discovery engines."
+>
+  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="NEXT-GEN SEARCH">SEO & GEO OPTIMIZATION</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        Discoverable by search engines.<br />Cited by artificial intelligence.
+      </h1>
+      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        The future of discovery isn't just 10 blue links on Google. It's conversational synthesis across ChatGPT, Claude, Perplexity, and Gemini. We optimize for both.
+      </p>
+
+      <div class="mt-8 flex justify-center gap-3">
+        <Button variant="primary" href="/contact">Request GEO Audit</Button>
+        <Button variant="secondary" href="/services/packages">View Packages</Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- SEO Pillar -->
+        <Card variant="default">
+          <Badge variant="blue">Traditional Search</Badge>
+          <h2 class="text-2xl font-semibold text-neutral-900 mt-3">Technical & Local SEO</h2>
+          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
+            Ensure your website ranks #1 for target buyer intent queries across search engines.
+          </p>
+
+          <ul class="mt-6 space-y-3 text-xs text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>Core Web Vitals SLA:</strong> 95+ scores on LCP, INP, and CLS to prevent algorithmic rank penalties.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>Deep Schema & JSON-LD:</strong> Full structured markup for Organizations, Products, FAQs, and Articles.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>Local Google Maps Dominance:</strong> Google Business Profile optimization, local citations, and NAP consistency.</span>
+            </li>
+          </ul>
+        </Card>
+
+        <!-- GEO Pillar -->
+        <Card variant="default">
+          <Badge variant="purple">Generative Search</Badge>
+          <h2 class="text-2xl font-semibold text-neutral-900 mt-3">Generative Engine Optimization (GEO)</h2>
+          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
+            Position your brand as the canonical authority cited in AI-generated answers.
+          </p>
+
+          <ul class="mt-6 space-y-3 text-xs text-neutral-700">
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>Semantic Entity Engineering:</strong> Linking your brand with Wikidata, industry ontologies, and authority graphs.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>AI Citation Density:</strong> Formatting content with statistical tables, structured facts, and verified quotes for LLM ingestion.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-emerald-500 font-bold">✔</span>
+              <span><strong>Multimodal Vector Discovery:</strong> Structuring assets so retrieval-augmented generation (RAG) agents index your products.</span>
+            </li>
+          </ul>
+        </Card>
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

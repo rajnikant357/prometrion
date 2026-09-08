@@ -1,0 +1,16 @@
+---
+// SectionEyebrow.astro - Geist Mono technical section indicator
+interface Props {
+  tag?: string;
+  class?: string;
+}
+
+const { tag, class: className = "" } = Astro.props;
+---
+
+<div class={`inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider text-neutral-500 mb-3 select-none ${className}`}>
+  {tag && (
+    <span class="w-1.5 h-1.5 rounded-full bg-[#0070f3]"></span>
+  )}
+  <slot>{tag}</slot>
+</div>

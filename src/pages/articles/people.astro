@@ -1,0 +1,103 @@
+---
+// articles/people.astro - Prometrion Leadership, Engineers & Community Contributors
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Badge from "../../components/ui/Badge.astro";
+
+const people = [
+  {
+    name: "Rajnikant",
+    role: "Founder & Chief Architect",
+    focus: "Distributed Systems, AI Infrastructure & Strategic Vision",
+    bio: "Pioneering the architecture behind Prometrion Core and Taluq AI. Dedicated to engineering software platforms that bridge human capability with autonomous computational intelligence.",
+    badge: "Leadership",
+  },
+  {
+    name: "Aria Thorne",
+    role: "VP of Engineering",
+    focus: "Edge Runtimes & MicroVM Sandboxing",
+    bio: "Former systems programmer specializing in high-concurrency virtualization, Linux kernel internals, and sub-10ms serverless architectures.",
+    badge: "Core Engineering",
+  },
+  {
+    name: "Marcus Chen",
+    role: "Head of Product Design",
+    focus: "Geist System Aesthetics, Interaction Design & Typography",
+    bio: "Crafting minimalist, high-contrast, Swiss-inspired digital interfaces. Passionate about removing digital friction and achieving tactile software feel.",
+    badge: "Design",
+  },
+  {
+    name: "Elena Rostova",
+    role: "Principal AI Scientist",
+    focus: "Cognitive DAGs, LLM Reasoning & Multimodal Agents",
+    bio: "Directing foundational research on autonomous decision graphs, active memory systems, and deterministic agent safety layers in Taluq AI.",
+    badge: "AI Research",
+  },
+  {
+    name: "Devon Patel",
+    role: "Community Guild Lead",
+    focus: "Coders Club, Developer Relations & Open Source",
+    bio: "Fostering global developer talent, organizing hackathons, and curating verified component submissions for the Prometrion marketplace.",
+    badge: "Community",
+  },
+  {
+    name: "Sofia Morales",
+    role: "Director of Enterprise Solutions",
+    focus: "Digital Transformation & Custom Architectures",
+    bio: "Guiding enterprise clients through full-stack replatforming, cloud migrations, and high-conversion web/mobile implementations.",
+    badge: "Solutions",
+  },
+];
+---
+
+<BaseLayout
+  title="People & Leadership — Prometrion"
+  description="Meet the architects, engineers, designers, and community leaders driving Prometrion forward."
+>
+  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="ARTICLES / PEOPLE">TEAM & CONTRIBUTORS</SectionEyebrow>
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717]">
+        The Builders of Prometrion
+      </h1>
+      <p class="mt-3 text-neutral-600 max-w-xl text-sm sm:text-base leading-relaxed">
+        We are a disciplined collective of engineers, researchers, and designers committed to craft, performance, and digital innovation.
+      </p>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {people.map((p) => (
+          <Card variant="default" class="flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-base shadow-sm">
+                  {p.name.charAt(0)}
+                </div>
+                <div>
+                  <h3 class="font-semibold text-base text-neutral-900">{p.name}</h3>
+                  <p class="text-xs text-[#0070f3] font-medium">{p.role}</p>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <Badge variant="neutral">{p.badge}</Badge>
+              </div>
+
+              <p class="text-xs text-neutral-600 leading-relaxed">
+                {p.bio}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 text-[11px] font-mono text-neutral-400">
+              Focus: <span class="text-neutral-700">{p.focus}</span>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

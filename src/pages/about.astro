@@ -1,0 +1,101 @@
+---
+// about.astro - About Prometrion
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+import Card from "../components/ui/Card.astro";
+import Button from "../components/ui/Button.astro";
+import Badge from "../components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="About — Prometrion Mission & Philosophy"
+  description="Learn why Prometrion exists, our engineering philosophy, our products, and our mission to build technology for what's next."
+>
+  <!-- Hero Section -->
+  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="ABOUT PROMETRION">OUR MISSION</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        Building technology that moves the world forward.
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Prometrion is a technology company building products, digital services, marketplaces, and ecosystems for the next generation of builders and businesses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Content Narrative Sections -->
+  <section class="py-20 bg-[#fafafa]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- 1. Who We Are -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-4">
+        <SectionEyebrow tag="01. IDENTITY">WHO WE ARE</SectionEyebrow>
+        <h2 class="text-2xl font-semibold text-neutral-900">An engineered company with a long-term horizon.</h2>
+        <p class="text-sm text-neutral-600 leading-relaxed">
+          Prometrion was founded on a simple realization: the web has become bloated with slow scripts, fragmented agency models, and fragile software architectures. We exist to provide an antidote.
+        </p>
+        <p class="text-sm text-neutral-600 leading-relaxed">
+          We operate across three unified dimensions: proprietary software products (such as Taluq AI), high-performance digital services (web, app, GEO), and an open developer marketplace and guild (Coders Club).
+        </p>
+      </div>
+
+      <!-- 2. Our Philosophy -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-6">
+        <SectionEyebrow tag="02. PRINCIPLES">OUR PHILOSOPHY</SectionEyebrow>
+        <h2 class="text-2xl font-semibold text-neutral-900">The Prometrion Creed</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs leading-relaxed">
+          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
+            <h3 class="font-bold text-neutral-900 text-sm mb-1">Subtractive Discipline</h3>
+            <p class="text-neutral-600">We remove unnecessary decoration and bloated JavaScript. Every element, 1px border, and font tracking setting must earn its place.</p>
+          </div>
+          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
+            <h3 class="font-bold text-neutral-900 text-sm mb-1">Tactile Performance</h3>
+            <p class="text-neutral-600">Speed is an emotional attribute. Sub-second TTFB and zero layout shift signal software craft and respect for user attention.</p>
+          </div>
+          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
+            <h3 class="font-bold text-neutral-900 text-sm mb-1">Autonomous Future</h3>
+            <p class="text-neutral-600">We don't build software just for human clicks—we architect data models and interfaces ready for autonomous AI agents and multimodal discovery.</p>
+          </div>
+          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
+            <h3 class="font-bold text-neutral-900 text-sm mb-1">Radical Transparency</h3>
+            <p class="text-neutral-600">Fixed packages, public pricing, verified authenticated reviews, and clear timelines. No hidden retainers or ambiguous scopes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Leadership & Founders -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-4">
+        <SectionEyebrow tag="03. LEADERSHIP">OUR FOUNDATION</SectionEyebrow>
+        <h2 class="text-2xl font-semibold text-neutral-900">Led by builders for builders</h2>
+        <p class="text-sm text-neutral-600 leading-relaxed">
+          Founded and led by <strong>Rajnikant</strong> alongside a world-class team of distributed systems engineers and product designers, Prometrion combines deep engineering capability with commercial rigor.
+        </p>
+        <div class="pt-4 flex gap-4">
+          <Button variant="secondary" href="/articles/people">
+            Meet the Full Team →
+          </Button>
+          <Button variant="ghost-sm" href="/articles/achievements">
+            View Company Milestones →
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-16 bg-white text-center border-t border-[#ebebeb]">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">Partner with Prometrion</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 mt-2">
+        Let's discuss how our products and engineering capabilities can elevate your digital roadmap.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact">Start a Conversation</Button>
+        <Button variant="secondary" href="/products">Explore Products</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,197 @@
+---
+// articles/blogs/[slug].astro - Individual Dynamic Blog Article Page (Vercel 3-Column Split Layout)
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../../components/ui/SectionEyebrow.astro";
+import Card from "../../../components/ui/Card.astro";
+import Button from "../../../components/ui/Button.astro";
+import Badge from "../../../components/ui/Badge.astro";
+import ArticlesSidebar from "../../../components/ui/ArticlesSidebar.astro";
+import OnThisPage from "../../../components/ui/OnThisPage.astro";
+import { blogsData, type BlogPost } from "../../../data/blogsData";
+import { servicesCatalog } from "../../../data/servicesCatalog";
+
+export function getStaticPaths() {
+  return blogsData.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+
+// Fetch related service items if defined
+const relatedServiceItems = post.relatedServices
+  ? servicesCatalog.filter(s => post.relatedServices?.includes(s.slug))
+  : [];
+
+// Generate dynamic headings for "On this page" TOC
+const blogHeadings = post.sections
+  .filter(sec => Boolean(sec.heading))
+  .map(sec => ({
+    id: sec.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+    text: sec.heading,
+  }));
+---
+
+<BaseLayout
+  title={`${post.title} — Prometrion Blog`}
+  description={post.excerpt}
+>
+  <!-- Article Header Top Banner -->
+  <header class="pt-10 pb-12 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav class="flex items-center gap-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-4">
+        <a href="/" class="hover:text-black dark:hover:text-white transition">Home</a>
+        <span>/</span>
+        <a href="/articles" class="hover:text-black dark:hover:text-white transition">Articles</a>
+        <span>/</span>
+        <a href="/articles/blogs" class="hover:text-black dark:hover:text-white transition">Blogs</a>
+        <span>/</span>
+        <span class="text-neutral-900 dark:text-neutral-200 truncate max-w-[200px] sm:max-w-none">{post.title}</span>
+      </nav>
+
+      <!-- Category & Reading Time -->
+      <div class="flex items-center gap-2.5 mb-3">
+        <Badge variant="blue">{post.category}</Badge>
+        <span class="text-xs font-mono text-neutral-400">•</span>
+        <span class="text-xs font-mono text-neutral-500 dark:text-neutral-400">{post.pubDate}</span>
+        <span class="text-xs font-mono text-neutral-400">•</span>
+        <span class="text-xs font-mono text-neutral-500 dark:text-neutral-400">{post.readTime}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.15] max-w-4xl">
+        {post.title}
+      </h1>
+
+      <!-- Excerpt Callout -->
+      <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-300 leading-relaxed font-normal border-l-2 border-[#0070f3] dark:border-cyan-400 pl-4 py-1.5 bg-neutral-50 dark:bg-white/[0.03] rounded-r-lg max-w-4xl">
+        {post.excerpt}
+      </p>
+
+      <!-- Author Attribution Card -->
+      <div class="mt-6 pt-5 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between max-w-4xl">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs shadow-sm">
+            {post.author.avatarInitial}
+          </div>
+          <div>
+            <div class="font-semibold text-xs sm:text-sm text-neutral-900 dark:text-white">{post.author.name}</div>
+            <div class="text-[11px] text-neutral-500 dark:text-neutral-400">{post.author.role}</div>
+          </div>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2">
+          {post.tags.map(tag => (
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 3-Column Split Layout for Blog -->
+  <div class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-8 lg:gap-12 items-start">
+        
+        <!-- Left: ArticlesSidebar -->
+        <ArticlesSidebar activeSlug={post.slug} />
+
+        <!-- Center: Article Body Content -->
+        <main class="flex-1 min-w-0 space-y-10">
+          
+          <!-- Structured Sections Article Card -->
+          <article class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-10 shadow-whisper space-y-8 text-neutral-800 dark:text-neutral-200 text-sm sm:text-base leading-relaxed">
+            {post.sections.map((sec) => {
+              const headingId = sec.heading ? sec.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : '';
+              return (
+                <section class="space-y-4">
+                  {sec.heading && (
+                    <h2 id={headingId} class="scroll-mt-28 text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white pt-4 first:pt-0">
+                      {sec.heading}
+                    </h2>
+                  )}
+
+                  {sec.content.map((paragraph) => (
+                    <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
+
+                  {sec.list && sec.list.length > 0 && (
+                    <ul class="space-y-2.5 my-4 pl-2">
+                      {sec.list.map((item) => (
+                        <li class="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                          <span class="text-[#0070f3] dark:text-cyan-400 font-bold shrink-0 mt-0.5">●</span>
+                          <span class="leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              );
+            })}
+
+            <!-- In-Article Call to Action -->
+            <div class="mt-10 p-6 rounded-[6px] bg-neutral-50 dark:bg-white/[0.04] border border-[#ebebeb] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-xs font-mono uppercase text-neutral-400">NEXT STEP</span>
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white mt-0.5">{post.cta.text}</h3>
+              </div>
+              <Button variant="primary" href={post.cta.href} class="shrink-0">
+                Learn More
+              </Button>
+            </div>
+          </article>
+
+          <!-- Related Services Recommendations -->
+          {relatedServiceItems.length > 0 && (
+            <div class="space-y-4">
+              <SectionEyebrow tag="RELATED CAPABILITIES">SOLUTIONS CONNECTED TO THIS TOPIC</SectionEyebrow>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {relatedServiceItems.map((svc) => (
+                  <Card variant="interactive" glow="blue" href="/services/catalog" class="p-5 flex flex-col justify-between">
+                    <div>
+                      <Badge variant="blue">{svc.subcategory || svc.category}</Badge>
+                      <h3 class="font-semibold text-sm text-neutral-900 dark:text-white mt-2">{svc.name}</h3>
+                      <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">{svc.shortDesc}</p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs font-mono">
+                      <span class="font-bold text-neutral-900 dark:text-white">{svc.priceFormatted}</span>
+                      <span class="text-[#0070f3] dark:text-cyan-400 font-sans">View Spec →</span>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Back to Blogs Link -->
+          <div class="pt-4 flex items-center justify-between text-xs font-mono text-neutral-500 dark:text-neutral-400 border-t border-neutral-200 dark:border-white/10">
+            <a href="/articles/blogs" class="hover:text-black dark:hover:text-white transition">
+              ← All Educational Blogs
+            </a>
+            <a href="/articles/docs" class="hover:text-black dark:hover:text-white transition">
+              Technical Documentation Hub →
+            </a>
+          </div>
+
+        </main>
+
+        <!-- Right: OnThisPage Mini UI with Scrollspy -->
+        <OnThisPage headings={blogHeadings} />
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

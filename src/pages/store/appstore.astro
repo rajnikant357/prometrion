@@ -1,0 +1,127 @@
+---
+// store/appstore.astro - Prometrion Appstore
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+
+const apps = [
+  {
+    name: "Prometrion Console",
+    developer: "Prometrion Core Labs",
+    desc: "Mobile dashboard to monitor serverless workloads, inspect edge metrics, trigger build rollbacks, and view live logs.",
+    category: "Developer Tools",
+    version: "2.4.1",
+    rating: "4.9",
+    downloads: "10K+",
+    price: "Free",
+  },
+  {
+    name: "Taluq Agent Mobile",
+    developer: "Prometrion AI Labs",
+    desc: "Voice and multimodal agent client. Execute complex coding, data synthesis, and workflow operations straight from your phone.",
+    category: "Artificial Intelligence",
+    version: "2.0.0",
+    rating: "4.8",
+    downloads: "25K+",
+    price: "$4.99 / mo",
+  },
+  {
+    name: "Coders Club Guild Client",
+    developer: "Prometrion Community",
+    desc: "Live hacker challenges, peer reviews, code snippets sharing, and notifications for global engineering hackathons.",
+    category: "Community & Education",
+    version: "1.3.0",
+    rating: "5.0",
+    downloads: "8K+",
+    price: "Free (Members)",
+  },
+  {
+    name: "Secure Auth Key",
+    developer: "Prometrion Security",
+    desc: "Hardware-backed FIDO2 / Passkey authenticator for Prometrion Accounts and enterprise SSO environments.",
+    category: "Security & Utilities",
+    version: "1.1.2",
+    rating: "4.9",
+    downloads: "15K+",
+    price: "Free",
+  },
+];
+---
+
+<BaseLayout
+  title="Appstore — Prometrion Applications"
+  description="Discover Prometrion mobile applications for Android and cross-platform systems."
+>
+  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="MARKETPLACE / APPSTORE">PROMETRION APPLICATIONS</SectionEyebrow>
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717]">
+        Android & Modern Applications
+      </h1>
+      <p class="mt-3 text-neutral-600 max-w-xl text-sm sm:text-base leading-relaxed">
+        High-performance Android and cross-platform apps built for productivity, developer operations, AI intelligence, and community.
+      </p>
+
+      <!-- Developer Publishing Callout -->
+      <div class="mt-8 p-4 bg-neutral-50 rounded-[6px] border border-[#ebebeb] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold text-neutral-900 flex items-center gap-1.5">
+            ✦ Developer Publishing Portal
+            <Badge variant="blue">Beta</Badge>
+          </span>
+          <p class="text-xs text-neutral-500 mt-0.5">Are you a Prometrion Developer? Submit your verified Android applications for distribution.</p>
+        </div>
+        <Button variant="primary-sm" href="/community/developer">
+          Publish on Appstore →
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {apps.map((app) => (
+          <Card variant="interactive" class="flex flex-col justify-between">
+            <div>
+              <div class="flex items-start gap-4">
+                <div class="w-14 h-14 rounded-[6px] bg-gradient-to-tr from-neutral-800 to-neutral-950 text-white flex items-center justify-center font-bold text-xl shadow-whisper shrink-0">
+                  {app.name.charAt(0)}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between">
+                    <h3 class="font-semibold text-base text-neutral-900 truncate">{app.name}</h3>
+                    <span class="font-mono text-xs font-bold text-neutral-900 shrink-0 ml-2">{app.price}</span>
+                  </div>
+                  <p class="text-xs text-neutral-500">{app.developer}</p>
+                  <div class="flex items-center gap-3 text-[11px] font-mono text-neutral-400 mt-1">
+                    <span>★ {app.rating}</span>
+                    <span>•</span>
+                    <span>{app.downloads} installs</span>
+                    <span>•</span>
+                    <span>v{app.version}</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="text-xs text-neutral-600 mt-4 leading-relaxed">
+                {app.desc}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-600">
+                {app.category}
+              </span>
+              <Button variant="primary-sm" href="/contact">
+                Install App (APK)
+              </Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

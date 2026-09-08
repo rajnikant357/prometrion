@@ -1,0 +1,211 @@
+---
+// services/packages.astro - Clear Bundled Combo Packages & Strategic Tiers
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { comboPackages, packageTiers } from "../../data/servicesCatalog";
+
+const deliveryGuarantees = [
+  {
+    title: "Transparent Fixed Scopes",
+    desc: "Every milestone, deliverable, and asset format is documented upfront. Zero surprise charges or hidden maintenance fees."
+  },
+  {
+    title: "Strict Delivery Timelines",
+    desc: "We commit to concrete delivery windows (3 to 15 business days depending on tier) with continuous staging updates."
+  },
+  {
+    title: "Honest SEO Standards",
+    desc: "We build strict technical schema, semantic metadata, and speed foundations. We never make misleading '#1 ranking' guarantees."
+  },
+  {
+    title: "Comprehensive Launch Support",
+    desc: "All packages include post-launch warranty, DNS and SSL configuration, and responsive developer assistance."
+  }
+];
+---
+
+<BaseLayout
+  title="Service Packages — Prometrion Bundled Solutions"
+  description="Transparent, all-inclusive digital packages with guaranteed delivery dates, revisions, and full lifecycle support in INR."
+>
+  <!-- Hero Section -->
+  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="TRANSPARENT PACKAGES">COMBO PACKAGES & STRATEGIC TIERS</SectionEyebrow>
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] mt-3">
+        Engineered Bundles. Transparent Value.
+      </h1>
+      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+        Choose a curated package that packages engineering, identity design, and digital presence into a unified launch sprint.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 1: The 4 Primary Combo Packages -->
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+          Curated Launch Packages
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-2">
+          Turnkey bundles built to launch new ventures, expand established retailers, and scale multi-channel brands.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        {comboPackages.map((pkg) => (
+          <div class={`rounded-[6px] bg-white border p-6 flex flex-col justify-between transition-all relative ${
+            pkg.highlight
+              ? 'border-[#0070f3] shadow-floating ring-1 ring-[#0070f3]'
+              : 'border-[#ebebeb] shadow-whisper hover:border-neutral-300'
+          }`}>
+            {pkg.highlight && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class="bg-[#0070f3] text-white text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                  Recommended
+                </span>
+              </div>
+            )}
+
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base font-semibold text-neutral-900">{pkg.name}</h3>
+              </div>
+              <p class="text-xs text-neutral-500 mt-2 min-h-[36px] leading-relaxed">{pkg.bestFor}</p>
+
+              <!-- Price Box -->
+              <div class="mt-5 mb-6 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
+                <div class="text-3xl font-mono font-bold text-[#171717]">{pkg.priceFormatted}</div>
+                <span class="text-[11px] text-neutral-500 font-mono">one-time launch fee</span>
+              </div>
+
+              <div class="h-px bg-neutral-100 my-4"></div>
+
+              <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-2">Package Inclusions</div>
+              <ul class="space-y-2.5 text-xs text-neutral-700">
+                {pkg.features.map(f => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
+                    <span class="leading-snug">{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-5 border-t border-neutral-100">
+              <Button
+                variant={pkg.highlight ? 'primary-sm' : 'secondary-sm'}
+                href={`/contact?package=${pkg.id}`}
+                class="w-full justify-center"
+              >
+                Select {pkg.name.replace(' Package', '')}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Strategic 4-Tier Model Matrix -->
+  <div class="py-16 bg-white border-t border-b border-[#ebebeb]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="DELIVERY TIERS">STRATEGIC MODEL</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight mt-2">
+          Strategic Scope & Turnaround Matrix
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-2">
+          From lean founder sprints to full-scale custom software development, every tier has guaranteed revision rounds and sprint commitments.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {packageTiers.map((tier) => (
+          <div class="bg-neutral-50 border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <Badge variant={tier.tier === 'Growth' || tier.tier === 'Advanced' ? 'blue' : 'neutral'}>
+                  {tier.tier} Tier
+                </Badge>
+                <span class="text-xs font-mono text-neutral-400">⚡ {tier.turnaround}</span>
+              </div>
+
+              <div class="mt-4 mb-2">
+                <div class="text-xl font-mono font-bold text-neutral-900">{tier.priceRange}</div>
+                <span class="text-[11px] font-mono text-neutral-500">Typical Scope Range</span>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-200">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Target Client</span>
+                <p class="text-xs text-neutral-800 font-medium">{tier.target}</p>
+              </div>
+
+              <div class="mt-3">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Strategic Role</span>
+                <p class="text-xs text-neutral-600 leading-relaxed">{tier.role}</p>
+              </div>
+
+              <div class="mt-3">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Revision Policy</span>
+                <p class="text-xs font-mono text-neutral-700 bg-white px-2 py-1 rounded border border-neutral-200 inline-block">
+                  {tier.revisions}
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-200">
+              <Button variant="ghost-sm" href={`/contact?tier=${tier.tier.toLowerCase()}`} class="w-full justify-center">
+                Inquire for {tier.tier} →
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Prometrion Delivery Commitments & Guarantees -->
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+          The Prometrion Delivery Standard
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-500 mt-2">
+          Engineering rigor meets absolute commercial honesty.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {deliveryGuarantees.map((item, idx) => (
+          <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper">
+            <div class="text-xs font-mono font-bold text-[#0070f3] mb-2">0{idx + 1} // COMMITMENT</div>
+            <h3 class="text-sm font-semibold text-neutral-900 mb-1.5">{item.title}</h3>
+            <p class="text-xs text-neutral-600 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Need Add-ons or Itemized solutions -->
+      <div class="mt-12 bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper text-center max-w-3xl mx-auto">
+        <h3 class="text-lg font-semibold text-neutral-900">Looking for individual a-la-carte solutions?</h3>
+        <p class="text-xs text-neutral-600 mt-2 max-w-xl mx-auto leading-relaxed">
+          Need only a speed optimization sprint, WhatsApp automated flow, or Google Business Profile audit? Explore our complete 30+ itemized catalog.
+        </p>
+        <div class="mt-5 flex items-center justify-center gap-3">
+          <Button variant="secondary-sm" href="/services/catalog">
+            View All 30+ Solutions Catalog →
+          </Button>
+          <Button variant="primary-sm" href="/contact">
+            Speak with an Engineer
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

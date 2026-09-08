@@ -1,0 +1,196 @@
+---
+// products/index.astro - Prometrion Products Overview
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="Products Overview — Prometrion"
+  description="Explore Prometrion's suite of technology products: Taluq AI, Prometrion Cloud, MicroVM Sandboxes, and Developer Tools."
+>
+  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="TECHNOLOGY PRODUCTS">PROMETRION SUITE</SectionEyebrow>
+      <h1 class="text-4xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] max-w-3xl">
+        Autonomous intelligence, edge runtimes, and developer infrastructure.
+      </h1>
+      <p class="mt-4 text-neutral-600 max-w-2xl text-base leading-relaxed">
+        We build foundational technologies that enable teams and enterprises to ship resilient digital experiences with zero operational friction.
+      </p>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Large Card (7 cols): Flagship Taluq AI with Glowing Border Beam & Interactive Terminal -->
+        <div class="lg:col-span-7 bento-card-sharp border-beam-container spotlight-card shadow-floating">
+          <div class="border-beam-inner p-8 sm:p-12 flex flex-col justify-between h-full bg-dot-grid">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-2">
+                  <Badge variant="emerald">✦ Flagship Platform</Badge>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                    v2.0 GA
+                  </span>
+                </div>
+                <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Autonomous Runtime</span>
+              </div>
+
+              <h2 class="text-3xl sm:text-4xl font-semibold text-[#171717] dark:text-white tracking-tight">
+                Taluq AI: Multi-Agent Reasoning Engine
+              </h2>
+              <p class="mt-4 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                Our premier autonomous intelligence engine. Taluq AI provides structured reasoning graphs, multi-agent coordination, and real-time tool calling directly at the edge with sub-15ms latency.
+              </p>
+
+              <!-- Live Interactive Edge Terminal Mockup -->
+              <div class="mt-6 rounded-[6px] border border-neutral-200 dark:border-white/10 bg-neutral-900 dark:bg-black/90 p-4 font-mono text-xs text-neutral-300 shadow-inner">
+                <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-[11px] text-neutral-400">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+                    <span class="ml-2 text-neutral-300">taluq-agent-orchestrator</span>
+                  </div>
+                  <span class="text-emerald-400">● LIVE RUNTIME</span>
+                </div>
+                <div class="space-y-1.5 text-neutral-300 text-[11px]">
+                  <p class="text-neutral-500">$ taluq-ai deploy --reasoning-graph --isolated-microvm</p>
+                  <p class="text-emerald-400">✓ MicroVM sandbox initialized [128MB RAM, 0ms Cold Start]</p>
+                  <p class="text-cyan-400">✓ Multi-agent tool coordinator active [14 tools mapped]</p>
+                  <p class="text-sky-300">✓ Anycast global edge mesh synced: 300+ PoPs in 11.2ms</p>
+                </div>
+              </div>
+
+              <!-- 3 Key Telemetry Metrics -->
+              <div class="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-neutral-100 dark:border-white/10 text-xs">
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">Sub-15ms</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Edge Latency</span>
+                </div>
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">Zero</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Cold Start Runtimes</span>
+                </div>
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">99.99%</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Uptime SLA</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-neutral-100 dark:border-white/10 flex flex-wrap items-center gap-4">
+              <Button variant="primary" href="/products/taluq-ai">
+                Explore Taluq AI →
+              </Button>
+              <Button variant="secondary" href="/articles/docs">
+                API Documentation
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Aligned Small Cards (5 cols) Stacked Vertically -->
+        <div class="lg:col-span-5 flex flex-col gap-6 justify-between">
+          
+          <!-- Small Card 1: Prometrion Cloud & Sandboxes -->
+          <div class="flex-1 bento-card-sharp spotlight-card p-8 flex flex-col justify-between shadow-whisper hover:shadow-floating">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant="blue">Cloud Infrastructure</Badge>
+                <span class="text-[11px] font-mono text-emerald-500 font-semibold">Active CPU</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                Prometrion Cloud & MicroVMs
+              </h3>
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+                High-concurrency edge computing with Active CPU billing. Deploy serverless workloads with guaranteed zero cold starts across 300+ global Points of Presence with hardware-level memory isolation.
+              </p>
+
+              <div class="mt-5 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✔</span> Ephemeral MicroVM Sandboxing
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✔</span> 99.99% Anycast SLA Guarantee
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✔</span> Instant Rollback Capabilities
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
+              <span class="text-emerald-600 font-medium">Global Anycast</span>
+              <a href="/contact" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Request Access →</a>
+            </div>
+          </div>
+
+          <!-- Small Card 2: Prometrion CLI & Developer SDKs -->
+          <div class="flex-1 bento-card-sharp spotlight-card p-8 flex flex-col justify-between shadow-whisper hover:shadow-floating">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant="neutral">Developer Tooling</Badge>
+                <span class="text-[11px] font-mono text-cyan-400 font-semibold">npm i -g</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                Prometrion CLI & SDKs
+              </h3>
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+                Unified command-line interface for local cloud emulation, instant preview generation, environment secrets management, and automated Git-integrated deployments.
+              </p>
+
+              <div class="mt-4 p-2.5 rounded-lg bg-neutral-900 text-emerald-400 font-mono text-xs border border-white/10 flex items-center justify-between">
+                <code>$ npm i -g @prometrion/cli</code>
+                <span class="text-neutral-500 text-[10px]">v2.4</span>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
+              <span class="text-neutral-500 font-mono">Linux / macOS / Win</span>
+              <a href="/articles/docs" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Install CLI →</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Technical Capabilities Infinite Marquee Ticker -->
+      <div class="pt-6 border-t border-neutral-200 dark:border-white/10">
+        <p class="text-[10px] font-mono uppercase tracking-widest text-center text-neutral-400 mb-4">
+          SYSTEM ARCHITECTURE & CAPABILITY MATRIX
+        </p>
+        <div class="marquee-mask pause-on-hover select-none overflow-hidden">
+          <div class="animate-marquee flex items-center gap-6">
+            <div class="flex items-center gap-6 shrink-0 text-xs font-mono text-neutral-600 dark:text-neutral-400">
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 0ms Cold Start</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 Linux KVM MicroVMs</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 300+ Edge Locations</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🤖 Multi-Agent Orchestration</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚙️ Real-time Tool Calling</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">📊 SOC2 Type II Certified</span>
+            </div>
+            <!-- Duplicate for Seamless Infinite Loop -->
+            <div class="flex items-center gap-6 shrink-0 text-xs font-mono text-neutral-600 dark:text-neutral-400" aria-hidden="true">
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 0ms Cold Start</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 Linux KVM MicroVMs</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 300+ Edge Locations</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🤖 Multi-Agent Orchestration</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚙️ Real-time Tool Calling</span>
+              <span class="px-3 py-1 rounded bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">📊 SOC2 Type II Certified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

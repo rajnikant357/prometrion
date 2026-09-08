@@ -1,0 +1,179 @@
+---
+// services/website-development.astro - Complete Website Development Service Page
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+
+const websiteTypes = [
+  { title: "Business Websites", desc: "Corporate credibility, authoritative branding, and seamless lead funnels for modern enterprises." },
+  { title: "SaaS & App Landing Pages", desc: "High-conversion product showcases with live interactive previews, pricing matrices, and auth." },
+  { title: "Headless E-Commerce", desc: "Sub-second product catalog loading, instant cart drawers, and secure payment gateway integrations." },
+  { title: "Portfolio & Creator Sites", desc: "Minimalist, Swiss-inspired portfolios crafted for agencies, architects, designers, and founders." },
+  { title: "Institutional & School Portals", desc: "Role-based dashboards, student/parent portals, notice boards, and accessible directories." },
+  { title: "Healthcare & Clinic Portals", desc: "Doctor scheduling, appointment calendars, patient intake forms, and HIPAA-compliant architecture." },
+];
+
+const processSteps = [
+  { step: "01", name: "Discovery & Strategy", desc: "We map your audience personas, commercial goals, competitor gaps, and conversion funnel architecture." },
+  { step: "02", name: "Swiss-Inspired UX/UI Design", desc: "We create precision Figma design tokens based on the Geist aesthetic: clean typography, 1px borders, and high contrast." },
+  { step: "03", name: "High-Speed Frontend Engineering", desc: "We build on Astro 7 and Tailwind v4, ensuring 0.00 CLS, sub-100ms TTFB, and 95+ Core Web Vitals." },
+  { step: "04", name: "SEO / GEO & AI Optimization", desc: "We inject rich schema markup, semantic entity maps, and AI citation graphs so you dominate Google and ChatGPT." },
+  { step: "05", name: "Global Edge Launch & Support", desc: "We deploy to Anycast edge networks, configure SSL/TLS, setup analytics, and provide 30-day post-launch warranty." },
+];
+
+const faqs = [
+  { q: "How fast can you build and launch my website?", a: "Standard business websites launch within 7–14 business days. Complex custom SaaS platforms or e-commerce systems typically take 3–4 weeks." },
+  { q: "Do you build custom designs or use generic templates?", a: "Every Prometrion website is bespoke. We design custom Figma tokens based on your brand identity and code clean, semantic markup from scratch." },
+  { q: "Will our website score 90+ on Google PageSpeed and Core Web Vitals?", a: "Yes. We guarantee 90+ mobile and desktop scores on Core Web Vitals (LCP, INP, CLS) as part of our engineering SLA." },
+  { q: "Can we update content ourselves after launch?", a: "Absolutely. We integrate headless CMS solutions or provide an intuitive content management interface so your team can publish with zero code." },
+];
+---
+
+<BaseLayout
+  title="Website Development Services — Prometrion"
+  description="High-performance enterprise website development: Corporate, SaaS, E-Commerce, and Healthcare web platforms engineered for speed and conversion."
+>
+  <!-- 1. Hero -->
+  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <SectionEyebrow tag="SERVICE SPECIFICATION">WEBSITE DEVELOPMENT</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        Websites engineered for speed, authority, and conversion.
+      </h1>
+      <p class="mt-4 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        We do not build bloated agency websites. We engineer high-performance digital flagship platforms utilizing modern Astro 7, Tailwind v4, and edge-native infrastructure.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/contact">
+          Schedule Project Consultation
+        </Button>
+        <Button variant="secondary" href="/services/packages">
+          View Website Packages
+        </Button>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-neutral-100 font-mono text-xs">
+        <div>
+          <span class="block text-xl font-bold text-neutral-900">&lt; 100ms</span>
+          <span class="text-neutral-500">Global TTFB</span>
+        </div>
+        <div>
+          <span class="block text-xl font-bold text-emerald-600">98+</span>
+          <span class="text-neutral-500">Core Web Vitals</span>
+        </div>
+        <div>
+          <span class="block text-xl font-bold text-neutral-900">0.00</span>
+          <span class="text-neutral-500">Layout Shift (CLS)</span>
+        </div>
+        <div>
+          <span class="block text-xl font-bold text-neutral-900">100%</span>
+          <span class="text-neutral-500">GEO AI Optimized</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Website Types We Build -->
+  <section class="py-20 bg-[#fafafa] border-b border-[#ebebeb]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <SectionEyebrow tag="TYPOLOGY">WHAT WE BUILD</SectionEyebrow>
+        <h2 class="text-3xl font-semibold tracking-tight text-[#171717]">
+          Tailored web solutions for every business model
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {websiteTypes.map((t) => (
+          <Card variant="default">
+            <h3 class="text-base font-semibold text-neutral-900">{t.title}</h3>
+            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{t.desc}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Engineering Process Timeline -->
+  <section class="py-20 bg-white border-b border-[#ebebeb]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <SectionEyebrow tag="EXECUTION">OUR 5-STAGE PROCESS</SectionEyebrow>
+        <h2 class="text-3xl font-semibold tracking-tight text-[#171717]">
+          From strategy blueprint to edge deployment
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+        {processSteps.map((p) => (
+          <div class="flex items-start gap-4 p-5 rounded-[6px] border border-[#ebebeb] bg-[#fafafa] shadow-whisper">
+            <span class="font-mono text-sm font-bold text-[#0070f3] bg-blue-50 px-2.5 py-1 rounded shrink-0">
+              {p.step}
+            </span>
+            <div>
+              <h3 class="text-sm font-semibold text-neutral-900">{p.name}</h3>
+              <p class="text-xs text-neutral-600 mt-1 leading-relaxed">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Technology Stack -->
+  <section class="py-16 bg-[#fafafa] border-b border-[#ebebeb]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <SectionEyebrow tag="TECH STACK">MODERN TOOLING</SectionEyebrow>
+      <h2 class="text-2xl font-semibold text-neutral-900 mb-8">
+        Built with the most performant frameworks on the web
+      </h2>
+      <div class="flex flex-wrap justify-center gap-4 text-xs font-mono text-neutral-700">
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Astro 7 (Zero-JS Islands)</span>
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Tailwind CSS v4</span>
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">TypeScript</span>
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">React & Next.js</span>
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">PostgreSQL & Edge DBs</span>
+        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Anycast Global CDN</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ Accordion Section -->
+  <section class="py-20 bg-white border-b border-[#ebebeb]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <SectionEyebrow tag="FAQ">FREQUENTLY ASKED QUESTIONS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">
+          Everything you need to know about our web builds
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="border border-[#ebebeb] rounded-[6px] p-5 bg-[#fafafa]">
+            <h3 class="text-sm font-semibold text-neutral-900">{faq.q}</h3>
+            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Bottom CTA Band -->
+  <section class="py-16 bg-[#fafafa] text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">Ready to build your flagship website?</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 mt-2">
+        Contact our team for a detailed scope document and milestone estimate within 24 hours.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact">Request Proposal</Button>
+        <Button variant="secondary" href="/services/packages">View Packages</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,114 @@
+---
+// BaseLayout.astro - Master Layout with Geist typography, Dark Mode, Ambient Glow, Navbar, Footer, Chatbot and Search
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import SearchModal from "../components/SearchModal.astro";
+import ChatbotWidget from "../components/ChatbotWidget.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  eyebrow?: string;
+}
+
+const {
+  title = "Prometrion — Building Technology for What's Next",
+  description = "Prometrion is a technology company creating software products, digital services, marketplaces, and developer communities for people and businesses moving forward.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/prometrion-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <title>{title.includes("Prometrion") ? title : `${title} | Prometrion`}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Prometrion" />
+
+    <!-- Immediate Theme Initialization Script (Default Dark Mode) -->
+    <script is:inline>
+      (function() {
+        try {
+          const saved = localStorage.getItem('prometrion-theme');
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Geist & Geist Mono Typeface from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-[#fafafa] dark:bg-black text-neutral-800 dark:text-neutral-300 font-sans antialiased selection:bg-[#0070f3] dark:selection:bg-[#00dfd8] dark:selection:text-black transition-colors duration-300 relative">
+    
+    <!-- Signature Ambient Dark Glow (Light Green + Light Blue combo) -->
+    <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[650px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity duration-700">
+      <div class="absolute -top-[280px] left-1/2 -translate-x-1/2 w-[850px] sm:w-[1300px] h-[550px] rounded-full bg-gradient-to-r from-emerald-400/20 via-cyan-400/25 to-sky-400/20 blur-[120px]"></div>
+    </div>
+
+    <!-- Spotlight Search Modal (Cmd+K) -->
+    <SearchModal />
+
+    <!-- Global Top Navigation -->
+    <Navbar />
+
+    <!-- Main Page Content -->
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <!-- Global AI Sales Assistant Chatbot -->
+    <ChatbotWidget />
+
+    <!-- Global Technical Footer with Explore & Theme Switcher -->
+    <Footer />
+
+    <!-- Universal Spotlight Cursor Tracking for Interactive Bento & Feature Cards -->
+    <script>
+      function initSpotlights() {
+        const cards = document.querySelectorAll<HTMLElement>('.spotlight-card');
+        cards.forEach((card) => {
+          if (card.dataset.spotlightInit) return;
+          card.dataset.spotlightInit = 'true';
+          
+          card.addEventListener('mousemove', (e: MouseEvent) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            card.style.setProperty('--mouse-x', '-400px');
+            card.style.setProperty('--mouse-y', '-400px');
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSpotlights);
+      } else {
+        initSpotlights();
+      }
+      document.addEventListener('astro:page-load', initSpotlights);
+    </script>
+  </body>
+</html>

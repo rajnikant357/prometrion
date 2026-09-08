@@ -1,0 +1,326 @@
+---
+// community/index.astro - Prometrion Community & Ecosystem Hub
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
+---
+
+<BaseLayout
+  title="Community — Prometrion Ecosystem"
+  description="A place for people building, using, and growing with Prometrion: Ratings, Prometrion Developer program, Coders Club, Users, and Customers."
+>
+  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="COMMUNITY ECOSYSTEM">THE PROMETRION NETWORK</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        A place for people building, using, and growing.
+      </h1>
+      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Join an ambitious collective of software engineers, founders, verified customers, and creators participating in our digital ecosystem.
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/community/developer">
+          Become Prometrion Developer
+        </Button>
+        <Button variant="secondary" href="/community/coders-club">
+          Join Coders Club
+        </Button>
+        <Button variant="ghost-sm" href="/community/rating">
+          Read Verified Ratings
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa] dark:bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        
+        <!-- Large Card (7 cols): Verified Ratings Hub with Glowing Border Beam -->
+        <div class="lg:col-span-7 bento-card-sharp border-beam-container spotlight-card shadow-floating">
+          <div class="border-beam-inner p-8 sm:p-10 flex flex-col justify-between h-full bg-dot-grid">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-2">
+                  <Badge variant="amber">★ 4.9 / 5.0 Community Score</Badge>
+                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-400/10 text-emerald-500 border border-emerald-400/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Authenticated Reviews
+                  </span>
+                </div>
+                <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Zero Bot Spam</span>
+              </div>
+
+              <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-white tracking-tight">
+                Verified Community Ratings & Client Trust
+              </h2>
+              <p class="mt-3 text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed max-w-xl">
+                Every rating on Prometrion is backed by authenticated project deliverables and verified GitHub/developer accounts. Read genuine feedback from founders, engineers, and enterprises who build on our ecosystem.
+              </p>
+
+              <!-- Featured Review Callout Card -->
+              <div class="mt-6 rounded-[6px] border border-neutral-200 dark:border-white/10 bg-white dark:bg-black/70 p-5 shadow-whisper">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center font-bold text-black text-xs">
+                      NL
+                    </div>
+                    <div>
+                      <span class="block text-xs font-semibold text-neutral-900 dark:text-white">Alexei Vance</span>
+                      <span class="block text-[10px] text-neutral-500 font-mono">VP Engineering, NextGen Labs</span>
+                    </div>
+                  </div>
+                  <span class="text-amber-400 text-xs font-bold">★★★★★ 5.0</span>
+                </div>
+                <p class="text-xs text-neutral-600 dark:text-neutral-300 italic leading-relaxed">
+                  “Prometrion cut our global TTFB from 680ms down to 18ms across 4 continents. The Taluq AI reasoning pipeline allowed us to automate customer triage with zero regressions.”
+                </p>
+              </div>
+
+              <!-- Ratings Telemetry -->
+              <div class="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-neutral-100 dark:border-white/10 text-xs">
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">4.92 / 5</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Average Score</span>
+                </div>
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">1,240+</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Verified Reviews</span>
+                </div>
+                <div>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">99.4%</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Satisfaction Rate</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-neutral-100 dark:border-white/10 flex flex-wrap items-center gap-4">
+              <Button variant="primary" href="/community/rating">
+                Browse Verified Reviews →
+              </Button>
+              <a href="/community/developer" class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition flex items-center gap-1">
+                Apply for Developer Verification <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Aligned Small Cards (5 cols) Stacked Vertically -->
+        <div class="lg:col-span-5 flex flex-col gap-6 justify-between">
+          
+          <!-- Small Card 1: Prometrion Developer -->
+          <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant="blue">PARTNER PROGRAM</Badge>
+                <span class="text-[11px] font-mono text-emerald-500 font-semibold">Referrals Active</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                Prometrion Developer
+              </h3>
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+                Apply to become a verified Prometrion Developer. Gain official verification credentials, client referrals, and sandbox API tokens.
+              </p>
+
+              <div class="mt-4 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-400 font-bold">✔</span> Official Profile Trust Badge
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-400 font-bold">✔</span> Direct Client Project Ingress
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-cyan-400 font-bold">✔</span> Early Sandbox Runtimes Access
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
+              <span class="text-neutral-500 font-mono">Guild Tier 1</span>
+              <a href="/community/developer" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Apply to Program →</a>
+            </div>
+          </div>
+
+          <!-- Small Card 2: Coders Club Guild -->
+          <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant="purple">GUILD</Badge>
+                <span class="text-[11px] font-mono text-purple-400 font-semibold">4,800+ Members</span>
+              </div>
+              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                The Coders Club Guild
+              </h3>
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+                A community of elite engineers hosting monthly open-source hackathons, code review sprints, and technical architecture workshops.
+              </p>
+
+              <div class="mt-4 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
+                <div class="flex items-center gap-2">
+                  <span class="text-purple-400 font-bold">✦</span> Bi-Weekly Coding Sprints
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-purple-400 font-bold">✦</span> Open Source Bounty Pool
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-purple-400 font-bold">✦</span> Discord & GitHub Channels
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
+              <span class="text-purple-400 font-medium">Free Membership</span>
+              <a href="/community/coders-club" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Join The Guild →</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Verified Feedback & Testimonial Marquee Ticker -->
+      <div class="pt-4 border-t border-neutral-200 dark:border-white/10">
+        <p class="text-[10px] font-mono uppercase tracking-widest text-center text-neutral-400 mb-4">
+          RECENT VERIFIED CLIENT & DEVELOPER REVIEWS
+        </p>
+        <div class="marquee-mask pause-on-hover select-none overflow-hidden space-y-3">
+          <!-- Marquee Track 1 -->
+          <div class="animate-marquee flex items-center gap-4">
+            <div class="flex items-center gap-4 shrink-0 text-xs">
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Velox Tech:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Flawless Android APK deployment within 5 business days.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Nexus AI:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Taluq AI transformed our agent coordination across clusters.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Pulse Digital:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“SEO & GEO citations ranked us top 3 on Perplexity and Gemini.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Catalyst Studio:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Geist component store cut our frontend sprint by two weeks.”</span>
+              </div>
+            </div>
+            <!-- Duplicate for Seamless Loop -->
+            <div class="flex items-center gap-4 shrink-0 text-xs" aria-hidden="true">
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Velox Tech:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Flawless Android APK deployment within 5 business days.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Nexus AI:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Taluq AI transformed our agent coordination across clusters.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Pulse Digital:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“SEO & GEO citations ranked us top 3 on Perplexity and Gemini.”</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-neutral-200 dark:border-white/10 bg-white dark:bg-white/[0.03]">
+                <span class="text-amber-400">★★★★★</span>
+                <span class="font-semibold text-neutral-900 dark:text-white">Catalyst Studio:</span>
+                <span class="text-neutral-500 dark:text-neutral-400">“Geist component store cut our frontend sprint by two weeks.”</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Pillars: User Directory, Customers, and Account -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        
+        <!-- 4: Users -->
+        <Card variant="interactive" href="/community/users">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono text-xs font-bold text-neutral-600 dark:text-neutral-400">DIRECTORY</span>
+            <Badge variant="neutral">Users</Badge>
+          </div>
+          <h2 class="text-xl font-semibold text-neutral-900 dark:text-white mt-2">User Directory</h2>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+            Discover creators, businesses, and indie hackers leveraging Prometrion tools and products.
+          </p>
+          <span class="inline-block mt-4 text-xs font-medium text-[#0070f3] dark:text-cyan-400">View Users →</span>
+        </Card>
+
+        <!-- 5: Customers -->
+        <Card variant="interactive" href="/community/customers">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono text-xs font-bold text-emerald-600">ENTERPRISE</span>
+            <Badge variant="emerald">Customers</Badge>
+          </div>
+          <h2 class="text-xl font-semibold text-neutral-900 dark:text-white mt-2">Customer Showcase</h2>
+          <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+            In-depth case studies detailing business impact, ROI, speed improvements, and growth powered by Prometrion.
+          </p>
+          <span class="inline-block mt-4 text-xs font-medium text-[#0070f3] dark:text-cyan-400">Customer Stories →</span>
+        </Card>
+
+        <!-- 6: Account Access -->
+        <Card variant="interactive" href="/account/signup" class="bg-neutral-900 dark:bg-neutral-900/80 text-white">
+          <div class="flex items-center justify-between mb-2">
+            <span class="font-mono text-xs font-bold text-neutral-400">PASSPORT</span>
+            <span class="text-[10px] font-mono bg-neutral-800 text-emerald-400 px-2 py-0.5 rounded">Single Sign-On</span>
+          </div>
+          <h2 class="text-xl font-semibold text-white mt-2">Prometrion Account</h2>
+          <p class="text-xs text-neutral-300 mt-2 leading-relaxed">
+            Create your account to unlock ratings, developer credentials, and community participation.
+          </p>
+          <span class="inline-block mt-4 text-xs font-medium text-white">Create Free Account →</span>
+        </Card>
+
+      </div>
+
+      <!-- Worldwide Developer Network with 3D Wireframe Globe -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-8 sm:p-12 shadow-floating card-glow-blue">
+        <div class="lg:col-span-6 space-y-4">
+          <Badge variant="purple">✦ Decentralized Developer Guild</Badge>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
+            Connecting builders across continents.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            From San Francisco to Frankfurt, Mumbai to Tokyo—Prometrion Developers and Coders Club members collaborate across borders, exchange open-source tools, and review software systems.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+              <span class="text-neutral-400 block text-[10px]">ACTIVE GUILD MEMBERS</span>
+              <strong class="text-[#0070f3] dark:text-cyan-400 text-sm">4,800+ Devs</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+              <span class="text-neutral-400 block text-[10px]">VERIFIED RATINGS</span>
+              <strong class="text-emerald-500 text-sm">4.9 / 5.0</strong>
+            </div>
+          </div>
+          <div class="pt-2">
+            <Button variant="primary" href="/community/developer">
+              Apply to Developer Guild →
+            </Button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <WireframeGlobe 
+            title="Prometrion Global Developer Mesh" 
+            badge="Guild Chapters in 40+ Cities"
+            size="md"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

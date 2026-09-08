@@ -1,0 +1,58 @@
+---
+// Button.astro - Geist-compliant button system with Light/Dark Mode
+interface Props {
+  variant?: 'primary' | 'secondary' | 'primary-sm' | 'ghost-sm' | 'category-pill' | 'outline' | 'glass' | 'glass-sm';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  class: className = '',
+  target,
+  rel,
+} = Astro.props;
+
+const variants: Record<string, string> = {
+  // Marketing CTA - Full Black Pill in Light, Crisp White Pill in Dark
+  primary: 'inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-full transition shadow-sm active:scale-[0.98] cursor-pointer',
+  
+  // Marketing Secondary - White elevated pill in Light, Deep Charcoal in Dark
+  secondary: 'inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-[#171717] bg-white hover:bg-neutral-50 border border-[#ebebeb] dark:bg-[#141414] dark:text-white dark:border-[#262626] dark:hover:bg-[#1f1f1f] rounded-full transition shadow-whisper active:scale-[0.98] cursor-pointer',
+  
+  // Marketing Glassmorphic Pill - Subtle translucent blur with cyan/blue accent glow
+  glass: 'inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium glass-btn rounded-full transition shadow-whisper active:scale-[0.98] cursor-pointer',
+  'glass-sm': 'inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium glass-btn rounded-md transition cursor-pointer',
+
+  // Nav / App square button - 6px radius
+  'primary-sm': 'inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-md transition shadow-xs cursor-pointer',
+  
+  // Nav / App ghost button - 6px radius with hairline border
+  'ghost-sm': 'inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-800 bg-white hover:bg-neutral-50 border border-[#ebebeb] dark:bg-[#141414] dark:text-neutral-200 dark:border-[#262626] dark:hover:bg-[#1f1f1f] rounded-md transition shadow-whisper cursor-pointer',
+  
+  // Filter tab / category pill - 64px radius
+  'category-pill': 'inline-flex items-center justify-center gap-1.5 px-4 py-1.5 text-xs font-medium text-neutral-700 bg-white hover:text-black hover:border-neutral-400 border border-[#ebebeb] dark:bg-[#141414] dark:text-neutral-300 dark:border-[#262626] dark:hover:text-white dark:hover:border-neutral-500 rounded-full transition cursor-pointer',
+
+  // Outlined ghost
+  outline: 'inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-neutral-800 bg-transparent hover:bg-neutral-100 border border-[#ebebeb] dark:text-neutral-200 dark:border-[#262626] dark:hover:bg-[#1f1f1f] rounded-lg transition cursor-pointer',
+};
+
+const combinedClasses = `${variants[variant] || variants.primary} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={combinedClasses} target={target} rel={rel}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={combinedClasses}>
+      <slot />
+    </button>
+  )
+}

@@ -1,0 +1,182 @@
+---
+// account/dashboard.astro - Authenticated User Dashboard
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="Dashboard — Prometrion Account"
+  description="Manage your Prometrion orders, community participation, developer status, and account settings."
+>
+  <div class="py-10 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="text-2xl font-semibold text-neutral-900">Prometrion Dashboard</h1>
+          <Badge variant="emerald">Live Account</Badge>
+        </div>
+        <p class="text-xs text-neutral-500 font-mono mt-0.5">Welcome back, Rajnikant (Chief Architect)</p>
+      </div>
+
+      <div class="flex gap-2">
+        <Button variant="ghost-sm" href="/account/profile">View Public Profile</Button>
+        <Button variant="primary-sm" href="/store">Browse Store</Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-10 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <!-- Top Metrics Overview -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Card variant="default">
+          <span class="text-xs font-mono text-neutral-400">ACTIVE PURCHASES</span>
+          <div class="text-2xl font-mono font-bold text-neutral-900 mt-2">3 Orders</div>
+          <span class="text-[11px] text-emerald-600 mt-1 block">All licenses active</span>
+        </Card>
+
+        <Card variant="default">
+          <span class="text-xs font-mono text-neutral-400">COMMUNITY REPUTATION</span>
+          <div class="text-2xl font-mono font-bold text-[#0070f3] mt-2">Guild Master</div>
+          <span class="text-[11px] text-neutral-500 mt-1 block">Coders Club Rank #1</span>
+        </Card>
+
+        <Card variant="default">
+          <span class="text-xs font-mono text-neutral-400">TALUQ AI INVOCATIONS</span>
+          <div class="text-2xl font-mono font-bold text-neutral-900 mt-2">14,820</div>
+          <span class="text-[11px] text-neutral-500 mt-1 block">Sub-15ms edge avg</span>
+        </Card>
+
+        <Card variant="default">
+          <span class="text-xs font-mono text-neutral-400">ACCOUNT STATUS</span>
+          <div class="text-2xl font-mono font-bold text-emerald-600 mt-2">Verified</div>
+          <span class="text-[11px] text-neutral-500 mt-1 block">2FA Enabled</span>
+        </Card>
+      </div>
+
+      <!-- Dashboard Tabs Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left 2 Cols: Orders & Services -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper">
+            <h2 class="text-base font-semibold text-neutral-900 mb-4 flex items-center justify-between">
+              <span>Recent Orders & Product Licenses</span>
+              <a href="/store" class="text-xs font-normal text-[#0070f3] hover:underline">New Purchase →</a>
+            </h2>
+
+            <div class="divide-y divide-neutral-100 text-xs">
+              <div class="py-3.5 flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-neutral-900">Apex SaaS Dashboard Starter</h3>
+                  <span class="text-[11px] text-neutral-500 font-mono">Invoice #PM-9281 • Lifetime Commercial License</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="font-mono font-bold text-neutral-900">$79</span>
+                  <Button variant="ghost-sm" href="/store/webstore">Download</Button>
+                </div>
+              </div>
+
+              <div class="py-3.5 flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-neutral-900">Taluq AI Agent Developer API</h3>
+                  <span class="text-[11px] text-neutral-500 font-mono">Subscription active • 100K monthly credits</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="font-mono font-bold text-neutral-900">$49/mo</span>
+                  <Button variant="ghost-sm" href="/products/taluq-ai">API Keys</Button>
+                </div>
+              </div>
+
+              <div class="py-3.5 flex items-center justify-between">
+                <div>
+                  <h3 class="font-semibold text-neutral-900">Business Website Development Bundle</h3>
+                  <span class="text-[11px] text-neutral-500 font-mono">Completed • Core Web Vitals score: 99</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <Badge variant="emerald">Completed</Badge>
+                  <Button variant="ghost-sm" href="/community/rating">Rate Service</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Community Activity -->
+          <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper">
+            <h2 class="text-base font-semibold text-neutral-900 mb-4">Community & Coders Club Guild</h2>
+            <div class="space-y-3 text-xs">
+              <div class="p-3 bg-neutral-50 rounded-[6px] border border-neutral-100 flex items-center justify-between">
+                <div>
+                  <span class="font-semibold text-neutral-900">Upcoming Hackathon: Taluq Autonomous Sprint</span>
+                  <p class="text-neutral-500 text-[11px]">Starts October 10 • Registered as Lead Architect</p>
+                </div>
+                <Badge variant="blue">Registered</Badge>
+              </div>
+              <div class="p-3 bg-neutral-50 rounded-[6px] border border-neutral-100 flex items-center justify-between">
+                <div>
+                  <span class="font-semibold text-neutral-900">Verified Rating on Prometrion Trust Desk</span>
+                  <p class="text-neutral-500 text-[11px]">5 Stars submitted • Status: Published</p>
+                </div>
+                <Badge variant="emerald">Verified</Badge>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Col: Quick Settings & Security -->
+        <div class="space-y-6">
+          <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper">
+            <h2 class="text-base font-semibold text-neutral-900 mb-4">Account Quick Actions</h2>
+            <ul class="space-y-2 text-xs">
+              <li>
+                <a href="/account/profile" class="flex items-center justify-between p-2.5 rounded-[6px] hover:bg-neutral-50 transition">
+                  <span class="text-neutral-800">Public Developer Profile</span>
+                  <span class="text-neutral-400">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/community/rating" class="flex items-center justify-between p-2.5 rounded-[6px] hover:bg-neutral-50 transition">
+                  <span class="text-neutral-800">My Ratings & Reviews</span>
+                  <span class="text-neutral-400">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/community/developer" class="flex items-center justify-between p-2.5 rounded-[6px] hover:bg-neutral-50 transition">
+                  <span class="text-neutral-800">Developer Partner Tier</span>
+                  <span class="text-neutral-400">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/contact" class="flex items-center justify-between p-2.5 rounded-[6px] hover:bg-neutral-50 transition">
+                  <span class="text-neutral-800">Enterprise Support Desk</span>
+                  <span class="text-neutral-400">→</span>
+                </a>
+              </li>
+              <li>
+                <a href="/" class="flex items-center justify-between p-2.5 rounded-[6px] text-red-600 hover:bg-red-50 transition mt-2">
+                  <span>Sign Out</span>
+                  <span>↗</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-neutral-900 text-white rounded-[6px] p-6 shadow-floating">
+            <Badge variant="blue">DEVELOPER PASS</Badge>
+            <h3 class="font-semibold text-base text-white mt-3">Prometrion CLI Key</h3>
+            <p class="text-xs text-neutral-400 mt-1">Use this token to link local terminal sessions to your cloud projects.</p>
+            <div class="mt-4 p-2.5 bg-black/60 rounded-lg font-mono text-[11px] text-emerald-400 truncate">
+              pmt_live_9a48f029c81b4d08
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

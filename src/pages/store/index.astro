@@ -1,0 +1,227 @@
+---
+// store/index.astro - Prometrion Store Hub
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
+---
+
+<BaseLayout
+  title="Store — Prometrion Marketplace"
+  description="Explore the Prometrion digital marketplace: Webstore templates, Android apps, and developer UI components."
+>
+  <!-- Store Hero -->
+  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="MARKETPLACE">PROMETRION STORE</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        Everything we build.<br />Everything you need.
+      </h1>
+      <p class="mt-4 text-base text-neutral-600 max-w-xl mx-auto leading-relaxed">
+        High-impact web products, downloadable applications, and developer-grade component libraries ready for production deployment.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
+        <Button variant="primary" href="/store/webstore">
+          Explore Webstore
+        </Button>
+        <Button variant="secondary" href="/store/appstore">
+          Explore Appstore
+        </Button>
+        <Button variant="secondary" href="/store/components">
+          Component Store
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Categories Grid -->
+  <section class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Category 1: Webstore -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <Badge variant="blue">Webstore</Badge>
+              <h2 class="text-xl font-semibold text-neutral-900">Website Products & Turnkey Templates</h2>
+            </div>
+            <p class="text-xs text-neutral-600 mt-1">Ready-to-launch website templates, landing pages, and business architectures.</p>
+          </div>
+          <a href="/store/webstore" class="text-xs font-semibold text-[#0070f3] hover:underline flex items-center gap-1 shrink-0">
+            View All Web Products →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+          <Card variant="interactive" href="/store/webstore">
+            <div class="aspect-video bg-neutral-100 rounded-lg mb-3 flex items-center justify-center text-neutral-400 font-mono text-xs">
+              Preview: SaaS Platform
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <h3 class="font-semibold text-neutral-900">Apex SaaS Dashboard</h3>
+              <span class="font-mono text-emerald-600 font-bold">$79</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">Complete Astro 7 + Tailwind authentication & billing template.</p>
+          </Card>
+
+          <Card variant="interactive" href="/store/webstore">
+            <div class="aspect-video bg-neutral-100 rounded-lg mb-3 flex items-center justify-center text-neutral-400 font-mono text-xs">
+              Preview: Agency / Studio
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <h3 class="font-semibold text-neutral-900">Mono Agency Studio</h3>
+              <span class="font-mono text-emerald-600 font-bold">$49</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">Minimalist portfolio, case studies, and lead collection funnel.</p>
+          </Card>
+
+          <Card variant="interactive" href="/store/webstore">
+            <div class="aspect-video bg-neutral-100 rounded-lg mb-3 flex items-center justify-center text-neutral-400 font-mono text-xs">
+              Preview: E-Commerce Store
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <h3 class="font-semibold text-neutral-900">Lumen Headless Commerce</h3>
+              <span class="font-mono text-emerald-600 font-bold">$99</span>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">High-speed catalog with cart, checkout & payment gateway hooks.</p>
+          </Card>
+        </div>
+      </div>
+
+      <!-- Category 2: Appstore -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <Badge variant="emerald">Appstore</Badge>
+              <h2 class="text-xl font-semibold text-neutral-900">Android & Modern Applications</h2>
+            </div>
+            <p class="text-xs text-neutral-600 mt-1">Official Prometrion mobile applications, tools, and developer utilities.</p>
+          </div>
+          <a href="/store/appstore" class="text-xs font-semibold text-[#0070f3] hover:underline flex items-center gap-1 shrink-0">
+            View All Apps →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+          <Card variant="interactive" href="/store/appstore">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-[6px] bg-neutral-900 text-white flex items-center justify-center font-bold text-sm">
+                P
+              </div>
+              <div>
+                <h3 class="font-semibold text-xs text-neutral-900">Prometrion Console</h3>
+                <span class="text-[10px] text-neutral-400 font-mono">v1.8 • Android</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">Real-time telemetry, serverless deployments, and edge logs on the go.</p>
+            <div class="mt-3 text-[11px] font-mono text-emerald-600 font-medium">Free Download</div>
+          </Card>
+
+          <Card variant="interactive" href="/store/appstore">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-[6px] bg-gradient-to-tr from-cyan-500 to-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                T
+              </div>
+              <div>
+                <h3 class="font-semibold text-xs text-neutral-900">Taluq Mobile Assistant</h3>
+                <span class="text-[10px] text-neutral-400 font-mono">v2.1 • Android</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">Voice-driven autonomous agent client for daily tasks & research.</p>
+            <div class="mt-3 text-[11px] font-mono text-neutral-900 font-medium">$4.99 / mo</div>
+          </Card>
+
+          <Card variant="interactive" href="/store/appstore">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 rounded-[6px] bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
+                C
+              </div>
+              <div>
+                <h3 class="font-semibold text-xs text-neutral-900">Coders Club Companion</h3>
+                <span class="text-[10px] text-neutral-400 font-mono">v1.2 • Android</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-neutral-500 mt-1">Community challenges, live hacker events, and code discussions.</p>
+            <div class="mt-3 text-[11px] font-mono text-emerald-600 font-medium">Free Member Access</div>
+          </Card>
+        </div>
+      </div>
+
+      <!-- Category 3: Component Store -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-neutral-100">
+          <div>
+            <div class="flex items-center gap-2">
+              <Badge variant="purple">Component Store</Badge>
+              <h2 class="text-xl font-semibold text-neutral-900">UI Building Blocks & Snippets</h2>
+            </div>
+            <p class="text-xs text-neutral-600 mt-1">Copy-paste ready React, Next.js, and Astro components built with Tailwind CSS v4.</p>
+          </div>
+          <a href="/store/components" class="text-xs font-semibold text-[#0070f3] hover:underline flex items-center gap-1 shrink-0">
+            Browse All 120+ Components →
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6">
+          <Card variant="interactive" href="/store/components">
+            <span class="text-[10px] font-mono text-neutral-400">NAVIGATION</span>
+            <h3 class="font-semibold text-xs text-neutral-900 mt-1">Geist Mega-Menu Bar</h3>
+            <p class="text-[11px] text-neutral-500 mt-1">Glassmorphic sticky header with keyboard accessible dropdowns.</p>
+            <span class="inline-block mt-3 text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-700">React + Astro</span>
+          </Card>
+
+          <Card variant="interactive" href="/store/components">
+            <span class="text-[10px] font-mono text-neutral-400">MARKETING</span>
+            <h3 class="font-semibold text-xs text-neutral-900 mt-1">Conic Mesh Hero Band</h3>
+            <p class="text-[11px] text-neutral-500 mt-1">High-impact multi-stop radial gradient banner with dual CTA pills.</p>
+            <span class="inline-block mt-3 text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-700">Tailwind CSS v4</span>
+          </Card>
+
+          <Card variant="interactive" href="/store/components">
+            <span class="text-[10px] font-mono text-neutral-400">CONVERSION</span>
+            <h3 class="font-semibold text-xs text-neutral-900 mt-1">Dynamic Pricing Matrix</h3>
+            <p class="text-[11px] text-neutral-500 mt-1">Monthly/Annual billing toggle, feature checks, and highlight badges.</p>
+            <span class="inline-block mt-3 text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-700">Next.js + Astro</span>
+          </Card>
+        </div>
+      </div>
+
+      <!-- Global Edge Delivery Section with 3D Wireframe Globe -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-8 sm:p-12 shadow-floating card-glow-blue">
+        <div class="lg:col-span-6 space-y-4">
+          <Badge variant="emerald">✦ Anycast Storefront Network</Badge>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
+            Instant digital delivery across 300+ global edge locations.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Every template, Android APK, and UI package purchased on Prometrion Store is compiled and cached at the edge node closest to your developer workstation or server.
+          </p>
+          <div class="grid grid-cols-2 gap-4 pt-2 text-xs font-mono">
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+              <span class="text-neutral-400 block text-[10px]">AVG DOWNLOAD SPEED</span>
+              <strong class="text-emerald-500 text-sm">940 MB/s</strong>
+            </div>
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+              <span class="text-neutral-400 block text-[10px]">ANYCAST POPs</span>
+              <strong class="text-cyan-400 text-sm">300+ Cities</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <WireframeGlobe 
+            title="Prometrion Global Edge Nodes" 
+            badge="Real-time Asset Distribution"
+            size="md"
+          />
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

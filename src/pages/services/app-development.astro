@@ -1,0 +1,86 @@
+---
+// services/app-development.astro - Prometrion App Development Services
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+
+const appOfferings = [
+  {
+    title: "Native Android Engineering",
+    desc: "Kotlin-first native architectures taking full advantage of Android Jetpack, material tokens, foreground services, and hardware crypto accelerators.",
+    tag: "Native Android",
+  },
+  {
+    title: "Cross-Platform Mobile Apps",
+    desc: "Single codebase, dual ecosystem parity across Android and iOS. Built with React Native or Flutter without sacrificing 60fps gesture animations.",
+    tag: "Multi-Platform",
+  },
+  {
+    title: "Internal Operations & Field Apps",
+    desc: "Mission-critical internal tooling for inventory, logistics tracking, field agent verification, and offline-first barcode scanning.",
+    tag: "Enterprise Ops",
+  },
+  {
+    title: "Customer Portal & Booking Apps",
+    desc: "Consumer-facing self-service apps featuring push notifications, customer support chat, loyalty points, and unified billing.",
+    tag: "Consumer Apps",
+  },
+];
+---
+
+<BaseLayout
+  title="App Development Services — Prometrion"
+  description="Native Android and cross-platform mobile application development for startups and enterprise systems."
+>
+  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="SERVICE SPECIFICATION">APP DEVELOPMENT</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
+        Native Android and cross-platform mobile systems.
+      </h1>
+      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        From secure consumer applications to mission-critical field operations, we engineer mobile software that is resilient, fluid, and battery-efficient.
+      </p>
+
+      <div class="mt-8 flex justify-center gap-3">
+        <Button variant="primary" href="/contact">Commission an App</Button>
+        <Button variant="secondary" href="/store/appstore">Explore Appstore</Button>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {appOfferings.map((item) => (
+          <Card variant="default">
+            <Badge variant="emerald">{item.tag}</Badge>
+            <h2 class="text-lg font-semibold text-neutral-900 mt-3">{item.title}</h2>
+            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{item.desc}</p>
+          </Card>
+        ))}
+      </div>
+
+      <!-- App Standards Matrix -->
+      <div class="mt-12 bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper">
+        <h3 class="text-base font-semibold text-neutral-900 mb-4">Prometrion Mobile Standards</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-neutral-600">
+          <div>
+            <span class="font-semibold text-neutral-900 block mb-1">✔ Offline First</span>
+            <p>Local SQLite/Room caching ensures full app functionality without internet connectivity.</p>
+          </div>
+          <div>
+            <span class="font-semibold text-neutral-900 block mb-1">✔ Biometric Security</span>
+            <p>Fingerprint and face authentication integrated with Android Keystore encryption.</p>
+          </div>
+          <div>
+            <span class="font-semibold text-neutral-900 block mb-1">✔ Battery Efficient</span>
+            <p>WorkManager background batching prevents background drain and thermal throttling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

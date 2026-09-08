@@ -1,0 +1,237 @@
+---
+// ChatbotWidget.astro - Prometrion AI Sales & Assistance Agent
+---
+
+<div id="prometrion-chatbot" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+  <!-- Chat Window -->
+  <div
+    id="chat-window"
+    class="hidden flex-col w-[380px] max-w-[calc(100vw-32px)] h-[520px] max-h-[calc(100vh-120px)] bg-white rounded-[6px] shadow-popover border border-[#ebebeb] overflow-hidden mb-3 transition-all duration-200 transform origin-bottom-right"
+  >
+    <!-- Header -->
+    <div class="px-4 py-3 bg-[#171717] text-white flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[#007cf0] to-[#00dfd8] text-white font-bold text-xs">
+          AI
+          <span class="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#171717]"></span>
+        </div>
+        <div>
+          <div class="text-xs font-semibold tracking-tight text-white flex items-center gap-1.5">
+            Prometrion AI
+            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-neutral-800 text-neutral-300">v2.4</span>
+          </div>
+        </div>
+      </div>
+      <button id="chat-close-btn" class="p-1 rounded-lg hover:bg-neutral-800 text-neutral-400 hover:text-white transition">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Message History -->
+    <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm bg-[#fafafa]">
+      <!-- Bot Intro -->
+      <div class="flex gap-2 items-start">
+        <div class="w-6 h-6 rounded-full bg-neutral-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+          P
+        </div>
+        <div class="bg-white border border-[#ebebeb] p-3 rounded-2xl rounded-tl-sm text-neutral-800 text-xs shadow-sm max-w-[85%] space-y-2">
+          <p class="font-medium text-neutral-900">Welcome to Prometrion.</p>
+          <p class="text-neutral-600 leading-relaxed">
+            I am your AI guide. I can help you explore our products (like <strong class="text-neutral-900">Taluq AI</strong>), calculate project pricing, recommend services, or connect directly with our engineering leadership.
+          </p>
+          <div class="pt-1 flex flex-wrap gap-1.5">
+            <button class="chat-chip text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-full border border-neutral-200 transition" data-msg="How much does a website cost?">
+              💰 Website Pricing
+            </button>
+            <button class="chat-chip text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-full border border-neutral-200 transition" data-msg="What is Taluq AI?">
+              ✦ Taluq AI
+            </button>
+            <button class="chat-chip text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-full border border-neutral-200 transition" data-msg="Connect on WhatsApp">
+              💬 WhatsApp Us
+            </button>
+            <button class="chat-chip text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-full border border-neutral-200 transition" data-msg="How to join Coders Club?">
+              💻 Coders Club
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Box -->
+    <div class="p-3 bg-white border-t border-[#ebebeb]">
+      <form id="chat-form" class="flex items-center gap-2">
+        <input
+          id="chat-input"
+          type="text"
+          placeholder="Ask anything about Prometrion..."
+          class="flex-1 px-3 py-2 text-xs bg-[#fafafa] border border-[#ebebeb] rounded-lg focus:outline-none focus:border-neutral-900 text-neutral-900 placeholder:text-neutral-400"
+        />
+        <button
+          type="submit"
+          class="p-2 bg-neutral-900 hover:bg-neutral-800 text-white rounded-lg transition shrink-0"
+          title="Send message"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Launcher Button (Icon Only) -->
+  <button
+    id="chat-launcher-btn"
+    class="relative flex items-center justify-center w-12 h-12 bg-[#171717] hover:bg-neutral-800 text-white rounded-full shadow-floating hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border border-neutral-700/80 cursor-pointer"
+    aria-label="Open Prometrion AI Chatbot"
+    title="Prometrion AI Assistant"
+  >
+    <!-- AI Icon Badge with Online Beacon -->
+    <div class="relative flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-tr from-[#00dfd8] via-[#007cf0] to-[#7928ca] text-white">
+      <span class="text-[11px] font-bold tracking-tight">AI</span>
+      <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#171717] animate-pulse"></span>
+    </div>
+  </button>
+</div>
+
+<script>
+  const launcher = document.getElementById("chat-launcher-btn");
+  const windowEl = document.getElementById("chat-window");
+  const closeBtn = document.getElementById("chat-close-btn");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("chat-input") as HTMLInputElement;
+  const messagesContainer = document.getElementById("chat-messages");
+
+  launcher?.addEventListener("click", () => {
+    windowEl?.classList.toggle("hidden");
+    windowEl?.classList.toggle("flex");
+    if (!windowEl?.classList.contains("hidden")) {
+      input?.focus();
+    }
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    windowEl?.classList.add("hidden");
+    windowEl?.classList.remove("flex");
+  });
+
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains("chat-chip")) {
+      const msg = target.getAttribute("data-msg");
+      if (msg) handleUserMessage(msg);
+    }
+  });
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!input || !input.value.trim()) return;
+    const msg = input.value.trim();
+    input.value = "";
+    handleUserMessage(msg);
+  });
+
+  function appendMessage(text: string, isUser: boolean, links?: { label: string; url: string }[]) {
+    if (!messagesContainer) return;
+
+    const div = document.createElement("div");
+    div.className = `flex gap-2 items-start ${isUser ? "justify-end" : ""}`;
+
+    if (isUser) {
+      div.innerHTML = `
+        <div class="bg-neutral-900 text-white p-3 rounded-2xl rounded-tr-sm text-xs shadow-sm max-w-[85%]">
+          ${text}
+        </div>
+      `;
+    } else {
+      let linkHtml = "";
+      if (links && links.length > 0) {
+        linkHtml = `
+          <div class="pt-2 flex flex-wrap gap-1.5 border-t border-neutral-100 mt-2">
+            ${links.map(l => `<a href="${l.url}" class="text-[11px] font-medium text-[#0070f3] hover:underline flex items-center gap-1">${l.label} →</a>`).join("")}
+          </div>
+        `;
+      }
+
+      div.innerHTML = `
+        <div class="w-6 h-6 rounded-full bg-neutral-900 text-white flex items-center justify-center text-[10px] font-bold shrink-0 mt-0.5">
+          P
+        </div>
+        <div class="bg-white border border-[#ebebeb] p-3 rounded-2xl rounded-tl-sm text-neutral-800 text-xs shadow-sm max-w-[85%] space-y-1.5">
+          <p class="leading-relaxed">${text}</p>
+          ${linkHtml}
+        </div>
+      `;
+    }
+
+    messagesContainer.appendChild(div);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  function handleUserMessage(query: string) {
+    appendMessage(query, true);
+
+    const q = query.toLowerCase();
+
+    setTimeout(() => {
+      if (q.includes("pricing") || q.includes("cost") || q.includes("website cost") || q.includes("price")) {
+        appendMessage(
+          "Our website packages start from **$499** (Starter) up to custom enterprise architectures. We provide transparent, database-driven pricing with 0 hidden fees.",
+          false,
+          [
+            { label: "View Pricing Matrix", url: "/pricing" },
+            { label: "Website Development Packages", url: "/services/packages" }
+          ]
+        );
+      } else if (q.includes("taluq") || q.includes("ai") || q.includes("product")) {
+        appendMessage(
+          "**Taluq AI** is Prometrion's flagship intelligence engine designed for autonomous agent workflows, enterprise reasoning, and multimodal task execution.",
+          false,
+          [
+            { label: "Explore Taluq AI", url: "/products/taluq-ai" },
+            { label: "View All Products", url: "/products" }
+          ]
+        );
+      } else if (q.includes("whatsapp") || q.includes("chat") || q.includes("contact") || q.includes("phone")) {
+        appendMessage(
+          "You can connect directly with our engineering and sales desk via Call or WhatsApp on **+91 7084202503** or schedule an instant consultation.",
+          false,
+          [
+            { label: "WhatsApp (+91 7084202503)", url: "https://wa.me/917084202503" },
+            { label: "Open Contact Desk", url: "/contact" }
+          ]
+        );
+      } else if (q.includes("coders club") || q.includes("developer") || q.includes("community")) {
+        appendMessage(
+          "Prometrion Developer ecosystem offers verified developer badges, project showcases, and exclusive entry to the **Coders Club** with global hackathons and open-source rewards.",
+          false,
+          [
+            { label: "Join Coders Club", url: "/community/coders-club" },
+            { label: "Become Prometrion Developer", url: "/community/developer" }
+          ]
+        );
+      } else if (q.includes("store") || q.includes("component") || q.includes("webstore")) {
+        appendMessage(
+          "Prometrion Store hosts production-ready web templates, Android apps, and accessible React/Astro UI components ready for your tech stack.",
+          false,
+          [
+            { label: "Component Store", url: "/store/components" },
+            { label: "Webstore Templates", url: "/store/webstore" }
+          ]
+        );
+      } else {
+        appendMessage(
+          "Prometrion is a premier technology company building products (like Taluq AI), digital services, marketplaces, and developer communities. How can we assist your venture today?",
+          false,
+          [
+            { label: "Browse Services", url: "/services" },
+            { label: "Explore Store", url: "/store" },
+            { label: "Contact Our Team", url: "/contact" }
+          ]
+        );
+      }
+    }, 450);
+  }
+</script>

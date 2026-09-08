@@ -1,0 +1,106 @@
+---
+// account/profile.astro - Public Developer & User Profile
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+---
+
+<BaseLayout
+  title="Developer Profile — Prometrion Network"
+  description="Verified developer and creator profile on the Prometrion ecosystem."
+>
+  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Profile Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-neutral-100">
+        <div class="flex items-center gap-5">
+          <div class="w-20 h-20 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-3xl shadow-whisper">
+            R
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-2xl font-semibold text-neutral-900">Rajnikant</h1>
+              <Badge variant="blue">✦ Prometrion Developer</Badge>
+              <Badge variant="emerald">Verified</Badge>
+            </div>
+            <p class="text-xs font-mono text-neutral-400 mt-1">@rajnikant • Joined Q2 2025 • New Delhi, India</p>
+            <p class="text-xs text-neutral-600 mt-2 max-w-lg leading-relaxed">
+              Founder & Chief Architect at Prometrion. Building autonomous agent protocols, high-velocity Astro frontends, and the Taluq AI reasoning engine.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex gap-2 shrink-0">
+          <Button variant="ghost-sm" href="/account/dashboard">
+            Edit Profile
+          </Button>
+          <Button variant="primary-sm" href="/contact">
+            Connect
+          </Button>
+        </div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 font-mono text-xs text-neutral-600">
+        <div>
+          <span class="text-neutral-400 block">Ecosystem Rank</span>
+          <span class="text-base font-bold text-neutral-900">Top 1% Architect</span>
+        </div>
+        <div>
+          <span class="text-neutral-400 block">Deployments</span>
+          <span class="text-base font-bold text-neutral-900">34 Verified</span>
+        </div>
+        <div>
+          <span class="text-neutral-400 block">Store Components</span>
+          <span class="text-base font-bold text-neutral-900">12 Published</span>
+        </div>
+        <div>
+          <span class="text-neutral-400 block">Community Stars</span>
+          <span class="text-base font-bold text-amber-600">★ 4.98 (86)</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <!-- Skills & Stack -->
+      <Card variant="default">
+        <h2 class="text-sm font-semibold text-neutral-900 mb-3">Technical Capabilities & Verified Skills</h2>
+        <div class="flex flex-wrap gap-2">
+          {["Astro 7", "Tailwind CSS v4", "Taluq AI SDK", "TypeScript", "MicroVM Sandboxing", "Next.js", "Edge Anycast Runtimes", "Generative Engine Optimization (GEO)"].map(skill => (
+            <span class="text-xs font-mono px-3 py-1 bg-neutral-100 text-neutral-800 rounded-md border border-neutral-200">
+              {skill}
+            </span>
+          ))}
+        </div>
+      </Card>
+
+      <!-- Published Store Items -->
+      <Card variant="default">
+        <h2 class="text-sm font-semibold text-neutral-900 mb-4">Published Store Products & Templates</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-[6px] border border-[#ebebeb] bg-[#fafafa]">
+            <span class="text-[10px] font-mono text-emerald-600">TEMPLATE</span>
+            <h3 class="text-sm font-semibold text-neutral-900 mt-1">Apex SaaS Platform Starter</h3>
+            <p class="text-xs text-neutral-500 mt-1">Full-stack authentication, billing, and Astro 7 layout.</p>
+            <span class="text-xs font-mono font-bold text-neutral-900 mt-2 block">$79</span>
+          </div>
+
+          <div class="p-4 rounded-[6px] border border-[#ebebeb] bg-[#fafafa]">
+            <span class="text-[10px] font-mono text-[#0070f3]">UI COMPONENT</span>
+            <h3 class="text-sm font-semibold text-neutral-900 mt-1">Geist Mega-Menu Header</h3>
+            <p class="text-xs text-neutral-500 mt-1">Accessible sticky navigation bar with search triggers.</p>
+            <span class="text-xs font-mono font-bold text-neutral-900 mt-2 block">MIT Free</span>
+          </div>
+        </div>
+      </Card>
+
+    </div>
+  </div>
+</BaseLayout>

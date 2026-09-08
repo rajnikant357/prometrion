@@ -1,0 +1,273 @@
+---
+// services/catalog.astro - Full Productized Solutions & Services Catalog
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { servicesCatalog } from "../../data/servicesCatalog";
+
+const categories = [
+  { id: "all", label: "All Solutions" },
+  { id: "website", label: "Websites" },
+  { id: "app", label: "Mobile & Apps" },
+  { id: "seo-geo", label: "SEO & GEO" },
+  { id: "presence", label: "Digital Presence" },
+  { id: "consultancy", label: "Consultancy" },
+  { id: "branding", label: "Branding" },
+  { id: "maintenance", label: "Maintenance" },
+  { id: "addons", label: "Add-Ons" },
+];
+---
+
+<BaseLayout
+  title="Solutions Catalog — Prometrion Turnkey Digital Services"
+  description="Browse 30+ productized website, app, SEO/GEO, branding, and cloud maintenance solutions with transparent INR pricing and guaranteed turnaround."
+>
+  <!-- Hero Section -->
+  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="CANONICAL CATALOG">PRODUCTIZED SOLUTIONS</SectionEyebrow>
+      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] mt-3">
+        Engineered Digital Solutions
+      </h1>
+      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+        Pre-engineered, battle-tested website architectures, native mobile applications, search engine intelligence, and managed support. Transparent Indian Rupee (₹) pricing with clear deliverables.
+      </p>
+
+      <!-- Search & Filters Container -->
+      <div class="mt-8 max-w-xl mx-auto">
+        <div class="relative">
+          <input
+            id="catalog-search"
+            type="text"
+            placeholder="Search solutions by name, industry (clinic, gym, coaching...), or tech..."
+            class="w-full px-4 py-3 pl-11 text-sm bg-neutral-50 border border-[#ebebeb] rounded-[6px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0070f3] focus:bg-white transition"
+          />
+          <svg class="w-4 h-4 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+        {categories.map((cat, idx) => (
+          <button
+            class={`catalog-filter-btn px-3 py-1.5 rounded-full text-xs font-medium transition cursor-pointer ${
+              idx === 0
+                ? "bg-neutral-900 text-white shadow-sm"
+                : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+            }`}
+            data-category={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Catalog Grid Section -->
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Results counter -->
+      <div class="flex items-center justify-between mb-8">
+        <span id="catalog-count" class="text-xs font-mono text-neutral-500">
+          Showing all {servicesCatalog.length} solutions
+        </span>
+        <a href="/services/packages" class="text-xs font-mono text-[#0070f3] hover:underline flex items-center gap-1">
+          <span>View Bundled Combo Packages</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Solutions Grid -->
+      <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesCatalog.map((item) => (
+          <div
+            class="catalog-item rounded-[6px] bg-white border border-[#ebebeb] p-6 shadow-whisper hover:shadow-floating transition-all flex flex-col justify-between"
+            data-category={item.category}
+            data-search={`${item.name} ${item.subcategory || ''} ${item.shortDesc} ${item.bestFor} ${item.coreScope.join(' ')}`.toLowerCase()}
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <Badge variant={item.category === 'website' ? 'blue' : item.category === 'app' ? 'purple' : item.category === 'seo-geo' ? 'emerald' : 'neutral'}>
+                  {item.subcategory || item.category.toUpperCase()}
+                </Badge>
+                {item.deliveryEstimate && (
+                  <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded">
+                    ⚡ {item.deliveryEstimate}
+                  </span>
+                )}
+              </div>
+
+              <h2 class="text-lg font-semibold text-neutral-900 tracking-tight">{item.name}</h2>
+              <p class="text-xs text-neutral-500 mt-1.5 leading-relaxed line-clamp-2">{item.shortDesc}</p>
+
+              <!-- Price Tag -->
+              <div class="mt-4 p-3 rounded-lg bg-neutral-50 border border-neutral-100 flex items-baseline justify-between">
+                <div>
+                  <span class="text-2xl font-mono font-bold text-neutral-900">{item.priceFormatted}</span>
+                  {item.billingPeriod && item.billingPeriod !== 'one-time' && (
+                    <span class="text-xs text-neutral-500 font-mono"> /{item.billingPeriod}</span>
+                  )}
+                </div>
+                {item.packageLevel && (
+                  <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-neutral-200/60 text-neutral-700 font-medium">
+                    {item.packageLevel} Tier
+                  </span>
+                )}
+              </div>
+
+              <!-- Best For -->
+              <div class="mt-4">
+                <span class="text-[11px] font-medium text-neutral-400 uppercase tracking-wider block mb-1">Target Persona</span>
+                <p class="text-xs text-neutral-700">{item.bestFor}</p>
+              </div>
+
+              <!-- Core Scope Deliverables -->
+              <div class="mt-4 pt-3 border-t border-neutral-100">
+                <span class="text-[11px] font-medium text-neutral-400 uppercase tracking-wider block mb-2">Core Scope</span>
+                <ul class="space-y-1.5 text-xs text-neutral-600">
+                  {item.coreScope.slice(0, 4).map((deliverable) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{deliverable}</span>
+                    </li>
+                  ))}
+                  {item.coreScope.length > 4 && (
+                    <li class="text-[11px] text-neutral-400 pl-4 font-mono">
+                      + {item.coreScope.length - 4} more deliverables
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center gap-2">
+              <Button
+                variant="primary-sm"
+                href={`/contact?service=${item.slug}`}
+                class="w-full justify-center"
+              >
+                Order / Inquire
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Zero Results Fallback -->
+      <div id="catalog-empty" class="hidden py-16 text-center">
+        <p class="text-neutral-500 text-sm">No solutions match your search query.</p>
+        <button id="catalog-reset" class="mt-3 text-xs font-mono text-[#0070f3] hover:underline cursor-pointer">
+          Reset search filters
+        </button>
+      </div>
+
+      <!-- Custom Project Banner -->
+      <div class="mt-16 bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper text-center max-w-3xl mx-auto">
+        <h3 class="text-lg font-semibold text-neutral-900">Need a bespoke multi-system architecture?</h3>
+        <p class="text-xs text-neutral-600 mt-2 max-w-xl mx-auto leading-relaxed">
+          If your project combines custom API microservices, specialized mobile Flutter/Android apps, or bespoke AI reasoning models, our senior solutions architects will formulate a tailored Statement of Work.
+        </p>
+        <div class="mt-5 flex items-center justify-center gap-3">
+          <Button variant="primary-sm" href="/contact">
+            Request Custom Scope & Estimate →
+          </Button>
+          <Button variant="secondary-sm" href="/pricing">
+            Compare Pricing Tiers
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  // Dynamic client-side filtering & search
+  const searchInput = document.getElementById("catalog-search") as HTMLInputElement;
+  const filterButtons = document.querySelectorAll(".catalog-filter-btn");
+  const items = document.querySelectorAll(".catalog-item") as NodeListOf<HTMLElement>;
+  const counter = document.getElementById("catalog-count");
+  const emptyState = document.getElementById("catalog-empty");
+  const resetButton = document.getElementById("catalog-reset");
+
+  let activeCategory = "all";
+  let searchQuery = "";
+
+  function applyFilters() {
+    let visibleCount = 0;
+    const query = searchQuery.trim().toLowerCase();
+
+    items.forEach((item) => {
+      const itemCategory = item.getAttribute("data-category") || "";
+      const itemSearch = item.getAttribute("data-search") || "";
+
+      const matchesCategory = activeCategory === "all" || itemCategory === activeCategory;
+      const matchesSearch = !query || itemSearch.includes(query);
+
+      if (matchesCategory && matchesSearch) {
+        item.style.display = "flex";
+        visibleCount++;
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    if (counter) {
+      counter.textContent = `Showing ${visibleCount} of ${items.length} solutions`;
+    }
+
+    if (emptyState) {
+      if (visibleCount === 0) {
+        emptyState.classList.remove("hidden");
+      } else {
+        emptyState.classList.add("hidden");
+      }
+    }
+  }
+
+  // Category Tab Click
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach((b) => {
+        b.classList.remove("bg-neutral-900", "text-white", "shadow-sm");
+        b.classList.add("bg-neutral-100", "text-neutral-600");
+      });
+
+      btn.classList.remove("bg-neutral-100", "text-neutral-600");
+      btn.classList.add("bg-neutral-900", "text-white", "shadow-sm");
+
+      activeCategory = btn.getAttribute("data-category") || "all";
+      applyFilters();
+    });
+  });
+
+  // Search Input
+  searchInput?.addEventListener("input", (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    applyFilters();
+  });
+
+  // Reset Button
+  resetButton?.addEventListener("click", () => {
+    if (searchInput) searchInput.value = "";
+    searchQuery = "";
+    activeCategory = "all";
+    filterButtons.forEach((b, idx) => {
+      if (idx === 0) {
+        b.classList.add("bg-neutral-900", "text-white", "shadow-sm");
+        b.classList.remove("bg-neutral-100", "text-neutral-600");
+      } else {
+        b.classList.remove("bg-neutral-900", "text-white", "shadow-sm");
+        b.classList.add("bg-neutral-100", "text-neutral-600");
+      }
+    });
+    applyFilters();
+  });
+</script>

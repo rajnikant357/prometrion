@@ -1,0 +1,378 @@
+---
+// Navbar.astro - Primary Navigation with Convincing Geist Dark Mode, Mega Menus & Mobile Drawer
+---
+
+<header id="site-header" class="sticky top-0 z-40 w-full border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa]/85 dark:bg-black/75 backdrop-blur-xl transition-colors duration-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    
+    <!-- Left: Brand Logo -->
+    <div class="flex items-center gap-6 lg:gap-8">
+      <a href="/" class="flex items-center gap-2.5 group">
+        <!-- Prometrion Logo -->
+        <div class="w-8 h-8 rounded-md flex items-center justify-center overflow-hidden group-hover:scale-105 transition-all duration-200">
+          <img src="/prometrion-logo.png" alt="Prometrion" class="w-full h-full object-contain" width="32" height="32" />
+        </div>
+        <span class="font-semibold text-base tracking-tight text-[#171717] dark:text-white font-sans">
+          PROMETRION
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center gap-1 text-[13px] font-medium text-neutral-600 dark:text-neutral-300">
+        
+        <!-- Products Dropdown -->
+        <div class="relative group/dropdown py-4">
+          <button class="nav-link flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer">
+            <span>Products</span>
+            <svg class="w-3.5 h-3.5 text-neutral-400 group-hover/dropdown:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div class="nav-dropdown absolute left-0 top-full hidden group-hover/dropdown:block w-[360px] p-2 bg-white dark:bg-[#0c0c0c] rounded-[6px] shadow-popover dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#ebebeb] dark:border-white/10 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-2xl">
+            <a href="/products" class="block p-3 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition group/item">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-neutral-900 dark:text-white group-hover/item:text-[#0070f3] dark:group-hover/item:text-cyan-400 flex items-center gap-1.5">
+                  Products Overview
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-[#0070f3] dark:text-cyan-400 border border-blue-200 dark:border-blue-800/50">Ecosystem</span>
+                </span>
+                <span class="text-xs text-neutral-400">→</span>
+              </div>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">Explore Prometrion's software platforms and technology suites.</p>
+            </a>
+            <div class="h-px bg-neutral-100 dark:bg-white/10 my-1"></div>
+            <a href="/products/taluq-ai" class="block p-3 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition group/item">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-neutral-900 dark:text-white group-hover/item:text-[#0070f3] dark:group-hover/item:text-emerald-400 flex items-center gap-1.5">
+                  ✦ Taluq AI
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">Flagship</span>
+                </span>
+                <span class="text-xs text-neutral-400">→</span>
+              </div>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">Autonomous intelligence engine & multimodal agent infrastructure.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Store Dropdown -->
+        <div class="relative group/dropdown py-4">
+          <button class="nav-link flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer">
+            <span>Store</span>
+            <svg class="w-3.5 h-3.5 text-neutral-400 group-hover/dropdown:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div class="nav-dropdown absolute left-0 top-full hidden group-hover/dropdown:block w-[420px] p-2 bg-white dark:bg-[#0c0c0c] rounded-[6px] shadow-popover dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#ebebeb] dark:border-white/10 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-2xl">
+            <a href="/store" class="block p-3 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition group/item">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-neutral-900 dark:text-white group-hover/item:text-[#0070f3] dark:group-hover/item:text-cyan-400">Prometrion Store Hub</span>
+                <span class="text-xs text-neutral-400">All Stores →</span>
+              </div>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">The central digital marketplace for software, apps, and UI resources.</p>
+            </a>
+            <div class="grid grid-cols-3 gap-1 pt-1 border-t border-neutral-100 dark:border-white/10">
+              <a href="/store/webstore" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Webstore</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Websites & templates</p>
+              </a>
+              <a href="/store/appstore" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Appstore</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Android & systems</p>
+              </a>
+              <a href="/store/components" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Components</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">UI blocks & code</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Articles Dropdown -->
+        <div class="relative group/dropdown py-4">
+          <button class="nav-link flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer">
+            <span>Articles</span>
+            <svg class="w-3.5 h-3.5 text-neutral-400 group-hover/dropdown:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div class="nav-dropdown absolute left-0 top-full hidden group-hover/dropdown:block w-[420px] p-2 bg-white dark:bg-[#0c0c0c] rounded-[6px] shadow-popover dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#ebebeb] dark:border-white/10 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-2xl">
+            <div class="grid grid-cols-2 gap-1">
+              <a href="/articles/blogs" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Blogs</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">8 deep launch guides</p>
+              </a>
+              <a href="/articles/news" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Official News</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Releases & dispatches</p>
+              </a>
+              <a href="/articles/achievements" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Achievements</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Milestone timeline</p>
+              </a>
+              <a href="/articles/people" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">People</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Team & leadership stories</p>
+              </a>
+            </div>
+            <div class="border-t border-neutral-100 dark:border-white/10 mt-1 pt-1">
+              <a href="/articles/docs" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-semibold text-neutral-900 dark:text-white">Documentation Hub</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">✦ Skills</span>
+                </div>
+                <span class="text-xs text-neutral-400">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Dropdown -->
+        <div class="relative group/dropdown py-4">
+          <button class="nav-link flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer">
+            <span>Services</span>
+            <svg class="w-3.5 h-3.5 text-neutral-400 group-hover/dropdown:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div class="nav-dropdown absolute left-0 top-full hidden group-hover/dropdown:block w-[460px] p-2 bg-white dark:bg-[#0c0c0c] rounded-[6px] shadow-popover dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#ebebeb] dark:border-white/10 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-2xl">
+            <div class="grid grid-cols-2 gap-1">
+              <a href="/services/website-development" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Website Development</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Business, SaaS & e-com</p>
+              </a>
+              <a href="/services/app-development" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">App Development</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Android & mobile apps</p>
+              </a>
+              <a href="/services/seo-geo" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">SEO / GEO</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Search & AI discovery</p>
+              </a>
+              <a href="/services/catalog" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Solutions Catalog</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">30+ turnkey solutions in ₹</p>
+              </a>
+            </div>
+            <div class="border-t border-neutral-100 dark:border-white/10 mt-1 pt-1">
+              <a href="/services/packages" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-semibold text-neutral-900 dark:text-white">Service Packages</span>
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">Fixed Bundles</span>
+                </div>
+                <span class="text-xs text-neutral-400">View Packages →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Link: Pricing -->
+        <a href="/pricing" class="nav-link px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition">
+          Pricing
+        </a>
+
+        <!-- Community Dropdown -->
+        <div class="relative group/dropdown py-4">
+          <button class="nav-link flex items-center gap-1 px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer">
+            <span>Community</span>
+            <svg class="w-3.5 h-3.5 text-neutral-400 group-hover/dropdown:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          <div class="nav-dropdown absolute left-0 top-full hidden group-hover/dropdown:block w-[400px] p-2 bg-white dark:bg-[#0c0c0c] rounded-[6px] shadow-popover dark:shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#ebebeb] dark:border-white/10 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-2xl">
+            <div class="grid grid-cols-2 gap-1">
+              <a href="/community/developer" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Prometrion Developer</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Partner program & tiers</p>
+              </a>
+              <a href="/community/coders-club" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Coders Club</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Developer guild & events</p>
+              </a>
+              <a href="/community/rating" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Ratings & Reviews</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Verified customer scores</p>
+              </a>
+              <a href="/community/customers" class="p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition text-left">
+                <div class="font-medium text-xs text-neutral-900 dark:text-white">Customers</div>
+                <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Case studies & impact</p>
+              </a>
+            </div>
+            <div class="border-t border-neutral-100 dark:border-white/10 mt-1 pt-1">
+              <a href="/community/users" class="flex items-center justify-between p-2.5 rounded-lg hover:bg-[#fafafa] dark:hover:bg-white/5 transition">
+                <span class="text-xs font-semibold text-neutral-900 dark:text-white">Users Directory</span>
+                <span class="text-xs text-neutral-400">Explore →</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Direct Link: About -->
+        <a href="/about" class="nav-link px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition">
+          About
+        </a>
+
+        <!-- Direct Link: Contact -->
+        <a href="/contact" class="nav-link px-3 py-1.5 rounded-full hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/10 transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+
+    <!-- Right: Search, Auth & CTAs -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Search Trigger Button (Cmd+K) with Dark Glassmorphism -->
+      <button
+        data-open-search
+        class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-neutral-500 dark:text-neutral-300 bg-white dark:bg-white/5 hover:text-neutral-900 dark:hover:text-white border border-[#ebebeb] dark:border-white/15 rounded-md shadow-whisper dark:shadow-none hover:border-neutral-400 dark:hover:border-cyan-400/40 transition cursor-pointer"
+        aria-label="Search Prometrion"
+      >
+        <svg class="w-3.5 h-3.5 text-neutral-400 dark:text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="hidden sm:inline">Search...</span>
+        <kbd class="hidden sm:inline text-[10px] font-mono text-neutral-400 dark:text-neutral-400 bg-neutral-100 dark:bg-white/10 border border-neutral-200 dark:border-white/10 px-1 rounded">⌘K</kbd>
+      </button>
+
+      <!-- Sign In Link -->
+      <a href="/account/signin" class="hidden sm:inline-block px-3 py-1.5 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white rounded-md border border-transparent hover:border-[#ebebeb] dark:hover:border-white/10 transition">
+        Sign In
+      </a>
+
+      <!-- Primary Action CTA -->
+      <a
+        href="/account/signup"
+        class="inline-flex items-center justify-center px-4 py-1.5 text-xs font-medium text-white dark:text-black bg-[#171717] dark:bg-white hover:bg-neutral-800 dark:hover:bg-neutral-200 rounded-full transition shadow-sm dark:shadow-[0_0_20px_rgba(255,255,255,0.25)] cursor-pointer"
+      >
+        Get Started
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="mobile-menu-toggle"
+        class="lg:hidden p-1.5 text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white rounded-md hover:bg-neutral-100 dark:hover:bg-white/10 transition cursor-pointer"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+      >
+        <svg id="hamburger-icon-bars" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <svg id="hamburger-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav-drawer" class="hidden lg:hidden border-t border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#080808] px-4 py-4 space-y-4 max-h-[calc(100vh-64px)] overflow-y-auto shadow-2xl">
+    
+    <!-- Mobile Drawer Header with Branding & Dedicated Close Icon Button -->
+    <div class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-white/10">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded-md flex items-center justify-center overflow-hidden">
+          <img src="/prometrion-logo.png" alt="Prometrion" class="w-full h-full object-contain" width="24" height="24" />
+        </div>
+        <span class="font-semibold text-xs tracking-wider text-[#171717] dark:text-white uppercase font-sans">Menu</span>
+      </div>
+      <button
+        id="mobile-drawer-close"
+        class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-[6px] text-xs font-medium text-neutral-600 hover:text-neutral-900 dark:text-neutral-300 dark:hover:text-white bg-neutral-100 hover:bg-neutral-200 dark:bg-white/10 dark:hover:bg-white/15 border border-neutral-200/80 dark:border-white/10 transition cursor-pointer"
+        aria-label="Close menu drawer"
+      >
+        <span>Close</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="space-y-1">
+      <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 px-3 py-1">Ecosystem</div>
+      <a href="/products" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Products Overview</a>
+      <a href="/products/taluq-ai" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">✦ Taluq AI</a>
+      <a href="/store" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Prometrion Store Hub</a>
+      <a href="/store/webstore" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Webstore</a>
+      <a href="/store/appstore" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Appstore</a>
+      <a href="/store/components" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Component Store</a>
+    </div>
+
+    <div class="space-y-1 border-t border-neutral-100 dark:border-white/10 pt-3">
+      <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 px-3 py-1">Services & Pricing</div>
+      <a href="/services" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Services Overview</a>
+      <a href="/services/website-development" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Website Development</a>
+      <a href="/services/app-development" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">App Development</a>
+      <a href="/services/seo-geo" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">SEO / GEO</a>
+      <a href="/services/catalog" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Solutions Catalog (₹)</a>
+      <a href="/services/packages" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Service Packages</a>
+      <a href="/pricing" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Global Pricing</a>
+    </div>
+
+    <div class="space-y-1 border-t border-neutral-100 dark:border-white/10 pt-3">
+      <div class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 px-3 py-1">Knowledge & Community</div>
+      <a href="/articles" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Articles & Publications</a>
+      <a href="/articles/docs" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Documentation & Skills</a>
+      <a href="/community" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Community Hub</a>
+      <a href="/community/developer" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Prometrion Developer</a>
+      <a href="/community/coders-club" class="block pl-6 pr-3 py-1.5 text-xs text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Coders Club</a>
+    </div>
+
+    <div class="space-y-1 border-t border-neutral-100 dark:border-white/10 pt-3">
+      <a href="/about" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">About Prometrion</a>
+      <a href="/contact" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Contact Us</a>
+      <a href="/account/signin" class="block px-3 py-2 text-sm font-medium text-neutral-800 dark:text-neutral-200 hover:bg-neutral-50 dark:hover:bg-white/5 rounded-lg">Sign In to Account</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const closeBtn = document.getElementById("mobile-drawer-close");
+  const drawer = document.getElementById("mobile-nav-drawer");
+  const iconBars = document.getElementById("hamburger-icon-bars");
+  const iconClose = document.getElementById("hamburger-icon-close");
+
+  function openDrawer() {
+    drawer?.classList.remove("hidden");
+    toggleBtn?.setAttribute("aria-expanded", "true");
+    iconBars?.classList.add("hidden");
+    iconClose?.classList.remove("hidden");
+  }
+
+  function closeDrawer() {
+    drawer?.classList.add("hidden");
+    toggleBtn?.setAttribute("aria-expanded", "false");
+    iconBars?.classList.remove("hidden");
+    iconClose?.classList.add("hidden");
+  }
+
+  toggleBtn?.addEventListener("click", () => {
+    const isHidden = drawer?.classList.contains("hidden");
+    if (isHidden) {
+      openDrawer();
+    } else {
+      closeDrawer();
+    }
+  });
+
+  closeBtn?.addEventListener("click", () => {
+    closeDrawer();
+  });
+
+  // Close drawer when any internal navigation link is tapped
+  drawer?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeDrawer();
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer && !drawer.classList.contains("hidden")) {
+      closeDrawer();
+    }
+  });
+</script>

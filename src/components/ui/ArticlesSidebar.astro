@@ -1,0 +1,145 @@
+---
+// ArticlesSidebar.astro - Vercel-style Left Navigation Sidebar for Docs & Articles
+interface Props {
+  activeSlug?: string;
+  activeSection?: string;
+}
+
+const { activeSlug = '', activeSection = '' } = Astro.props;
+
+const blogLinks = [
+  { slug: 'why-choose-prometrion', title: 'Why Choose Prometrion' },
+  { slug: 'responsive-web-design', title: 'Responsive Design & Mobile-First' },
+  { slug: 'seo-geo-business-growth', title: 'SEO & GEO for AI Search' },
+  { slug: 'custom-website-vs-templates', title: 'Custom Web vs Templates' },
+  { slug: 'android-app-vs-mobile-website', title: 'Android Apps vs Mobile Web' },
+  { slug: 'turnkey-business-websites', title: 'Turnkey Solutions Catalog' },
+  { slug: 'ecommerce-speed-conversion', title: 'E-Commerce Speed & Conversions' },
+  { slug: 'prometrion-pricing-transparency', title: 'Pricing & Packages Guide' },
+];
+---
+
+<aside class="hidden lg:block w-64 shrink-0 text-xs font-sans">
+  <div class="sticky top-24 space-y-6 max-h-[calc(100vh-7rem)] overflow-y-auto pr-4">
+    
+    <!-- Quick Search Input Trigger -->
+    <div>
+      <button 
+        data-open-search 
+        class="w-full flex items-center justify-between px-3 py-2 bg-neutral-50 dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-500 dark:text-neutral-400 hover:border-neutral-400 dark:hover:border-cyan-400/40 transition cursor-pointer text-left shadow-xs"
+      >
+        <span class="flex items-center gap-2">
+          <svg class="w-3.5 h-3.5 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span>Search docs...</span>
+        </span>
+        <kbd class="font-mono text-[10px] bg-white dark:bg-white/10 border border-neutral-200 dark:border-white/10 px-1 py-0.5 rounded">⌘K</kbd>
+      </button>
+    </div>
+
+    <!-- Section 1: Documentation Hub -->
+    <div class="space-y-2">
+      <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 px-2">
+        Platform Docs
+      </div>
+      <nav class="space-y-0.5">
+        <a 
+          href="/articles/docs#overview" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          <span>Platform Overview</span>
+          <span class="text-[10px] font-mono text-neutral-400">01</span>
+        </a>
+        <a 
+          href="/articles/docs#services-spec" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          <span>Service Specs & Pricing</span>
+          <span class="text-[10px] font-mono text-neutral-400">02</span>
+        </a>
+        <a 
+          href="/articles/docs#engineering" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          <span>Geist Engineering Standards</span>
+          <span class="text-[10px] font-mono text-neutral-400">03</span>
+        </a>
+        <a 
+          href="/articles/docs#skills-registry" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-emerald-600 dark:text-emerald-400 font-medium hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition"
+        >
+          <span>✦ Prometrion Skills</span>
+          <span class="text-[10px] font-mono px-1.5 rounded bg-emerald-100 dark:bg-emerald-900/60 font-bold">New</span>
+        </a>
+        <a 
+          href="/articles/docs#future-docs" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          <span>Future Docs Guide</span>
+          <span class="text-[10px] font-mono text-neutral-400">05</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Section 2: Educational Blogs -->
+    <div class="space-y-2 pt-2 border-t border-neutral-100 dark:border-white/10">
+      <div class="flex items-center justify-between px-2">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
+          Launch Blogs
+        </span>
+        <a href="/articles/blogs" class="text-[10px] text-[#0070f3] dark:text-cyan-400 hover:underline">All (8)</a>
+      </div>
+      <nav class="space-y-0.5">
+        {blogLinks.map((blog) => (
+          <a 
+            href={`/articles/blogs/${blog.slug}`} 
+            class={`block px-2.5 py-1.5 rounded-md truncate transition ${
+              activeSlug === blog.slug
+                ? 'bg-[#171717] text-white dark:bg-white dark:text-black font-semibold shadow-xs'
+                : 'text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06]'
+            }`}
+            title={blog.title}
+          >
+            {blog.title}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <!-- Section 3: Publications & Milestones -->
+    <div class="space-y-2 pt-2 border-t border-neutral-100 dark:border-white/10">
+      <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 px-2">
+        Publications
+      </div>
+      <nav class="space-y-0.5">
+        <a 
+          href="/articles/news" 
+          class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          Company News & Releases
+        </a>
+        <a 
+          href="/articles/achievements" 
+          class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          Achievements Timeline
+        </a>
+        <a 
+          href="/articles/people" 
+          class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          People & Stories
+        </a>
+      </nav>
+    </div>
+
+    <!-- Quick Support Badge -->
+    <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 text-[11px] space-y-1">
+      <span class="font-semibold text-neutral-900 dark:text-white block">Prometrion Knowledge Base</span>
+      <p class="text-neutral-500 dark:text-neutral-400">Need architectural guidance? Connect with our developer desk.</p>
+      <a href="/contact" class="inline-block text-[#0070f3] dark:text-cyan-400 font-medium hover:underline pt-1">Contact Engineering →</a>
+    </div>
+
+  </div>
+</aside>

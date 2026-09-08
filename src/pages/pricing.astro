@@ -1,0 +1,293 @@
+---
+// pricing.astro - Canonical Prometrion Pricing Matrix & Plans
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+import Card from "../components/ui/Card.astro";
+import Button from "../components/ui/Button.astro";
+import Badge from "../components/ui/Badge.astro";
+import { comboPackages, packageTiers, servicesCatalog } from "../data/servicesCatalog";
+
+const monthlyRetainers = servicesCatalog.filter(
+  (s) => s.billingPeriod === "month" || s.category === "maintenance"
+);
+
+const itemizedAddons = [
+  { name: "Additional Bespoke Page", price: "₹1,000+", turnaround: "1–2 days", desc: "Custom designed page matching your existing design tokens." },
+  { name: "WhatsApp Interactive Automation", price: "₹1,500+", turnaround: "1–2 days", desc: "Pre-filled customer inquiry routes, product tags & greeting automation." },
+  { name: "Payment Gateway Integration", price: "₹3,000+", turnaround: "2–3 days", desc: "Razorpay, Stripe, or Cashfree with webhook logging and instant receipts." },
+  { name: "Core Web Vitals Speed Boost", price: "₹3,000+", turnaround: "2–4 days", desc: "Sub-second mobile loading, asset compression, and 95+ PageSpeed score." },
+  { name: "Multilingual Expansion", price: "₹3,500+", turnaround: "3–5 days", desc: "Full dual-language architecture (English + Hindi / Regional)." },
+  { name: "Custom Appointment Engine", price: "₹2,500+", turnaround: "2–3 days", desc: "Calendar slot booking, intake questionnaire, and email notifications." },
+  { name: "Google Business Profile Launch", price: "₹2,000+", turnaround: "2–3 days", desc: "Category optimization, verification support, service menu, and geo-pinning." },
+  { name: "Comprehensive Brand Identity Kit", price: "₹3,500+", turnaround: "3–5 days", desc: "Primary logo, icon variations, typography guide, and digital stationery." }
+];
+
+const faqs = [
+  {
+    q: "How does billing and payment work?",
+    a: "We operate on a transparent milestone structure: 50% advance upon project kickoff and scope approval, and the remaining 50% upon client sign-off on the staging environment before production cutover."
+  },
+  {
+    q: "Do I own 100% of my code and intellectual property?",
+    a: "Yes. Unlike proprietary website builders that lock you in, every Prometrion build provides full intellectual property transfer and source code access in a private Git repository upon final handover."
+  },
+  {
+    q: "Why do some prices have a '+' suffix?",
+    a: "The '+' denotes our baseline starting price for standard specifications. If your scope requires custom APIs, third-party ERP integrations, or hundreds of items, the price scales transparently based on exact requirements."
+  },
+  {
+    q: "Do you guarantee #1 ranking on Google?",
+    a: "No credible engineering firm guarantees #1 rankings. We strictly implement verified technical SEO, clean semantic HTML, structured JSON-LD schemas, and AI GEO optimization to give you the highest competitive edge without black-hat risks."
+  },
+  {
+    q: "What ongoing costs should I expect?",
+    a: "We engineer lean, serverless-first architectures. For most small-to-medium businesses, cloud hosting and SSL remain free or under ₹500/month after the first year. Ongoing maintenance retainers are completely optional."
+  }
+];
+---
+
+<BaseLayout
+  title="Transparent Pricing — Prometrion Plans & Cost Matrix"
+  description="Database-driven, transparent pricing for Prometrion websites, mobile applications, SEO retainers, and turnkey digital packages in INR."
+>
+  <!-- Hero Section -->
+  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionEyebrow tag="TRANSPARENT PRICING">INDIAN RUPEE (₹) CANONICAL MATRIX</SectionEyebrow>
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight mt-3">
+        Invest with complete clarity.
+      </h1>
+      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+        Fixed scopes, guaranteed delivery sprints, and zero hidden costs. Choose between one-time turnkey launch packages or ongoing growth retainers.
+      </p>
+
+      <!-- Pricing Tab Switcher -->
+      <div class="mt-8 inline-flex items-center p-1 rounded-full bg-neutral-100 border border-[#ebebeb] text-xs">
+        <button id="tab-btn-onetime" class="px-5 py-2 rounded-full font-medium bg-white text-neutral-900 shadow-sm transition cursor-pointer">
+          Turnkey Launch Packages
+        </button>
+        <button id="tab-btn-monthly" class="px-5 py-2 rounded-full font-medium text-neutral-600 hover:text-neutral-900 transition cursor-pointer flex items-center gap-1.5">
+          <span>Monthly Retainers & Care</span>
+          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full font-medium">Ongoing SLA</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Content Area -->
+  <div class="py-16 bg-[#fafafa]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+
+      <!-- View 1: Turnkey Launch Packages Grid -->
+      <div id="view-onetime" class="space-y-12">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+            Turnkey Digital Packages
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-2">
+            One-time fixed-price bundles engineered for immediate commercial impact.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          {comboPackages.map((pkg) => (
+            <div class={`rounded-[6px] bg-white border p-6 flex flex-col justify-between transition-all relative ${
+              pkg.highlight
+                ? 'border-[#0070f3] shadow-floating ring-1 ring-[#0070f3]'
+                : 'border-[#ebebeb] shadow-whisper'
+            }`}>
+              {pkg.highlight && (
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span class="bg-[#0070f3] text-white text-[10px] font-mono font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-sm">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
+              <div>
+                <h3 class="text-lg font-semibold text-neutral-900">{pkg.name}</h3>
+                <p class="text-xs text-neutral-500 mt-1 min-h-[32px]">{pkg.bestFor}</p>
+
+                <div class="my-5 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
+                  <div class="text-3xl font-mono font-bold text-[#171717]">{pkg.priceFormatted}</div>
+                  <span class="text-[11px] text-neutral-500 font-mono">one-time payment</span>
+                </div>
+
+                <ul class="space-y-2.5 text-xs text-neutral-700 border-t border-neutral-100 pt-5">
+                  {pkg.features.map(f => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
+                      <span class="leading-snug">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-8 pt-5 border-t border-neutral-100">
+                <Button
+                  variant={pkg.highlight ? 'primary-sm' : 'secondary-sm'}
+                  href={`/contact?package=${pkg.id}`}
+                  class="w-full justify-center"
+                >
+                  Choose {pkg.name.replace(' Package', '')}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- View 2: Monthly Retainers Grid (Hidden by default, toggled via JS) -->
+      <div id="view-monthly" class="hidden space-y-12">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+            Monthly Care, Support & Growth Retainers
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 mt-2">
+            Continuous engineering support, uptime monitoring, security updates, and active local search ranking.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {monthlyRetainers.map((plan) => (
+            <div class="rounded-[6px] bg-white border border-[#ebebeb] p-6 shadow-whisper flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <Badge variant={plan.category === 'maintenance' ? 'neutral' : 'emerald'}>
+                    {plan.subcategory || plan.category.toUpperCase()}
+                  </Badge>
+                  <span class="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Monthly SLA</span>
+                </div>
+
+                <h3 class="text-base font-semibold text-neutral-900 mt-1">{plan.name}</h3>
+                <p class="text-xs text-neutral-500 mt-1 line-clamp-2">{plan.shortDesc}</p>
+
+                <div class="my-4 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
+                  <div class="text-2xl font-mono font-bold text-[#171717]">{plan.priceFormatted}</div>
+                  <span class="text-[11px] text-neutral-500 font-mono">per month</span>
+                </div>
+
+                <ul class="space-y-2 text-xs text-neutral-700 border-t border-neutral-100 pt-4">
+                  {(plan.coreScope || []).map(f => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
+                      <span class="leading-snug">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="mt-6 pt-4 border-t border-neutral-100">
+                <Button variant="secondary-sm" href={`/contact?retainer=${plan.id}`} class="w-full justify-center">
+                  Select {plan.name}
+                </Button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Itemized A-la-Carte Add-Ons Table -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 sm:p-8 shadow-whisper">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <div>
+            <h3 class="text-lg font-semibold text-neutral-900">Itemized Add-On Pricing</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">Modular building blocks you can append to any project or existing website.</p>
+          </div>
+          <a href="/services/catalog" class="text-xs font-mono text-[#0070f3] hover:underline shrink-0">
+            View full 30+ service catalog →
+          </a>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="border-b border-[#ebebeb] font-mono text-neutral-400 uppercase">
+                <th class="py-3 pr-4">Add-On Feature</th>
+                <th class="py-3 px-4">Fixed Starting Price</th>
+                <th class="py-3 px-4">Sprint Turnaround</th>
+                <th class="py-3 pl-4">Description</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-100">
+              {itemizedAddons.map((item) => (
+                <tr class="hover:bg-neutral-50/50 transition">
+                  <td class="py-3.5 pr-4 font-medium text-neutral-900">{item.name}</td>
+                  <td class="py-3.5 px-4 font-mono font-bold text-neutral-900 whitespace-nowrap">{item.price}</td>
+                  <td class="py-3.5 px-4 font-mono text-neutral-500 whitespace-nowrap">{item.turnaround}</td>
+                  <td class="py-3.5 pl-4 text-neutral-600">{item.desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion / Grid -->
+      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 sm:p-8 shadow-whisper">
+        <div class="max-w-2xl mx-auto text-center mb-10">
+          <SectionEyebrow tag="COMMERCIAL FAQ">COMMON QUESTIONS</SectionEyebrow>
+          <h3 class="text-xl sm:text-2xl font-semibold text-neutral-900 mt-2">
+            Clear Answers on Costs & Policies
+          </h3>
+          <p class="text-xs text-neutral-500 mt-1">Everything you need to know before initiating a project.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {faqs.map((faq) => (
+            <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
+              <h4 class="text-xs sm:text-sm font-semibold text-neutral-900 mb-2">{faq.q}</h4>
+              <p class="text-xs text-neutral-600 leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Custom Enterprise Callout -->
+      <div class="bg-[#171717] text-white rounded-[6px] p-8 sm:p-12 text-center max-w-3xl mx-auto shadow-floating">
+        <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">Need a customized Statement of Work?</h3>
+        <p class="text-xs sm:text-sm text-neutral-400 mt-2 max-w-xl mx-auto leading-relaxed">
+          For large enterprise platforms, legacy system modernization, or custom AI agent engineering, we offer dedicated technical scoping calls with our senior architects.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
+          <Button variant="primary-sm" href="/contact">
+            Schedule Scoping Call →
+          </Button>
+          <Button variant="secondary-sm" href="/services/catalog" class="bg-neutral-800 text-neutral-200 border-neutral-700 hover:bg-neutral-700">
+            Browse Full Catalog
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  const btnOnetime = document.getElementById("tab-btn-onetime");
+  const btnMonthly = document.getElementById("tab-btn-monthly");
+  const viewOnetime = document.getElementById("view-onetime");
+  const viewMonthly = document.getElementById("view-monthly");
+
+  btnOnetime?.addEventListener("click", () => {
+    btnOnetime.classList.add("bg-white", "text-neutral-900", "shadow-sm");
+    btnOnetime.classList.remove("text-neutral-600");
+
+    btnMonthly?.classList.remove("bg-white", "text-neutral-900", "shadow-sm");
+    btnMonthly?.classList.add("text-neutral-600");
+
+    viewOnetime?.classList.remove("hidden");
+    viewMonthly?.classList.add("hidden");
+  });
+
+  btnMonthly?.addEventListener("click", () => {
+    btnMonthly.classList.add("bg-white", "text-neutral-900", "shadow-sm");
+    btnMonthly.classList.remove("text-neutral-600");
+
+    btnOnetime?.classList.remove("bg-white", "text-neutral-900", "shadow-sm");
+    btnOnetime?.classList.add("text-neutral-600");
+
+    viewMonthly?.classList.remove("hidden");
+    viewOnetime?.classList.add("hidden");
+  });
+</script>

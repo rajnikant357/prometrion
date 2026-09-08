@@ -1,0 +1,43 @@
+---
+// Card.astro - Hairline bordered card surface with Dark Mode & Glow
+interface Props {
+  variant?: 'default' | 'elevated' | 'interactive' | 'dashed';
+  glow?: 'blue' | 'green' | 'none';
+  class?: string;
+  href?: string;
+}
+
+const {
+  variant = 'default',
+  glow = 'none',
+  class: className = '',
+  href,
+} = Astro.props;
+
+const glowClasses: Record<string, string> = {
+  none: '',
+  blue: 'card-glow-blue',
+  green: 'card-glow-green-left',
+};
+
+const variants: Record<string, string> = {
+  default: 'bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-[#222222] rounded-[6px] p-6 shadow-whisper transition-all duration-200 relative',
+  elevated: 'bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-[#222222] rounded-[6px] p-6 shadow-floating transition-all duration-200 relative',
+  interactive: 'bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-[#222222] hover:border-neutral-400 dark:hover:border-emerald-400/50 rounded-[6px] p-6 shadow-whisper hover:shadow-floating dark:hover:shadow-[0_0_30px_-5px_rgba(0,245,160,0.22),0_0_25px_-3px_rgba(56,189,248,0.18)] transition-all duration-200 group relative',
+  dashed: 'bg-white/50 dark:bg-white/5 border border-dashed border-neutral-300 dark:border-neutral-700 rounded-[6px] p-6 relative',
+};
+
+const cardClass = `${variants[variant] || variants.default} ${glowClasses[glow] || ''} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={`block ${cardClass}`}>
+      <slot />
+    </a>
+  ) : (
+    <div class={cardClass}>
+      <slot />
+    </div>
+  )
+}

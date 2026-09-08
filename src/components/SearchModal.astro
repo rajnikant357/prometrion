@@ -1,0 +1,191 @@
+---
+// SearchModal.astro - Cmd+K Spotlight search across Prometrion
+---
+
+<div id="search-modal-backdrop" class="fixed inset-0 z-50 bg-black/50 dark:bg-black/80 backdrop-blur-sm hidden items-start justify-center pt-20 sm:pt-28 px-4 transition-opacity">
+  <div id="search-modal-container" class="w-full max-w-xl bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-[#222222] rounded-[6px] shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+    <div class="relative flex items-center px-4 border-b border-[#ebebeb] dark:border-[#202020]">
+      <svg class="w-4 h-4 text-neutral-400 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input
+        id="search-modal-input"
+        type="text"
+        placeholder="Search products, store, services, docs, community..."
+        class="w-full py-3.5 text-sm bg-transparent text-neutral-900 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-500 focus:outline-none"
+      />
+      <span class="text-[11px] font-mono font-medium text-neutral-400 border border-[#ebebeb] dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-800/80 rounded px-1.5 py-0.5 ml-2">ESC</span>
+    </div>
+
+    <div id="search-results-list" class="max-h-80 overflow-y-auto p-2 space-y-1">
+      <!-- Dynamic search results populated by script -->
+    </div>
+
+    <div class="px-4 py-2.5 bg-neutral-50/80 dark:bg-[#080808] border-t border-[#ebebeb] dark:border-[#202020] text-[11px] text-neutral-500 dark:text-neutral-400 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span><kbd class="font-mono bg-white dark:bg-neutral-800 border border-[#ebebeb] dark:border-neutral-700 rounded px-1 py-0.5 text-neutral-700 dark:text-neutral-300">↑↓</kbd> Navigate</span>
+        <span><kbd class="font-mono bg-white dark:bg-neutral-800 border border-[#ebebeb] dark:border-neutral-700 rounded px-1 py-0.5 text-neutral-700 dark:text-neutral-300">↵</kbd> Select</span>
+      </div>
+      <span class="font-mono">Prometrion Fast Index</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  const searchableItems = [
+    { title: "Home", category: "General", url: "/", desc: "Prometrion front page & technology overview" },
+    { title: "Products Overview", category: "Products", url: "/products", desc: "Flagship technologies & platforms" },
+    { title: "Taluq AI", category: "Products", url: "/products/taluq-ai", desc: "Next-generation intelligence and reasoning engine" },
+    { title: "Store Hub", category: "Store", url: "/store", desc: "Central marketplace for digital products" },
+    { title: "Webstore", category: "Store", url: "/store/webstore", desc: "Production websites, business templates & solutions" },
+    { title: "Appstore", category: "Store", url: "/store/appstore", desc: "Android applications & mobile systems" },
+    { title: "Component Store", category: "Store", url: "/store/components", desc: "React, Astro & Tailwind UI building blocks" },
+    { title: "Articles & Publications", category: "Articles", url: "/articles", desc: "Engineering blog, news, docs & stories" },
+    { title: "Blogs", category: "Articles", url: "/articles/blogs", desc: "Deep technical articles and business insights" },
+    { title: "Official News", category: "Articles", url: "/articles/news", desc: "Announcements, releases, and milestones" },
+    { title: "Company Achievements", category: "Articles", url: "/articles/achievements", desc: "Chronological milestone timeline" },
+    { title: "People & Leadership", category: "Articles", url: "/articles/people", desc: "Builders, team members, and contributors" },
+    { title: "Documentation Hub", category: "Docs", url: "/articles/docs", desc: "Technical guides, SDKs, and engineering architecture" },
+    { title: "Prometrion Skills Registry", category: "Docs", url: "/articles/docs#skills-registry", desc: "Autonomous agent capabilities, tools, and integration schemas" },
+    { title: "Blog: How to Choose the Right Website", category: "Blogs", url: "/articles/blogs/how-to-choose-the-right-website-for-your-business", desc: "Match your business model to portfolio, corporate, catalogue, or app" },
+    { title: "Blog: Website vs Catalogue vs E-Commerce", category: "Blogs", url: "/articles/blogs/website-vs-catalogue-vs-ecommerce", desc: "Understanding customer purchase journeys and catalog requirements" },
+    { title: "Blog: SEO and GEO AI Visibility", category: "Blogs", url: "/articles/blogs/seo-and-geo-business-visibility", desc: "Optimizing for Google, Perplexity, ChatGPT, and AI recommendation engines" },
+    { title: "Blog: When Does a Business Need a Mobile App?", category: "Blogs", url: "/articles/blogs/when-does-a-business-need-a-mobile-app", desc: "Workflow evaluation for native Android and dynamic applications" },
+    { title: "Blog: Digital Presence Beyond a Website", category: "Blogs", url: "/articles/blogs/digital-presence-beyond-a-website", desc: "Google Business Profiles, Maps, WhatsApp, and social verification" },
+    { title: "Blog: Why Website Maintenance Matters", category: "Blogs", url: "/articles/blogs/why-website-maintenance-matters", desc: "Backups, uptime tracking, security checks, and operational care" },
+    { title: "Blog: How to Choose a Digital Service Package", category: "Blogs", url: "/articles/blogs/how-to-choose-a-digital-service-package", desc: "Selecting between Starter, Standard, Growth, and Advanced tiers" },
+    { title: "Blog: From Digital Presence to Digital Growth", category: "Blogs", url: "/articles/blogs/from-digital-presence-to-digital-growth", desc: "Staged approach to scaling digital infrastructure and conversion" },
+    { title: "Services Hub", category: "Services", url: "/services", desc: "Engineering, design & growth capabilities" },
+    { title: "Website Development", category: "Services", url: "/services/website-development", desc: "High-performance enterprise & business websites" },
+    { title: "App Development", category: "Services", url: "/services/app-development", desc: "Native Android & modern cross-platform apps" },
+    { title: "SEO / GEO", category: "Services", url: "/services/seo-geo", desc: "Search Engine & Generative Engine AI Optimization" },
+    { title: "Ready Solutions Catalog", category: "Services", url: "/services/catalog", desc: "Productized turn-key business systems in INR" },
+    { title: "Service Packages", category: "Services", url: "/services/packages", desc: "Starter, Business, Digital Growth & Complete bundles" },
+    { title: "Pricing Plans", category: "Pricing", url: "/pricing", desc: "Transparent pricing matrix, retainers & add-ons" },
+    { title: "Community Hub", category: "Community", url: "/community", desc: "The ecosystem of developers, users & customers" },
+    { title: "Customer Ratings & Reviews", category: "Community", url: "/community/rating", desc: "Verified testimonials and 5-star ratings" },
+    { title: "Prometrion Developer", category: "Community", url: "/community/developer", desc: "Join our verified developer partner program" },
+    { title: "Coders Club", category: "Community", url: "/community/coders-club", desc: "Exclusive developer guild, hackathons & resources" },
+    { title: "Users Directory", category: "Community", url: "/community/users", desc: "People & creators powered by Prometrion" },
+    { title: "Customers Showcase", category: "Community", url: "/community/customers", desc: "Enterprise case studies & success stories" },
+    { title: "About Prometrion", category: "Company", url: "/about", desc: "Our mission, philosophy, culture, and future" },
+    { title: "Contact Us", category: "Contact", url: "/contact", desc: "Form, Phone, WhatsApp & AI Chatbot" },
+    { title: "Sign In", category: "Account", url: "/account/signin", desc: "Log in to your Prometrion account" },
+    { title: "Create Account", category: "Account", url: "/account/signup", desc: "Join the Prometrion ecosystem" },
+    { title: "User Dashboard", category: "Account", url: "/account/dashboard", desc: "Manage purchases, community & settings" },
+    { title: "User Profile", category: "Account", url: "/account/profile", desc: "Public developer & creator profile" },
+  ];
+
+  const backdrop = document.getElementById("search-modal-backdrop");
+  const input = document.getElementById("search-modal-input") as HTMLInputElement;
+  const resultsContainer = document.getElementById("search-results-list");
+  let selectedIndex = 0;
+  let currentResults: typeof searchableItems = [];
+
+  function openSearch() {
+    backdrop?.classList.remove("hidden");
+    backdrop?.classList.add("flex");
+    input?.focus();
+    renderResults(input?.value || "");
+  }
+
+  function closeSearch() {
+    backdrop?.classList.add("hidden");
+    backdrop?.classList.remove("flex");
+    if (input) input.value = "";
+  }
+
+  function renderResults(query: string) {
+    if (!resultsContainer) return;
+    const q = query.toLowerCase().trim();
+    currentResults = q
+      ? searchableItems.filter(item => item.title.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q) || item.category.toLowerCase().includes(q))
+      : searchableItems.slice(0, 8);
+
+    selectedIndex = 0;
+
+    if (currentResults.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="py-8 text-center text-sm text-neutral-400">
+          No matches found for "<span class="font-medium text-neutral-700">${query}</span>"
+        </div>
+      `;
+      return;
+    }
+
+    resultsContainer.innerHTML = currentResults.map((item, index) => `
+      <a
+        href="${item.url}"
+        class="search-item flex items-center justify-between p-2.5 rounded-lg text-sm text-neutral-800 dark:text-neutral-200 transition ${index === selectedIndex ? 'bg-neutral-100 dark:bg-neutral-800 text-black dark:text-white' : 'hover:bg-neutral-50 dark:hover:bg-neutral-900/80'}"
+        data-index="${index}"
+      >
+        <div class="flex flex-col">
+          <span class="font-medium text-neutral-900 dark:text-white">${item.title}</span>
+          <span class="text-xs text-neutral-500 dark:text-neutral-400">${item.desc}</span>
+        </div>
+        <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-neutral-700 shrink-0 ml-2">
+          ${item.category}
+        </span>
+      </a>
+    `).join("");
+  }
+
+  // Keyboard shortcut listener
+  window.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      if (backdrop?.classList.contains("hidden")) {
+        openSearch();
+      } else {
+        closeSearch();
+      }
+    } else if (e.key === "Escape" && !backdrop?.classList.contains("hidden")) {
+      closeSearch();
+    }
+  });
+
+  input?.addEventListener("input", (e) => {
+    renderResults((e.target as HTMLInputElement).value);
+  });
+
+  input?.addEventListener("keydown", (e) => {
+    const items = resultsContainer?.querySelectorAll(".search-item");
+    if (!items || items.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      selectedIndex = (selectedIndex + 1) % currentResults.length;
+      updateHighlight(items);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      selectedIndex = (selectedIndex - 1 + currentResults.length) % currentResults.length;
+      updateHighlight(items);
+    } else if (e.key === "Enter" && currentResults[selectedIndex]) {
+      e.preventDefault();
+      window.location.href = currentResults[selectedIndex].url;
+    }
+  });
+
+  function updateHighlight(items: NodeListOf<Element>) {
+    items.forEach((el, idx) => {
+      if (idx === selectedIndex) {
+        el.classList.add("bg-neutral-100", "text-black");
+        el.scrollIntoView({ block: "nearest" });
+      } else {
+        el.classList.remove("bg-neutral-100", "text-black");
+      }
+    });
+  }
+
+  backdrop?.addEventListener("click", (e) => {
+    if (e.target === backdrop) closeSearch();
+  });
+
+  // Global trigger hooks
+  document.querySelectorAll("[data-open-search]").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openSearch();
+    });
+  });
+</script>
