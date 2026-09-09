@@ -12,33 +12,34 @@ import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
   title="Store — Prometrion Marketplace"
   description="Explore the Prometrion digital marketplace: Webstore templates, Android apps, and developer UI components."
 >
-  <!-- Store Hero -->
-  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="MARKETPLACE">PROMETRION STORE</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        Everything we build.<br />Everything you need.
-      </h1>
-      <p class="mt-4 text-base text-neutral-600 max-w-xl mx-auto leading-relaxed">
-        High-impact web products, downloadable applications, and developer-grade component libraries ready for production deployment.
-      </p>
-
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-2">
-        <Button variant="primary" href="/store/webstore">
-          Explore Webstore
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="MARKETPLACE">PROMETRION STORE</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Everything we build. Everything you need.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+          High-impact web products, downloadable applications, and developer-grade component libraries.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/store/webstore" size="sm">
+          Webstore
         </Button>
-        <Button variant="secondary" href="/store/appstore">
-          Explore Appstore
+        <Button variant="secondary" href="/store/appstore" size="sm">
+          Appstore
         </Button>
-        <Button variant="secondary" href="/store/components">
-          Component Store
+        <Button variant="secondary" href="/store/components" size="sm">
+          Components
         </Button>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Store Categories Grid -->
-  <section class="py-16 bg-[#fafafa]">
+  <section class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- Category 1: Webstore -->

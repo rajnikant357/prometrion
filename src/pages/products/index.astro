@@ -11,19 +11,29 @@ import Badge from "../../components/ui/Badge.astro";
   title="Products Overview — Prometrion"
   description="Explore Prometrion's suite of technology products: Taluq AI, Prometrion Cloud, MicroVM Sandboxes, and Developer Tools."
 >
-  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="TECHNOLOGY PRODUCTS">PROMETRION SUITE</SectionEyebrow>
-      <h1 class="text-4xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] max-w-3xl">
-        Autonomous intelligence, edge runtimes, and developer infrastructure.
-      </h1>
-      <p class="mt-4 text-neutral-600 max-w-2xl text-base leading-relaxed">
-        We build foundational technologies that enable teams and enterprises to ship resilient digital experiences with zero operational friction.
-      </p>
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="TECHNOLOGY PRODUCTS">PROMETRION SUITE</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Autonomous intelligence, edge runtimes, and developer infrastructure.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Foundational technologies enabling teams and enterprises to ship resilient digital experiences with zero operational friction.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/products/taluq-ai" size="sm">
+          Taluq AI →
+        </Button>
+        <Button variant="secondary" href="/articles/docs" size="sm">
+          Documentation
+        </Button>
+      </div>
     </div>
   </div>
 
-  <div class="py-16 bg-[#fafafa]">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->

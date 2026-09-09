@@ -1,76 +1,123 @@
 ---
 // account/signin.astro - Prometrion Account Sign In
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Button from "../../components/ui/Button.astro";
 ---
 
 <BaseLayout
   title="Sign In — Prometrion Account"
-  description="Log in to your Prometrion Account to access your dashboard, ratings, developer profile, and purchases."
+  description="Prometrion Account Sign In is currently under active development. We are working for you to bring a secure, unified client authentication system."
 >
-  <div class="py-16 sm:py-24 bg-[#fafafa] flex items-center justify-center min-h-[calc(100vh-280px)]">
-    <div class="w-full max-w-md mx-auto px-4">
+  <div class="py-16 sm:py-24 bg-[#fafafa] dark:bg-black flex items-center justify-center min-h-[calc(100vh-280px)] relative overflow-hidden">
+    <!-- Ambient mesh glow -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-cyan-500/10 via-blue-500/10 to-purple-500/10 dark:from-cyan-500/15 dark:via-blue-500/10 dark:to-purple-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="w-full max-w-xl mx-auto px-4 relative z-10">
       
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-floating">
-        <div class="text-center mb-6">
-          <div class="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3 overflow-hidden">
-            <img src="/prometrion-logo.png" alt="Prometrion" class="w-full h-full object-contain" width="48" height="48" />
-          </div>
-          <h1 class="text-xl font-semibold text-neutral-900">Sign in to Prometrion</h1>
-          <p class="text-xs text-neutral-500 mt-1">One passport for products, store, and community.</p>
+      <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[12px] p-8 sm:p-10 shadow-floating text-center">
+        <!-- Prometrion Logo -->
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-5 p-2 bg-neutral-50 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 shadow-whisper">
+          <img src="/prometrion-logo.png" alt="Prometrion" class="w-full h-full object-contain" width="48" height="48" />
         </div>
 
-        <!-- Social / OAuth Quick Sign In -->
-        <div class="space-y-2 mb-6">
-          <button class="w-full py-2.5 px-4 rounded-lg border border-[#ebebeb] bg-neutral-50 hover:bg-neutral-100 text-xs font-medium text-neutral-800 flex items-center justify-center gap-2 transition cursor-pointer">
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-            </svg>
-            <span>Continue with GitHub</span>
-          </button>
-          <button class="w-full py-2.5 px-4 rounded-lg border border-[#ebebeb] bg-neutral-50 hover:bg-neutral-100 text-xs font-medium text-neutral-800 flex items-center justify-center gap-2 transition cursor-pointer">
-            <svg class="w-4 h-4" viewBox="0 0 24 24">
-              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-            </svg>
-            <span>Continue with Google</span>
-          </button>
-        </div>
-
-        <div class="relative flex items-center justify-center mb-6">
-          <div class="border-t border-neutral-200 w-full"></div>
-          <span class="bg-white px-2 text-[10px] uppercase font-mono text-neutral-400 absolute">or email</span>
-        </div>
-
-        <!-- Email Form -->
-        <form class="space-y-4 text-xs">
-          <div>
-            <label class="block font-medium text-neutral-800 mb-1">Email Address</label>
-            <input type="email" required placeholder="you@company.com" class="w-full px-3.5 py-2.5 bg-[#fafafa] border border-[#ebebeb] rounded-lg focus:outline-none focus:border-neutral-900" />
-          </div>
-          <div>
-            <div class="flex justify-between items-center mb-1">
-              <label class="font-medium text-neutral-800">Password</label>
-              <a href="#" class="text-[11px] text-[#0070f3] hover:underline">Forgot?</a>
-            </div>
-            <input type="password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 bg-[#fafafa] border border-[#ebebeb] rounded-lg focus:outline-none focus:border-neutral-900" />
-          </div>
-
-          <div class="pt-2">
-            <a href="/account/dashboard" class="block w-full text-center py-2.5 bg-[#171717] hover:bg-neutral-800 text-white font-medium rounded-lg transition shadow-sm">
-              Sign In →
-            </a>
-          </div>
-        </form>
-
-        <p class="text-xs text-neutral-500 text-center mt-6">
-          Don't have an account? <a href="/account/signup" class="text-[#0070f3] font-medium hover:underline">Sign up free</a>
+        <!-- Main Headline as requested -->
+        <h1 class="text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900 dark:text-white">
+          We are working for you.
+        </h1>
+        
+        <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-3 max-w-md mx-auto leading-relaxed">
+          Our unified client sign-in and authentication system is currently being built. We are engineering a high-security, seamless portal for all your Prometrion services.
         </p>
+
+        <!-- What We Are Building for You Box -->
+        <div class="mt-8 mb-6 p-5 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/80 dark:border-white/10 text-left">
+          <div class="flex items-center justify-between pb-3 border-b border-neutral-200/60 dark:border-white/10">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold">What we are building for you</span>
+            <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-medium">In Active Progress</span>
+          </div>
+
+          <ul class="mt-3 space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Unified Client Portal:</strong> Live project roadmaps, delivery milestones, and invoice tracking.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Enterprise Security:</strong> Single Sign-On (SSO), OAuth, and encrypted session management.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <svg class="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span><strong>Direct Engineer Access:</strong> Priority desk to collaborate directly with senior architects.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Early Access Notification Form -->
+        <div class="mb-8 p-4 rounded-xl border border-dashed border-neutral-300 dark:border-white/15 bg-white dark:bg-black/40">
+          <p class="text-xs font-medium text-neutral-800 dark:text-neutral-200 mb-2">
+            Want to be notified when sign-in goes live?
+          </p>
+          <form id="notify-form-signin" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+            <input
+              type="email"
+              required
+              id="notify-email-signin"
+              placeholder="Enter your email address"
+              class="flex-1 px-3.5 py-2 text-xs bg-neutral-50 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-[#0070f3] dark:focus:border-cyan-400 transition"
+            />
+            <button
+              type="submit"
+              class="px-4 py-2 text-xs font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-lg transition shadow-xs cursor-pointer whitespace-nowrap"
+            >
+              Notify Me
+            </button>
+          </form>
+          <div id="notify-success-signin" class="hidden text-xs text-emerald-600 dark:text-emerald-400 font-medium mt-2 flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span>Thank you! We will notify you the moment the portal is ready.</span>
+          </div>
+        </div>
+
+        <!-- Quick Help & Actions -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Button variant="primary" href="/contact">
+            Talk to Our Team
+          </Button>
+          <Button variant="secondary" href="/services">
+            Explore Services
+          </Button>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-neutral-100 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 gap-2">
+          <span>Need immediate assistance?</span>
+          <a href="/contact" class="text-[#0070f3] dark:text-cyan-400 hover:underline font-medium">Contact Support & Sales →</a>
+        </div>
+      </div>
+
+      <div class="text-center mt-6">
+        <a href="/" class="text-xs text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200 font-medium inline-flex items-center gap-1 transition">
+          ← Back to Homepage
+        </a>
       </div>
 
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  const form = document.getElementById("notify-form-signin") as HTMLFormElement | null;
+  const success = document.getElementById("notify-success-signin");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (form && success) {
+      form.classList.add("hidden");
+      success.classList.remove("hidden");
+    }
+  });
+</script>

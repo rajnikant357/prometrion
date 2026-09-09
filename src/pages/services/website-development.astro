@@ -35,50 +35,41 @@ const faqs = [
   title="Website Development Services — Prometrion"
   description="High-performance enterprise website development: Corporate, SaaS, E-Commerce, and Healthcare web platforms engineered for speed and conversion."
 >
-  <!-- 1. Hero -->
-  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <SectionEyebrow tag="SERVICE SPECIFICATION">WEBSITE DEVELOPMENT</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        Websites engineered for speed, authority, and conversion.
-      </h1>
-      <p class="mt-4 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        We do not build bloated agency websites. We engineer high-performance digital flagship platforms utilizing modern Astro 7, Tailwind v4, and edge-native infrastructure.
-      </p>
-
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <Button variant="primary" href="/contact">
-          Schedule Project Consultation
-        </Button>
-        <Button variant="secondary" href="/services/packages">
-          View Website Packages
-        </Button>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE SPECIFICATION">WEBSITE DEVELOPMENT</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Websites engineered for speed, authority, and conversion.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          High-performance digital flagship platforms utilizing modern Astro 7, Tailwind v4, and edge-native infrastructure.
+        </p>
       </div>
-
-      <!-- Quick Metrics -->
-      <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-neutral-100 font-mono text-xs">
-        <div>
-          <span class="block text-xl font-bold text-neutral-900">&lt; 100ms</span>
-          <span class="text-neutral-500">Global TTFB</span>
-        </div>
-        <div>
-          <span class="block text-xl font-bold text-emerald-600">98+</span>
-          <span class="text-neutral-500">Core Web Vitals</span>
-        </div>
-        <div>
-          <span class="block text-xl font-bold text-neutral-900">0.00</span>
-          <span class="text-neutral-500">Layout Shift (CLS)</span>
-        </div>
-        <div>
-          <span class="block text-xl font-bold text-neutral-900">100%</span>
-          <span class="text-neutral-500">GEO AI Optimized</span>
-        </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">
+          Schedule Consultation
+        </Button>
+        <Button variant="secondary" href="/services/packages" size="sm">
+          Website Packages
+        </Button>
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Quick Metrics Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">&lt; 100ms</span> <span class="text-neutral-500">Global TTFB</span></div>
+      <div><span class="font-bold text-emerald-600">98+</span> <span class="text-neutral-500">Core Web Vitals</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">0.00</span> <span class="text-neutral-500">Layout Shift (CLS)</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">100%</span> <span class="text-neutral-500">GEO AI Optimized</span></div>
+    </div>
+  </div>
 
   <!-- 2. Website Types We Build -->
-  <section class="py-20 bg-[#fafafa] border-b border-[#ebebeb]">
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-14">
         <SectionEyebrow tag="TYPOLOGY">WHAT WE BUILD</SectionEyebrow>

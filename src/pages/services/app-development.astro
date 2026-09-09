@@ -34,24 +34,25 @@ const appOfferings = [
   title="App Development Services — Prometrion"
   description="Native Android and cross-platform mobile application development for startups and enterprise systems."
 >
-  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="SERVICE SPECIFICATION">APP DEVELOPMENT</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        Native Android and cross-platform mobile systems.
-      </h1>
-      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        From secure consumer applications to mission-critical field operations, we engineer mobile software that is resilient, fluid, and battery-efficient.
-      </p>
-
-      <div class="mt-8 flex justify-center gap-3">
-        <Button variant="primary" href="/contact">Commission an App</Button>
-        <Button variant="secondary" href="/store/appstore">Explore Appstore</Button>
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE SPECIFICATION">APP DEVELOPMENT</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Native Android and cross-platform mobile systems.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          From consumer applications to mission-critical field operations, engineered to be resilient, fluid, and battery-efficient.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">Commission an App</Button>
+        <Button variant="secondary" href="/store/appstore" size="sm">Explore Appstore</Button>
       </div>
     </div>
   </div>
 
-  <div class="py-16 bg-[#fafafa]">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {appOfferings.map((item) => (

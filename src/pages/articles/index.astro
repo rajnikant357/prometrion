@@ -12,29 +12,37 @@ import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
   title="Articles & Knowledge — Prometrion"
   description="Explore Prometrion engineering blogs, company news, achievements, leadership profiles, and technical documentation."
 >
-  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white">
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="KNOWLEDGE & MEDIA">PROMETRION ARTICLES</SectionEyebrow>
-      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717]">
-        Publications, News & Technical Docs
-      </h1>
-      <p class="mt-3 text-neutral-600 max-w-xl text-sm sm:text-base leading-relaxed">
-        Deep technical thinking, product roadmaps, company chronology, team spotlights, and full documentation.
-      </p>
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <SectionEyebrow tag="KNOWLEDGE & MEDIA">PROMETRION ARTICLES</SectionEyebrow>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+            Publications, News & Technical Docs
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            Technical thinking, product roadmaps, company chronology, and documentation.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <Button variant="secondary" href="/articles/docs" size="sm">Documentation</Button>
+          <Button variant="primary" href="/articles/blogs" size="sm">Explore Blogs</Button>
+        </div>
+      </div>
 
       <!-- Category Filter Tabs -->
-      <div class="mt-8 flex flex-wrap gap-2 pt-4 border-t border-neutral-100">
-        <a href="/articles" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-900 text-white">All Channels</a>
-        <a href="/articles/blogs" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-neutral-700 border border-[#ebebeb] hover:border-neutral-400">Blogs</a>
-        <a href="/articles/news" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-neutral-700 border border-[#ebebeb] hover:border-neutral-400">Official News</a>
-        <a href="/articles/achievements" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-neutral-700 border border-[#ebebeb] hover:border-neutral-400">Achievements</a>
-        <a href="/articles/people" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-neutral-700 border border-[#ebebeb] hover:border-neutral-400">People</a>
-        <a href="/articles/docs" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-white text-neutral-700 border border-[#ebebeb] hover:border-neutral-400">Documentation</a>
+      <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
+        <a href="/articles" class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm">All Channels</a>
+        <a href="/articles/blogs" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Blogs</a>
+        <a href="/articles/news" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Official News</a>
+        <a href="/articles/achievements" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Achievements</a>
+        <a href="/articles/people" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">People</a>
+        <a href="/articles/docs" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Documentation</a>
       </div>
     </div>
   </div>
 
-  <div class="py-16 bg-[#fafafa] dark:bg-black">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- Featured Split: Essay + 3D WebGL Wireframe Globe -->

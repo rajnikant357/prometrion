@@ -12,31 +12,32 @@ import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
   title="Community — Prometrion Ecosystem"
   description="A place for people building, using, and growing with Prometrion: Ratings, Prometrion Developer program, Coders Club, Users, and Customers."
 >
-  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="COMMUNITY ECOSYSTEM">THE PROMETRION NETWORK</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        A place for people building, using, and growing.
-      </h1>
-      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Join an ambitious collective of software engineers, founders, verified customers, and creators participating in our digital ecosystem.
-      </p>
-
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <Button variant="primary" href="/community/developer">
-          Become Prometrion Developer
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="COMMUNITY ECOSYSTEM">THE PROMETRION NETWORK</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          A place for people building, using, and growing.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+          An ambitious collective of software engineers, founders, verified customers, and creators.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/community/developer" size="sm">
+          Developer Program
         </Button>
-        <Button variant="secondary" href="/community/coders-club">
-          Join Coders Club
+        <Button variant="secondary" href="/community/coders-club" size="sm">
+          Coders Club
         </Button>
-        <Button variant="ghost-sm" href="/community/rating">
-          Read Verified Ratings
+        <Button variant="ghost-sm" href="/community/rating" size="sm">
+          Verified Ratings
         </Button>
       </div>
     </div>
   </div>
 
-  <div class="py-16 bg-[#fafafa] dark:bg-black">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->

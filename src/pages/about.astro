@@ -11,21 +11,27 @@ import Badge from "../components/ui/Badge.astro";
   title="About — Prometrion Mission & Philosophy"
   description="Learn why Prometrion exists, our engineering philosophy, our products, and our mission to build technology for what's next."
 >
-  <!-- Hero Section -->
-  <section class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="ABOUT PROMETRION">OUR MISSION</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        Building technology that moves the world forward.
-      </h1>
-      <p class="mt-4 text-base sm:text-lg text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Prometrion is a technology company building products, digital services, marketplaces, and ecosystems for the next generation of builders and businesses.
-      </p>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="ABOUT PROMETRION">OUR MISSION</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Building technology that moves the world forward.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+          Products, digital services, marketplaces, and ecosystems for builders and businesses.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">Contact Us</Button>
+        <Button variant="secondary" href="/products" size="sm">Our Products</Button>
+      </div>
     </div>
-  </section>
+  </div>
 
   <!-- Content Narrative Sections -->
-  <section class="py-20 bg-[#fafafa]">
+  <section class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
       
       <!-- 1. Who We Are -->

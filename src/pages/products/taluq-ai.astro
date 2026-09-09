@@ -12,41 +12,34 @@ import WireframeGlobe from "../../components/ui/WireframeGlobe.astro";
   title="Taluq AI — Autonomous Intelligence & Agent Platform | Prometrion"
   description="Taluq AI is Prometrion's premier intelligence engine for autonomous agents, multi-step reasoning graphs, and edge execution."
 >
-  <!-- Hero Section with Conic Mesh Bloom -->
-  <section class="relative overflow-hidden pt-20 pb-24 border-b border-[#ebebeb] bg-white">
-    <div class="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
-      <div class="w-[600px] h-[360px] mesh-gradient mesh-glow rounded-full opacity-40"></div>
-    </div>
-
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 mb-6">
-        <Badge variant="emerald">✦ GENERAL AVAILABILITY 2.0</Badge>
-        <span class="text-xs font-mono text-neutral-400">PROMETRION FLAGSHIP</span>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 mb-1">
+          <Badge variant="emerald">✦ GENERAL AVAILABILITY 2.0</Badge>
+          <span class="text-xs font-mono text-neutral-400">PROMETRION FLAGSHIP</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Taluq AI — Autonomous Intelligence Platform
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Stateful memory, zero cold starts, and deterministic tool execution for enterprise and developers.
+        </p>
       </div>
-
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight">
-        Taluq AI
-      </h1>
-      <p class="mt-4 text-xl font-medium text-neutral-700">
-        The Autonomous Intelligence Platform for Enterprise & Developers.
-      </p>
-      <p class="mt-4 text-sm sm:text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Taluq AI transforms raw foundation models into reliable, production-ready agentic systems. Built with stateful memory, zero cold starts, and deterministic tool execution.
-      </p>
-
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <Button variant="primary" href="/contact">
-          Deploy Taluq in Production
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">
+          Deploy Taluq →
         </Button>
-        <Button variant="secondary" href="/articles/docs">
-          Read Technical Docs
+        <Button variant="secondary" href="/articles/docs" size="sm">
+          Technical Docs
         </Button>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Interactive Architecture Preview -->
-  <section class="py-20 bg-[#fafafa] border-b border-[#ebebeb]">
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/50 border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <SectionEyebrow tag="ARCHITECTURE">HOW TALUQ AI OPERATES</SectionEyebrow>

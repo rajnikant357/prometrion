@@ -50,32 +50,34 @@ const faqs = [
   title="Transparent Pricing — Prometrion Plans & Cost Matrix"
   description="Database-driven, transparent pricing for Prometrion websites, mobile applications, SEO retainers, and turnkey digital packages in INR."
 >
-  <!-- Hero Section -->
-  <div class="py-16 sm:py-24 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="TRANSPARENT PRICING">INDIAN RUPEE (₹) CANONICAL MATRIX</SectionEyebrow>
-      <h1 class="text-4xl sm:text-6xl font-semibold tracking-[-0.04em] text-[#171717] leading-tight mt-3">
-        Invest with complete clarity.
-      </h1>
-      <p class="mt-4 text-base text-neutral-600 max-w-2xl mx-auto leading-relaxed">
-        Fixed scopes, guaranteed delivery sprints, and zero hidden costs. Choose between one-time turnkey launch packages or ongoing growth retainers.
-      </p>
+  <!-- Compact Header with Tab Switcher -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="TRANSPARENT PRICING">INDIAN RUPEE (₹) CANONICAL MATRIX</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Invest with complete clarity.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Fixed scopes, guaranteed delivery sprints, and zero hidden costs. Choose between turnkey launch packages or monthly growth retainers.
+        </p>
+      </div>
 
       <!-- Pricing Tab Switcher -->
-      <div class="mt-8 inline-flex items-center p-1 rounded-full bg-neutral-100 border border-[#ebebeb] text-xs">
-        <button id="tab-btn-onetime" class="px-5 py-2 rounded-full font-medium bg-white text-neutral-900 shadow-sm transition cursor-pointer">
-          Turnkey Launch Packages
+      <div class="inline-flex items-center p-1 rounded-full bg-neutral-100 dark:bg-white/[0.06] border border-[#ebebeb] dark:border-white/10 text-xs shrink-0 self-start md:self-auto">
+        <button id="tab-btn-onetime" class="px-4 py-1.5 rounded-full font-medium bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-sm transition cursor-pointer">
+          Turnkey Packages
         </button>
-        <button id="tab-btn-monthly" class="px-5 py-2 rounded-full font-medium text-neutral-600 hover:text-neutral-900 transition cursor-pointer flex items-center gap-1.5">
-          <span>Monthly Retainers & Care</span>
-          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full font-medium">Ongoing SLA</span>
+        <button id="tab-btn-monthly" class="px-4 py-1.5 rounded-full font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer flex items-center gap-1.5">
+          <span>Monthly Retainers</span>
+          <span class="text-[10px] font-mono text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/50 px-1.5 py-0.2 rounded-full font-medium">SLA</span>
         </button>
       </div>
     </div>
   </div>
 
   <!-- Primary Content Area -->
-  <div class="py-16 bg-[#fafafa]">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
 
       <!-- View 1: Turnkey Launch Packages Grid -->

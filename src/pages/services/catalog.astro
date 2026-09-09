@@ -24,40 +24,43 @@ const categories = [
   title="Solutions Catalog — Prometrion Turnkey Digital Services"
   description="Browse 30+ productized website, app, SEO/GEO, branding, and cloud maintenance solutions with transparent INR pricing and guaranteed turnaround."
 >
-  <!-- Hero Section -->
-  <div class="py-14 sm:py-20 border-b border-[#ebebeb] bg-white text-center">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionEyebrow tag="CANONICAL CATALOG">PRODUCTIZED SOLUTIONS</SectionEyebrow>
-      <h1 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] mt-3">
-        Engineered Digital Solutions
-      </h1>
-      <p class="mt-3 text-neutral-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-        Pre-engineered, battle-tested website architectures, native mobile applications, search engine intelligence, and managed support. Transparent Indian Rupee (₹) pricing with clear deliverables.
-      </p>
-
-      <!-- Search & Filters Container -->
-      <div class="mt-8 max-w-xl mx-auto">
-        <div class="relative">
-          <input
-            id="catalog-search"
-            type="text"
-            placeholder="Search solutions by name, industry (clinic, gym, coaching...), or tech..."
-            class="w-full px-4 py-3 pl-11 text-sm bg-neutral-50 border border-[#ebebeb] rounded-[6px] text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0070f3] focus:bg-white transition"
-          />
-          <svg class="w-4 h-4 text-neutral-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+  <!-- Compact Header with Search & Filter Tabs -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <SectionEyebrow tag="CANONICAL CATALOG">PRODUCTIZED SOLUTIONS</SectionEyebrow>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+            Engineered Digital Solutions
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+            Pre-engineered, battle-tested website architectures, native mobile applications, and managed support with clear deliverables.
+          </p>
+        </div>
+        <!-- Search Input in Header -->
+        <div class="w-full md:w-80 shrink-0">
+          <div class="relative">
+            <input
+              id="catalog-search"
+              type="text"
+              placeholder="Search solutions, industry, tech..."
+              class="w-full px-3.5 py-2 pl-9 text-xs sm:text-sm bg-neutral-50 dark:bg-white/[0.04] border border-[#ebebeb] dark:border-white/10 rounded-[6px] text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-[#0070f3] focus:bg-white transition"
+            />
+            <svg class="w-3.5 h-3.5 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
         </div>
       </div>
 
       <!-- Filter Tabs -->
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+      <div class="mt-4 flex flex-wrap items-center gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
         {categories.map((cat, idx) => (
           <button
-            class={`catalog-filter-btn px-3 py-1.5 rounded-full text-xs font-medium transition cursor-pointer ${
+            class={`catalog-filter-btn px-3 py-1 rounded-full text-xs font-medium transition cursor-pointer ${
               idx === 0
-                ? "bg-neutral-900 text-white shadow-sm"
-                : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+                ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm"
+                : "bg-neutral-100 text-neutral-600 dark:bg-white/[0.06] dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-white/10 hover:text-neutral-900 dark:hover:text-white"
             }`}
             data-category={cat.id}
           >
@@ -69,7 +72,7 @@ const categories = [
   </div>
 
   <!-- Catalog Grid Section -->
-  <div class="py-16 bg-[#fafafa]">
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Results counter -->
