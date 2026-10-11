@@ -1,0 +1,282 @@
+---
+// services/digital-branding.astro - Canonical Digital Branding Service Page
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { getServicesByCategory } from "../../data/servicesCatalog";
+
+const brandingServices = getServicesByCategory("branding");
+
+const brandingOfferings = [
+  {
+    title: "Minimalist Logo Design",
+    price: "₹2,500+",
+    turnaround: "3–5 days",
+    badge: "Brand Identity",
+    persona: "New startups, independent businesses, rebranding companies, and retail shops.",
+    problem: "Pixelated, generic logos undermine trust and fail to scale across print and smartphone displays.",
+    scope: [
+      "3 distinct initial concept directions",
+      "2 structured revision rounds on selected concept",
+      "High-res web & print export files (Vector SVG, PDF, PNG)",
+      "Light and dark background color adaptations",
+      "App/browser favicon and square avatar format",
+      "100% intellectual property rights transfer"
+    ],
+    notes: "Final vector source files transferred upon full payment."
+  },
+  {
+    title: "Business Card Design",
+    price: "₹750+",
+    turnaround: "1–2 days",
+    badge: "Print Collateral",
+    persona: "Business owners, executives, sales professionals, and consultants.",
+    problem: "Cluttered paper cards get lost or lack interactive digital connections.",
+    scope: [
+      "Front and back custom card layout",
+      "Print-ready 300 DPI vector PDF with bleed marks",
+      "Interactive digital QR code linking to vCard or website",
+      "Standard 3.5\" x 2\" format or custom dimensions",
+      "Luxury spot-UV / matte finish specification guide"
+    ],
+    notes: "Printing costs charged separately if fulfilled by agency."
+  },
+  {
+    title: "Social Media Profile Kit",
+    price: "₹2,000+",
+    turnaround: "2–3 days",
+    badge: "Social Identity",
+    persona: "Businesses maintaining active profiles across Facebook, Instagram, LinkedIn, and X.",
+    problem: "Mismatched banner sizes and low-res graphics give an unprofessional first impression.",
+    scope: [
+      "High-res profile avatar graphics",
+      "2 platform header banners (LinkedIn Company & Facebook/X)",
+      "Instagram story highlight icon covers",
+      "3 branded post background templates for announcements",
+      "Exact pixel dimensions matching latest social platform standards"
+    ],
+    notes: "Ensures visual uniformity across all social customer touchpoints."
+  },
+  {
+    title: "Brand Color & Font Guide",
+    price: "₹2,000+",
+    turnaround: "2–4 days",
+    badge: "Design Tokens",
+    persona: "Growing businesses wanting visual consistency across internal teams, printers, and web vendors.",
+    problem: "Different vendors use conflicting shades of colors and mismatched font styles.",
+    scope: [
+      "Primary and accent color palette with exact HEX, RGB, and CMYK codes",
+      "Web-safe and system typography pairing rules (Headings vs Body)",
+      "Font weight and line-height hierarchy rules",
+      "Clear logo usage dos & don'ts quick-reference sheet",
+      "Exportable design tokens for web developers"
+    ],
+    notes: "Ensures designers, printers, and developers produce unified work."
+  },
+  {
+    title: "Basic Brand Kit (All-In-One)",
+    price: "₹5,000+",
+    turnaround: "4–6 days",
+    badge: "Complete Brand Kit",
+    persona: "New companies launching with a unified, polished commercial look from day one.",
+    problem: "Purchasing brand items separately is disjointed, slower, and costs 20% more.",
+    scope: [
+      "Full logo design (3 concepts, 2 revision rounds, vector files)",
+      "Print-ready double-sided business card layout + QR code",
+      "Complete Brand Color & Font Guide specification sheet",
+      "Social media profile kit (banners, avatars, post templates)",
+      "Favicon, email signature guide, and asset folder organization"
+    ],
+    notes: "Offers 20% savings compared to booking individual branding items."
+  },
+];
+
+const brandingPrinciples = [
+  { title: "Geist & Swiss Precision", desc: "Clean geometric construction, disciplined spacing, and high-contrast minimalism that ages gracefully." },
+  { title: "Scalable Vector Assets", desc: "Mathematically precise SVG and vector PDF assets that render razor-sharp on 4K retina screens and billboards." },
+  { title: "Digital-First Tokens", desc: "Every color and typeface is chosen with web accessibility (WCAG AA/AAA) and CSS variable compliance in mind." },
+  { title: "Full Ownership Transfer", desc: "No licensing renewals or copyright restrictions; you own your brand identity assets entirely." },
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "Digital Branding Services",
+  description: "Minimalist logo design, business card layouts, brand color guides, social kits, and turnkey brand packages in INR.",
+  serviceType: "Digital Branding & Visual Identity",
+  url: "/services/digital-branding",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Digital Branding", url: "/services/digital-branding" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
+---
+
+<BaseLayout
+  title="Digital Branding Services — Prometrion"
+  description="Minimalist logo design, business card layouts, brand color guides, social kits, and turnkey brand packages in INR."
+  jsonLd={jsonLd}
+>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE 05">BRAND IDENTITY & DESIGN SYSTEMS</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Digital branding engineered with discipline.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Minimalist, high-contrast brand systems that command authority across digital screens, social profiles, and physical print collateral.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact?service=digital-branding" size="sm">
+          Commission Brand Design
+        </Button>
+        <Button variant="secondary" href="/services/packages" size="sm">
+          Brand Packages
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design Standards Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">Vector SVG</span> <span class="text-neutral-500">Lossless Scaling</span></div>
+      <div><span class="font-bold text-emerald-600">WCAG AA</span> <span class="text-neutral-500">Color Contrast</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Print-Ready</span> <span class="text-neutral-500">300 DPI PDF</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">100% IP</span> <span class="text-neutral-500">Full Transfer</span></div>
+    </div>
+  </div>
+
+  <!-- Section 1: Offerings Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL OFFERINGS">BRANDING CAPABILITIES</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Identity assets tailored for modern companies
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Structured branding deliverables with clear revision rounds, vector exports, and upfront pricing in INR.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {brandingOfferings.map((item) => (
+          <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between shadow-whisper transition-all ${
+            item.badge.includes('Complete')
+              ? 'border-[#0070f3] dark:border-cyan-500/50 ring-1 ring-[#0070f3]/20 dark:ring-cyan-500/20 shadow-floating'
+              : 'border-[#ebebeb] dark:border-white/10 hover:shadow-floating'
+          }`}>
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={item.badge.includes('Complete') ? 'blue' : 'neutral'}>
+                  {item.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  ⚡ {item.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{item.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{item.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">Starting baseline</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Best For</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{item.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Solved</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{item.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Deliverables</span>
+                <ul class="space-y-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {item.scope.map((s) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {item.notes && (
+                <div class="mt-4 p-2 rounded bg-neutral-50 dark:bg-white/[0.03] text-[11px] font-mono text-neutral-500 border border-neutral-100 dark:border-white/5">
+                  ⓘ {item.notes}
+                </div>
+              )}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant={item.badge.includes('Complete') ? 'primary-sm' : 'secondary-sm'}
+                href={`/contact?service=digital-branding&item=${encodeURIComponent(item.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {item.title.split(' ')[0]}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Prometrion Design Rigor -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <SectionEyebrow tag="PHILOSOPHY">DESIGN DISCIPLINE</SectionEyebrow>
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Our Brand Identity Principles
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {brandingPrinciples.map((bp) => (
+          <div class="p-6 rounded-[6px] bg-[#fafafa] dark:bg-white/[0.02] border border-[#ebebeb] dark:border-white/10 shadow-whisper">
+            <span class="text-[#0070f3] dark:text-cyan-400 font-bold text-sm block mb-2">✦</span>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white mb-2">{bp.title}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{bp.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Bottom CTA -->
+  <section class="py-16 bg-[#fafafa] dark:bg-black/20 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Build your brand with lasting discipline</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Let our designers craft a clean, high-contrast brand identity that sets your company apart across every digital and print touchpoint.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact?service=digital-branding">Commission Brand Identity</Button>
+        <Button variant="secondary" href="/services/packages">View Combo Packages</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

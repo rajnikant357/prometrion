@@ -1,0 +1,292 @@
+---
+// work/index.astro - Prometrion Portfolio, Projects & Case Studies
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+
+// Verified Case Studies from Prometrion's authentic production registry
+const caseStudies = [
+  {
+    company: "Alankarini Mehandi Art",
+    category: "Bridal Fashion & Education (Varanasi, UP)",
+    clientType: "External Client Engagement",
+    badgeVariant: "emerald" as const,
+    services: ["Mobile Web Portfolio", "WhatsApp Consultation Intake", "Academy Curriculum Engine"],
+    impact: "Sub-second mobile LCP, direct one-tap bridal booking hotline, and 35-day course curriculum schedule.",
+    quote: "Prometrion transformed our bridal studio with a modern website and online class registration. Brides find our designs easily, and the direct WhatsApp booking has brought us genuine clients from Varanasi and nearby areas.",
+    leader: "Sandhya, Founder & Lead Artist",
+    liveUrl: "https://alankarini-mehandi-art.vercel.app/",
+    specs: {
+      lcp: "<0.4s",
+      cls: "0.00",
+      architecture: "React + Tailwind CSS + Edge CDN",
+    },
+  },
+  {
+    company: "Sharpr EdTech",
+    category: "Interactive EdTech & Center Locator",
+    clientType: "Client Collaboration",
+    badgeVariant: "blue" as const,
+    services: ["Interactive Web Platform", "Center Discovery & Locator", "Waitlist Intake Engine"],
+    impact: "Engaging space-themed platform with map routing to neighborhood centers and free demo session reservations.",
+    quote: "A modern interactive web platform communicating our academic tracks and neighborhood centers seamlessly.",
+    leader: "Academic Coordination Team • Sharpr",
+    liveUrl: "https://www.sharpr.in/",
+    specs: {
+      lcp: "<0.45s",
+      cls: "0.00",
+      architecture: "React 19 + Supabase + Framer Motion",
+    },
+  },
+  {
+    company: "LocalLink",
+    category: "Hyperlocal On-Demand Service Directory",
+    clientType: "Founder-Led Project",
+    badgeVariant: "amber" as const,
+    services: ["Hyperlocal Directory", "WhatsApp & Call Booking Triggers", "RESTful API Engine"],
+    impact: "Sub-80KB initial payload connecting regional homeowners in Sikandarpur, Ballia with 6 verified trade categories.",
+    quote: "Bridging the gap between regional service professionals and homeowners through zero-friction mobile web access.",
+    leader: "Rajnikant Gaurav, Platform Founder",
+    liveUrl: "https://new-locallink.vercel.app/",
+    specs: {
+      lcp: "<0.35s",
+      cls: "0.00",
+      architecture: "React 19 + REST Microservice + Render",
+    },
+  },
+  {
+    company: "Gazal Suit Ghar",
+    category: "Ethnic Fashion Retail Storefront",
+    clientType: "Client Collaboration",
+    badgeVariant: "blue" as const,
+    services: ["E-Commerce Showcase", "Variant Selector State", "Interactive Cart Drawer"],
+    impact: "Zero layout shift boutique catalog featuring Banarasi silk sarees, Anarkali designer suits, and INR cart calculations.",
+    quote: "A responsive digital storefront allowing clients to explore festive collections with instant variant feedback.",
+    leader: "Store Operations • Gazal Suit Ghar",
+    liveUrl: "https://gazal-suit-ghar.vercel.app/",
+    specs: {
+      lcp: "<0.4s",
+      cls: "0.00",
+      architecture: "React 19 + Context API Store + Vite",
+    },
+  },
+];
+
+// Core Capability Categories
+const capabilityPillars = [
+  {
+    id: "websites",
+    title: "Websites",
+    desc: "High-performance corporate platforms, portfolio sites, and e-commerce ecosystems engineered for sub-second speeds and high conversion.",
+    tags: ["Corporate Web", "Headless Commerce", "Astro 7", "Tailwind v4"],
+    highlight: "Sub-Second Target LCP",
+  },
+  {
+    id: "mobile-apps",
+    title: "Mobile Applications",
+    desc: "Native Android applications and intuitive mobile clients built with biometric security, offline-first SQLite sync, and fluid ergonomic UI.",
+    tags: ["Native Android", "Offline Sync", "Biometric Auth", "Play Store Ready"],
+    highlight: "Offline-First Reliability",
+  },
+  {
+    id: "web-apps",
+    title: "Web Applications",
+    desc: "Full-stack web applications, operational portals, and cloud dashboards designed for rapid throughput, data density, and reliability.",
+    tags: ["SaaS Architecture", "Client Portals", "REST / GraphQL", "Edge Compute"],
+    highlight: "High-Concurrency Cloud",
+  },
+  {
+    id: "branding-design",
+    title: "Branding and Design",
+    desc: "Digital-first brand identity systems, typography guidelines, iconography, and minimalist design language built for modern screens.",
+    tags: ["Visual Identity", "Design Systems", "Typography", "Digital Guidelines"],
+    highlight: "Minimalist Precision",
+  },
+  {
+    id: "seo-digital-presence",
+    title: "SEO and Digital Presence",
+    desc: "Semantic entity graphs, deep Schema.org structured data, and Generative Engine Optimization (GEO) ensuring discovery on Google and AI search engines.",
+    tags: ["GEO AI Search", "Schema.org", "Google Business Profile", "Core Web Vitals"],
+    highlight: "AI Citation Ready",
+  },
+  {
+    id: "case-studies",
+    title: "Case Studies",
+    desc: "Documented engineering projects and verified business impact metrics across healthcare, logistics, and digital commerce.",
+    tags: ["Verified Metrics", "Production handovers", "Technical Reviews"],
+    highlight: "Verified Performance",
+  },
+];
+
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Our Work", url: "/work" },
+]);
+---
+
+<BaseLayout
+  title="Our Work — Prometrion Portfolio & Case Studies"
+  description="Explore Prometrion's portfolio of websites, mobile applications, web platforms, digital branding, and verified enterprise case studies."
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Header Bar -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="CAPABILITIES & PORTFOLIO">OUR WORK</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Demonstrated engineering. Proven business results.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          From high-performance corporate web platforms to mission-critical Android applications and AI search optimization.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">
+          Get a Quote
+        </Button>
+        <Button variant="secondary" href="/services" size="sm">
+          View Services
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Content Area -->
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+      <!-- Section 1: Capability Focus Pillars (6 Categories) -->
+      <div>
+        <div class="mb-8">
+          <SectionEyebrow tag="01. PRACTICE AREAS">WORK CATEGORIES</SectionEyebrow>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+            Specialized solutions tailored to your business model.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            We architect and deliver software across six specialized practice areas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {capabilityPillars.map((pillar) => (
+            <div class="bento-card-sharp spotlight-card p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <Badge variant="blue">{pillar.highlight}</Badge>
+                </div>
+                <h3 class="text-lg font-semibold text-neutral-900 dark:text-white tracking-tight">
+                  {pillar.title}
+                </h3>
+                <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+                  {pillar.desc}
+                </p>
+              </div>
+
+              <div class="mt-5 pt-4 border-t border-neutral-100 dark:border-white/10">
+                <div class="flex flex-wrap gap-1.5">
+                  {pillar.tags.map((tag) => (
+                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 border border-neutral-200/80 dark:border-white/10">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 2: Verified Case Studies -->
+      <div id="case-studies" class="scroll-mt-24">
+        <div class="mb-8">
+          <SectionEyebrow tag="02. VERIFIED IMPACT">CASE STUDIES</SectionEyebrow>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+            Measured outcomes from production deployments.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            Documented performance, traffic, and operational impact delivered for client organizations.
+          </p>
+        </div>
+
+        <div class="space-y-8">
+          {caseStudies.map((study) => (
+            <div class="bento-card-sharp spotlight-card p-8 sm:p-10 shadow-whisper hover:shadow-floating">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-neutral-100 dark:border-white/10">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white">
+                      {study.company}
+                    </h3>
+                    <Badge variant={study.badgeVariant}>{study.clientType}</Badge>
+                  </div>
+                  <span class="text-xs font-mono text-[#0070f3] dark:text-cyan-400 mt-1 block">
+                    {study.category}
+                  </span>
+                </div>
+                <div class="text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                  Services: {study.services.join(" • ")}
+                </div>
+              </div>
+
+              <!-- Impact Metric Highlight -->
+              <div class="my-6 p-4 rounded-[6px] bg-emerald-50/70 dark:bg-emerald-950/20 border border-emerald-200/60 dark:border-emerald-800/40">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-emerald-800 dark:text-emerald-400 font-semibold block">
+                  Delivered Architecture & Impact
+                </span>
+                <p class="text-base font-semibold text-emerald-900 dark:text-emerald-300 mt-1">
+                  {study.impact}
+                </p>
+              </div>
+
+              <!-- Client Quote / Overview -->
+              <blockquote class="my-4 p-4 rounded-[6px] bg-neutral-50 dark:bg-white/[0.02] border-l-2 border-[#0070f3] text-xs sm:text-sm text-neutral-700 dark:text-neutral-300 italic leading-relaxed">
+                "{study.quote}"
+              </blockquote>
+
+              <!-- Footer with Leadership & Architecture Specs -->
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-neutral-100 dark:border-white/10 text-xs text-neutral-500 dark:text-neutral-400">
+                <div class="font-medium text-neutral-800 dark:text-neutral-200">
+                  — {study.leader}
+                </div>
+                <div class="flex flex-wrap items-center gap-4 font-mono text-[11px]">
+                  <span>LCP: <strong class="text-neutral-900 dark:text-white">{study.specs.lcp}</strong></span>
+                  <span>Stack: <strong class="text-neutral-900 dark:text-white">{study.specs.architecture}</strong></span>
+                  <a href={study.liveUrl} target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">
+                    Live Site ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Section 3: Ready to Build Banner -->
+      <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-8 sm:p-12 text-center shadow-whisper relative overflow-hidden">
+        <div class="max-w-2xl mx-auto space-y-4 relative z-10">
+          <SectionEyebrow tag="NEXT STEP">START YOUR SPRINT</SectionEyebrow>
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
+            Have a project in mind? Let's discuss requirements.
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            Our team provides transparent scopes, clear milestone estimates, and rapid sprint turnarounds.
+          </p>
+          <div class="pt-4 flex flex-wrap justify-center gap-3">
+            <Button variant="primary" href="/contact">
+              Get a Quote
+            </Button>
+            <Button variant="secondary" href="/pricing">
+              View Pricing Matrix
+            </Button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

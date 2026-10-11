@@ -98,6 +98,17 @@
     background-color: #00dfd8;
     color: #000000;
   }
+
+  /* Accessible Keyboard Focus Rings (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 2px solid #0070f3;
+    outline-offset: 2px;
+  }
+
+  html.dark :focus-visible {
+    outline: 2px solid #00dfd8;
+    outline-offset: 2px;
+  }
 }
 
 /* Custom Utilities for Geist & Prometrion Aesthetics */
@@ -267,6 +278,24 @@ html.dark button.bg-\[\#171717\]:not(#chat-launcher-btn):not(#chat-close-btn) {
 html.dark a.bg-\[\#171717\]:hover,
 html.dark button.bg-\[\#171717\]:hover:not(#chat-launcher-btn):not(#chat-close-btn) {
   background-color: #e5e5e5 !important;
+}
+
+/* Explicit Solid White Buttons (Crisp white background with black text in all themes) */
+.btn-white-solid,
+html.dark .btn-white-solid,
+html.dark a.btn-white-solid,
+html.dark button.btn-white-solid {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border-color: #ffffff !important;
+}
+
+.btn-white-solid:hover,
+html.dark .btn-white-solid:hover,
+html.dark a.btn-white-solid:hover,
+html.dark button.btn-white-solid:hover {
+  background-color: #e5e5e5 !important;
+  color: #000000 !important;
 }
 
 /* Shadows in Dark Mode */
@@ -796,4 +825,152 @@ html.dark .text-shimmer {
   -webkit-background-clip: text;
   background-clip: text;
   animation: shine 6s linear infinite;
+}
+
+/* ==========================================================================
+   Lenis Controlled Momentum Smooth Scrolling
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis,
+html.lenis-scrolling {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Cinematic Top Scroll Progress Bar & Scrollytelling Animations
+   ========================================================================== */
+#cinematic-scroll-progress {
+  transform-origin: 0% 50%;
+  will-change: transform;
+}
+
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  #cinematic-scroll-progress {
+    animation: scroll-progress-anim auto linear both;
+    animation-timeline: scroll(root);
+  }
+
+  @keyframes scroll-progress-anim {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  /* Native CSS Scroll-Driven Reveal Elements */
+  .scrolly-reveal {
+    animation: scrolly-reveal-anim auto cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes scrolly-reveal-anim {
+    from {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+  }
+}
+
+/* Fallback & Enhanced Scrollytelling Elements */
+.scrolly-fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s ease;
+  filter: blur(4px);
+  will-change: opacity, transform, filter;
+}
+
+.scrolly-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0px);
+}
+
+/* Stacking Cards Architecture & Seamless Sticky Effects */
+.stacking-card {
+  will-change: transform, filter, opacity;
+  transform-origin: center top;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease, opacity 0.2s ease;
+}
+
+@supports ((animation-timeline: view()) and (animation-range: exit 0% exit 100%)) {
+  .stacking-card-autoscale {
+    animation: stacking-card-scale auto linear both;
+    animation-timeline: view();
+    animation-range: exit 0% exit 100%;
+  }
+
+  @keyframes stacking-card-scale {
+    to {
+      transform: scale(0.97) translateY(-6px);
+      filter: brightness(0.94);
+      opacity: 0.9;
+    }
+  }
+}
+
+/* Perspective 3D Stage for Card Mockups */
+.scrolly-perspective {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+.scrolly-tilt-card {
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* MANDATORY Copy-Paste Safety: Disable continuous motion for sensitive users */
+@media (prefers-reduced-motion: reduce) {
+  html.lenis,
+  html.lenis body {
+    scroll-behavior: auto !important;
+  }
+  #cinematic-scroll-progress {
+    display: none !important;
+  }
+  .scrolly-reveal,
+  .scrolly-fade-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .scrolly-tilt-card {
+    transform: none !important;
+    transition: none !important;
+  }
 }

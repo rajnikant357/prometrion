@@ -1,0 +1,115 @@
+---
+// MaintenanceSupportSection.astro - Long-Term Reliability & Maintenance
+// Transparent explanation of ongoing engineering retainers, SLAs, and optimization services.
+import Button from "./ui/Button.astro";
+
+const maintenanceServices = [
+  {
+    title: "Website & Application Maintenance",
+    desc: "Continuous health checks, framework upgrades, and environment compatibility to ensure zero technical debt accumulation.",
+    points: ["Framework & dependency upgrades", "Cross-browser compatibility testing", "Edge runtime synchronization"],
+    tag: "Core Maintenance",
+  },
+  {
+    title: "Proactive Security & Backups",
+    desc: "Automated database backups, security patch application, vulnerability scanning, and SSL certificate management.",
+    points: ["Automated daily offsite backups", "Vulnerability scanning & audit logs", "Strict CSP & SSL header compliance"],
+    tag: "Security",
+  },
+  {
+    title: "Performance & Core Web Vitals",
+    desc: "Routine Lighthouse audits to maintain sub-second LCP, zero CLS, and swift INP scores under real user traffic.",
+    points: ["LCP < 0.5s continuous monitoring", "Image & asset pipeline optimization", "Edge cache hit ratio tuning"],
+    tag: "Performance",
+  },
+  {
+    title: "Feature Iterations & Scaling",
+    desc: "Dedicated engineering capacity for new business requirements, payment gateways, third-party APIs, and mobile adaptations.",
+    points: ["Agile sprint feature delivery", "Custom API & webhook integrations", "Database index optimization"],
+    tag: "Evolution",
+  },
+  {
+    title: "Incident Response & Guaranteed SLAs",
+    desc: "Guaranteed emergency response windows with clear escalation protocols to protect your business uptime.",
+    points: ["SLA-backed priority resolution", "Direct engineering hotline desk", "Post-incident root cause reports"],
+    tag: "Reliability",
+  },
+  {
+    title: "Cloud & Infrastructure Modernization",
+    desc: "Ongoing optimization of serverless databases, CDN caching rules, and cloud compute costs as traffic scales.",
+    points: ["Cloud compute & egress cost audits", "Multi-region failover configuration", "Database read-replica scaling"],
+    tag: "Cloud Ops",
+  },
+];
+---
+
+<section id="maintenance-and-support" class="py-24 sm:py-32 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10 transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-neutral-100 dark:bg-white/[0.04] text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-white/10 mb-4">
+        <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+        <span>CONTINUOUS RELIABILITY</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
+        Built to Evolve. Supported for the Long Run.
+      </h2>
+      <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        Digital products need more than an initial launch. Our services can support ongoing maintenance, iterative improvements, performance optimization, and future development as business requirements evolve.
+      </p>
+    </div>
+
+    <!-- 6 Maintenance Pillars Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {maintenanceServices.map((srv, idx) => (
+        <div class="p-6 rounded-[6px] bg-neutral-50/60 dark:bg-[#0c0c0e] border border-neutral-200/80 dark:border-white/10 shadow-whisper hover:shadow-floating hover:border-neutral-400 dark:hover:border-cyan-400/40 transition-all duration-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300">
+                0{idx + 1}. {srv.tag}
+              </span>
+              <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">Active SLA</span>
+            </div>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white mt-1">
+              {srv.title}
+            </h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+              {srv.desc}
+            </p>
+          </div>
+
+          <div class="mt-5 pt-4 border-t border-neutral-200/60 dark:border-white/10 space-y-1.5 text-[11px] font-mono text-neutral-600 dark:text-neutral-300">
+            {srv.points.map((pt) => (
+              <div class="flex items-center gap-2">
+                <span class="text-cyan-500 font-bold">●</span>
+                <span>{pt}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Maintenance CTA Strip -->
+    <div class="mt-12 p-8 rounded-[8px] bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-[#0f0f12] dark:via-[#09090b] dark:to-[#0f0f12] border border-neutral-200 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-whisper">
+      <div>
+        <h4 class="text-lg font-semibold text-neutral-900 dark:text-white">
+          Looking for dedicated maintenance or an emergency audit?
+        </h4>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+          We offer transparent monthly retainers and on-demand maintenance sprints for websites, mobile applications, and cloud systems.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3 shrink-0">
+        <Button variant="primary" href="/services/maintenance-support">
+          Explore Maintenance Specs
+        </Button>
+        <Button variant="secondary" href="/estimate?service=maintenance">
+          Estimate Maintenance Cost
+        </Button>
+      </div>
+    </div>
+
+  </div>
+</section>

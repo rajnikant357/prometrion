@@ -1,0 +1,139 @@
+---
+// media/people.astro - Prometrion Leadership, Engineers & Practice Desks
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+// Verified team members & functional engineering desks (Strictly genuine records, no invented staff)
+const people = [
+  {
+    name: "Rajnikant",
+    role: "Founder & Chief Architect",
+    focus: "Distributed Systems, AI Infrastructure & Strategic Vision",
+    bio: "Founder and lead architect at Prometrion. Directing custom web development, native Android engineering, Generative Engine Optimization (GEO), and digital architecture for client organizations.",
+    badge: "Leadership",
+    avatar: "R",
+  },
+  {
+    name: "Web Systems Practice Desk",
+    role: "Full-Stack Web Engineering",
+    focus: "Astro, Modern JavaScript, Sub-Second LCP & Tailwind CSS",
+    bio: "Specialized engineering practice responsible for designing and delivering corporate websites, product catalogues, e-commerce storefronts, and cloud application frontends.",
+    badge: "Web Practice",
+    avatar: "W",
+  },
+  {
+    name: "Mobile & Android Practice Desk",
+    role: "Mobile Application Engineering",
+    focus: "Android Native, Kotlin, Room Database & Offline Sync",
+    bio: "Application engineering practice focused on building responsive, battery-efficient Android clients with biometric security and local SQLite synchronization.",
+    badge: "Mobile Practice",
+    avatar: "M",
+  },
+  {
+    name: "SEO & Discovery Practice Desk",
+    role: "Search & Generative Engine Optimization",
+    focus: "Schema.org Graphs, Core Web Vitals & AI Retrieval Readiness",
+    bio: "Technical optimization desk ensuring high-performance crawlability, semantic entity definition, and structured knowledge graphs across Google and AI search assistants.",
+    badge: "Search & GEO",
+    avatar: "S",
+  },
+  {
+    name: "Client Solutions & Advisory Desk",
+    role: "Strategic Consultancy & Scoping",
+    focus: "Requirements Scoping, Cost Estimation & Architecture Audits",
+    bio: "Consultancy practice guiding founders and business owners through project specifications, sprint planning, and digital transformation roadmaps.",
+    badge: "Advisory",
+    avatar: "C",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Media", url: "/media" },
+  { name: "People", url: "/media/people" },
+]);
+---
+
+<BaseLayout
+  title="People & Leadership — Prometrion Media"
+  description="Meet the founder, architects, and engineering practice desks driving Prometrion's technical and client engagements."
+  jsonLd={breadcrumbSchema}
+>
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <SectionEyebrow tag="MEDIA / PEOPLE">TEAM & PRACTICE DESKS</SectionEyebrow>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+            The Builders of Prometrion
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            Engineers, architects, and practice desks committed to craft, performance, and transparent delivery.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <a href="/about" class="px-3 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-white/15 transition">
+            About Prometrion
+          </a>
+          <a href="/contact" class="px-3 py-1.5 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:opacity-90 transition">
+            Get in Touch
+          </a>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
+        <a href="/media" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">All Channels</a>
+        <a href="/media/blogs" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Blogs</a>
+        <a href="/media/guides" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Guides & Insights</a>
+        <a href="/media/news" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Official News</a>
+        <a href="/media/achievements" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Achievements</a>
+        <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm">People ({people.length})</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {people.map((p) => (
+          <Card variant="default" class="flex flex-col justify-between p-6 bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/10 rounded-xl">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center font-bold text-base shadow-sm font-mono">
+                  {p.avatar}
+                </div>
+                <div>
+                  <h2 class="font-semibold text-base text-neutral-900 dark:text-white">{p.name}</h2>
+                  <p class="text-xs text-[#0070f3] dark:text-cyan-400 font-medium">{p.role}</p>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <Badge variant="neutral">{p.badge}</Badge>
+              </div>
+
+              <p class="text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-2">
+                Focus: {p.focus}
+              </p>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {p.bio}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
+              <span class="text-neutral-400">Prometrion Practice</span>
+              <a href="/contact" class="text-[#0070f3] dark:text-cyan-400 font-medium hover:underline">
+                Contact Desk →
+              </a>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

@@ -12,28 +12,37 @@ const monthlyRetainers = servicesCatalog.filter(
 );
 
 const itemizedAddons = [
-  { name: "Additional Bespoke Page", price: "₹1,000+", turnaround: "1–2 days", desc: "Custom designed page matching your existing design tokens." },
-  { name: "WhatsApp Interactive Automation", price: "₹1,500+", turnaround: "1–2 days", desc: "Pre-filled customer inquiry routes, product tags & greeting automation." },
-  { name: "Payment Gateway Integration", price: "₹3,000+", turnaround: "2–3 days", desc: "Razorpay, Stripe, or Cashfree with webhook logging and instant receipts." },
-  { name: "Core Web Vitals Speed Boost", price: "₹3,000+", turnaround: "2–4 days", desc: "Sub-second mobile loading, asset compression, and 95+ PageSpeed score." },
-  { name: "Multilingual Expansion", price: "₹3,500+", turnaround: "3–5 days", desc: "Full dual-language architecture (English + Hindi / Regional)." },
-  { name: "Custom Appointment Engine", price: "₹2,500+", turnaround: "2–3 days", desc: "Calendar slot booking, intake questionnaire, and email notifications." },
-  { name: "Google Business Profile Launch", price: "₹2,000+", turnaround: "2–3 days", desc: "Category optimization, verification support, service menu, and geo-pinning." },
-  { name: "Comprehensive Brand Identity Kit", price: "₹3,500+", turnaround: "3–5 days", desc: "Primary logo, icon variations, typography guide, and digital stationery." }
+  { name: "Additional Bespoke Page", price: "₹750", turnaround: "1–2 days", desc: "Custom designed page matching your existing design tokens." },
+  { name: "Professional Content Writing", price: "₹1,000 / page", turnaround: "1–2 days", desc: "300–500 words of SEO-formatted commercial copy." },
+  { name: "Extra Design Section", price: "₹750", turnaround: "1 day", desc: "Bespoke UI section component (FAQ, testimonials, or pricing)." },
+  { name: "Image / Gallery Lightbox Section", price: "₹1,000", turnaround: "1–2 days", desc: "High-resolution responsive image gallery or portfolio slider." },
+  { name: "Payment Gateway Integration", price: "₹2,000+", turnaround: "2–3 days", desc: "Razorpay, Stripe, or Cashfree with webhook logging and instant receipts." },
+  { name: "Booking System Module", price: "₹5,000+", turnaround: "3–5 days", desc: "Calendar appointment scheduling with client confirmation emails." },
+  { name: "Core Web Vitals Speed Boost", price: "₹2,000", turnaround: "1–2 days", desc: "Sub-second mobile loading, asset compression, and 95+ PageSpeed score." },
+  { name: "WhatsApp Interactive Integration", price: "₹500", turnaround: "1 day", desc: "Floating WhatsApp button with custom pre-filled message routing." },
+  { name: "Google Maps Interactive Embed", price: "₹499", turnaround: "1 day", desc: "Responsive map container with location pin check and route link." },
+  { name: "Google Analytics 4 Setup", price: "₹999", turnaround: "1–2 days", desc: "GA4 property setup with privacy-friendly pageview and event tracking." },
+  { name: "Google Search Console Setup", price: "₹999", turnaround: "1–2 days", desc: "Domain verification, XML sitemap submission, and indexing check." },
+  { name: "Login / Registration Module", price: "₹3,000+", turnaround: "2–3 days", desc: "User authentication via email/password or SMS OTP with session security." },
+  { name: "User Profile Management", price: "₹2,000+", turnaround: "1–2 days", desc: "Editable user profile screen, avatar upload, and saved order history." },
+  { name: "Push Notifications Engine", price: "₹3,000+", turnaround: "2–3 days", desc: "Cloud messaging setup for automated order alerts, news, and promos." },
+  { name: "In-App Customer Chat", price: "₹7,500+", turnaround: "5–7 days", desc: "Real-time 1-on-1 customer support messaging system with status receipts." },
+  { name: "Business Admin Panel", price: "₹7,500+", turnaround: "5–7 days", desc: "Dedicated password-protected backend to manage leads, catalog, and export to CSV." },
+  { name: "iOS Platform Adaptation Build", price: "₹10,000+", turnaround: "10–15 days", desc: "Full iOS adaptation, Apple human interface styling, and TestFlight packaging." }
 ];
 
 const faqs = [
   {
     q: "How does billing and payment work?",
-    a: "We operate on a transparent milestone structure: 50% advance upon project kickoff and scope approval, and the remaining 50% upon client sign-off on the staging environment before production cutover."
+    a: "We operate on a transparent milestone structure: 50% deposit upon project kickoff and scope approval, and the remaining 50% upon client sign-off on the staging environment before production launch. Monthly retainers are billed on a 30-day recurring cycle with zero lock-in."
   },
   {
     q: "Do I own 100% of my code and intellectual property?",
-    a: "Yes. Unlike proprietary website builders that lock you in, every Prometrion build provides full intellectual property transfer and source code access in a private Git repository upon final handover."
+    a: "Yes. Unlike proprietary website builders that lock you in, every Prometrion build provides 100% intellectual property transfer and source code access in a private Git repository upon final handover."
   },
   {
     q: "Why do some prices have a '+' suffix?",
-    a: "The '+' denotes our baseline starting price for standard specifications. If your scope requires custom APIs, third-party ERP integrations, or hundreds of items, the price scales transparently based on exact requirements."
+    a: "The '+' denotes our baseline starting price for standard specifications. If your scope requires custom APIs, third-party ERP integrations, or hundreds of items, the price scales transparently based on exact requirements documented before kickoff."
   },
   {
     q: "Do you guarantee #1 ranking on Google?",
@@ -41,25 +50,43 @@ const faqs = [
   },
   {
     q: "What ongoing costs should I expect?",
-    a: "We engineer lean, serverless-first architectures. For most small-to-medium businesses, cloud hosting and SSL remain free or under ₹500/month after the first year. Ongoing maintenance retainers are completely optional."
+    a: "We engineer lean, serverless-first architectures. For most small-to-medium businesses, cloud hosting and SSL remain free or under ₹500/year after the first year. Ongoing maintenance retainers are completely optional starting at ₹999/month."
   }
 ];
+
+import { buildBreadcrumbSchema, buildFaqSchema } from "../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Pricing", url: "/pricing" },
+]);
+
+const faqSchema = buildFaqSchema(faqs.map((f) => ({ question: f.q, answer: f.a })));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    faqSchema,
+  ],
+};
 ---
 
 <BaseLayout
   title="Transparent Pricing — Prometrion Plans & Cost Matrix"
-  description="Database-driven, transparent pricing for Prometrion websites, mobile applications, SEO retainers, and turnkey digital packages in INR."
+  description="Database-driven, transparent pricing for Prometrion websites, mobile applications, SEO retainers, digital presence, and turnkey packages in INR."
+  jsonLd={jsonLd}
 >
   <!-- Compact Header with Tab Switcher -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
-        <SectionEyebrow tag="TRANSPARENT PRICING">INDIAN RUPEE (₹) CANONICAL MATRIX</SectionEyebrow>
+        <SectionEyebrow tag="CANONICAL PRICING">INDIAN RUPEE (₹) PRICING MATRIX</SectionEyebrow>
         <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
-          Invest with complete clarity.
+          Invest with complete commercial clarity.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          Fixed scopes, guaranteed delivery sprints, and zero hidden costs. Choose between turnkey launch packages or monthly growth retainers.
+          Fixed scopes, guaranteed delivery windows, and zero hidden costs. Choose between turnkey launch packages, monthly retainers, or a-la-carte add-ons.
         </p>
       </div>
 
@@ -78,12 +105,33 @@ const faqs = [
 
   <!-- Primary Content Area -->
   <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 
       <!-- View 1: Turnkey Launch Packages Grid -->
       <div id="view-onetime" class="space-y-12">
+        <!-- Interactive Cost Estimator Banner -->
+        <div class="p-5 rounded-[6px] bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 border border-cyan-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">Need a custom scope or specific page count?</h3>
+            </div>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+              Configure individual pages, mobile screens, SEO retainers, and add-ons in our interactive calculator for an instant indicative estimate.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <a
+              href="/estimate"
+              class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold rounded-full bg-[#171717] text-white dark:bg-white dark:text-black hover:opacity-90 transition shadow-sm"
+            >
+              <span>Open Cost Estimator →</span>
+            </a>
+          </div>
+        </div>
+
         <div class="text-center max-w-2xl mx-auto">
-          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
             Turnkey Digital Packages
           </h2>
           <p class="text-xs sm:text-sm text-neutral-500 mt-2">
@@ -93,10 +141,10 @@ const faqs = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {comboPackages.map((pkg) => (
-            <div class={`rounded-[6px] bg-white border p-6 flex flex-col justify-between transition-all relative ${
+            <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between transition-all relative ${
               pkg.highlight
-                ? 'border-[#0070f3] shadow-floating ring-1 ring-[#0070f3]'
-                : 'border-[#ebebeb] shadow-whisper'
+                ? 'border-[#0070f3] dark:border-cyan-500 shadow-floating ring-1 ring-[#0070f3] dark:ring-cyan-500'
+                : 'border-[#ebebeb] dark:border-white/10 shadow-whisper'
             }`}>
               {pkg.highlight && (
                 <div class="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -107,15 +155,15 @@ const faqs = [
               )}
 
               <div>
-                <h3 class="text-lg font-semibold text-neutral-900">{pkg.name}</h3>
+                <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">{pkg.name}</h3>
                 <p class="text-xs text-neutral-500 mt-1 min-h-[32px]">{pkg.bestFor}</p>
 
-                <div class="my-5 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
-                  <div class="text-3xl font-mono font-bold text-[#171717]">{pkg.priceFormatted}</div>
-                  <span class="text-[11px] text-neutral-500 font-mono">one-time payment</span>
+                <div class="my-5 p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+                  <div class="text-3xl font-mono font-bold text-[#171717] dark:text-white">{pkg.priceFormatted}</div>
+                  <span class="text-[11px] text-neutral-500 font-mono">one-time launch payment</span>
                 </div>
 
-                <ul class="space-y-2.5 text-xs text-neutral-700 border-t border-neutral-100 pt-5">
+                <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300 border-t border-neutral-100 dark:border-white/10 pt-5">
                   {pkg.features.map(f => (
                     <li class="flex items-start gap-2">
                       <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
@@ -125,13 +173,13 @@ const faqs = [
                 </ul>
               </div>
 
-              <div class="mt-8 pt-5 border-t border-neutral-100">
+              <div class="mt-8 pt-5 border-t border-neutral-100 dark:border-white/10">
                 <Button
                   variant={pkg.highlight ? 'primary-sm' : 'secondary-sm'}
-                  href={`/contact?package=${pkg.id}`}
+                  href={`/request-quote?package=${pkg.id}`}
                   class="w-full justify-center"
                 >
-                  Choose {pkg.name.replace(' Package', '')}
+                  Get a Quote →
                 </Button>
               </div>
             </div>
@@ -142,7 +190,7 @@ const faqs = [
       <!-- View 2: Monthly Retainers Grid (Hidden by default, toggled via JS) -->
       <div id="view-monthly" class="hidden space-y-12">
         <div class="text-center max-w-2xl mx-auto">
-          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+          <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
             Monthly Care, Support & Growth Retainers
           </h2>
           <p class="text-xs sm:text-sm text-neutral-500 mt-2">
@@ -152,24 +200,24 @@ const faqs = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {monthlyRetainers.map((plan) => (
-            <div class="rounded-[6px] bg-white border border-[#ebebeb] p-6 shadow-whisper flex flex-col justify-between">
+            <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 shadow-whisper flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <Badge variant={plan.category === 'maintenance' ? 'neutral' : 'emerald'}>
                     {plan.subcategory || plan.category.toUpperCase()}
                   </Badge>
-                  <span class="text-[11px] font-mono text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Monthly SLA</span>
+                  <span class="text-[11px] font-mono text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded">Monthly SLA</span>
                 </div>
 
-                <h3 class="text-base font-semibold text-neutral-900 mt-1">{plan.name}</h3>
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white mt-1">{plan.name}</h3>
                 <p class="text-xs text-neutral-500 mt-1 line-clamp-2">{plan.shortDesc}</p>
 
-                <div class="my-4 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
-                  <div class="text-2xl font-mono font-bold text-[#171717]">{plan.priceFormatted}</div>
+                <div class="my-4 p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+                  <div class="text-2xl font-mono font-bold text-[#171717] dark:text-white">{plan.priceFormatted}</div>
                   <span class="text-[11px] text-neutral-500 font-mono">per month</span>
                 </div>
 
-                <ul class="space-y-2 text-xs text-neutral-700 border-t border-neutral-100 pt-4">
+                <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300 border-t border-neutral-100 dark:border-white/10 pt-4">
                   {(plan.coreScope || []).map(f => (
                     <li class="flex items-start gap-2">
                       <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
@@ -179,7 +227,7 @@ const faqs = [
                 </ul>
               </div>
 
-              <div class="mt-6 pt-4 border-t border-neutral-100">
+              <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
                 <Button variant="secondary-sm" href={`/contact?retainer=${plan.id}`} class="w-full justify-center">
                   Select {plan.name}
                 </Button>
@@ -190,74 +238,77 @@ const faqs = [
       </div>
 
       <!-- Itemized A-la-Carte Add-Ons Table -->
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 sm:p-8 shadow-whisper">
+      <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-8 shadow-whisper">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h3 class="text-lg font-semibold text-neutral-900">Itemized Add-On Pricing</h3>
-            <p class="text-xs text-neutral-500 mt-0.5">Modular building blocks you can append to any project or existing website.</p>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Itemized Add-On Pricing</h3>
+            <p class="text-xs text-neutral-500 mt-0.5">Modular building blocks you can append to any project or existing website in INR.</p>
           </div>
-          <a href="/services/catalog" class="text-xs font-mono text-[#0070f3] hover:underline shrink-0">
+          <a href="/services/catalog" class="text-xs font-mono text-[#0070f3] dark:text-cyan-400 hover:underline shrink-0">
             View full 30+ service catalog →
           </a>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead>
-              <tr class="border-b border-[#ebebeb] font-mono text-neutral-400 uppercase">
-                <th class="py-3 pr-4">Add-On Feature</th>
-                <th class="py-3 px-4">Fixed Starting Price</th>
-                <th class="py-3 px-4">Sprint Turnaround</th>
-                <th class="py-3 pl-4">Description</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-neutral-100">
-              {itemizedAddons.map((item) => (
-                <tr class="hover:bg-neutral-50/50 transition">
-                  <td class="py-3.5 pr-4 font-medium text-neutral-900">{item.name}</td>
-                  <td class="py-3.5 px-4 font-mono font-bold text-neutral-900 whitespace-nowrap">{item.price}</td>
-                  <td class="py-3.5 px-4 font-mono text-neutral-500 whitespace-nowrap">{item.turnaround}</td>
-                  <td class="py-3.5 pl-4 text-neutral-600">{item.desc}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- FAQ Accordion / Grid -->
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 sm:p-8 shadow-whisper">
-        <div class="max-w-2xl mx-auto text-center mb-10">
-          <SectionEyebrow tag="COMMERCIAL FAQ">COMMON QUESTIONS</SectionEyebrow>
-          <h3 class="text-xl sm:text-2xl font-semibold text-neutral-900 mt-2">
-            Clear Answers on Costs & Policies
-          </h3>
-          <p class="text-xs text-neutral-500 mt-1">Everything you need to know before initiating a project.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {faqs.map((faq) => (
-            <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
-              <h4 class="text-xs sm:text-sm font-semibold text-neutral-900 mb-2">{faq.q}</h4>
-              <p class="text-xs text-neutral-600 leading-relaxed">{faq.a}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {itemizedAddons.map((addon) => (
+            <div class="p-4 rounded-[6px] border border-neutral-100 dark:border-white/10 bg-neutral-50/50 dark:bg-white/[0.02] flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <span class="font-medium text-xs text-neutral-900 dark:text-white">{addon.name}</span>
+                  <span class="font-mono text-xs font-bold text-neutral-900 dark:text-white shrink-0">{addon.price}</span>
+                </div>
+                <p class="text-[11px] text-neutral-500 mt-1 leading-snug">{addon.desc}</p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-neutral-200/50 dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+                <span>⚡ {addon.turnaround}</span>
+                <a href={`/contact?addon=${encodeURIComponent(addon.name)}`} class="text-[#0070f3] dark:text-cyan-400 hover:underline">
+                  Add to scope →
+                </a>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Custom Enterprise Callout -->
-      <div class="bg-[#171717] text-white rounded-[6px] p-8 sm:p-12 text-center max-w-3xl mx-auto shadow-floating">
-        <h3 class="text-xl sm:text-2xl font-semibold tracking-tight">Need a customized Statement of Work?</h3>
-        <p class="text-xs sm:text-sm text-neutral-400 mt-2 max-w-xl mx-auto leading-relaxed">
-          For large enterprise platforms, legacy system modernization, or custom AI agent engineering, we offer dedicated technical scoping calls with our senior architects.
-        </p>
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-4">
-          <Button variant="primary-sm" href="/contact">
-            Schedule Scoping Call →
-          </Button>
-          <Button variant="secondary-sm" href="/services/catalog" class="bg-neutral-800 text-neutral-200 border-neutral-700 hover:bg-neutral-700">
-            Browse Full Catalog
-          </Button>
+      <!-- FAQ Section -->
+      <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-8 shadow-whisper">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <SectionEyebrow tag="BILLING FAQ">FREQUENTLY ASKED QUESTIONS</SectionEyebrow>
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mt-1">
+            Commercial Terms & Billing Policies
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {faqs.map((faq) => (
+            <div class="p-4 rounded-[6px] border border-neutral-100 dark:border-white/10 bg-neutral-50/30 dark:bg-white/[0.01]">
+              <h4 class="text-xs font-semibold text-neutral-900 dark:text-white">{faq.q}</h4>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Bottom Consultation CTA Band -->
+      <div class="rounded-[6px] bg-[#171717] dark:bg-neutral-900 text-white p-8 sm:p-12 text-center relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl mx-auto">
+          <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono tracking-wider bg-white/10 border border-white/20 uppercase mb-4">
+            Bespoke Engineering Scoping
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-white">
+            Need a tailored multi-system scope?
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-300 mt-3 leading-relaxed">
+            If your enterprise requires custom microservices, bespoke database pipelines, or multi-platform native apps, schedule a technical consultation for an itemized Statement of Work.
+          </p>
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <Button variant="primary" href="/contact">
+              Request Detailed Proposal
+            </Button>
+            <Button variant="secondary" href="/services/packages">
+              Compare All Tiers
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -266,30 +317,29 @@ const faqs = [
 </BaseLayout>
 
 <script>
+  // Pricing tab switcher logic
   const btnOnetime = document.getElementById("tab-btn-onetime");
   const btnMonthly = document.getElementById("tab-btn-monthly");
   const viewOnetime = document.getElementById("view-onetime");
   const viewMonthly = document.getElementById("view-monthly");
 
   btnOnetime?.addEventListener("click", () => {
-    btnOnetime.classList.add("bg-white", "text-neutral-900", "shadow-sm");
-    btnOnetime.classList.remove("text-neutral-600");
-
-    btnMonthly?.classList.remove("bg-white", "text-neutral-900", "shadow-sm");
-    btnMonthly?.classList.add("text-neutral-600");
-
     viewOnetime?.classList.remove("hidden");
     viewMonthly?.classList.add("hidden");
+
+    btnOnetime.className = "px-4 py-1.5 rounded-full font-medium bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-sm transition cursor-pointer";
+    if (btnMonthly) {
+      btnMonthly.className = "px-4 py-1.5 rounded-full font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer flex items-center gap-1.5";
+    }
   });
 
   btnMonthly?.addEventListener("click", () => {
-    btnMonthly.classList.add("bg-white", "text-neutral-900", "shadow-sm");
-    btnMonthly.classList.remove("text-neutral-600");
-
-    btnOnetime?.classList.remove("bg-white", "text-neutral-900", "shadow-sm");
-    btnOnetime?.classList.add("text-neutral-600");
-
     viewMonthly?.classList.remove("hidden");
     viewOnetime?.classList.add("hidden");
+
+    btnMonthly.className = "px-4 py-1.5 rounded-full font-medium bg-white dark:bg-neutral-800 text-neutral-900 dark:text-white shadow-sm transition cursor-pointer flex items-center gap-1.5";
+    if (btnOnetime) {
+      btnOnetime.className = "px-4 py-1.5 rounded-full font-medium text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition cursor-pointer";
+    }
   });
 </script>

@@ -1,18 +1,23 @@
-// blogsData.ts - Launch Blog Posts for Prometrion Articles Platform
-// Source: Prometrion Content Pack Version 1.0
+// blogsData.ts - Educational Articles, Strategic Essays & Implementation Guides for Prometrion Media
+// Formatted strictly to technical SEO standards with verified metadata, schema timestamps, and internal links
 
 export interface BlogPost {
   title: string;
   slug: string;
-  category: 'Blogs';
+  category: 'Blogs' | 'Guides & Insights';
   excerpt: string;
   pubDate: string;
+  datePublished: string; // ISO 8601 string for Schema.org
+  lastUpdated?: string;
+  dateModified?: string; // ISO 8601 string for Schema.org
   readTime: string;
   author: {
     name: string;
     role: string;
     avatarInitial: string;
   };
+  featuredImage?: string;
+  featuredImageAlt?: string;
   tags: string[];
   sections: {
     heading?: string;
@@ -24,21 +29,35 @@ export interface BlogPost {
     href: string;
   };
   relatedServices?: string[];
+  relatedProjects?: string[];
+  seoTitle?: string;
+  metaDescription?: string;
+  canonicalUrl?: string;
+  isDraft?: boolean;
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
 }
 
 export const blogsData: BlogPost[] = [
   {
     title: "How to Choose the Right Website for Your Business",
     slug: "how-to-choose-the-right-website-for-your-business",
-    category: "Blogs",
+    category: "Guides & Insights",
     excerpt: "Not every business needs the same kind of website. The right choice depends on what you sell, how customers contact you, how much information you need to present, and whether customers need to buy or book online.",
     pubDate: "September 2026",
+    datePublished: "2026-09-08T09:00:00+05:30",
+    lastUpdated: "September 2026",
+    dateModified: "2026-09-08T09:00:00+05:30",
     readTime: "5 min read",
     author: {
       name: "Rajnikant",
       role: "Founder & Chief Architect, Prometrion",
       avatarInitial: "R",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Website selection guide by Prometrion",
     tags: ["Website Development", "Business Strategy", "Digital Architecture"],
     sections: [
       {
@@ -96,21 +115,40 @@ export const blogsData: BlogPost[] = [
       text: "Explore Prometrion's Website Development Services →",
       href: "/services/website-development"
     },
-    relatedServices: ["portfolio-website", "small-business-website", "business-catalogue-website"]
+    relatedServices: ["website-development", "digital-presence"],
+    relatedProjects: ["prometrion-ai", "study-academy-1", "locallink"],
+    seoTitle: "How to Choose the Right Website for Your Business — Prometrion Guide",
+    metaDescription: "Understand the differences between starter websites, business portals, product catalogues, and e-commerce stores to select the right online architecture.",
+    faqs: [
+      {
+        question: "When should a business upgrade from a starter website to a catalogue?",
+        answer: "A business should upgrade to a catalogue when customers frequently ask for product specifications, pricing sheets, or item photos via messaging apps, and maintaining manual spreadsheets becomes inefficient."
+      },
+      {
+        question: "Can a Prometrion starter website be expanded into an e-commerce store later?",
+        answer: "Yes. Prometrion architectures are built modularly so that catalogues, checkout gateways, and client portals can be layered on top of existing foundations without rebuilding from scratch."
+      }
+    ],
+    isDraft: false,
   },
 
   {
     title: "Website vs Catalogue vs E-Commerce: What's the Difference?",
     slug: "website-vs-catalogue-vs-ecommerce",
-    category: "Blogs",
+    category: "Guides & Insights",
     excerpt: "A business website, catalogue and e-commerce store may look similar, but they solve different customer journeys. Here is how to pick the right commercial engine.",
     pubDate: "September 2026",
+    datePublished: "2026-09-05T10:00:00+05:30",
+    lastUpdated: "September 2026",
+    dateModified: "2026-09-05T10:00:00+05:30",
     readTime: "4 min read",
     author: {
       name: "Prometrion Web Systems",
       role: "Architecture Team",
       avatarInitial: "P",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Website vs Catalogue vs E-Commerce comparison",
     tags: ["E-Commerce", "Catalog", "Web Development"],
     sections: [
       {
@@ -163,9 +201,13 @@ export const blogsData: BlogPost[] = [
     ],
     cta: {
       text: "Compare Prometrion Website and E-Commerce Solutions →",
-      href: "/services/catalog"
+      href: "/services/website-development"
     },
-    relatedServices: ["business-catalogue-website", "starter-online-store", "business-ecommerce"]
+    relatedServices: ["website-development", "packages"],
+    relatedProjects: ["prometrion-ai", "study-academy-2"],
+    seoTitle: "Website vs Catalogue vs E-Commerce: Key Differences — Prometrion",
+    metaDescription: "Learn how standard websites, product catalogues, and online stores differ in architecture, customer journey, and operational complexity.",
+    isDraft: false,
   },
 
   {
@@ -174,12 +216,17 @@ export const blogsData: BlogPost[] = [
     category: "Blogs",
     excerpt: "Search visibility is no longer limited to traditional search-result pages. Prometrion's SEO & GEO services are designed around both search-engine visibility and visibility in AI-powered search and recommendations.",
     pubDate: "August 2026",
+    datePublished: "2026-08-28T11:00:00+05:30",
+    lastUpdated: "August 2026",
+    dateModified: "2026-08-28T11:00:00+05:30",
     readTime: "6 min read",
     author: {
       name: "Rajnikant",
       role: "Founder & Chief Architect, Prometrion",
       avatarInitial: "R",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "SEO and Generative Engine Optimization guide",
     tags: ["SEO", "GEO", "AI Search", "Algorithms"],
     sections: [
       {
@@ -231,21 +278,40 @@ export const blogsData: BlogPost[] = [
       text: "Explore Prometrion's SEO & GEO Services →",
       href: "/services/seo-geo"
     },
-    relatedServices: ["seo-foundation", "geo-ai-search-visibility", "seo-geo-complete"]
+    relatedServices: ["seo-geo", "digital-presence"],
+    relatedProjects: ["prometrion-ai", "locallink"],
+    seoTitle: "SEO and GEO: Search Visibility in the Era of AI — Prometrion",
+    metaDescription: "Understand how traditional search engine optimization and generative engine optimization (GEO) combine to make your brand visible to searchers and AI models.",
+    faqs: [
+      {
+        question: "Can any agency guarantee a #1 ranking on Google or ChatGPT?",
+        answer: "No reputable agency can guarantee specific ranking positions or AI citations because algorithmic models and competitor activities evolve continuously. Prometrion focuses on verifiable technical crawlability, structured data, entity clarity, and speed."
+      },
+      {
+        question: "What is the primary difference between SEO and GEO?",
+        answer: "SEO optimizes for indexers and keyword matching algorithms (Google, Bing). GEO optimizes for Large Language Model retrieval by structuring content as verifiable facts, clear entities, and semantic schema."
+      }
+    ],
+    isDraft: false,
   },
 
   {
     title: "When Does a Business Actually Need a Mobile App?",
     slug: "when-does-a-business-need-a-mobile-app",
-    category: "Blogs",
+    category: "Guides & Insights",
     excerpt: "A mobile app makes sense when customers need recurring interaction, accounts, bookings, orders, notifications or workflows that benefit from a dedicated mobile experience.",
     pubDate: "August 2026",
+    datePublished: "2026-08-20T14:00:00+05:30",
+    lastUpdated: "August 2026",
+    dateModified: "2026-08-20T14:00:00+05:30",
     readTime: "5 min read",
     author: {
       name: "Prometrion Mobile Labs",
       role: "Engineering Division",
       avatarInitial: "P",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Mobile app planning guide by Prometrion",
     tags: ["Mobile Apps", "Android", "Engineering"],
     sections: [
       {
@@ -284,7 +350,11 @@ export const blogsData: BlogPost[] = [
       text: "Discuss a Mobile App Project with Prometrion →",
       href: "/services/app-development"
     },
-    relatedServices: ["static-info-app", "business-app", "dynamic-app", "custom-mobile-app"]
+    relatedServices: ["app-development", "maintenance-support"],
+    relatedProjects: ["locallink"],
+    seoTitle: "When Does a Business Need a Mobile App? — Prometrion Guide",
+    metaDescription: "Determine if your business requires a mobile app, evaluate offline requirements, push notifications, and discover our native Android development services.",
+    isDraft: false,
   },
 
   {
@@ -293,12 +363,17 @@ export const blogsData: BlogPost[] = [
     category: "Blogs",
     excerpt: "A website is an important digital asset, but customers may also discover a business through Google Business Profile, maps, social channels and messaging platforms.",
     pubDate: "July 2026",
+    datePublished: "2026-07-25T12:00:00+05:30",
+    lastUpdated: "July 2026",
+    dateModified: "2026-07-25T12:00:00+05:30",
     readTime: "4 min read",
     author: {
       name: "Prometrion Solutions",
       role: "Growth Advisory",
       avatarInitial: "P",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Comprehensive digital presence footprint",
     tags: ["Digital Presence", "Google Maps", "Local Business"],
     sections: [
       {
@@ -354,9 +429,13 @@ export const blogsData: BlogPost[] = [
     ],
     cta: {
       text: "Explore Prometrion Digital Presence Services →",
-      href: "/services#presence"
+      href: "/services/digital-presence"
     },
-    relatedServices: ["google-business-profile-setup", "whatsapp-business-setup", "complete-digital-presence-setup"]
+    relatedServices: ["digital-presence", "digital-branding"],
+    relatedProjects: ["study-academy-1", "locallink"],
+    seoTitle: "Building a Complete Digital Presence Beyond a Website — Prometrion",
+    metaDescription: "Learn how Google Business Profile, WhatsApp integration, Google Maps, and social channels work together with your website to capture high-intent leads.",
+    isDraft: false,
   },
 
   {
@@ -365,12 +444,17 @@ export const blogsData: BlogPost[] = [
     category: "Blogs",
     excerpt: "Launching a website is the beginning of its lifecycle, not the end. Maintenance keeps content, backups, uptime, security and small updates under control.",
     pubDate: "July 2026",
+    datePublished: "2026-07-10T16:00:00+05:30",
+    lastUpdated: "July 2026",
+    dateModified: "2026-07-10T16:00:00+05:30",
     readTime: "4 min read",
     author: {
       name: "Prometrion Operations",
       role: "Infrastructure Desk",
       avatarInitial: "P",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Website maintenance and security guide",
     tags: ["Maintenance", "Security", "Uptime"],
     sections: [
       {
@@ -406,23 +490,32 @@ export const blogsData: BlogPost[] = [
     ],
     cta: {
       text: "View Prometrion Maintenance Plans →",
-      href: "/services#maintenance"
+      href: "/services/maintenance-support"
     },
-    relatedServices: ["website-care", "business-website-care", "app-maintenance"]
+    relatedServices: ["maintenance-support"],
+    relatedProjects: ["prometrion-ai"],
+    seoTitle: "Why Website Maintenance Matters After Launch — Prometrion",
+    metaDescription: "Explore the critical role of regular backups, security updates, uptime monitoring, and ongoing support in protecting your business website investment.",
+    isDraft: false,
   },
 
   {
     title: "How to Choose a Digital Service Package",
     slug: "how-to-choose-a-digital-service-package",
-    category: "Blogs",
+    category: "Guides & Insights",
     excerpt: "The right package depends on your current stage, technical complexity, customer journey and growth plans—not simply the number of features on a checklist.",
     pubDate: "June 2026",
+    datePublished: "2026-06-22T10:00:00+05:30",
+    lastUpdated: "June 2026",
+    dateModified: "2026-06-22T10:00:00+05:30",
     readTime: "5 min read",
     author: {
       name: "Rajnikant",
       role: "Founder & Chief Architect, Prometrion",
       avatarInitial: "R",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Selecting digital service packages",
     tags: ["Packages", "Pricing", "Consultancy"],
     sections: [
       {
@@ -471,7 +564,11 @@ export const blogsData: BlogPost[] = [
       text: "Compare Prometrion Service Packages →",
       href: "/services/packages"
     },
-    relatedServices: ["starter-online-store", "business-catalogue-website", "saas-mvp"]
+    relatedServices: ["packages", "digital-consultancy"],
+    relatedProjects: ["prometrion-ai", "study-academy-1"],
+    seoTitle: "How to Choose a Digital Service Package — Prometrion Matrix",
+    metaDescription: "Compare Starter, Standard, Growth, and Advanced digital packages to match your operational stage and customer acquisition requirements.",
+    isDraft: false,
   },
 
   {
@@ -480,12 +577,17 @@ export const blogsData: BlogPost[] = [
     category: "Blogs",
     excerpt: "Digital growth often happens in stages: establish a credible presence, make the business discoverable, improve lead capture, introduce structured catalogues or transactions, then add custom software where needed.",
     pubDate: "June 2026",
+    datePublished: "2026-06-08T09:00:00+05:30",
+    lastUpdated: "June 2026",
+    dateModified: "2026-06-08T09:00:00+05:30",
     readTime: "5 min read",
     author: {
       name: "Prometrion Strategy",
       role: "Advisory Group",
       avatarInitial: "P",
     },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Phased digital transformation strategy",
     tags: ["Growth", "Transformation", "Scale"],
     sections: [
       {
@@ -534,6 +636,298 @@ export const blogsData: BlogPost[] = [
       text: "Talk to Prometrion About Your Next Digital Stage →",
       href: "/contact"
     },
-    relatedServices: ["complete-digital-presence-setup", "seo-growth", "monthly-digital-advisor"]
+    relatedServices: ["digital-presence", "digital-consultancy"],
+    relatedProjects: ["prometrion-ai", "study-academy-2"],
+    seoTitle: "From Digital Presence to Digital Growth: The 5 Stages — Prometrion",
+    metaDescription: "A pragmatic guide to staging your digital investments: from launching a core presence to driving qualified lead generation and custom application scale.",
+    isDraft: false,
+  },
+
+  {
+    title: "Evaluating Website Development Costs: Factors, Timelines & ROI",
+    slug: "website-development-cost-factors",
+    category: "Guides & Insights",
+    excerpt: "Understanding what drives website pricing helps business owners budget accurately, avoid surprise costs, and evaluate agency quotations with clarity.",
+    pubDate: "October 2026",
+    datePublished: "2026-10-01T10:00:00+05:30",
+    lastUpdated: "October 2026",
+    dateModified: "2026-10-01T10:00:00+05:30",
+    readTime: "6 min read",
+    author: {
+      name: "Rajnikant",
+      role: "Founder & Chief Architect, Prometrion",
+      avatarInitial: "R",
+    },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Cost factors in website development",
+    tags: ["Pricing", "Cost Factors", "Website Planning", "Estimates"],
+    sections: [
+      {
+        content: [
+          "Website development costs vary widely across the technology sector. A simple portfolio can cost ₹5,000, while a custom enterprise web platform with authenticated client portals can exceed ₹50,000.",
+          "Rather than looking solely at the headline price, business owners benefit from understanding the specific architectural components that determine the final investment."
+        ]
+      },
+      {
+        heading: "1. Scope and Information Architecture",
+        content: [
+          "The number of unique templates and page designs is the largest direct pricing driver. A single-page landing site requires far fewer engineering hours than an 8-page corporate site with custom service silos, team bios, and case studies."
+        ]
+      },
+      {
+        heading: "2. Dynamic Functionality and Backend Systems",
+        content: [
+          "Static content delivery is straightforward. Adding interactive booking systems, payment gateway checkouts, customer intake forms with database persistence, or search-filterable product catalogues adds database modeling, API wiring, and security testing."
+        ]
+      },
+      {
+        heading: "3. Content Preparedness and Asset Quality",
+        content: [
+          "When a business provides structured copywriting, high-resolution photography, and brand vector assets, development proceeds rapidly. If an agency must draft copy, source imagery, and structure brand typography, timelines and budgets adjust accordingly."
+        ]
+      },
+      {
+        heading: "4. Technical SEO and Performance Engineering",
+        content: [
+          "A modern business website requires fast load times, accessible semantic HTML, Schema.org structured data, and Core Web Vitals compliance. Delivering sub-second Time-to-First-Byte (TTFB) requires dedicated engineering rather than drag-and-drop page builders."
+        ]
+      },
+      {
+        heading: "5. Calculating ROI Before Committing",
+        content: [
+          "Evaluate website expenditure against expected commercial outcomes. If a ₹12,000 catalogue website saves 10 hours of manual WhatsApp coordination every week and converts three additional commercial clients per month, it recoups its initial outlay rapidly."
+        ]
+      }
+    ],
+    cta: {
+      text: "Calculate Your Indicative Project Cost with the Interactive Estimator →",
+      href: "/estimate"
+    },
+    relatedServices: ["website-development", "packages", "digital-consultancy"],
+    relatedProjects: ["prometrion-ai", "study-academy-1"],
+    seoTitle: "Website Development Cost Factors & Estimating Guide — Prometrion",
+    metaDescription: "Discover what determines the cost of building a business website, compare pricing tiers, and learn how to estimate project budgets accurately.",
+    faqs: [
+      {
+        question: "Why do custom website quotes vary so significantly?",
+        answer: "Differences stem from page counts, dynamic capabilities (databases, payments, portals), performance engineering (custom code vs bloated templates), and ongoing maintenance commitments."
+      },
+      {
+        question: "How can I get an immediate price estimate for my website idea?",
+        answer: "You can use Prometrion's interactive online Cost Estimator to configure your pages, dynamic features, timeline, and immediately see an indicative cost breakdown."
+      }
+    ],
+    isDraft: false,
+  },
+
+  {
+    title: "Custom Websites vs Template-Based Solutions: Choosing the Right Engine",
+    slug: "custom-websites-vs-templates",
+    category: "Guides & Insights",
+    excerpt: "Should you build a bespoke custom website or launch on a generic website builder? Here is a practical comparison of performance, long-term costs, ownership, and scalability.",
+    pubDate: "October 2026",
+    datePublished: "2026-10-02T11:30:00+05:30",
+    lastUpdated: "October 2026",
+    dateModified: "2026-10-02T11:30:00+05:30",
+    readTime: "5 min read",
+    author: {
+      name: "Prometrion Web Systems",
+      role: "Architecture Team",
+      avatarInitial: "P",
+    },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Custom website vs template comparison",
+    tags: ["Custom Code", "Templates", "Web Performance", "Architecture"],
+    sections: [
+      {
+        content: [
+          "When business owners decide to launch or rebuild a digital presence, one foundational choice emerges: should you choose an off-the-shelf template builder (like Wix or standard WordPress themes) or invest in custom code architecture?",
+          "Both approaches have valid roles in the digital landscape. Making the right decision requires looking beyond launch day."
+        ]
+      },
+      {
+        heading: "When Template Solutions Make Sense",
+        content: [
+          "Template builders allow fast setup for non-technical individuals with minimal upfront capital. If you need a temporary one-page announcement or an experimental project with zero custom logic, a basic builder can serve as an initial test."
+        ]
+      },
+      {
+        heading: "The Hidden Penalties of Generic Templates",
+        content: [
+          "Template platforms often introduce severe trade-offs as a business matures:"
+        ],
+        list: [
+          "Code Bloat: Generic templates ship thousands of unused JavaScript and CSS files, causing slow mobile loading times and poor Core Web Vitals.",
+          "Subscription Lock-in: Recurring monthly builder fees, mandatory plugin subscriptions, and hosting markups accumulate over 2–3 years.",
+          "Rigid Design Limitations: Making subtle ergonomic adjustments often requires fighting the template's opinionated grid system.",
+          "Weak SEO & Schema: Automated structured data is often incomplete or missing, penalizing search engine discovery."
+        ]
+      },
+      {
+        heading: "The Custom Code Advantage",
+        content: [
+          "A custom website engineered with modern frameworks (such as Astro and Tailwind CSS) delivers clean, lightweight HTML. The code is 100% owned by the business, loads in fractions of a second, and can be hosted on high-speed global CDNs with negligible hosting overhead."
+        ]
+      },
+      {
+        heading: "Prometrion's Architectural Philosophy",
+        content: [
+          "Prometrion develops websites with clean semantic HTML, strict zero-bloat standards, and responsive Geist-inspired typography. Every client receives production code that they fully own, with sub-second page performance guaranteed."
+        ]
+      }
+    ],
+    cta: {
+      text: "Explore Custom Website Development Services →",
+      href: "/services/website-development"
+    },
+    relatedServices: ["website-development", "seo-geo"],
+    relatedProjects: ["prometrion-ai", "study-academy-2", "locallink"],
+    seoTitle: "Custom Websites vs Templates: Performance & ROI Guide — Prometrion",
+    metaDescription: "Compare bespoke custom web development against generic page templates. Evaluate page speed, SEO crawlability, recurring software fees, and asset ownership.",
+    isDraft: false,
+  },
+
+  {
+    title: "The Business Owner's Guide to Planning a Commercial Website",
+    slug: "how-to-plan-a-business-website",
+    category: "Guides & Insights",
+    excerpt: "A structured planning process prevents costly scope creep, misaligned expectations, and launch delays. Here is how to prepare for your next web project.",
+    pubDate: "October 2026",
+    datePublished: "2026-10-04T12:00:00+05:30",
+    lastUpdated: "October 2026",
+    dateModified: "2026-10-04T12:00:00+05:30",
+    readTime: "6 min read",
+    author: {
+      name: "Rajnikant",
+      role: "Founder & Chief Architect, Prometrion",
+      avatarInitial: "R",
+    },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Commercial website planning roadmap",
+    tags: ["Planning", "Scoping", "Project Management", "Strategy"],
+    sections: [
+      {
+        content: [
+          "The success of a business website is largely determined before the first line of code is written. Without a clear specification, projects suffer from scope creep, ambiguous deliverables, and extended timelines."
+        ]
+      },
+      {
+        heading: "Phase 1: Defining the Primary Conversion Objective",
+        content: [
+          "Every website must have one primary action that defines success. For a dental clinic, it is phone calls or appointment bookings. For an industrial manufacturer, it is a formal RFQ submission. For a luxury brand, it is catalogue discovery followed by WhatsApp enquiry."
+        ]
+      },
+      {
+        heading: "Phase 2: Auditing Customer Questions and Objections",
+        content: [
+          "Review the questions prospective buyers ask during direct sales conversations. Your website content should answer these questions clearly before the prospect even reaches out:"
+        ],
+        list: [
+          "What specific services or products do you deliver?",
+          "What is your pricing model or typical turnaround time?",
+          "What certifications, credentials, or verified past projects validate your credibility?",
+          "Where are you physically located, and what areas do you serve?",
+          "How do I take the next step to work with you?"
+        ]
+      },
+      {
+        heading: "Phase 3: Preparing Content and Digital Assets",
+        content: [
+          "Gather your logo in vector format, professional photos of your facilities or products, client testimonials with explicit permission, and clear bullet points describing your offerings. Having these assets organized accelerates delivery significantly."
+        ]
+      },
+      {
+        heading: "Phase 4: Establishing a Sprint Schedule",
+        content: [
+          "Work with an engineering team that commits to milestone sprints. A standard 5-page business website typically takes 5 to 7 days when content is ready. Avoid open-ended contracts with undefined delivery checkpoints."
+        ]
+      }
+    ],
+    cta: {
+      text: "Submit Your Project Brief for a Formal Quotation →",
+      href: "/request-quote"
+    },
+    relatedServices: ["website-development", "digital-consultancy", "packages"],
+    relatedProjects: ["prometrion-ai", "study-academy-1"],
+    seoTitle: "The Business Owner's Guide to Planning a Website — Prometrion",
+    metaDescription: "Step-by-step roadmap for planning a business website: conversion goals, content preparation, timeline management, and contractor alignment.",
+    isDraft: false,
+  },
+
+  {
+    title: "How to Prepare an Actionable Software Project Brief",
+    slug: "preparing-a-software-project-brief",
+    category: "Guides & Insights",
+    excerpt: "Clear specifications lead to accurate price quotes and rapid sprint turnarounds. Learn what to include when commissioning web, mobile, or custom software projects.",
+    pubDate: "October 2026",
+    datePublished: "2026-10-06T15:00:00+05:30",
+    lastUpdated: "October 2026",
+    dateModified: "2026-10-06T15:00:00+05:30",
+    readTime: "5 min read",
+    author: {
+      name: "Prometrion Strategy",
+      role: "Advisory Group",
+      avatarInitial: "P",
+    },
+    featuredImage: "/prometrion-logo.png",
+    featuredImageAlt: "Software project brief preparation",
+    tags: ["Project Brief", "Consultancy", "Specifications", "Contracting"],
+    sections: [
+      {
+        content: [
+          "When approaching an engineering agency or software team, the quality of your initial brief directly influences the accuracy of the quotation and the speed of execution."
+        ]
+      },
+      {
+        heading: "1. Executive Summary & Business Context",
+        content: [
+          "Briefly state what your company does, who your target customers are, and what core business problem the software will solve. Explain whether this is a net-new project, a replatforming of an existing system, or an emergency turnaround."
+        ]
+      },
+      {
+        heading: "2. User Personas & Core Workflows",
+        content: [
+          "Describe who will use the application and what tasks they must complete:"
+        ],
+        list: [
+          "Public Visitor: Discovers services, calculates indicative costs, and submits an enquiry.",
+          "Authenticated Client: Logs in, reviews order status, and pays invoices.",
+          "System Administrator: Updates catalogue products, exports inquiries to CSV, and modifies site settings."
+        ]
+      },
+      {
+        heading: "3. Technical Constraints & Third-Party Integrations",
+        content: [
+          "Document existing software you must integrate with: payment gateways (Stripe, Razorpay), messaging channels (WhatsApp Cloud API), mapping providers (Google Maps), or existing databases."
+        ]
+      },
+      {
+        heading: "4. Timeline & Budgetary Guidance",
+        content: [
+          "State your preferred launch window and indicative budget tier. Providing a realistic budget range allows the engineering architect to recommend the highest-impact technical stack without proposing unnecessary complexity."
+        ]
+      }
+    ],
+    cta: {
+      text: "Book a Strategic Advisory Session with Our Engineering Desk →",
+      href: "/book-consultation"
+    },
+    relatedServices: ["digital-consultancy", "website-development", "app-development"],
+    relatedProjects: ["prometrion-ai", "locallink"],
+    seoTitle: "How to Prepare an Actionable Software Project Brief — Prometrion",
+    metaDescription: "Learn how to write a software project brief that eliminates scope ambiguity, ensures accurate estimates, and accelerates engineering delivery.",
+    isDraft: false,
   }
 ];
+
+export function getPublishedArticles(): BlogPost[] {
+  return blogsData.filter((post) => !post.isDraft);
+}
+
+export function getPublishedBlogs(): BlogPost[] {
+  return blogsData.filter((post) => !post.isDraft && post.category === 'Blogs');
+}
+
+export function getPublishedGuides(): BlogPost[] {
+  return blogsData.filter((post) => !post.isDraft && post.category === 'Guides & Insights');
+}

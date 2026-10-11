@@ -1,5 +1,5 @@
 ---
-// services/packages.astro - Clear Bundled Combo Packages & Strategic Tiers
+// services/packages.astro - Canonical Bundled Combo Packages & Strategic Tiers Matrix
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Card from "../../components/ui/Card.astro";
@@ -25,11 +25,119 @@ const deliveryGuarantees = [
     desc: "All packages include post-launch warranty, DNS and SSL configuration, and responsive developer assistance."
   }
 ];
+
+const matrixRows = [
+  {
+    category: "Commercials",
+    item: "Starting Price",
+    starter: "₹5,000 – ₹15,000",
+    standard: "₹6,000 – ₹20,000",
+    growth: "₹10,000 – ₹35,000",
+    advanced: "₹15,000 – ₹75,000+"
+  },
+  {
+    category: "Commercials",
+    item: "Target Client Stage",
+    starter: "Solopreneurs & early founders",
+    standard: "Local businesses, clinics & shops",
+    growth: "Expanding brands, stores & catalogs",
+    advanced: "Enterprise apps, portals & SaaS"
+  },
+  {
+    category: "Delivery",
+    item: "Turnaround Time",
+    starter: "3–6 Business Days",
+    standard: "5–8 Business Days",
+    growth: "8–15 Business Days",
+    advanced: "15–45 Business Days"
+  },
+  {
+    category: "Delivery",
+    item: "Client Revision Cycles",
+    starter: "2 Structured Rounds",
+    standard: "3 Structured Rounds",
+    growth: "4 Structured Rounds",
+    advanced: "Unlimited within Scope"
+  },
+  {
+    category: "Web Architecture",
+    item: "Page Count & Structure",
+    starter: "Up to 3 pages (Single page scrolling or Home/About/Contact)",
+    standard: "Up to 6 pages (Home, About, Services, Reviews, Contact, Map)",
+    growth: "Up to 10 pages (Custom architecture & filterable catalog)",
+    advanced: "12+ pages or Full Custom Web App with admin portal"
+  },
+  {
+    category: "Web Architecture",
+    item: "Lead Capture & Funnels",
+    starter: "Simple contact form + direct WhatsApp chat link",
+    standard: "Quotation form, Google Maps embed, click-to-call, social feeds",
+    growth: "Dynamic booking calendar, interactive forms, multi-step intake",
+    advanced: "Custom client dashboard, bespoke quoting logic & APIs"
+  },
+  {
+    category: "Web Architecture",
+    item: "E-Commerce & Payments",
+    starter: "Not Included (Available as Add-on)",
+    standard: "Digital Catalog (up to 30 items, WhatsApp order routing)",
+    growth: "Starter Online Store (up to 50 items, cart & payment gateway)",
+    advanced: "Advanced Storefront (100–300+ items, multi-variant, coupons)"
+  },
+  {
+    category: "Mobile Apps",
+    item: "Platform Architecture",
+    starter: "Static info app (Android APK or Web App wrapper)",
+    standard: "Dynamic business app (Android native with real-time news)",
+    growth: "Commercial app (Android + iOS cross-platform unified build)",
+    advanced: "Custom bespoke mobile software / SaaS MVP"
+  },
+  {
+    category: "SEO & Visibility",
+    item: "Search Optimization",
+    starter: "SEO Foundation (Title/meta tags, XML sitemap, index check)",
+    standard: "Local SEO Retainer (Google Business Profile, local map pack)",
+    growth: "SEO Growth Retainer (In-depth keyword targeting, monthly audits)",
+    advanced: "Full SEO + GEO Optimization (AI engine citation authority)"
+  },
+  {
+    category: "Branding",
+    item: "Collateral & Assets",
+    starter: "Single logo concept + primary color palette sheet",
+    standard: "Basic Brand Kit (3 logo concepts, business card, social kit)",
+    growth: "Complete Brand Identity (5 concepts, full style sheet, stationery)",
+    advanced: "Bespoke Corporate Identity (UI style guide, pitch deck, system)"
+  },
+  {
+    category: "Care & Support",
+    item: "Post-Launch Warranty",
+    starter: "14 Days Bug-Fix Support",
+    standard: "30 Days Comprehensive Support",
+    growth: "45 Days Priority Support",
+    advanced: "60 Days Dedicated SLA Support"
+  },
+  {
+    category: "Governance & IP",
+    item: "Code Rights & Handover",
+    starter: "100% Full IP ownership; clean modular source code",
+    standard: "Full IP ownership + admin training handover + Git repo transfer",
+    growth: "Full IP ownership, staging sandbox testing & DB migration",
+    advanced: "Full IP ownership, CI/CD pipeline, enterprise test suite"
+  }
+];
+
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Service Packages", url: "/services/packages" },
+]);
 ---
 
 <BaseLayout
   title="Service Packages — Prometrion Bundled Solutions"
-  description="Transparent, all-inclusive digital packages with guaranteed delivery dates, revisions, and full lifecycle support in INR."
+  description="Transparent, all-inclusive digital packages: Starter, Business, Growth, and Complete Digital bundles with guaranteed turnaround and revisions in INR."
+  jsonLd={breadcrumbSchema}
 >
   <!-- Compact Header -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
@@ -40,12 +148,12 @@ const deliveryGuarantees = [
           Engineered Bundles. Transparent Value.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          Unified launch sprints packaging engineering, identity design, and digital presence with fixed scopes.
+          Unified launch sprints packaging engineering, identity design, and digital presence with fixed scopes in Indian Rupee (₹).
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/contact" size="sm">Custom Scope</Button>
-        <Button variant="secondary" href="/services/catalog" size="sm">Browse Catalog</Button>
+        <Button variant="primary" href="/estimate" size="sm">Cost Estimator →</Button>
+        <Button variant="secondary" href="/request-quote?package=custom" size="sm">Custom Scope</Button>
       </div>
     </div>
   </div>
@@ -54,7 +162,7 @@ const deliveryGuarantees = [
   <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
           Curated Launch Packages
         </h2>
         <p class="text-xs sm:text-sm text-neutral-500 mt-2">
@@ -64,10 +172,10 @@ const deliveryGuarantees = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         {comboPackages.map((pkg) => (
-          <div class={`rounded-[6px] bg-white border p-6 flex flex-col justify-between transition-all relative ${
+          <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between transition-all relative ${
             pkg.highlight
-              ? 'border-[#0070f3] shadow-floating ring-1 ring-[#0070f3]'
-              : 'border-[#ebebeb] shadow-whisper hover:border-neutral-300'
+              ? 'border-[#0070f3] dark:border-cyan-500 shadow-floating ring-1 ring-[#0070f3] dark:ring-cyan-500'
+              : 'border-[#ebebeb] dark:border-white/10 shadow-whisper hover:border-neutral-300 dark:hover:border-white/20'
           }`}>
             {pkg.highlight && (
               <div class="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -79,20 +187,20 @@ const deliveryGuarantees = [
 
             <div>
               <div class="flex items-center justify-between">
-                <h3 class="text-base font-semibold text-neutral-900">{pkg.name}</h3>
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{pkg.name}</h3>
               </div>
               <p class="text-xs text-neutral-500 mt-2 min-h-[36px] leading-relaxed">{pkg.bestFor}</p>
 
               <!-- Price Box -->
-              <div class="mt-5 mb-6 p-3 rounded-lg bg-neutral-50 border border-neutral-100">
-                <div class="text-3xl font-mono font-bold text-[#171717]">{pkg.priceFormatted}</div>
+              <div class="mt-5 mb-6 p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10">
+                <div class="text-3xl font-mono font-bold text-[#171717] dark:text-white">{pkg.priceFormatted}</div>
                 <span class="text-[11px] text-neutral-500 font-mono">one-time launch fee</span>
               </div>
 
-              <div class="h-px bg-neutral-100 my-4"></div>
+              <div class="h-px bg-neutral-100 dark:bg-white/10 my-4"></div>
 
               <div class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider mb-2">Package Inclusions</div>
-              <ul class="space-y-2.5 text-xs text-neutral-700">
+              <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
                 {pkg.features.map(f => (
                   <li class="flex items-start gap-2">
                     <span class="text-emerald-500 font-bold shrink-0 mt-0.5">✔</span>
@@ -102,13 +210,13 @@ const deliveryGuarantees = [
               </ul>
             </div>
 
-            <div class="mt-8 pt-5 border-t border-neutral-100">
+            <div class="mt-8 pt-5 border-t border-neutral-100 dark:border-white/10">
               <Button
                 variant={pkg.highlight ? 'primary-sm' : 'secondary-sm'}
-                href={`/contact?package=${pkg.id}`}
+                href={`/request-quote?package=${pkg.id}`}
                 class="w-full justify-center"
               >
-                Select {pkg.name.replace(' Package', '')}
+                Request Quote for {pkg.name.replace(' Package', '')} →
               </Button>
             </div>
           </div>
@@ -117,69 +225,55 @@ const deliveryGuarantees = [
     </div>
   </div>
 
-  <!-- Section 2: Strategic 4-Tier Model Matrix -->
-  <div class="py-16 bg-white border-t border-b border-[#ebebeb]">
+  <!-- Section 2: Detailed Side-by-Side Scope Specifications & Comparative Guide -->
+  <div class="py-16 bg-white dark:bg-[#070707] border-t border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <SectionEyebrow tag="DELIVERY TIERS">STRATEGIC MODEL</SectionEyebrow>
-        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight mt-2">
-          Strategic Scope & Turnaround Matrix
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <SectionEyebrow tag="DELIVERY MATRIX">SIDE-BY-SIDE SCOPE SPECIFICATIONS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight mt-2">
+          Comparative Scope & Deliverables Matrix
         </h2>
         <p class="text-xs sm:text-sm text-neutral-500 mt-2">
-          From lean founder sprints to full-scale custom software development, every tier has guaranteed revision rounds and sprint commitments.
+          Direct side-by-side comparison across Starter, Standard, Growth, and Advanced delivery tiers.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {packageTiers.map((tier) => (
-          <div class="bg-neutral-50 border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between">
-                <Badge variant={tier.tier === 'Growth' || tier.tier === 'Advanced' ? 'blue' : 'neutral'}>
-                  {tier.tier} Tier
-                </Badge>
-                <span class="text-xs font-mono text-neutral-400">⚡ {tier.turnaround}</span>
-              </div>
-
-              <div class="mt-4 mb-2">
-                <div class="text-xl font-mono font-bold text-neutral-900">{tier.priceRange}</div>
-                <span class="text-[11px] font-mono text-neutral-500">Typical Scope Range</span>
-              </div>
-
-              <div class="mt-4 pt-3 border-t border-neutral-200">
-                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Target Client</span>
-                <p class="text-xs text-neutral-800 font-medium">{tier.target}</p>
-              </div>
-
-              <div class="mt-3">
-                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Strategic Role</span>
-                <p class="text-xs text-neutral-600 leading-relaxed">{tier.role}</p>
-              </div>
-
-              <div class="mt-3">
-                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-1">Revision Policy</span>
-                <p class="text-xs font-mono text-neutral-700 bg-white px-2 py-1 rounded border border-neutral-200 inline-block">
-                  {tier.revisions}
-                </p>
-              </div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-neutral-200">
-              <Button variant="ghost-sm" href={`/contact?tier=${tier.tier.toLowerCase()}`} class="w-full justify-center">
-                Inquire for {tier.tier} →
-              </Button>
-            </div>
-          </div>
-        ))}
+      <!-- Comparative Table Container -->
+      <div class="overflow-x-auto border border-[#ebebeb] dark:border-white/10 rounded-[6px] shadow-whisper">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-neutral-50 dark:bg-white/[0.04] border-b border-[#ebebeb] dark:border-white/10 text-neutral-900 dark:text-white font-mono">
+              <th class="p-3.5 font-semibold w-1/5">Deliverable & Scope Area</th>
+              <th class="p-3.5 font-semibold w-1/5 border-l border-[#ebebeb] dark:border-white/10">Starter Tier</th>
+              <th class="p-3.5 font-semibold w-1/5 border-l border-[#ebebeb] dark:border-white/10 bg-blue-50/30 dark:bg-blue-950/20">Standard Tier</th>
+              <th class="p-3.5 font-semibold w-1/5 border-l border-[#ebebeb] dark:border-white/10">Growth Tier</th>
+              <th class="p-3.5 font-semibold w-1/5 border-l border-[#ebebeb] dark:border-white/10">Advanced Tier</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-[#ebebeb] dark:divide-white/10 text-neutral-700 dark:text-neutral-300">
+            {matrixRows.map((row) => (
+              <tr class="hover:bg-neutral-50/50 dark:hover:bg-white/[0.02] transition">
+                <td class="p-3.5 font-medium text-neutral-900 dark:text-white bg-neutral-50/30 dark:bg-white/[0.01]">
+                  <span class="text-[10px] font-mono uppercase text-neutral-400 block mb-0.5">{row.category}</span>
+                  {row.item}
+                </td>
+                <td class="p-3.5 border-l border-[#ebebeb] dark:border-white/10 leading-relaxed">{row.starter}</td>
+                <td class="p-3.5 border-l border-[#ebebeb] dark:border-white/10 leading-relaxed bg-blue-50/10 dark:bg-blue-950/10">{row.standard}</td>
+                <td class="p-3.5 border-l border-[#ebebeb] dark:border-white/10 leading-relaxed">{row.growth}</td>
+                <td class="p-3.5 border-l border-[#ebebeb] dark:border-white/10 leading-relaxed">{row.advanced}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
   <!-- Section 3: Prometrion Delivery Commitments & Guarantees -->
-  <div class="py-16 bg-[#fafafa]">
+  <div class="py-16 bg-[#fafafa] dark:bg-black/30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 tracking-tight">
+        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white tracking-tight">
           The Prometrion Delivery Standard
         </h2>
         <p class="text-xs sm:text-sm text-neutral-500 mt-2">
@@ -189,18 +283,18 @@ const deliveryGuarantees = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {deliveryGuarantees.map((item, idx) => (
-          <div class="bg-white border border-[#ebebeb] rounded-[6px] p-6 shadow-whisper">
-            <div class="text-xs font-mono font-bold text-[#0070f3] mb-2">0{idx + 1} // COMMITMENT</div>
-            <h3 class="text-sm font-semibold text-neutral-900 mb-1.5">{item.title}</h3>
-            <p class="text-xs text-neutral-600 leading-relaxed">{item.desc}</p>
+          <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 shadow-whisper">
+            <div class="text-xs font-mono font-bold text-[#0070f3] dark:text-cyan-400 mb-2">0{idx + 1} // COMMITMENT</div>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white mb-1.5">{item.title}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
 
       <!-- Need Add-ons or Itemized solutions -->
-      <div class="mt-12 bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper text-center max-w-3xl mx-auto">
-        <h3 class="text-lg font-semibold text-neutral-900">Looking for individual a-la-carte solutions?</h3>
-        <p class="text-xs text-neutral-600 mt-2 max-w-xl mx-auto leading-relaxed">
+      <div class="mt-12 bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-8 shadow-whisper text-center max-w-3xl mx-auto">
+        <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Looking for individual a-la-carte solutions?</h3>
+        <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 max-w-xl mx-auto leading-relaxed">
           Need only a speed optimization sprint, WhatsApp automated flow, or Google Business Profile audit? Explore our complete 30+ itemized catalog.
         </p>
         <div class="mt-5 flex items-center justify-center gap-3">

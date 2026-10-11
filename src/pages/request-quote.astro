@@ -1,0 +1,411 @@
+---
+// src/pages/request-quote.astro
+// Prometrion Formal Quotation Request Workflow
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import { buildBreadcrumbSchema } from "../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Request a Quote", url: "/request-quote" },
+]);
+---
+
+<BaseLayout
+  title="Request a Formal Quote — Statement of Work | Prometrion"
+  description="Submit your technical scope, project requirements, or cost estimate to receive a formal Prometrion Statement of Work (SOW) quotation."
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Ambient Atmospheric Aurora Glow -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[500px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity">
+    <div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[450px] rounded-full bg-gradient-to-r from-cyan-500/15 via-blue-500/20 to-purple-500/15 blur-[120px]"></div>
+  </div>
+
+  <!-- Header Strip -->
+  <section class="border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707] transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <nav class="flex items-center gap-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-2">
+            <a href="/" class="hover:text-neutral-900 dark:hover:text-white transition">Home</a>
+            <span>/</span>
+            <a href="/pricing" class="hover:text-neutral-900 dark:hover:text-white transition">Pricing</a>
+            <span>/</span>
+            <span class="text-neutral-900 dark:text-white font-medium">Request Quote</span>
+          </nav>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+            Request a Formal Quotation
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            Submit your requirements, budget targets, or saved cost estimate to receive an itemized Statement of Work (SOW).
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <Button variant="secondary" href="/estimate" size="sm">
+            ← Cost Estimator
+          </Button>
+          <Button variant="ghost" href="/pricing" size="sm">
+            View Pricing
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Form Section -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/50 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Context Notification Banner (Shown when arriving from Estimator or Webstore) -->
+      <div id="context-banner" class="hidden mb-8 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-900 dark:text-cyan-200 flex items-start gap-3">
+        <svg class="w-5 h-5 text-cyan-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <div class="flex-1">
+          <strong class="font-semibold block" id="context-banner-title">Saved Estimate Attached</strong>
+          <p class="text-[11px] text-cyan-700 dark:text-cyan-300 mt-0.5" id="context-banner-desc">
+            Your configured project parameters have been imported into this quote request.
+          </p>
+        </div>
+      </div>
+
+      <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-10 shadow-whisper">
+        <form id="quote-request-form" class="space-y-6 text-xs text-neutral-800 dark:text-neutral-200">
+          
+          <!-- Section 1: Contact Details -->
+          <div>
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              01. Client & Contact Information
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="quote-name" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Full Name *</label>
+                <input
+                  id="quote-name"
+                  type="text"
+                  required
+                  placeholder="Jane Doe"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-name" class="hidden text-[10px] text-red-500 mt-1 block">Please enter your full name.</span>
+              </div>
+
+              <div>
+                <label for="quote-email" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Business Email Address *</label>
+                <input
+                  id="quote-email"
+                  type="email"
+                  required
+                  placeholder="jane@company.com"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-email" class="hidden text-[10px] text-red-500 mt-1 block">Please enter a valid email address.</span>
+              </div>
+
+              <div>
+                <label for="quote-phone" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Phone / WhatsApp Number (Optional)</label>
+                <input
+                  id="quote-phone"
+                  type="tel"
+                  placeholder="+91 70842 02503"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+              </div>
+
+              <div>
+                <label for="quote-org" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Organization or Brand Name (Optional)</label>
+                <input
+                  id="quote-org"
+                  type="text"
+                  placeholder="Acme Innovations Pvt Ltd"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Project Scope & Discipline -->
+          <div class="pt-4 border-t border-neutral-100 dark:border-white/10">
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              02. Project Discipline & Target Timeline
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="quote-service" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Primary Engineering Service *</label>
+                <select
+                  id="quote-service"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                >
+                  <option value="website-development">Website Development (Astro 7 / React)</option>
+                  <option value="app-development">Mobile App Development (Android / Native)</option>
+                  <option value="seo-geo">SEO & Generative Engine Optimization (GEO)</option>
+                  <option value="digital-presence">Digital Presence (Google Business / Maps)</option>
+                  <option value="digital-branding">Digital Branding (Logo / Brand Kit)</option>
+                  <option value="digital-consultancy">Digital Consultancy (Advisory / Architecture)</option>
+                  <option value="maintenance-support">Maintenance & Support (Monthly Care / SLA)</option>
+                  <option value="combo-starter">Combo: Starter Digital Package (₹7,500)</option>
+                  <option value="combo-business">Combo: Business Digital Package (₹15,000)</option>
+                  <option value="combo-growth">Combo: Digital Growth Package (₹25,000)</option>
+                  <option value="combo-complete">Combo: Complete Digital Package (₹40,000+)</option>
+                  <option value="other">Custom Bespoke Statement of Work</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="quote-timeline" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Target Launch Timeline</label>
+                <select
+                  id="quote-timeline"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                >
+                  <option value="urgent">Urgent Sprint (1–2 Weeks)</option>
+                  <option value="standard" selected>Standard Rollout (2–4 Weeks)</option>
+                  <option value="relaxed">Comprehensive Phase (1–2 Months)</option>
+                  <option value="flexible">Flexible / Planning Stage</option>
+                </select>
+              </div>
+
+              <div class="sm:col-span-2">
+                <label class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Estimated Budget Range</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+                  <label class="flex items-center gap-1.5 p-2 rounded border border-[#ebebeb] dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] cursor-pointer text-[11px]">
+                    <input type="radio" name="budget" value="₹5,000 – ₹15,000" checked />
+                    <span>₹5K – ₹15K</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 p-2 rounded border border-[#ebebeb] dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] cursor-pointer text-[11px]">
+                    <input type="radio" name="budget" value="₹15,000 – ₹35,000" />
+                    <span>₹15K – ₹35K</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 p-2 rounded border border-[#ebebeb] dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] cursor-pointer text-[11px]">
+                    <input type="radio" name="budget" value="₹35,000 – ₹75,000" />
+                    <span>₹35K – ₹75K</span>
+                  </label>
+                  <label class="flex items-center gap-1.5 p-2 rounded border border-[#ebebeb] dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] cursor-pointer text-[11px]">
+                    <input type="radio" name="budget" value="₹75,000+ / Custom" />
+                    <span>₹75K+ / Enterprise</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Project Requirements & Existing URL -->
+          <div class="pt-4 border-t border-neutral-100 dark:border-white/10">
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              03. Detailed Requirements & Context
+            </h2>
+            <div class="space-y-4">
+              <div>
+                <label for="quote-desc" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Project Description & Deliverables *</label>
+                <textarea
+                  id="quote-desc"
+                  rows="4"
+                  required
+                  placeholder="Outline your company's core objectives, target users, must-have features, and integration requirements..."
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                ></textarea>
+                <span id="err-desc" class="hidden text-[10px] text-red-500 mt-1 block">Please provide a brief description of your requirements.</span>
+              </div>
+
+              <div>
+                <label for="quote-url" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Existing Website or Reference URL (Optional)</label>
+                <input
+                  id="quote-url"
+                  type="url"
+                  placeholder="https://example.com"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button & Action Bar -->
+          <div class="pt-4">
+            <button
+              type="submit"
+              id="submit-quote-btn"
+              class="w-full py-3.5 px-6 rounded-full text-xs font-semibold bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Submit Formal Quote Request →</span>
+            </button>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 text-center mt-2.5">
+              Prometrion reviews scopes within 24 business hours. No spam or unsolicited marketing calls.
+            </p>
+          </div>
+
+          <!-- Success / Dispatch State Box -->
+          <div id="quote-success-box" class="hidden p-6 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-center space-y-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto font-bold text-lg">
+              ✓
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm text-emerald-950 dark:text-emerald-100">
+                Quotation Request Dispatched
+              </h3>
+              <p class="text-xs text-emerald-800 dark:text-emerald-300 mt-1" id="quote-ref-notice">
+                Reference: QUO-2026-0000
+              </p>
+            </div>
+            <p class="text-xs text-neutral-600 dark:text-neutral-300 max-w-md mx-auto leading-relaxed">
+              Your structured brief has been formatted and submitted. For instantaneous coordination, you can also connect directly with our engineering desk on WhatsApp:
+            </p>
+            <div class="pt-1 flex justify-center gap-2">
+              <a
+                id="whatsapp-direct-link"
+                href="https://wa.me/917084202503"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium bg-[#25D366] text-black hover:opacity-90 transition"
+              >
+                Connect on WhatsApp (+91 7084202503) ↗
+              </a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById("quote-request-form") as HTMLFormElement;
+  const nameInput = document.getElementById("quote-name") as HTMLInputElement;
+  const emailInput = document.getElementById("quote-email") as HTMLInputElement;
+  const phoneInput = document.getElementById("quote-phone") as HTMLInputElement;
+  const orgInput = document.getElementById("quote-org") as HTMLInputElement;
+  const serviceSelect = document.getElementById("quote-service") as HTMLSelectElement;
+  const timelineSelect = document.getElementById("quote-timeline") as HTMLSelectElement;
+  const descInput = document.getElementById("quote-desc") as HTMLTextAreaElement;
+  const urlInput = document.getElementById("quote-url") as HTMLInputElement;
+
+  const errName = document.getElementById("err-name");
+  const errEmail = document.getElementById("err-email");
+  const errDesc = document.getElementById("err-desc");
+  const successBox = document.getElementById("quote-success-box");
+  const submitBtn = document.getElementById("submit-quote-btn") as HTMLButtonElement;
+  const contextBanner = document.getElementById("context-banner");
+  const bannerTitle = document.getElementById("context-banner-title");
+  const bannerDesc = document.getElementById("context-banner-desc");
+
+  // Read URL params (Preserve context from Estimator or Webstore)
+  const params = new URLSearchParams(window.location.search);
+  const serviceParam = params.get("service");
+  const projectParam = params.get("project");
+  const appParam = params.get("app");
+  const estimateRef = params.get("estimateRef");
+  const oneTime = params.get("oneTime");
+  const monthly = params.get("monthly");
+
+  if (serviceParam && serviceSelect) {
+    if (serviceParam.includes("website")) serviceSelect.value = "website-development";
+    else if (serviceParam.includes("app")) serviceSelect.value = "app-development";
+    else if (serviceParam.includes("seo")) serviceSelect.value = "seo-geo";
+    else if (serviceParam.includes("presence")) serviceSelect.value = "digital-presence";
+    else if (serviceParam.includes("branding")) serviceSelect.value = "digital-branding";
+    else if (serviceParam.includes("consult")) serviceSelect.value = "digital-consultancy";
+    else if (serviceParam.includes("maint")) serviceSelect.value = "maintenance-support";
+  }
+
+  if (estimateRef && contextBanner) {
+    contextBanner.classList.remove("hidden");
+    if (bannerTitle) bannerTitle.textContent = `Attached Estimator Reference: ${estimateRef}`;
+    if (bannerDesc) {
+      bannerDesc.textContent = `Indicative calculation imported: ${oneTime && Number(oneTime) > 0 ? '₹' + Number(oneTime).toLocaleString('en-IN') + ' one-time' : ''} ${monthly && Number(monthly) > 0 ? '+ ₹' + Number(monthly).toLocaleString('en-IN') + '/mo recurring' : ''}`;
+    }
+    if (descInput && !descInput.value) {
+      descInput.value = `Imported from Estimator Reference [${estimateRef}]. Indicative Total: ₹${Number(oneTime || 0).toLocaleString('en-IN')}. Please prepare formal Statement of Work.`;
+    }
+  } else if (projectParam && contextBanner) {
+    contextBanner.classList.remove("hidden");
+    if (bannerTitle) bannerTitle.textContent = `Webstore Project Reference: ${projectParam}`;
+    if (bannerDesc) bannerDesc.textContent = `Requesting custom production website architecture similar to ${projectParam}.`;
+    if (descInput && !descInput.value) {
+      descInput.value = `I would like to commission a custom web system similar in architecture and features to the "${projectParam}" showcase project on Prometrion Webstore.`;
+    }
+  } else if (appParam && contextBanner) {
+    contextBanner.classList.remove("hidden");
+    if (bannerTitle) bannerTitle.textContent = `Appstore Reference: ${appParam}`;
+    if (bannerDesc) bannerDesc.textContent = `Requesting custom mobile application development similar to ${appParam}.`;
+    if (descInput && !descInput.value) {
+      descInput.value = `I am interested in commissioning an Android / mobile application similar to "${appParam}".`;
+    }
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // Inline validation
+    let valid = true;
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const desc = descInput.value.trim();
+
+    if (!name) {
+      errName?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errName?.classList.add("hidden");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      errEmail?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errEmail?.classList.add("hidden");
+    }
+
+    if (!desc) {
+      errDesc?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errDesc?.classList.add("hidden");
+    }
+
+    if (!valid) return;
+
+    // Prevent accidental duplicate submission
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Dispatching Quote Brief...</span>`;
+
+    const quoteId = `QUO-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const phone = phoneInput.value.trim() || "Not provided";
+    const org = orgInput.value.trim() || "Not specified";
+    const service = serviceSelect.options[serviceSelect.selectedIndex].text;
+    const timeline = timelineSelect.options[timelineSelect.selectedIndex].text;
+    const budget = (document.querySelector('input[name="budget"]:checked') as HTMLInputElement)?.value || "N/A";
+    const refUrl = urlInput.value.trim() || "None";
+
+    const briefPayload = `*Formal Quotation Request [${quoteId}] — Prometrion*\n\n` +
+      `👤 *Client:* ${name}\n` +
+      `🏢 *Company:* ${org}\n` +
+      `📧 *Email:* ${email}\n` +
+      `📞 *Phone / WhatsApp:* ${phone}\n` +
+      `💼 *Service:* ${service}\n` +
+      `⏳ *Timeline:* ${timeline}\n` +
+      `💰 *Budget Range:* ${budget}\n` +
+      `🔗 *Reference URL:* ${refUrl}\n` +
+      (estimateRef ? `🔖 *Estimator Ref:* ${estimateRef}\n` : '') +
+      `\n📝 *Scope Requirements:*\n${desc}\n\n` +
+      `— Submitted via Prometrion.com Quote Portal`;
+
+    const waLink = document.getElementById("whatsapp-direct-link") as HTMLAnchorElement | null;
+    const encoded = encodeURIComponent(briefPayload);
+    const waUrl = `https://wa.me/917084202503?text=${encoded}`;
+
+    if (waLink) waLink.href = waUrl;
+
+    const refNotice = document.getElementById("quote-ref-notice");
+    if (refNotice) refNotice.textContent = `Quotation Reference ID: ${quoteId}`;
+
+    successBox?.classList.remove("hidden");
+    successBox?.scrollIntoView({ behavior: "smooth" });
+
+    // Open WhatsApp in parallel
+    window.open(waUrl, "_blank");
+  });
+</script>

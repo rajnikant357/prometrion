@@ -1,0 +1,259 @@
+---
+// ClientPartnerships.astro - Section 3: Selected Clients & Project Collaborations
+// Honest, evidence-backed showcase of verified client engagements, collaborations, and internal platforms.
+// Zero fabricated enterprise logos. Strict separation of client work vs internal products.
+
+interface CollaborationItem {
+  id: string;
+  name: string;
+  categoryType: 'client' | 'collaboration' | 'internal' | 'founder-led' | 'personal' | 'experimental';
+  badgeLabel: string;
+  badgeVariant: 'emerald' | 'blue' | 'purple' | 'amber';
+  industry: string;
+  location: string;
+  description: string;
+  scopeDelivered: string[];
+  liveUrl: string;
+  detailUrl?: string;
+  techStack: string[];
+}
+
+const collaborations: CollaborationItem[] = [
+  {
+    id: "alankarini",
+    name: "Alankarini Mehandi Art",
+    categoryType: "client",
+    badgeLabel: "External Client Engagement",
+    badgeVariant: "emerald",
+    industry: "Bridal Art & Academy",
+    location: "Varanasi, UP",
+    description: "Official digital presence, bridal design galleries, doorstep booking hotline, and 35-day certified mehandi academy course curriculum for Sandhya's bridal studio.",
+    scopeDelivered: [
+      "Mobile-first portfolio & bridal design showcase",
+      "Direct WhatsApp and call intake hotline integration",
+      "35-day certified academy syllabus & fee schedule",
+      "Local Varanasi search and Google Maps optimization"
+    ],
+    liveUrl: "https://alankarini-mehandi-art.vercel.app/",
+    detailUrl: "/store/webstore/alankarini-mehandi-art",
+    techStack: ["React", "Tailwind CSS", "WhatsApp Direct", "Lucide Icons"],
+  },
+  {
+    id: "sharpr",
+    name: "Sharpr EdTech",
+    categoryType: "collaboration",
+    badgeLabel: "Client Collaboration",
+    badgeVariant: "blue",
+    industry: "Education (Classes 5–10)",
+    location: "Neighborhood Centers",
+    description: "Learning platform empowering students aged 10–16 with academic program listings, neighborhood center location discovery, and demo class booking workflows.",
+    scopeDelivered: [
+      "Interactive center discovery and map integration",
+      "Academic programs syllabus for classes 5 to 10",
+      "Free demo session booking and waitlist intake",
+      "Space-themed interactive visual architecture"
+    ],
+    liveUrl: "https://www.sharpr.in/",
+    detailUrl: "/store/webstore/sharpr",
+    techStack: ["React 19", "Vite", "Tailwind CSS", "Supabase", "Framer Motion"],
+  },
+  {
+    id: "locallink",
+    name: "LocalLink",
+    categoryType: "founder-led",
+    badgeLabel: "Founder-Led Project",
+    badgeVariant: "amber",
+    industry: "Hyperlocal On-Demand Services",
+    location: "Sikandarpur, Ballia",
+    description: "Regional digital service initiative connecting homeowners with verified electricians, carpenters, plumbers, and technicians with one-tap phone and WhatsApp booking.",
+    scopeDelivered: [
+      "Service provider directory across 6 trade categories",
+      "Hyperlocal area filtering for instant nearby trade discovery",
+      "Direct phone call and WhatsApp booking actions",
+      "Lightweight responsive footprint for regional mobile networks"
+    ],
+    liveUrl: "https://new-locallink.vercel.app/",
+    detailUrl: "/store/webstore/locallink",
+    techStack: ["React 19", "Tailwind CSS", "REST API", "Vite", "Render Cloud"],
+  },
+  {
+    id: "gazal",
+    name: "Gazal Suit Ghar",
+    categoryType: "collaboration",
+    badgeLabel: "Client Collaboration",
+    badgeVariant: "blue",
+    industry: "Indian Ethnic Fashion & Retail",
+    location: "Retail Storefront",
+    description: "Traditional Indian ethnic boutique catalog showcasing Banarasi silk sarees, Anarkali suit sets, and kurtis in INR with dynamic variant selectors and cart drawer.",
+    scopeDelivered: [
+      "Product showcase across Sarees, Kurtis, and Suits in INR",
+      "Dynamic color and size variant selectors with stock states",
+      "Interactive shopping cart drawer with live subtotal calculation",
+      "Zero layout shift mobile browsing experience"
+    ],
+    liveUrl: "https://gazal-suit-ghar.vercel.app/",
+    detailUrl: "/store/webstore/gazal-suit-ghar",
+    techStack: ["React 19", "Tailwind CSS", "Vite", "Context API Store"],
+  },
+  {
+    id: "pankaj",
+    name: "Pankaj Consultancy",
+    categoryType: "client",
+    badgeLabel: "External Client Engagement",
+    badgeVariant: "emerald",
+    industry: "Property Advisory & Title Verification",
+    location: "Advisory Practice",
+    description: "Professional property consultancy web presence offering title search assistance, buyer negotiation representation, and home loan approval guidance.",
+    scopeDelivered: [
+      "Property buying assistance and pre-market listing advisory",
+      "Legal verification and document title search workflow",
+      "Home loan approval guidance and eligibility checklist",
+      "Structured consultation intake form with direct callback"
+    ],
+    liveUrl: "https://pankaj-consultancy-123.vercel.app/",
+    detailUrl: "/store/webstore/pankaj-consultancy",
+    techStack: ["React 19", "Tailwind CSS", "Vite", "Lucide Icons"],
+  },
+  {
+    id: "prometrion-ai",
+    name: "Prometrion AI",
+    categoryType: "internal",
+    badgeLabel: "Internal Prometrion Product",
+    badgeVariant: "purple",
+    industry: "Autonomous AI & Multimodal Reasoning",
+    location: "Global Platform",
+    description: "Prometrion's developer client and autonomous agent interface built for prompt streaming, tool execution graphs, and automated engineering workflows.",
+    scopeDelivered: [
+      "Multimodal prompt streaming and reasoning interface",
+      "Tool execution graph and step-by-step inspector",
+      "Real-time token usage telemetry and latency tracking",
+      "Secure API key management and developer dashboard"
+    ],
+    liveUrl: "https://ai.prometrion.com/",
+    detailUrl: "/store/webstore/prometrion-ai",
+    techStack: ["React", "Next.js", "Tailwind CSS", "AI SDK"],
+  },
+];
+---
+
+<section id="clients-and-partnerships" class="relative py-24 sm:py-32 bg-[#fafafa] dark:bg-[#080808] border-b border-[#ebebeb] dark:border-white/10 overflow-hidden transition-colors">
+  <!-- Ambient Luminous Glow -->
+  <div class="absolute top-1/2 left-0 w-[500px] h-[500px] bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-neutral-100 dark:bg-white/[0.04] text-neutral-800 dark:text-neutral-200 border border-neutral-200 dark:border-white/10 mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span>VERIFIED COLLABORATIONS & SYSTEMS</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
+        Selected Clients & Project Collaborations
+      </h2>
+      <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        Explore selected collaborations and the digital products developed to address real business needs.
+      </p>
+    </div>
+
+    <!-- Verification Disclaimer Banner -->
+    <div class="max-w-4xl mx-auto mb-10 p-4 rounded-[6px] bg-white dark:bg-[#0f0f11] border border-neutral-200/80 dark:border-white/10 text-xs text-neutral-600 dark:text-neutral-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-whisper">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+        <span class="font-medium text-neutral-900 dark:text-white">Strict Verification Policy:</span>
+        <span>Every entity displayed represents verified production work, deployed code, or an active Prometrion product.</span>
+      </div>
+      <span class="text-[11px] font-mono text-neutral-400 shrink-0">No Fabricated Enterprise Logos</span>
+    </div>
+
+    <!-- 6-Card Verified Collaborations Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      {collaborations.map((item) => (
+        <article class="group flex flex-col justify-between bg-white dark:bg-[#0c0c0e] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 shadow-whisper hover:shadow-floating hover:border-neutral-400 dark:hover:border-white/30 transition-all duration-200">
+          <div>
+            <!-- Header: Title, Category Badge & Industry -->
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-lg font-semibold tracking-tight text-[#171717] dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition">
+                  {item.name}
+                </h3>
+                <div class="flex items-center gap-2 mt-0.5 text-xs font-mono text-neutral-500 dark:text-neutral-400">
+                  <span>{item.industry}</span>
+                  <span>•</span>
+                  <span>{item.location}</span>
+                </div>
+              </div>
+
+              <!-- Category Badge -->
+              <span class={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium border shrink-0 ${
+                item.badgeVariant === 'emerald'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/60'
+                  : item.badgeVariant === 'blue'
+                  ? 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-cyan-300 border-blue-200 dark:border-blue-800/60'
+                  : item.badgeVariant === 'amber'
+                  ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/60'
+                  : 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/60'
+              }`}>
+                <span class={`w-1.5 h-1.5 rounded-full ${
+                  item.badgeVariant === 'emerald' ? 'bg-emerald-400' : item.badgeVariant === 'blue' ? 'bg-cyan-400' : item.badgeVariant === 'amber' ? 'bg-amber-400' : 'bg-purple-400'
+                }`}></span>
+                {item.badgeLabel}
+              </span>
+            </div>
+
+            <!-- Description -->
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mt-2">
+              {item.description}
+            </p>
+
+            <!-- Verified Deliverables List -->
+            <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/5 space-y-1.5 text-[11px] font-mono text-neutral-700 dark:text-neutral-300">
+              {item.scopeDelivered.map((scope) => (
+                <div class="flex items-start gap-2">
+                  <span class="text-emerald-500 font-bold shrink-0">✓</span>
+                  <span class="truncate">{scope}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- Tech Stack Tags -->
+            <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/5 flex flex-wrap gap-1.5">
+              {item.techStack.map((tech) => (
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/[0.05] text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-white/10">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Bottom Actions: Live URL + Case Details -->
+          <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between gap-2">
+            <a
+              href={item.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-[#171717] text-white dark:bg-white dark:text-black hover:opacity-90 transition shadow-xs cursor-pointer"
+            >
+              <span>Live System</span>
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+
+            {item.detailUrl && (
+              <a
+                href={item.detailUrl}
+                class="inline-flex items-center gap-1 text-xs font-medium text-neutral-600 hover:text-black dark:text-neutral-400 dark:hover:text-white transition"
+              >
+                <span>View Details</span>
+                <span>→</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

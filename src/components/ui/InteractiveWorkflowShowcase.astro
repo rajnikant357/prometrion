@@ -1,140 +1,280 @@
 ---
-// InteractiveWorkflowShowcase.astro - Vertical Stepper + Scrollspy + Browser Mockup Window
-// Demonstrates Prometrion platform in action with Acme® store UI and live telemetry.
+// InteractiveWorkflowShowcase.astro - Dual Column Architecture:
+// Left: Storyline timeline with sticky information headings aligned with right cards.
+//       Storyline terminates exactly on the 4th point (Node 04).
+// Right: Stacking cards with calculated heights, visible header tabs, and flawless 4th card stacking.
 import Badge from "./Badge.astro";
 ---
 
-<section id="platform-showcase" class="py-24 sm:py-32 relative overflow-hidden border-b border-[#ebebeb] dark:border-[#202020] bg-white dark:bg-[#000000]">
-  <!-- Atmospheric One-Sided Blue Ambient Glow -->
-  <div class="absolute -top-24 right-0 w-[500px] h-[500px] bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-3xl pointer-events-none -z-10"></div>
-  <div class="absolute bottom-0 -left-24 w-[450px] h-[450px] bg-emerald-500/10 dark:bg-emerald-500/12 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<section id="platform-showcase" class="relative py-20 sm:py-28 bg-[#fafafa] dark:bg-[#050505] border-b border-[#ebebeb] dark:border-[#202020] overflow-visible">
+  <!-- Atmospheric Ambient Glows -->
+  <div class="absolute top-1/4 right-0 w-[550px] h-[550px] bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="absolute bottom-1/4 -left-24 w-[480px] h-[480px] bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Header Title -->
-    <div class="max-w-3xl mb-16 sm:mb-20">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60 mb-4">
-        <span>✦ WORKFLOW ARCHITECTURE</span>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    
+    <!-- Section Header Title & Storyline Quick Navigation -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-6">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60 mb-3">
+          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>✦ ARCHITECTURAL STORYLINE & STACKING CARDS</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
+          Extract. Stream. Reason.<br class="hidden sm:inline" />
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#0070f3] via-cyan-400 to-[#00F5A0]">
+            Instant execution at the edge.
+          </span>
+        </h2>
+        <p class="mt-2.5 text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          Follow the architectural storyline on the left while the live execution engines stack seamlessly on the right with zero delay. Every card is locked in alignment with its storyline heading.
+        </p>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
-        Extract. Stream. Reason.<br class="hidden sm:inline" />
-        <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#0070f3] via-cyan-400 to-[#00F5A0]">
-          Instant execution at the edge.
-        </span>
-      </h2>
-      <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
-        Watch how Prometrion decomposes monolithic applications into prerendered static trees, dynamic streaming islands, and autonomous reasoning agents.
-      </p>
+
+      <!-- Quick Jump Storyline Chapter Pills -->
+      <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 font-mono text-xs">
+        <button data-jump-story="1" class="story-pill px-3 py-1.5 rounded-lg bg-white dark:bg-[#141414] text-neutral-900 dark:text-white font-semibold shadow-xs transition">
+          01 Prerender
+        </button>
+        <button data-jump-story="2" class="story-pill px-3 py-1.5 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+          02 Islands
+        </button>
+        <button data-jump-story="3" class="story-pill px-3 py-1.5 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+          03 Taluq AI
+        </button>
+        <button data-jump-story="4" class="story-pill px-3 py-1.5 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition">
+          04 Telemetry
+        </button>
+      </div>
     </div>
 
-    <!-- 2-Column Split: Stepper Timeline (Left) & Browser Mockup (Right) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+    <!-- 2-Column Split: Storyline Scroll (Left) + Stacking Cards (Right) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 relative" id="storyline-cards-container">
       
-      <!-- Left Column: Vertical Stepper / Timeline with Scrollspy -->
-      <div class="lg:col-span-5 relative" id="workflow-stepper-container">
-        <!-- Continuous Vertical Glowing Progress Line -->
-        <div class="absolute left-6 top-8 bottom-8 w-0.5 bg-neutral-200 dark:bg-white/10 -z-0">
-          <div id="vertical-progress-bar" class="w-full bg-gradient-to-b from-cyan-400 to-emerald-400 transition-all duration-300 h-[25%] shadow-[0_0_12px_rgba(0,245,160,0.6)]"></div>
-        </div>
-
-        <div class="space-y-6 relative z-10" id="stepper-list">
+      <!-- ======================================================================
+           LEFT COLUMN: Storyline Information Scroll Effect
+           ====================================================================== -->
+      <div class="lg:col-span-5 relative" id="storyline-left-column">
+        
+        <div class="relative pl-12 sm:pl-16" id="storyline-chapters-list">
           
-          <!-- Step 1 -->
-          <div 
-            class="workflow-step group cursor-pointer p-4 sm:p-5 rounded-[6px] transition-all duration-200 border border-transparent hover:border-neutral-200 dark:hover:border-white/10 hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] active-step"
-            data-step="1"
-          >
-            <div class="flex items-start gap-4">
-              <!-- Step Pill / Dot -->
-              <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-bold transition-all duration-200 bg-[#171717] text-white dark:bg-white dark:text-black shadow-md">
+          <!-- Storyline Vertical Timeline Track: Terminating precisely at Node 04 -->
+          <div id="storyline-track-wrapper" class="absolute left-3.5 sm:left-4.5 w-0.5 bg-neutral-200 dark:bg-white/10 z-0 transition-all duration-300">
+            <div id="storyline-progress-rail" class="w-full bg-gradient-to-b from-cyan-400 via-[#0070f3] to-emerald-400 h-0 transition-all duration-150 shadow-[0_0_10px_rgba(0,245,160,0.5)]"></div>
+          </div>
+
+          <!-- Storyline Chapter 1 -->
+          <div id="story-chapter-1" data-story-index="1" class="story-chapter min-h-[550px] lg:min-h-[680px] relative pb-16 flex flex-col justify-start scroll-mt-28">
+            <div class="chapter-content lg:sticky lg:top-24 space-y-4 pt-1">
+              <!-- Timeline Node Marker -->
+              <div class="chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 bg-[#171717] text-white dark:bg-white dark:text-black shadow-md ring-4 ring-cyan-400/20 z-10">
                 01
               </div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="step-title text-base sm:text-lg font-semibold text-[#171717] dark:text-white transition-colors">
-                    Extract & prerender static assets
-                  </h3>
-                  <span class="step-badge text-[11px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-[#0070f3] dark:text-cyan-400 border border-blue-200 dark:border-blue-800/40">
-                    12ms TTFB
-                  </span>
-                </div>
-                <p class="step-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                  Compile routes, components, and media at build time into an immutable graph distributed to 300+ anycast edge PoPs worldwide.
-                </p>
+
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-[#0070f3] dark:text-cyan-400">
+                  Chapter 01 // Foundation
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-[#0070f3] dark:text-cyan-400 border border-blue-200 dark:border-blue-800/40">
+                  12ms TTFB
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white leading-tight">
+                Extract & prerender immutable asset graphs
+              </h3>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Compile routes, components, and media at build time into an immutable dependency tree distributed across global anycast edge PoPs worldwide. Eliminates origin compute spikes and ensures low-latency page delivery globally.
+              </p>
+
+              <!-- Architectural Checklist -->
+              <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300 pt-1">
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>Anycast edge caching across Tier-1 global transit</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>100% Cache HIT ratio for static HTML and assets</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>0.0ms cold start latency worldwide</span>
+                </li>
+              </ul>
+
+              <!-- Micro Telemetry Row -->
+              <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-mono">
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  PoP: <strong class="text-neutral-900 dark:text-white">FRA1</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Compile: <strong class="text-emerald-500">14ms</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Payload: <strong class="text-cyan-500">1.2KB</strong>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Step 2 -->
-          <div 
-            class="workflow-step group cursor-pointer p-4 sm:p-5 rounded-[6px] transition-all duration-200 border border-transparent hover:border-neutral-200 dark:hover:border-white/10 hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] opacity-60 hover:opacity-100"
-            data-step="2"
-          >
-            <div class="flex items-start gap-4">
-              <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-medium transition-all duration-200 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400">
+          <!-- Storyline Chapter 2 -->
+          <div id="story-chapter-2" data-story-index="2" class="story-chapter min-h-[550px] lg:min-h-[680px] relative pb-16 flex flex-col justify-start scroll-mt-28 opacity-75 hover:opacity-100 transition-opacity duration-200">
+            <div class="chapter-content lg:sticky lg:top-24 space-y-4 pt-1">
+              <div class="chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-medium transition-all duration-300 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 z-10">
                 02
               </div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="step-title text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-300 transition-colors">
-                    Prerender fallbacks & stream islands
-                  </h3>
-                  <span class="step-badge text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/40">
-                    0s CLS
-                  </span>
-                </div>
-                <p class="step-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                  Stream in dynamic personalization, shopping carts, and live stock states without blocking the primary visual render or causing page jumps.
-                </p>
+
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-emerald-600 dark:text-emerald-400">
+                  Chapter 02 // Streaming
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/40">
+                  0s CLS
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white leading-tight">
+                Prerender fallbacks & stream dynamic islands
+              </h3>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Stream dynamic personalization, user sessions, and live stock inventory without delaying the primary visual paint. Interactive components hydrate selectively right when needed.
+              </p>
+
+              <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300 pt-1">
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>Selective Astro / React component partial hydration</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>Zero Cumulative Layout Shift (0.000 CLS) audited</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-emerald-500 font-bold">✓</span>
+                  <span>HTTP/3 QUIC parallel asynchronous delivery</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-mono">
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Protocol: <strong class="text-neutral-900 dark:text-white">HTTP/3</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Shift: <strong class="text-emerald-500">0.000</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Hydrate: <strong class="text-cyan-500">24ms</strong>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Step 3 -->
-          <div 
-            class="workflow-step group cursor-pointer p-4 sm:p-5 rounded-[6px] transition-all duration-200 border border-transparent hover:border-neutral-200 dark:hover:border-white/10 hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] opacity-60 hover:opacity-100"
-            data-step="3"
-          >
-            <div class="flex items-start gap-4">
-              <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-medium transition-all duration-200 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400">
+          <!-- Storyline Chapter 3 -->
+          <div id="story-chapter-3" data-story-index="3" class="story-chapter min-h-[550px] lg:min-h-[680px] relative pb-16 flex flex-col justify-start scroll-mt-28 opacity-75 hover:opacity-100 transition-opacity duration-200">
+            <div class="chapter-content lg:sticky lg:top-24 space-y-4 pt-1">
+              <div class="chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-medium transition-all duration-300 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 z-10">
                 03
               </div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="step-title text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-300 transition-colors">
-                    Autonomous agent reasoning
-                  </h3>
-                  <span class="step-badge text-[11px] font-mono px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-800/40">
-                    Taluq AI
-                  </span>
-                </div>
-                <p class="step-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                  Embed autonomous intelligence directly into user interactions—intent resolution, dynamic discounts, and conversational shopping logic in &lt;15ms.
-                </p>
+
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-purple-600 dark:text-purple-400">
+                  Chapter 03 // Intelligence
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-800/40">
+                  Taluq AI
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white leading-tight">
+                Autonomous agent reasoning in isolated microVMs
+              </h3>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Embed autonomous computational intelligence directly into user journeys. Intent resolution, dynamic price adjustments, and conversational checkout logic resolve in under 15ms.
+              </p>
+
+              <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300 pt-1">
+                <li class="flex items-center gap-2">
+                  <span class="text-purple-500 font-bold">✓</span>
+                  <span>Isolated sub-millisecond Firecracker microVM execution</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-purple-500 font-bold">✓</span>
+                  <span>Deterministic guardrails with zero hallucination vulnerability</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-purple-500 font-bold">✓</span>
+                  <span>Autonomous DAG resolving multi-step business logic</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-mono">
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Engine: <strong class="text-neutral-900 dark:text-white">Taluq Core</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Execution: <strong class="text-purple-400">14.2ms</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Safety: <strong class="text-emerald-500">Deterministic</strong>
+                </span>
               </div>
             </div>
           </div>
 
-          <!-- Step 4 -->
-          <div 
-            class="workflow-step group cursor-pointer p-4 sm:p-5 rounded-[6px] transition-all duration-200 border border-transparent hover:border-neutral-200 dark:hover:border-white/10 hover:bg-neutral-50/60 dark:hover:bg-white/[0.03] opacity-60 hover:opacity-100"
-            data-step="4"
-          >
-            <div class="flex items-start gap-4">
-              <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-medium transition-all duration-200 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400">
+          <!-- Storyline Chapter 4: FINAL POINT (Storyline terminates here) -->
+          <div id="story-chapter-4" data-story-index="4" class="story-chapter min-h-[600px] lg:min-h-[780px] relative pb-28 flex flex-col justify-start scroll-mt-28 opacity-75 hover:opacity-100 transition-opacity duration-200">
+            <div class="chapter-content lg:sticky lg:top-24 space-y-4 pt-1">
+              <!-- FINAL Node 04: The storyline stops here -->
+              <div class="chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-medium transition-all duration-300 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 z-10">
                 04
               </div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="step-title text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-300 transition-colors">
-                    Observability & atomic rollbacks
-                  </h3>
-                  <span class="step-badge text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/40">
-                    99.999%
-                  </span>
-                </div>
-                <p class="step-desc text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
-                  Real-time Core Web Vitals telemetry, proactive anomaly self-healing, and single-click zero-downtime rollbacks across all edge locations.
-                </p>
+
+              <div class="flex items-center gap-2">
+                <span class="text-[11px] font-mono uppercase tracking-wider font-semibold text-cyan-600 dark:text-cyan-400">
+                  Chapter 04 // Reliability (Complete)
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/40">
+                  99.999% SLA
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white leading-tight">
+                Full observability & atomic canary rollbacks
+              </h3>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                Real-time Core Web Vitals telemetry continuously streams back from all edge nodes. Automated anomaly detection initiates instant sub-200ms canary rollbacks if thresholds deviate.
+              </p>
+
+              <ul class="space-y-2 text-xs text-neutral-700 dark:text-neutral-300 pt-1">
+                <li class="flex items-center gap-2">
+                  <span class="text-cyan-500 font-bold">✓</span>
+                  <span>Continuous real-time telemetry streaming from global edge nodes</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-cyan-500 font-bold">✓</span>
+                  <span>Sub-second anomaly mitigation with proactive self-healing</span>
+                </li>
+                <li class="flex items-center gap-2">
+                  <span class="text-cyan-500 font-bold">✓</span>
+                  <span>Instant zero-downtime rollback to verified safe hash</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-2 pt-2 text-[11px] font-mono">
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  SLA: <strong class="text-neutral-900 dark:text-white">99.999%</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Rollback: <strong class="text-cyan-400">142ms</strong>
+                </span>
+                <span class="px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-300">
+                  Health: <strong class="text-emerald-500">Optimal</strong>
+                </span>
               </div>
             </div>
           </div>
@@ -142,351 +282,463 @@ import Badge from "./Badge.astro";
         </div>
       </div>
 
-      <!-- Right Column: Browser Mockup / Preview Window -->
-      <div class="lg:col-span-7 sticky top-24">
-        <!-- Application Window Container with One-Sided Blue Ambient Glow -->
-        <div class="card-glow-blue rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/15 shadow-floating dark:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(56,189,248,0.15)] overflow-hidden transition-all duration-300">
-          
-          <!-- Browser Titlebar & Controls -->
-          <div class="px-4 py-3 bg-neutral-100/70 dark:bg-[#141414]/90 border-b border-[#ebebeb] dark:border-white/10 flex items-center justify-between backdrop-blur-md">
-            <!-- macOS Traffic Light Dots -->
+      <!-- ======================================================================
+           RIGHT COLUMN: Stackable Scroll Effect Cards
+           ====================================================================== -->
+      <div class="lg:col-span-7 relative pb-40 sm:pb-56" id="stacking-cards-column">
+        
+        <!-- CARD 1: Acme Storefront Prerender UI -->
+        <div 
+          id="stack-card-1"
+          data-card-index="1"
+          class="desktop-stack-card stacking-card sticky top-24 z-10 rounded-2xl bg-white dark:bg-[#0c0c0c] border border-neutral-200/90 dark:border-white/15 shadow-[0_-8px_25px_rgba(0,0,0,0.08),0_20px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.8),0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-200"
+        >
+          <!-- Card Titlebar (Header Tab) -->
+          <div class="px-5 py-3.5 bg-neutral-100/90 dark:bg-[#141414] border-b border-neutral-200/80 dark:border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-black dark:bg-white text-white dark:text-black font-mono text-xs font-bold flex items-center justify-center">
+                01
+              </span>
+              <span class="text-xs font-semibold font-mono tracking-wide text-neutral-800 dark:text-neutral-200">
+                PRERENDER ENGINE • ACME® GOODS
+              </span>
+            </div>
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full bg-[#ff5f56] border border-[#e0443e] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123] inline-block"></span>
-              <span class="w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] inline-block"></span>
-              <span class="hidden sm:inline-block ml-2 text-[11px] font-mono text-neutral-400 dark:text-neutral-500">Preview Engine</span>
+              <span class="text-[10px] font-mono text-emerald-500 font-bold">● 200 OK</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-[#0070f3] dark:text-cyan-400 border border-blue-200 dark:border-blue-800/40">12ms</span>
             </div>
-
-            <!-- Address Bar with SSL Lock -->
-            <div class="flex-1 max-w-xs sm:max-w-md mx-3 px-3 py-1 rounded-md bg-white dark:bg-black/60 border border-neutral-200 dark:border-white/10 text-xs font-mono text-neutral-600 dark:text-neutral-300 flex items-center justify-between shadow-xs">
-              <div class="flex items-center gap-2 truncate">
-                <svg class="w-3 h-3 text-emerald-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                </svg>
-                <span id="browser-url-text" class="truncate text-neutral-700 dark:text-neutral-200">https://acme-store.prometrion.network</span>
-              </div>
-              <span class="text-[10px] text-emerald-500 font-bold shrink-0 ml-1">● 200 OK</span>
-            </div>
-
-            <!-- Reload Icon -->
-            <button id="browser-reload-btn" class="p-1 rounded hover:bg-neutral-200 dark:hover:bg-white/10 text-neutral-500 dark:text-neutral-400 transition" title="Reload simulation">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            </button>
           </div>
 
-          <!-- Browser Viewport Content (Interactive Canvas) -->
-          <div class="p-5 sm:p-7 min-h-[380px] flex flex-col justify-between" id="browser-viewport">
-            
-            <!-- View 1: Acme® Storefront Prerendered UI (Default) -->
-            <div id="view-step-1" class="preview-panel transition-opacity duration-300">
-              <!-- Acme Store Sub-Navbar -->
-              <div class="flex items-center justify-between pb-4 border-b border-neutral-100 dark:border-white/10">
-                <div class="flex items-center gap-3">
-                  <div class="w-6 h-6 rounded bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs font-sans">
-                    A
-                  </div>
-                  <span class="font-bold text-sm tracking-tight text-neutral-900 dark:text-white font-sans">ACME® GOODS</span>
-                  <span class="hidden sm:inline-block text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-500">v4.1 Global</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xs text-neutral-500 dark:text-neutral-400">Cart (2)</span>
-                  <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
-                </div>
-              </div>
-
-              <!-- Product Showcase Hero in Acme Frame -->
-              <div class="mt-5 p-4 sm:p-5 rounded-[6px] bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
-                <div>
-                  <span class="text-[10px] font-mono uppercase tracking-wider text-[#0070f3] dark:text-cyan-400 font-semibold">HOT RELEASE • PRERENDERED</span>
-                  <h4 class="text-base sm:text-lg font-bold text-neutral-900 dark:text-white mt-1">
-                    Acme® Horizon Mech Keyboard
-                  </h4>
-                  <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1.5 leading-relaxed">
-                    Custom Gateron switches, anodized aluminum chassis, and instantaneous edge telemetry sync.
-                  </p>
-                  <div class="mt-4 flex items-center gap-3">
-                    <span class="text-sm font-mono font-bold text-neutral-900 dark:text-white">$189.00</span>
-                    <button class="px-3 py-1 rounded-full text-xs font-medium bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition">
-                      Instant Add
-                    </button>
-                  </div>
-                </div>
-
-                <div class="h-32 sm:h-36 rounded-lg bg-gradient-to-tr from-cyan-500/20 via-sky-500/10 to-emerald-500/20 border border-cyan-500/30 flex flex-col items-center justify-center p-3 relative overflow-hidden">
-                  <div class="text-2xl">⌨️</div>
-                  <span class="text-[11px] font-mono text-neutral-700 dark:text-neutral-300 mt-2 font-medium">Acme® Pro Horizon</span>
-                  <span class="text-[9px] font-mono text-emerald-600 dark:text-emerald-400 mt-0.5">Asset Cache: HIT (1.2KB)</span>
-                </div>
-              </div>
-
-              <!-- Micro Telemetry Bar -->
-              <div class="mt-5 pt-4 border-t border-neutral-100 dark:border-white/10 flex flex-wrap items-center justify-between gap-2 text-[11px] font-mono text-neutral-500 dark:text-neutral-400">
-                <span>Anycast Node: <strong class="text-neutral-800 dark:text-neutral-200">FRA1 (Frankfurt)</strong></span>
-                <span>Compile Time: <strong class="text-emerald-500">14ms</strong></span>
-                <span>Cold Start: <strong class="text-emerald-500">0.0ms</strong></span>
-              </div>
+          <!-- Browser Address Bar -->
+          <div class="px-5 py-2 bg-neutral-50 dark:bg-black/40 border-b border-neutral-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono text-neutral-500">
+            <div class="flex items-center gap-2 truncate">
+              <span class="text-emerald-500">🔒</span>
+              <span class="text-neutral-700 dark:text-neutral-300">https://acme-store.prometrion.network</span>
             </div>
-
-            <!-- View 2: Streaming Islands & Partial Hydration -->
-            <div id="view-step-2" class="preview-panel hidden transition-opacity duration-300 space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-white/10">
-                <span class="font-mono text-xs font-semibold text-emerald-600 dark:text-emerald-400">✦ ISLANDS HYDRATION TIMELINE</span>
-                <span class="text-[10px] font-mono text-neutral-400">Selective React Hydration</span>
-              </div>
-
-              <!-- Waterfall Stream Simulator -->
-              <div class="space-y-3 font-mono text-xs">
-                <div class="p-2.5 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1">
-                    <span>1. Static Shell & Layout</span>
-                    <span class="text-emerald-500 font-bold">11ms (TTFB)</span>
-                  </div>
-                  <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-emerald-400 h-full w-full"></div>
-                  </div>
-                </div>
-
-                <div class="p-2.5 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1">
-                    <span>2. Streaming Shopping Cart Island</span>
-                    <span class="text-cyan-400 font-bold">24ms (Streamed)</span>
-                  </div>
-                  <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-cyan-400 h-full w-[85%]"></div>
-                  </div>
-                </div>
-
-                <div class="p-2.5 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1">
-                    <span>3. Dynamic Pricing & Recommendation Engine</span>
-                    <span class="text-purple-400 font-bold">32ms (Hydrated)</span>
-                  </div>
-                  <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
-                    <div class="bg-purple-400 h-full w-[65%]"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-2">
-                <span>✔</span>
-                <span>Zero Layout Shift recorded across 1,000 synthetic page views.</span>
-              </div>
-            </div>
-
-            <!-- View 3: Taluq AI Agent Execution -->
-            <div id="view-step-3" class="preview-panel hidden transition-opacity duration-300 space-y-4">
-              <div class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-white/10">
-                <span class="font-mono text-xs font-semibold text-purple-600 dark:text-purple-400">✦ TALUQ AI AGENT REASONING SANDBOX</span>
-                <span class="text-[10px] font-mono text-neutral-400">microVM Sub-15ms</span>
-              </div>
-
-              <!-- Terminal Agent Execution Feed -->
-              <div class="bg-black text-neutral-200 p-4 rounded-[6px] font-mono text-xs space-y-2 border border-neutral-800">
-                <div class="text-neutral-500">// User prompt intercepted at edge gateway:</div>
-                <div class="text-cyan-300">&gt; "Apply best student discount and bundle matching wrist rest"</div>
-                <div class="text-neutral-400 pt-1">// Reasoning DAG executing:</div>
-                <div class="text-emerald-400 pl-3">↳ [Tool: auth.verifyStudentCredentials] => Valid (Campus ID verified)</div>
-                <div class="text-emerald-400 pl-3">↳ [Tool: store.lookupBundleStock] => 38 units available</div>
-                <div class="text-emerald-400 pl-3">↳ [Tool: checkout.applyDiscountRule] => Code APPLIED (-15%)</div>
-                <div class="pt-2 text-white font-bold text-[11px] bg-white/10 p-2 rounded">
-                  ★ Agent Result: Order recalculated to $160.65 in 14.2ms.
-                </div>
-              </div>
-            </div>
-
-            <!-- View 4: Observability & Core Web Vitals -->
-            <div id="view-step-4" class="preview-panel hidden transition-opacity duration-300 space-y-5">
-              <div class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-white/10">
-                <span class="font-mono text-xs font-semibold text-cyan-600 dark:text-cyan-400">✦ REAL-TIME OBSERVABILITY & METRICS</span>
-                <span class="text-[10px] font-mono text-emerald-500">All Nodes Healthy</span>
-              </div>
-
-              <!-- 3 CWV Score Gauges -->
-              <div class="grid grid-cols-3 gap-3 text-center font-mono">
-                <div class="p-3 rounded-[6px] bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="text-xs text-neutral-500">LCP</div>
-                  <div class="text-xl font-bold text-emerald-500 mt-1">0.38s</div>
-                  <div class="text-[10px] text-neutral-400">Good (&lt;2.5s)</div>
-                </div>
-                <div class="p-3 rounded-[6px] bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="text-xs text-neutral-500">FID / INP</div>
-                  <div class="text-xl font-bold text-emerald-500 mt-1">14ms</div>
-                  <div class="text-[10px] text-neutral-400">Sub-instant</div>
-                </div>
-                <div class="p-3 rounded-[6px] bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">
-                  <div class="text-xs text-neutral-500">CLS</div>
-                  <div class="text-xl font-bold text-emerald-500 mt-1">0.000</div>
-                  <div class="text-[10px] text-neutral-400">Zero Shift</div>
-                </div>
-              </div>
-
-              <!-- Instant Rollback Simulator Button -->
-              <div class="p-3.5 rounded-[6px] bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 flex items-center justify-between">
-                <div>
-                  <div class="text-xs font-semibold text-neutral-900 dark:text-white">Instant Canary Rollback</div>
-                  <div class="text-[11px] text-neutral-500">Atomic rollback to commit 7b9f3e in 180ms</div>
-                </div>
-                <button id="demo-rollback-btn" class="px-3 py-1.5 rounded-md text-xs font-mono font-medium bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30 transition cursor-pointer">
-                  Test Rollback
-                </button>
-              </div>
-            </div>
-
+            <span class="text-[10px] text-neutral-400">EDGE CACHE HIT</span>
           </div>
 
-          <!-- Bottom Status Telemetry Footer -->
-          <div class="px-5 py-2.5 bg-neutral-50 dark:bg-[#080808] border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-[11px] font-mono text-neutral-400 dark:text-neutral-500">
-            <span class="flex items-center gap-1.5">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              Synchronized with Prometrion Mesh
-            </span>
-            <span id="active-step-indicator-text">Step 1/4 • Static Prerender</span>
-          </div>
+          <!-- Card Content Body -->
+          <div class="p-6 space-y-4">
+            <!-- Acme Store Sub-Navbar -->
+            <div class="flex items-center justify-between pb-3 border-b border-neutral-100 dark:border-white/10">
+              <div class="flex items-center gap-2.5">
+                <div class="w-6 h-6 rounded bg-black dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs">
+                  A
+                </div>
+                <span class="font-bold text-xs tracking-tight text-neutral-900 dark:text-white">ACME® GOODS</span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-500">v4.1 Anycast</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span id="right-card-1-cart" class="text-xs font-mono text-neutral-600 dark:text-neutral-400">Cart (2)</span>
+                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+              </div>
+            </div>
 
+            <!-- Product Showcase Hero in Acme Frame -->
+            <div class="p-4 rounded-xl bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/80 dark:border-white/10 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+              <div>
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#0070f3] dark:text-cyan-400 font-semibold">HOT RELEASE • PRERENDERED</span>
+                <h4 class="text-base font-bold text-neutral-900 dark:text-white mt-1">
+                  Acme® Horizon Mech Keyboard
+                </h4>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">
+                  Custom Gateron switches, anodized aluminum chassis, and instantaneous edge telemetry sync.
+                </p>
+                <div class="mt-3 flex items-center gap-3">
+                  <span class="text-sm font-mono font-bold text-neutral-900 dark:text-white">$189.00</span>
+                  <button id="right-card-1-add-btn" class="px-3.5 py-1.5 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:opacity-90 transition cursor-pointer">
+                    Instant Add +
+                  </button>
+                </div>
+              </div>
+
+              <div class="h-28 rounded-lg bg-gradient-to-tr from-cyan-500/20 via-sky-500/10 to-emerald-500/20 border border-cyan-500/30 flex flex-col items-center justify-center p-3">
+                <div class="text-3xl">⌨️</div>
+                <span class="text-[11px] font-mono text-neutral-700 dark:text-neutral-300 mt-1.5 font-medium">Acme® Pro Horizon</span>
+                <span class="text-[9px] font-mono text-emerald-600 dark:text-emerald-400">Asset Cache: HIT (1.2KB)</span>
+              </div>
+            </div>
+
+            <!-- Micro Telemetry Bar -->
+            <div class="pt-2 flex items-center justify-between text-[11px] font-mono text-neutral-500">
+              <span>Anycast Node: <strong class="text-neutral-800 dark:text-neutral-200">FRA1</strong></span>
+              <span>Cold Start: <strong class="text-emerald-500">0.0ms</strong></span>
+            </div>
+          </div>
         </div>
+
+        <!-- CARD 2: Streaming Islands Waterfall Timeline -->
+        <div 
+          id="stack-card-2"
+          data-card-index="2"
+          class="desktop-stack-card stacking-card sticky top-[7.25rem] z-20 rounded-2xl bg-white dark:bg-[#0c0c0c] border border-neutral-200/90 dark:border-white/15 shadow-[0_-8px_25px_rgba(0,0,0,0.08),0_20px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.8),0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-200"
+        >
+          <!-- Card Titlebar (Header Tab) -->
+          <div class="px-5 py-3.5 bg-neutral-100/90 dark:bg-[#141414] border-b border-neutral-200/80 dark:border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-mono text-xs font-bold flex items-center justify-center">
+                02
+              </span>
+              <span class="text-xs font-semibold font-mono tracking-wide text-neutral-800 dark:text-neutral-200">
+                STREAMING ISLANDS RUNTIME
+              </span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/40">0s CLS</span>
+          </div>
+
+          <div class="px-5 py-2 bg-neutral-50 dark:bg-black/40 border-b border-neutral-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono text-neutral-500">
+            <div class="flex items-center gap-2 truncate">
+              <span class="text-emerald-500">🔒</span>
+              <span class="text-neutral-700 dark:text-neutral-300">https://acme-store.prometrion.network/streaming-islands</span>
+            </div>
+            <span class="text-[10px] text-emerald-500 font-bold">STREAMING</span>
+          </div>
+
+          <div class="p-6 space-y-3 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+              <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1.5">
+                <span class="font-medium">1. Static Shell & Layout</span>
+                <span class="text-emerald-500 font-bold">11ms (TTFB)</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-emerald-400 h-full w-full"></div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+              <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1.5">
+                <span class="font-medium">2. Streaming Shopping Cart Island</span>
+                <span class="text-cyan-400 font-bold">24ms (Streamed)</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-cyan-400 h-full w-[85%]"></div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+              <div class="flex justify-between text-neutral-700 dark:text-neutral-300 mb-1.5">
+                <span class="font-medium">3. Dynamic Pricing & Recommendation Engine</span>
+                <span class="text-purple-400 font-bold">32ms (Hydrated)</span>
+              </div>
+              <div class="w-full bg-neutral-200 dark:bg-white/10 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-purple-400 h-full w-[65%]"></div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+              <span>✔</span>
+              <span>Zero Layout Shift recorded across 1,000 synthetic page views.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: Taluq AI Agent Execution Terminal -->
+        <div 
+          id="stack-card-3"
+          data-card-index="3"
+          class="desktop-stack-card stacking-card sticky top-[8.5rem] z-30 rounded-2xl bg-white dark:bg-[#0c0c0c] border border-neutral-200/90 dark:border-white/15 shadow-[0_-8px_25px_rgba(0,0,0,0.08),0_20px_40px_rgba(0,0,0,0.1)] dark:shadow-[0_-10px_35px_rgba(0,0,0,0.8),0_25px_60px_rgba(0,0,0,0.9)] overflow-hidden transition-all duration-200"
+        >
+          <!-- Card Titlebar (Header Tab) -->
+          <div class="px-5 py-3.5 bg-neutral-100/90 dark:bg-[#141414] border-b border-neutral-200/80 dark:border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-purple-600 text-white font-mono text-xs font-bold flex items-center justify-center">
+                03
+              </span>
+              <span class="text-xs font-semibold font-mono tracking-wide text-neutral-800 dark:text-neutral-200">
+                TALUQ AI • MICROVM REASONING
+              </span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-800/40">14.2ms</span>
+          </div>
+
+          <div class="px-5 py-2 bg-neutral-50 dark:bg-black/40 border-b border-neutral-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono text-neutral-500">
+            <div class="flex items-center gap-2 truncate">
+              <span class="text-purple-400">⚡</span>
+              <span class="text-neutral-700 dark:text-neutral-300">https://acme-store.prometrion.network/taluq-agent-runtime</span>
+            </div>
+            <span class="text-[10px] text-purple-400 font-bold">ISOLATED VM</span>
+          </div>
+
+          <div class="p-6 font-mono text-xs">
+            <div class="bg-black text-neutral-200 p-4 rounded-xl space-y-2 border border-neutral-800 shadow-inner">
+              <div class="text-neutral-500">// User prompt intercepted at edge gateway:</div>
+              <div class="text-cyan-300">&gt; "Apply best student discount and bundle matching wrist rest"</div>
+              <div class="text-neutral-400 pt-1">// Reasoning DAG executing in microVM:</div>
+              <div class="text-emerald-400 pl-3">↳ [Tool: auth.verifyStudentCredentials] => Valid (Campus ID verified)</div>
+              <div class="text-emerald-400 pl-3">↳ [Tool: store.lookupBundleStock] => 38 units available</div>
+              <div class="text-emerald-400 pl-3">↳ [Tool: checkout.applyDiscountRule] => Code APPLIED (-15%)</div>
+              <div class="pt-2 text-white font-bold text-[11px] bg-white/10 p-2 rounded flex items-center justify-between">
+                <span>★ Agent Result: Order recalculated to $160.65</span>
+                <span class="text-emerald-400">in 14.2ms</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 4: Observability CWV Gauges & Canary Rollback (Overlaps & Stacks on Card 3) -->
+        <div 
+          id="stack-card-4"
+          data-card-index="4"
+          class="desktop-stack-card stacking-card sticky top-[9.75rem] z-40 rounded-2xl bg-white dark:bg-[#0c0c0c] border border-neutral-200/90 dark:border-white/15 shadow-[0_-12px_30px_rgba(0,0,0,0.12),0_25px_50px_rgba(0,0,0,0.15)] dark:shadow-[0_-15px_40px_rgba(0,0,0,0.9),0_30px_70px_rgba(0,0,0,0.95)] overflow-hidden transition-all duration-200"
+        >
+          <!-- Card Titlebar (Header Tab) -->
+          <div class="px-5 py-3.5 bg-neutral-100/90 dark:bg-[#141414] border-b border-neutral-200/80 dark:border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-cyan-600 text-white font-mono text-xs font-bold flex items-center justify-center">
+                04
+              </span>
+              <span class="text-xs font-semibold font-mono tracking-wide text-neutral-800 dark:text-neutral-200">
+                TELEMETRY & ATOMIC CANARY
+              </span>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 text-cyan-600 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/40">99.999%</span>
+          </div>
+
+          <div class="px-5 py-2 bg-neutral-50 dark:bg-black/40 border-b border-neutral-200/60 dark:border-white/5 flex items-center justify-between text-xs font-mono text-neutral-500">
+            <div class="flex items-center gap-2 truncate">
+              <span class="text-emerald-500">🔒</span>
+              <span class="text-neutral-700 dark:text-neutral-300">https://acme-store.prometrion.network/telemetry-observability</span>
+            </div>
+            <span class="text-[10px] text-emerald-500 font-bold">ALL HEALTHY</span>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <!-- 3 CWV Score Gauges -->
+            <div class="grid grid-cols-3 gap-3 text-center font-mono">
+              <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+                <div class="text-[11px] text-neutral-500">LCP</div>
+                <div class="text-lg sm:text-xl font-bold text-emerald-500 mt-1">0.38s</div>
+                <div class="text-[10px] text-neutral-400">Good (&lt;2.5s)</div>
+              </div>
+              <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+                <div class="text-[11px] text-neutral-500">FID / INP</div>
+                <div class="text-lg sm:text-xl font-bold text-emerald-500 mt-1">14ms</div>
+                <div class="text-[10px] text-neutral-400">Sub-instant</div>
+              </div>
+              <div class="p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-200/80 dark:border-white/10">
+                <div class="text-[11px] text-neutral-500">CLS</div>
+                <div class="text-lg sm:text-xl font-bold text-emerald-500 mt-1">0.000</div>
+                <div class="text-[10px] text-neutral-400">Zero Shift</div>
+              </div>
+            </div>
+
+            <!-- Instant Canary Rollback Interactive Trigger -->
+            <div class="p-3.5 rounded-lg bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/80 dark:border-white/10 flex items-center justify-between">
+              <div>
+                <div class="text-xs font-semibold text-neutral-900 dark:text-white">Atomic Canary Rollback</div>
+                <div class="text-[11px] text-neutral-500 font-mono">Instant revert to commit 7b9f3e in 142ms</div>
+              </div>
+              <button id="right-card-4-rollback-btn" class="px-3.5 py-1.5 rounded-md text-xs font-mono font-medium bg-red-500/10 hover:bg-red-500/20 text-red-600 dark:text-red-400 border border-red-500/30 transition cursor-pointer">
+                Test Rollback
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
+
   </div>
 </section>
 
-<!-- Scrollspy & Step Switcher Client Script -->
+<!-- Storyline & Stacking Cards Synchronization Script (Zero Delay, 100% Seamless) -->
 <script>
-  function setupWorkflowShowcase() {
-    const steps = document.querySelectorAll<HTMLElement>(".workflow-step");
-    const panels = document.querySelectorAll<HTMLElement>(".preview-panel");
-    const progressBar = document.getElementById("vertical-progress-bar");
-    const statusText = document.getElementById("active-step-indicator-text");
-    const urlText = document.getElementById("browser-url-text");
-    const reloadBtn = document.getElementById("browser-reload-btn");
-    const rollbackBtn = document.getElementById("demo-rollback-btn");
+  function setupDualStorylineAndStacking() {
+    const chapters = document.querySelectorAll<HTMLElement>(".story-chapter");
+    const cards = document.querySelectorAll<HTMLElement>(".desktop-stack-card");
+    const pills = document.querySelectorAll<HTMLElement>("[data-jump-story]");
+    const track = document.getElementById("storyline-track-wrapper");
+    const rail = document.getElementById("storyline-progress-rail");
+    const container = document.getElementById("storyline-cards-container");
+    const addBtn = document.getElementById("right-card-1-add-btn");
+    const cartLabel = document.getElementById("right-card-1-cart");
+    const rollbackBtn = document.getElementById("right-card-4-rollback-btn");
 
-    if (!steps.length) return;
+    if (!chapters.length || !container) return;
 
-    const urls: Record<number, string> = {
-      1: "https://acme-store.prometrion.network",
-      2: "https://acme-store.prometrion.network/streaming-islands",
-      3: "https://acme-store.prometrion.network/taluq-agent-runtime",
-      4: "https://acme-store.prometrion.network/telemetry-observability",
-    };
-
-    const statusLabels: Record<number, string> = {
-      1: "Step 1/4 • Static Prerender",
-      2: "Step 2/4 • Streaming Islands",
-      3: "Step 3/4 • Taluq AI Sandbox",
-      4: "Step 4/4 • Observability & Telemetry",
-    };
-
-    function activateStep(stepNum: number) {
-      steps.forEach((s) => {
-        const num = parseInt(s.getAttribute("data-step") || "1", 10);
-        const indicator = s.querySelector(".step-indicator");
-        const title = s.querySelector(".step-title");
-
-        if (num === stepNum) {
-          s.classList.add("active-step");
-          s.classList.remove("opacity-60");
-          s.classList.add("opacity-100");
-          if (indicator) {
-            indicator.className = "step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-bold transition-all duration-200 bg-[#171717] text-white dark:bg-white dark:text-black shadow-md";
-          }
-          if (title) {
-            title.className = "step-title text-base sm:text-lg font-semibold text-[#171717] dark:text-white transition-colors";
-          }
-        } else {
-          s.classList.remove("active-step");
-          s.classList.add("opacity-60");
-          s.classList.remove("opacity-100");
-          if (indicator) {
-            indicator.className = "step-indicator w-8 h-8 rounded-full flex items-center justify-center shrink-0 font-mono text-xs font-medium transition-all duration-200 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400";
-          }
-          if (title) {
-            title.className = "step-title text-base sm:text-lg font-semibold text-neutral-700 dark:text-neutral-300 transition-colors";
-          }
-        }
-      });
-
-      // Show matching panel
-      panels.forEach((p) => {
-        if (p.id === `view-step-${stepNum}`) {
-          p.classList.remove("hidden");
-        } else {
-          p.classList.add("hidden");
-        }
-      });
-
-      // Update progress bar height
-      if (progressBar) {
-        progressBar.style.height = `${stepNum * 25}%`;
-      }
-
-      // Update URL & status
-      if (urlText && urls[stepNum]) {
-        urlText.textContent = urls[stepNum];
-      }
-      if (statusText && statusLabels[stepNum]) {
-        statusText.textContent = statusLabels[stepNum];
-      }
-    }
-
-    // Click handler for steps
-    steps.forEach((step) => {
-      step.addEventListener("click", () => {
-        const stepNum = parseInt(step.getAttribute("data-step") || "1", 10);
-        activateStep(stepNum);
-      });
-    });
-
-    // Reload button simulation
-    reloadBtn?.addEventListener("click", () => {
-      const activeStepEl = document.querySelector(".workflow-step.active-step");
-      const currentStep = parseInt(activeStepEl?.getAttribute("data-step") || "1", 10);
-      reloadBtn.classList.add("animate-spin");
+    // Interactive Card 1 Add-to-cart
+    let cartCount = 2;
+    addBtn?.addEventListener("click", () => {
+      cartCount++;
+      if (cartLabel) cartLabel.textContent = `Cart (${cartCount})`;
+      addBtn.textContent = "Added! ✓";
+      addBtn.classList.add("bg-emerald-600", "text-white");
       setTimeout(() => {
-        reloadBtn.classList.remove("animate-spin");
-        activateStep(currentStep);
-      }, 500);
+        addBtn.textContent = "Instant Add +";
+        addBtn.classList.remove("bg-emerald-600");
+      }, 1500);
     });
 
-    // Rollback test button simulation
+    // Interactive Card 4 Rollback Test
     rollbackBtn?.addEventListener("click", () => {
       rollbackBtn.textContent = "Rolled Back in 142ms ✔";
       rollbackBtn.classList.remove("bg-red-500/10", "text-red-600");
-      rollbackBtn.classList.add("bg-emerald-500/20", "text-emerald-400");
+      rollbackBtn.classList.add("bg-emerald-500/20", "text-emerald-400", "border-emerald-500/30");
       setTimeout(() => {
         rollbackBtn.textContent = "Test Rollback";
-        rollbackBtn.classList.remove("bg-emerald-500/20", "text-emerald-400");
+        rollbackBtn.classList.remove("bg-emerald-500/20", "text-emerald-400", "border-emerald-500/30");
         rollbackBtn.classList.add("bg-red-500/10", "text-red-600");
       }, 2500);
     });
 
-    // IntersectionObserver Scrollspy
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const stepNum = parseInt(entry.target.getAttribute("data-step") || "1", 10);
-              activateStep(stepNum);
-            }
-          });
-        },
-        {
-          rootMargin: "-25% 0px -40% 0px",
-          threshold: 0.5,
-        }
-      );
-
-      steps.forEach((step) => observer.observe(step));
+    // Align track line precisely so it starts at Node 01 center and terminates at Node 04 center
+    function alignStorylineTrack() {
+      const ch1 = document.getElementById("story-chapter-1");
+      const ch4 = document.getElementById("story-chapter-4");
+      if (ch1 && ch4 && track) {
+        const node1Center = ch1.offsetTop + 15; // Vertical center of Node 01
+        const node4Center = ch4.offsetTop + 15; // Vertical center of Node 04
+        track.style.top = `${node1Center}px`;
+        track.style.height = `${Math.max(0, node4Center - node1Center)}px`;
+      }
     }
+
+    // Align each card's bottom spacing to match its corresponding chapter height perfectly
+    function alignChaptersAndCards() {
+      const isDesktop = window.innerWidth >= 1024;
+      if (!isDesktop) {
+        cards.forEach((c) => { c.style.marginBottom = ""; });
+        return;
+      }
+
+      chapters.forEach((chapter, i) => {
+        if (cards[i]) {
+          const chapterHeight = chapter.offsetHeight;
+          const cardHeight = cards[i].offsetHeight;
+          // For cards 1, 2, 3: provide spacing to sync arrival with next chapter
+          if (i < cards.length - 1) {
+            const spacing = Math.max(140, chapterHeight - cardHeight);
+            cards[i].style.marginBottom = `${spacing}px`;
+          } else {
+            // For Card 4: provide runway so it stays stacked and visible during Chapter 4
+            cards[i].style.marginBottom = "0px";
+          }
+        }
+      });
+    }
+
+    // Quick Jump Buttons
+    pills.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetNum = btn.getAttribute("data-jump-story");
+        const targetChapter = document.getElementById(`story-chapter-${targetNum}`);
+        if (targetChapter) {
+          const topOffset = targetChapter.getBoundingClientRect().top + window.scrollY - 100;
+          if ((window as any).lenis) {
+            (window as any).lenis.scrollTo(topOffset, { duration: 0.8 });
+          } else {
+            window.scrollTo({ top: topOffset, behavior: "smooth" });
+          }
+        }
+      });
+    });
+
+    // Seamless scroll tracking for storyline rail, active chapter highlighting, and card stacking depth
+    function onScrollSync() {
+      const ch1 = document.getElementById("story-chapter-1");
+      const ch4 = document.getElementById("story-chapter-4");
+      if (!ch1 || !ch4) return;
+
+      const triggerLine = window.innerHeight * 0.50;
+
+      // Determine current active chapter
+      let activeIdx = 1;
+      chapters.forEach((ch, i) => {
+        const rect = ch.getBoundingClientRect();
+        if (rect.top <= triggerLine) {
+          activeIdx = i + 1;
+        }
+      });
+
+      // Clamp to Chapter 4 max
+      activeIdx = Math.min(4, Math.max(1, activeIdx));
+
+      // Calculate progress line fill: starts at Ch1 (0%), ends at Ch4 (100%), never past Ch4
+      const ch1Top = ch1.getBoundingClientRect().top;
+      const ch4Top = ch4.getBoundingClientRect().top;
+      const totalDistance = ch4Top - ch1Top;
+
+      if (totalDistance !== 0 && rail) {
+        const currentDistance = triggerLine - ch1Top;
+        const progressFraction = Math.min(1, Math.max(0, currentDistance / (ch4.offsetTop - ch1.offsetTop)));
+        rail.style.height = `${(progressFraction * 100).toFixed(1)}%`;
+      }
+
+      // Update storyline chapter indicators
+      chapters.forEach((ch) => {
+        const idx = parseInt(ch.getAttribute("data-story-index") || "1", 10);
+        const node = ch.querySelector(".chapter-node");
+        if (idx === activeIdx) {
+          ch.classList.remove("opacity-75");
+          ch.classList.add("opacity-100");
+          if (node) {
+            node.className = "chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 bg-[#171717] text-white dark:bg-white dark:text-black shadow-md ring-4 ring-cyan-400/20 z-10";
+          }
+        } else {
+          ch.classList.add("opacity-75");
+          ch.classList.remove("opacity-100");
+          if (node) {
+            node.className = "chapter-node absolute -left-12 sm:-left-16 top-1 w-7 h-7 rounded-full flex items-center justify-center font-mono text-xs font-medium transition-all duration-300 bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 z-10";
+          }
+        }
+      });
+
+      // Update pills in header
+      pills.forEach((p) => {
+        const pNum = parseInt(p.getAttribute("data-jump-story") || "1", 10);
+        if (pNum === activeIdx) {
+          p.className = "story-pill px-3 py-1.5 rounded-lg bg-white dark:bg-[#141414] text-neutral-900 dark:text-white font-semibold shadow-xs transition";
+        } else {
+          p.className = "story-pill px-3 py-1.5 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition";
+        }
+      });
+
+      // Dynamic depth scaling on stacked cards (smooth physical deck feel)
+      if (window.innerWidth >= 1024) {
+        cards.forEach((card, i) => {
+          const cardNum = i + 1;
+          if (cardNum < activeIdx) {
+            // Card is behind the active card in the stack
+            const depthDiff = activeIdx - cardNum;
+            const scaleVal = Math.max(0.91, 1 - depthDiff * 0.03);
+            const brightnessVal = Math.max(0.86, 1 - depthDiff * 0.045);
+            card.style.transform = `scale(${scaleVal}) translateY(-${depthDiff * 4}px)`;
+            card.style.filter = `brightness(${brightnessVal})`;
+            card.style.opacity = `${Math.max(0.7, 1 - depthDiff * 0.1)}`;
+          } else {
+            // Active or upcoming card
+            card.style.transform = "none";
+            card.style.filter = "none";
+            card.style.opacity = "1";
+          }
+        });
+      }
+    }
+
+    // Initialize alignment and track dimensions
+    alignStorylineTrack();
+    alignChaptersAndCards();
+
+    window.addEventListener("scroll", onScrollSync, { passive: true });
+    window.addEventListener("resize", () => {
+      alignStorylineTrack();
+      alignChaptersAndCards();
+      onScrollSync();
+    }, { passive: true });
+
+    if ((window as any).lenis) {
+      (window as any).lenis.on("scroll", onScrollSync);
+    }
+
+    onScrollSync();
   }
 
-  // Run on mount
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupWorkflowShowcase);
+    document.addEventListener("DOMContentLoaded", setupDualStorylineAndStacking);
   } else {
-    setupWorkflowShowcase();
+    setupDualStorylineAndStacking();
   }
+  document.addEventListener("astro:page-load", setupDualStorylineAndStacking);
 </script>

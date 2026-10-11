@@ -13,16 +13,36 @@ const categories = [
   { id: "app", label: "Mobile & Apps" },
   { id: "seo-geo", label: "SEO & GEO" },
   { id: "presence", label: "Digital Presence" },
-  { id: "consultancy", label: "Consultancy" },
   { id: "branding", label: "Branding" },
+  { id: "consultancy", label: "Consultancy" },
   { id: "maintenance", label: "Maintenance" },
   { id: "addons", label: "Add-Ons" },
 ];
+
+const categoryUrlMap: Record<string, string> = {
+  website: "/services/website-development",
+  app: "/services/app-development",
+  "seo-geo": "/services/seo-geo",
+  presence: "/services/digital-presence",
+  branding: "/services/digital-branding",
+  consultancy: "/services/digital-consultancy",
+  maintenance: "/services/maintenance-support",
+  addons: "/pricing",
+};
+
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Solutions Catalog", url: "/services/catalog" },
+]);
 ---
 
 <BaseLayout
   title="Solutions Catalog — Prometrion Turnkey Digital Services"
   description="Browse 30+ productized website, app, SEO/GEO, branding, and cloud maintenance solutions with transparent INR pricing and guaranteed turnaround."
+  jsonLd={breadcrumbSchema}
 >
   <!-- Compact Header with Search & Filter Tabs -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
@@ -90,7 +110,7 @@ const categories = [
       <div id="catalog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {servicesCatalog.map((item) => (
           <div
-            class="catalog-item rounded-[6px] bg-white border border-[#ebebeb] p-6 shadow-whisper hover:shadow-floating transition-all flex flex-col justify-between"
+            class="catalog-item rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 shadow-whisper hover:shadow-floating transition-all flex flex-col justify-between"
             data-category={item.category}
             data-search={`${item.name} ${item.subcategory || ''} ${item.shortDesc} ${item.bestFor} ${item.coreScope.join(' ')}`.toLowerCase()}
           >
@@ -100,25 +120,25 @@ const categories = [
                   {item.subcategory || item.category.toUpperCase()}
                 </Badge>
                 {item.deliveryEstimate && (
-                  <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 px-2 py-0.5 rounded">
+                  <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
                     ⚡ {item.deliveryEstimate}
                   </span>
                 )}
               </div>
 
-              <h2 class="text-lg font-semibold text-neutral-900 tracking-tight">{item.name}</h2>
+              <h2 class="text-lg font-semibold text-neutral-900 dark:text-white tracking-tight">{item.name}</h2>
               <p class="text-xs text-neutral-500 mt-1.5 leading-relaxed line-clamp-2">{item.shortDesc}</p>
 
               <!-- Price Tag -->
-              <div class="mt-4 p-3 rounded-lg bg-neutral-50 border border-neutral-100 flex items-baseline justify-between">
+              <div class="mt-4 p-3 rounded-lg bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
                 <div>
-                  <span class="text-2xl font-mono font-bold text-neutral-900">{item.priceFormatted}</span>
+                  <span class="text-2xl font-mono font-bold text-neutral-900 dark:text-white">{item.priceFormatted}</span>
                   {item.billingPeriod && item.billingPeriod !== 'one-time' && (
                     <span class="text-xs text-neutral-500 font-mono"> /{item.billingPeriod}</span>
                   )}
                 </div>
                 {item.packageLevel && (
-                  <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-neutral-200/60 text-neutral-700 font-medium">
+                  <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-neutral-200/60 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 font-medium">
                     {item.packageLevel} Tier
                   </span>
                 )}
@@ -127,13 +147,13 @@ const categories = [
               <!-- Best For -->
               <div class="mt-4">
                 <span class="text-[11px] font-medium text-neutral-400 uppercase tracking-wider block mb-1">Target Persona</span>
-                <p class="text-xs text-neutral-700">{item.bestFor}</p>
+                <p class="text-xs text-neutral-700 dark:text-neutral-300">{item.bestFor}</p>
               </div>
 
               <!-- Core Scope Deliverables -->
-              <div class="mt-4 pt-3 border-t border-neutral-100">
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
                 <span class="text-[11px] font-medium text-neutral-400 uppercase tracking-wider block mb-2">Core Scope</span>
-                <ul class="space-y-1.5 text-xs text-neutral-600">
+                <ul class="space-y-1.5 text-xs text-neutral-600 dark:text-neutral-400">
                   {item.coreScope.slice(0, 4).map((deliverable) => (
                     <li class="flex items-start gap-2">
                       <span class="text-emerald-500 font-bold shrink-0">✔</span>
@@ -150,14 +170,24 @@ const categories = [
             </div>
 
             <!-- Action buttons -->
-            <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center gap-2">
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 space-y-2">
               <Button
                 variant="primary-sm"
                 href={`/contact?service=${item.slug}`}
                 class="w-full justify-center"
               >
-                Order / Inquire
+                Inquire / Order
               </Button>
+              {categoryUrlMap[item.category] && (
+                <div class="text-center">
+                  <a
+                    href={categoryUrlMap[item.category]}
+                    class="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 hover:text-[#0070f3] dark:hover:text-cyan-400 transition"
+                  >
+                    View Category Specs →
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         ))}

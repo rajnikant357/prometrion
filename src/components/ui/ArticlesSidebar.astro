@@ -38,45 +38,45 @@ const blogLinks = [
       </button>
     </div>
 
-    <!-- Section 1: Documentation Hub -->
+    <!-- Section 1: Media Hub & Guides -->
     <div class="space-y-2">
       <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 px-2">
-        Platform Docs
+        Media Hub
       </div>
       <nav class="space-y-0.5">
         <a 
-          href="/articles/docs#overview" 
+          href="/media" 
           class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
-          <span>Platform Overview</span>
+          <span>Media Overview</span>
           <span class="text-[10px] font-mono text-neutral-400">01</span>
         </a>
         <a 
-          href="/articles/docs#services-spec" 
+          href="/media/blogs" 
           class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
-          <span>Service Specs & Pricing</span>
+          <span>Strategic Blogs</span>
           <span class="text-[10px] font-mono text-neutral-400">02</span>
         </a>
         <a 
-          href="/articles/docs#engineering" 
+          href="/media/news" 
           class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
-          <span>Geist Engineering Standards</span>
+          <span>Official News</span>
           <span class="text-[10px] font-mono text-neutral-400">03</span>
         </a>
         <a 
-          href="/articles/docs#skills-registry" 
-          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-emerald-600 dark:text-emerald-400 font-medium hover:bg-emerald-50 dark:hover:bg-emerald-950/40 transition"
-        >
-          <span>✦ Prometrion Skills</span>
-          <span class="text-[10px] font-mono px-1.5 rounded bg-emerald-100 dark:bg-emerald-900/60 font-bold">New</span>
-        </a>
-        <a 
-          href="/articles/docs#future-docs" 
+          href="/media/achievements" 
           class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
-          <span>Future Docs Guide</span>
+          <span>Company Milestones</span>
+          <span class="text-[10px] font-mono text-neutral-400">04</span>
+        </a>
+        <a 
+          href="/media/people" 
+          class="flex items-center justify-between px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
+        >
+          <span>People & Leadership</span>
           <span class="text-[10px] font-mono text-neutral-400">05</span>
         </a>
       </nav>
@@ -86,14 +86,14 @@ const blogLinks = [
     <div class="space-y-2 pt-2 border-t border-neutral-100 dark:border-white/10">
       <div class="flex items-center justify-between px-2">
         <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">
-          Launch Blogs
+          Featured Blogs
         </span>
-        <a href="/articles/blogs" class="text-[10px] text-[#0070f3] dark:text-cyan-400 hover:underline">All (8)</a>
+        <a href="/media/blogs" class="text-[10px] text-[#0070f3] dark:text-cyan-400 hover:underline">All (8)</a>
       </div>
       <nav class="space-y-0.5">
         {blogLinks.map((blog) => (
           <a 
-            href={`/articles/blogs/${blog.slug}`} 
+            href={`/media/blogs/${blog.slug}`} 
             class={`block px-2.5 py-1.5 rounded-md truncate transition ${
               activeSlug === blog.slug
                 ? 'bg-[#171717] text-white dark:bg-white dark:text-black font-semibold shadow-xs'
@@ -110,23 +110,23 @@ const blogLinks = [
     <!-- Section 3: Publications & Milestones -->
     <div class="space-y-2 pt-2 border-t border-neutral-100 dark:border-white/10">
       <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-neutral-400 dark:text-neutral-500 px-2">
-        Publications
+        Dispatches
       </div>
       <nav class="space-y-0.5">
         <a 
-          href="/articles/news" 
+          href="/media/news" 
           class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
           Company News & Releases
         </a>
         <a 
-          href="/articles/achievements" 
+          href="/media/achievements" 
           class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
           Achievements Timeline
         </a>
         <a 
-          href="/articles/people" 
+          href="/media/people" 
           class="block px-2.5 py-1.5 rounded-md text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-neutral-100 dark:hover:bg-white/[0.06] transition"
         >
           People & Stories

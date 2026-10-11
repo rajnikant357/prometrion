@@ -1,16 +1,154 @@
 ---
-// services/index.astro - Prometrion Digital Services Overview
+// services/index.astro - Canonical Prometrion Digital Services Overview Hub
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
+
+const primaryServices = [
+  {
+    num: "01",
+    id: "website-development",
+    name: "Website Development",
+    href: "/services/website-development",
+    badge: "Flagship Service",
+    badgeVariant: "blue",
+    priceStarting: "₹5,000+",
+    turnaround: "3–14 days",
+    desc: "Corporate websites, SaaS landing pages, digital catalogues, and high-performance e-commerce storefronts engineered on Astro 7 and Anycast edge networks.",
+    deliverables: [
+      "Sub-second TTFB & 98+ Core Web Vitals",
+      "Tailwind CSS v4 & Geist design tokens",
+      "Full source code ownership (no platform lock-in)",
+      "WhatsApp & click-to-call direct lead capture"
+    ],
+    ctaText: "Explore Website Engineering →",
+  },
+  {
+    num: "02",
+    id: "app-development",
+    name: "Mobile App Development",
+    href: "/services/app-development",
+    badge: "Android & Mobile",
+    badgeVariant: "emerald",
+    priceStarting: "₹7,999+",
+    turnaround: "7–25 days",
+    desc: "Native Android applications and fluid cross-platform mobile systems with offline SQLite caching, biometric security, and Google Play Store certification.",
+    deliverables: [
+      "App prototype planning & screen flows",
+      "Offline-first local Room/SQLite data sync",
+      "Biometric hardware encryption & auth",
+      "Google Play release-ready APK/AAB bundle"
+    ],
+    ctaText: "Explore App Development →",
+  },
+  {
+    num: "03",
+    id: "seo-geo",
+    name: "SEO & GEO Optimization",
+    href: "/services/seo-geo",
+    badge: "Search & AI Discovery",
+    badgeVariant: "purple",
+    priceStarting: "₹4,999+",
+    turnaround: "Ongoing Retainers",
+    desc: "Uniting classical Google Search engine dominance with next-gen Generative Engine Optimization (GEO) across ChatGPT, Claude, Perplexity, and Google Gemini.",
+    deliverables: [
+      "Deep JSON-LD structured entity schemas",
+      "AI citation density & conversational FAQ tuning",
+      "Google Business Profile local map pack ranking",
+      "White-hat authority building & Core Web Vitals"
+    ],
+    ctaText: "Explore SEO & GEO →",
+  },
+  {
+    num: "04",
+    id: "digital-presence",
+    name: "Digital Presence",
+    href: "/services/digital-presence",
+    badge: "Local Discovery",
+    badgeVariant: "emerald",
+    priceStarting: "₹1,999+",
+    turnaround: "2–5 days",
+    desc: "Be found where customers look first: Google Maps verification, Google Business Profile optimization, WhatsApp Business communication, and official social channels.",
+    deliverables: [
+      "Google Business Profile setup & categorization",
+      "Interactive Google Maps website pin integration",
+      "WhatsApp Business catalog & automated greeting",
+      "Facebook, Instagram & LinkedIn business setup"
+    ],
+    ctaText: "Explore Digital Presence →",
+  },
+  {
+    num: "05",
+    id: "digital-branding",
+    name: "Digital Branding",
+    href: "/services/digital-branding",
+    badge: "Brand Identity",
+    badgeVariant: "neutral",
+    priceStarting: "₹2,500+",
+    turnaround: "3–6 days",
+    desc: "Minimalist logo design, precision typography token sheets, double-sided business cards, and turnkey social media kits engineered for lasting authority.",
+    deliverables: [
+      "3 distinct initial vector logo concepts",
+      "Print-ready 300 DPI business cards with digital QR",
+      "Brand color palette & typography hierarchy guide",
+      "Social media header banners & post templates"
+    ],
+    ctaText: "Explore Digital Branding →",
+  },
+  {
+    num: "06",
+    id: "digital-consultancy",
+    name: "Digital Consultancy",
+    href: "/services/digital-consultancy",
+    badge: "Strategic Advisory",
+    badgeVariant: "purple",
+    priceStarting: "₹5,000+",
+    turnaround: "1–7 days",
+    desc: "Independent technical advisory, 1-on-1 video consultations, vendor quote vetting, and 90-day execution roadmaps before committing development budget.",
+    deliverables: [
+      "60-minute intensive video advisory session",
+      "Actionable written takeaway recommendations",
+      "Vendor proposal & agency quote vetting",
+      "Unbiased technology stack & framework selection"
+    ],
+    ctaText: "Explore Digital Consultancy →",
+  },
+  {
+    num: "07",
+    id: "maintenance-support",
+    name: "Maintenance & Support",
+    href: "/services/maintenance-support",
+    badge: "Lifecycle SLA",
+    badgeVariant: "blue",
+    priceStarting: "₹999/mo+",
+    turnaround: "Monthly Care",
+    desc: "Keep your website and mobile applications fast, secure, and updated with automated offsite cloud backups, 24/7 uptime tracking, and dedicated developer edit hours.",
+    deliverables: [
+      "Monthly & weekly automated offsite backups",
+      "24/7 continuous uptime monitoring & alert response",
+      "Security scanning & framework vulnerability updates",
+      "Dedicated developer edit hours for content & text"
+    ],
+    ctaText: "Explore Maintenance Plans →",
+  },
+];
+
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+]);
 ---
 
 <BaseLayout
   title="Digital Services — Prometrion"
-  description="Explore Prometrion's commercial digital engineering services: Website development, app development, SEO/GEO optimization, solutions catalog, and bundled packages."
+  description="Explore Prometrion's 7 primary digital services: Website Development, Mobile App Development, SEO & GEO, Digital Presence, Branding, Consultancy, and Maintenance in INR."
+  jsonLd={breadcrumbSchema}
 >
+  <!-- Compact Header -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
@@ -19,18 +157,21 @@ import Badge from "../../components/ui/Badge.astro";
           Engineering that accelerates your digital trajectory.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          High-conversion web platforms, mobile applications, and AI discoverability systems.
+          Seven core service disciplines engineered for businesses, founders, clinics, and organizations.
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/services/packages" size="sm">
-          Service Packages
+        <Button variant="primary" href="/estimate" size="sm">
+          Cost Estimator →
         </Button>
-        <Button variant="secondary" href="/services/catalog" size="sm">
-          Solutions Catalog
+        <Button variant="secondary" href="/request-quote" size="sm">
+          Get a Quote
         </Button>
-        <Button variant="ghost-sm" href="/contact" size="sm">
-          Consult Engineer
+        <Button variant="secondary" href="/book-consultation" size="sm">
+          Book Advisory
+        </Button>
+        <Button variant="ghost-sm" href="/pricing" size="sm">
+          Pricing Matrix
         </Button>
       </div>
     </div>
@@ -39,148 +180,76 @@ import Badge from "../../components/ui/Badge.astro";
   <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
-      <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-        
-        <!-- Large Card (7 cols): Website Development with Glowing Border Beam & Deliverable Specs -->
-        <div class="lg:col-span-7 bento-card-sharp border-beam-container spotlight-card shadow-floating">
-          <div class="border-beam-inner p-8 sm:p-10 flex flex-col justify-between h-full bg-dot-grid">
+      <!-- Primary Services Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-neutral-200 dark:border-white/10">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-neutral-400">7 Core Disciplines</span>
+          <h2 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-0.5">
+            Primary Service Offerings
+          </h2>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-neutral-500">
+          <span>All prices in INR (₹)</span>
+          <span>•</span>
+          <span>Transparent Deliverables</span>
+        </div>
+      </div>
+
+      <!-- 7 Services Grid: Clean Bento Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {primaryServices.map((srv, idx) => (
+          <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating transition-all ${
+            idx === 0
+              ? 'md:col-span-2 lg:col-span-2 border-[#0070f3] dark:border-cyan-500/50 ring-1 ring-[#0070f3]/20 dark:ring-cyan-500/20'
+              : 'border-[#ebebeb] dark:border-white/10'
+          }`}>
             <div>
-              <div class="flex items-center justify-between mb-6">
+              <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center gap-2">
-                  <Badge variant="blue">✦ Flagship Service 01</Badge>
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-400/10 text-emerald-500 border border-emerald-400/20">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    Sub-Second LCP Guarantee
+                  <span class="font-mono text-xs font-bold text-[#0070f3] dark:text-cyan-400 bg-blue-50 dark:bg-white/10 px-2 py-0.5 rounded">
+                    SERVICE {srv.num}
                   </span>
+                  <Badge variant={srv.badgeVariant as any}>{srv.badge}</Badge>
                 </div>
-                <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Astro 5 & React</span>
+                <div class="text-right">
+                  <span class="text-xs font-mono font-bold text-neutral-900 dark:text-white block">{srv.priceStarting}</span>
+                  <span class="text-[10px] font-mono text-neutral-400">{srv.turnaround}</span>
+                </div>
               </div>
 
-              <h2 class="text-2xl sm:text-3xl font-semibold text-[#171717] dark:text-white tracking-tight">
-                Enterprise Website Engineering & Cloud Platforms
-              </h2>
-              <p class="mt-3 text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed max-w-xl">
-                Full-lifecycle design, technical architecture, and software engineering for high-growth corporate platforms, SaaS applications, and global digital storefronts. Engineered for extreme conversion, responsive elegance, and global Anycast delivery.
+              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                {srv.name}
+              </h3>
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
+                {srv.desc}
               </p>
 
-              <!-- Live Engineering Specifications Panel -->
-              <div class="mt-6 rounded-[6px] border border-neutral-200 dark:border-white/10 bg-neutral-900 dark:bg-black/90 p-4 font-mono text-xs text-neutral-300 shadow-inner">
-                <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/10 text-[11px] text-neutral-400">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
-                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                    <span class="ml-2 text-neutral-300">engineering-sprint-manifest.json</span>
-                  </div>
-                  <span class="text-cyan-400">PRODUCTION AUDITED</span>
-                </div>
-                <div class="space-y-1.5 text-neutral-300 text-[11px]">
-                  <p class="text-emerald-400">✓ Lighthouse Core Web Vitals: 100 Performance | 100 Accessibility</p>
-                  <p class="text-cyan-400">✓ Type-Safe Architecture: TypeScript strict mode + Zod validated schemas</p>
-                  <p class="text-sky-300">✓ Edge Deployment: 300+ Anycast PoPs with automated SSL & cache purging</p>
-                </div>
-              </div>
-
-              <!-- Metrics -->
-              <div class="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-neutral-100 dark:border-white/10 text-xs">
-                <div>
-                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">&lt;0.5s</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Largest Contentful Paint</span>
-                </div>
-                <div>
-                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">Zero</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Layout Shift (CLS 0)</span>
-                </div>
-                <div>
-                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">100%</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Source Code Ownership</span>
-                </div>
+              <div class="mt-4 pt-4 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Key Deliverables</span>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-neutral-700 dark:text-neutral-300">
+                  {srv.deliverables.map((item) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
-            <div class="mt-8 pt-6 border-t border-neutral-100 dark:border-white/10 flex flex-wrap items-center gap-4">
-              <Button variant="primary" href="/services/website-development">
-                Explore Website Engineering →
-              </Button>
-              <a href="/services/packages" class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition flex items-center gap-1">
-                Compare Fixed Packages <span>→</span>
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between">
+              <a
+                href={srv.href}
+                class="text-xs font-semibold text-[#0070f3] dark:text-cyan-400 hover:underline flex items-center gap-1"
+              >
+                {srv.ctaText}
               </a>
+              <Button variant="ghost-sm" href={`/contact?service=${srv.id}`} size="sm">
+                Get Quote
+              </Button>
             </div>
           </div>
-        </div>
-
-        <!-- 2 Aligned Small Cards (5 cols) Stacked Vertically -->
-        <div class="lg:col-span-5 flex flex-col gap-6 justify-between">
-          
-          <!-- Small Card 1: App Development -->
-          <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <Badge variant="emerald">SERVICE 02</Badge>
-                <span class="text-[11px] font-mono text-emerald-500 font-semibold">Android & Mobile</span>
-              </div>
-              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Native Android & Cross-Platform Apps
-              </h3>
-              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Native Android engineering and fluid cross-platform applications built with hardware security, biometric auth, offline caching, and responsive UI elegance.
-              </p>
-
-              <div class="mt-4 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
-                <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> Biometric Authentication & KeyStore
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> Offline-First SQLite Data Caching
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> Google Play Release Certification
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
-              <span class="text-emerald-600 font-medium">Turnkey Deployment</span>
-              <a href="/services/app-development" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Explore App Development →</a>
-            </div>
-          </div>
-
-          <!-- Small Card 2: SEO & GEO Optimization -->
-          <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <Badge variant="purple">SERVICE 03</Badge>
-                <span class="text-[11px] font-mono text-cyan-400 font-semibold">AI Search Ranking</span>
-              </div>
-              <h3 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                SEO & Generative Engine Optimization (GEO)
-              </h3>
-              <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Ensure your business is cited and discovered across ChatGPT, Perplexity, Google Gemini, and classical search engines through structured semantic entity graphs.
-              </p>
-
-              <div class="mt-4 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
-                <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> AI Engine Citations & Knowledge Graphs
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> Schema.org Deep Structured JSON-LD
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> 100/100 Core Web Vitals Auditing
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs">
-              <span class="text-cyan-400 font-medium">ChatGPT & Google</span>
-              <a href="/services/seo-geo" class="font-medium text-[#0070f3] dark:text-cyan-400 hover:underline">Explore SEO / GEO →</a>
-            </div>
-          </div>
-
-        </div>
-
+        ))}
       </div>
 
       <!-- Service Delivery Signals Marquee Ticker -->
@@ -188,19 +257,19 @@ import Badge from "../../components/ui/Badge.astro";
         <div class="marquee-mask pause-on-hover select-none overflow-hidden">
           <div class="animate-marquee flex items-center gap-6">
             <div class="flex items-center gap-6 shrink-0 text-xs font-mono text-neutral-600 dark:text-neutral-400">
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 7-Day Launch Guarantee</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 Dedicated Code Repository Ownership</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 Sub-Second Global Anycast Delivery</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">💬 Dedicated Slack / Discord Engineering Channel</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 3–7 Day Launch Sprints</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 100% Dedicated Code Repository Ownership</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 Sub-Second Global Anycast Edge Delivery</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">💬 WhatsApp & Email Direct Channel</span>
               <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🤖 Generative Engine Optimization (GEO) Included</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">📱 Full Android APK Release Readiness</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">📱 Android APK & Play Store Readiness</span>
             </div>
             <!-- Duplicate for Seamless Loop -->
             <div class="flex items-center gap-6 shrink-0 text-xs font-mono text-neutral-600 dark:text-neutral-400" aria-hidden="true">
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 7-Day Launch Guarantee</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 Dedicated Code Repository Ownership</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 Sub-Second Global Anycast Delivery</span>
-              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">💬 Dedicated Slack / Discord Engineering Channel</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">⚡ 3–7 Day Launch Sprints</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🔒 100% Dedicated Code Repository Ownership</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🌐 Sub-Second Global Anycast Edge Delivery</span>
+              <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">💬 WhatsApp & Email Direct Channel</span>
               <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">🤖 Generative Engine Optimization (GEO) Included</span>
               <span class="px-3 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-neutral-200 dark:border-white/10">📱 Full Android APK Release Readiness</span>
             </div>
@@ -210,12 +279,12 @@ import Badge from "../../components/ui/Badge.astro";
 
       <!-- Secondary Offerings Grid: Solutions Catalog, Packages, and Pricing -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-        <!-- 4: Ready Solutions Catalog -->
+        <!-- Solutions Catalog -->
         <Card variant="interactive" href="/services/catalog" class="flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-amber-600">SERVICE 04</span>
-              <Badge variant="amber">Turnkey Systems</Badge>
+              <span class="font-mono text-xs font-bold text-amber-600">PRODUCTIZED CATALOG</span>
+              <Badge variant="amber">30+ Solutions</Badge>
             </div>
             <h2 class="text-xl font-semibold text-neutral-900 group-hover:text-[#0070f3] transition">
               Solutions Catalog
@@ -225,8 +294,8 @@ import Badge from "../../components/ui/Badge.astro";
             </p>
             <div class="mt-4 flex flex-wrap gap-1 text-[11px] font-mono text-neutral-500">
               <span>• Fixed Scopes</span>
-              <span>• Rapid 7-Day Launch</span>
-              <span>• Managed Hosting</span>
+              <span>• Rapid Launch</span>
+              <span>• Filter by Tech</span>
             </div>
           </div>
           <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between text-xs text-[#0070f3] font-medium">
@@ -235,22 +304,22 @@ import Badge from "../../components/ui/Badge.astro";
           </div>
         </Card>
 
-        <!-- 5: Packages -->
+        <!-- Service Packages -->
         <Card variant="interactive" href="/services/packages" class="flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-neutral-900">SERVICE 05</span>
-              <Badge variant="neutral">Clear Fixed Pricing</Badge>
+              <span class="font-mono text-xs font-bold text-neutral-900">TURNKEY BUNDLES</span>
+              <Badge variant="neutral">INR Fixed Pricing</Badge>
             </div>
             <h2 class="text-xl font-semibold text-neutral-900 group-hover:text-[#0070f3] transition">
               Service Packages
             </h2>
             <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-              Structured bundles designed to simplify purchasing: Starter ($499), Business ($1,199), Professional ($2,499), and Enterprise Custom.
+              Structured bundles designed to simplify purchasing: Starter (₹7,500), Business (₹15,000), Digital Growth (₹25,000), and Complete Digital (₹40,000+).
             </p>
             <div class="mt-4 flex flex-wrap gap-1 text-[11px] font-mono text-neutral-500">
-              <span>• Guaranteed Sprints</span>
-              <span>• Dedicated Support</span>
+              <span>• Fixed Turnaround</span>
+              <span>• Guaranteed Revisions</span>
               <span>• Zero Hidden Costs</span>
             </div>
           </div>
@@ -260,18 +329,18 @@ import Badge from "../../components/ui/Badge.astro";
           </div>
         </Card>
 
-        <!-- 6: Global Pricing -->
+        <!-- Global Pricing -->
         <Card variant="interactive" href="/pricing" class="flex flex-col justify-between bg-neutral-900 text-white">
           <div>
             <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-neutral-400">GLOBAL PRICING</span>
-              <span class="text-[10px] font-mono bg-neutral-800 text-emerald-400 px-2 py-0.5 rounded">Database Driven</span>
+              <span class="font-mono text-xs font-bold text-neutral-400">CANONICAL PRICING</span>
+              <span class="text-[10px] font-mono bg-neutral-800 text-emerald-400 px-2 py-0.5 rounded">All 7 Disciplines</span>
             </div>
             <h2 class="text-xl font-semibold text-white">
               Transparent Pricing Matrix
             </h2>
             <p class="text-xs text-neutral-300 mt-2 leading-relaxed">
-              Explore our full service tier comparison and interactive usage calculator. Change tiers seamlessly without deployment churn.
+              Explore our full service tier comparison, one-time project pricing, monthly retainers, and itemized a-la-carte add-ons in Indian Rupee.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-white font-medium">

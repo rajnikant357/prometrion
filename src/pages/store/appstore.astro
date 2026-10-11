@@ -1,123 +1,376 @@
 ---
-// store/appstore.astro - Prometrion Appstore
+// src/pages/store/appstore.astro - Prometrion Appstore
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
-import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
+import StoreHero from "../../components/ui/StoreHero.astro";
+import { appstoreApps as apps, appstoreCategories, getAppDownloadAvailability } from "../../data/appstoreApps";
+import { buildBreadcrumbSchema } from "../../utils/seo";
 
-const apps = [
-  {
-    name: "Prometrion Console",
-    developer: "Prometrion Core Labs",
-    desc: "Mobile dashboard to monitor serverless workloads, inspect edge metrics, trigger build rollbacks, and view live logs.",
-    category: "Developer Tools",
-    version: "2.4.1",
-    rating: "4.9",
-    downloads: "10K+",
-    price: "Free",
-  },
-  {
-    name: "Taluq Agent Mobile",
-    developer: "Prometrion AI Labs",
-    desc: "Voice and multimodal agent client. Execute complex coding, data synthesis, and workflow operations straight from your phone.",
-    category: "Artificial Intelligence",
-    version: "2.0.0",
-    rating: "4.8",
-    downloads: "25K+",
-    price: "$4.99 / mo",
-  },
-  {
-    name: "Coders Club Guild Client",
-    developer: "Prometrion Community",
-    desc: "Live hacker challenges, peer reviews, code snippets sharing, and notifications for global engineering hackathons.",
-    category: "Community & Education",
-    version: "1.3.0",
-    rating: "5.0",
-    downloads: "8K+",
-    price: "Free (Members)",
-  },
-  {
-    name: "Secure Auth Key",
-    developer: "Prometrion Security",
-    desc: "Hardware-backed FIDO2 / Passkey authenticator for Prometrion Accounts and enterprise SSO environments.",
-    category: "Security & Utilities",
-    version: "1.1.2",
-    rating: "4.9",
-    downloads: "15K+",
-    price: "Free",
-  },
-];
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Store", url: "/store" },
+  { name: "Appstore", url: "/store/appstore" },
+]);
 ---
 
 <BaseLayout
-  title="Appstore — Prometrion Applications"
-  description="Discover Prometrion mobile applications for Android and cross-platform systems."
+  title="Appstore — Android & Mobile Applications | Prometrion"
+  description="Discover Prometrion mobile applications for Android and cross-platform systems. Verified GitHub Releases, APK packages, and technical specifications."
+  jsonLd={breadcrumbSchema}
 >
-  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <SectionEyebrow tag="MARKETPLACE / APPSTORE">PROMETRION APPLICATIONS</SectionEyebrow>
-        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
-          Android & Modern Applications
-        </h1>
-        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
-          High-performance mobile and cross-platform apps built for developer operations, AI, and productivity.
-        </p>
+  <!-- Unified Prometrion Store Hero & Navbuttons -->
+  <StoreHero activeTab="appstore" />
+
+  <!-- Appstore Secondary Nav & Filter Toolbar -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] sticky top-16 z-30 transition-colors shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+      
+      <!-- Left: Category Filter Navbuttons / Pills -->
+      <div id="app-filters" class="flex items-center gap-1.5 overflow-x-auto text-xs font-medium scrollbar-none" data-lenis-prevent>
+        <button
+          type="button"
+          data-filter="all"
+          class="app-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#171717] dark:bg-white text-white dark:text-[#171717] whitespace-nowrap shadow-xs transition cursor-pointer"
+        >
+          All Apps ({apps.length})
+        </button>
+        {appstoreCategories.map((cat) => {
+          const count = apps.filter((a) => a.category === cat).length;
+          return (
+            <button
+              type="button"
+              data-filter={cat}
+              class="app-filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-white/30 whitespace-nowrap transition cursor-pointer"
+            >
+              {cat} ({count})
+            </button>
+          );
+        })}
       </div>
-      <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/community/developer" size="sm">
-          Publish an App →
-        </Button>
-        <Button variant="secondary" href="/services/app-development" size="sm">
-          Custom App Dev
-        </Button>
+
+      <!-- Right: Search Input & Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
+        <!-- Search by App Name -->
+        <div class="relative min-w-[220px]">
+          <svg class="w-3.5 h-3.5 text-neutral-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input
+            id="app-search-input"
+            type="text"
+            placeholder="Search applications..."
+            class="w-full pl-8 pr-3 py-1.5 text-xs bg-white dark:bg-[#141414] border border-[#ebebeb] dark:border-white/10 rounded-full text-neutral-900 dark:text-white placeholder:text-neutral-400 focus:outline-none focus:border-neutral-400 dark:focus:border-white/30 transition"
+          />
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <Button variant="primary" href="/contact" size="sm">
+            Request an App →
+          </Button>
+          <Button variant="secondary" href="/services/app-development" size="sm">
+            Custom App Dev
+          </Button>
+        </div>
       </div>
+
     </div>
   </div>
 
-  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+  <!-- Applications Grid Section -->
+  <section class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {apps.map((app) => (
-          <Card variant="interactive" class="flex flex-col justify-between">
-            <div>
-              <div class="flex items-start gap-4">
-                <div class="w-14 h-14 rounded-[6px] bg-gradient-to-tr from-neutral-800 to-neutral-950 text-white flex items-center justify-center font-bold text-xl shadow-whisper shrink-0">
-                  {app.name.charAt(0)}
+      
+      <!-- Status bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-neutral-200/60 dark:border-white/10 text-xs text-neutral-500 dark:text-neutral-400 gap-2">
+        <span id="app-results-count-text">
+          Showing <strong class="text-neutral-900 dark:text-white font-mono" id="app-visible-count">{apps.length}</strong> of {apps.length} verified Android applications
+        </span>
+        <div class="flex items-center gap-3">
+          <span class="font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
+            ✓ Prepared for Official GitHub Releases
+          </span>
+          <button
+            id="app-reset-link"
+            type="button"
+            class="hidden text-[11px] font-mono text-[#0070f3] dark:text-cyan-400 hover:underline cursor-pointer"
+          >
+            Reset Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid Container -->
+      <div id="apps-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {apps.map((app) => {
+          const availability = getAppDownloadAvailability(app);
+          const platformText = Array.isArray(app.platforms) ? app.platforms.join(", ") : app.platforms;
+
+          return (
+            <article
+              class="app-item flex flex-col justify-between bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 shadow-whisper hover:shadow-floating transition-all duration-200 group"
+              data-category={app.category}
+              data-name={app.name.toLowerCase()}
+              data-desc={app.shortDescription.toLowerCase()}
+              data-developer={app.developer.toLowerCase()}
+            >
+              <div>
+                <div class="flex items-start gap-4">
+                  <!-- App Icon -->
+                  <a
+                    href={`/store/appstore/${app.slug}`}
+                    class="w-14 h-14 rounded-xl bg-gradient-to-tr from-neutral-800 to-neutral-950 text-white flex items-center justify-center font-bold text-xl shadow-whisper shrink-0 ring-1 ring-white/10 group-hover:scale-105 transition cursor-pointer"
+                    title={`View ${app.name} details`}
+                  >
+                    {app.name.charAt(0)}
+                  </a>
+
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-2">
+                      <h2 class="font-semibold text-base text-neutral-900 dark:text-white truncate">
+                        <a href={`/store/appstore/${app.slug}`} class="hover:text-[#0070f3] dark:hover:text-cyan-400 transition">
+                          {app.name}
+                        </a>
+                      </h2>
+
+                      {availability === "available" && (
+                        <Badge variant="emerald">Release Available</Badge>
+                      )}
+                      {availability === "release_only" && (
+                        <Badge variant="cyan">GitHub Release</Badge>
+                      )}
+                      {availability === "coming_soon" && (
+                        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 whitespace-nowrap">
+                          Release Scheduled
+                        </span>
+                      )}
+                    </div>
+                    <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">{app.developer}</p>
+                    <div class="flex items-center gap-2 text-[11px] font-mono text-neutral-400 dark:text-neutral-500 mt-1">
+                      <span>{platformText}</span>
+                      <span>•</span>
+                      <span>v{app.currentVersion}</span>
+                    </div>
+                  </div>
                 </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between">
-                    <h3 class="font-semibold text-base text-neutral-900 truncate">{app.name}</h3>
-                    <span class="font-mono text-xs font-bold text-neutral-900 shrink-0 ml-2">{app.price}</span>
-                  </div>
-                  <p class="text-xs text-neutral-500">{app.developer}</p>
-                  <div class="flex items-center gap-3 text-[11px] font-mono text-neutral-400 mt-1">
-                    <span>★ {app.rating}</span>
-                    <span>•</span>
-                    <span>{app.downloads} installs</span>
-                    <span>•</span>
-                    <span>v{app.version}</span>
-                  </div>
+
+                <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-4 leading-relaxed line-clamp-3">
+                  {app.shortDescription}
+                </p>
+
+                <!-- Technical Chips -->
+                <div class="mt-4 flex flex-wrap gap-1.5 text-[10px] font-mono">
+                  {app.apkFileSize && (
+                    <span class="px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
+                      {app.apkFileSize}
+                    </span>
+                  )}
+                  {app.minimumAndroidVersion && (
+                    <span class="px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
+                      {app.minimumAndroidVersion}
+                    </span>
+                  )}
+                  <span class="px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
+                    {platformText}
+                  </span>
                 </div>
               </div>
 
-              <p class="text-xs text-neutral-600 mt-4 leading-relaxed">
-                {app.desc}
-              </p>
-            </div>
+              <!-- Card Actions -->
+              <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between gap-2">
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-400">
+                  {app.category}
+                </span>
 
-            <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-600">
-                {app.category}
-              </span>
-              <Button variant="primary-sm" href="/contact">
-                Install App (APK)
-              </Button>
-            </div>
-          </Card>
-        ))}
+                <div class="flex items-center gap-2">
+                  <a
+                    href={`/store/appstore/${app.slug}`}
+                    class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-neutral-800 bg-neutral-50 hover:bg-neutral-100 dark:bg-[#141414] dark:text-neutral-200 dark:hover:bg-[#1f1f1f] border border-[#ebebeb] dark:border-[#262626] rounded-md transition shadow-whisper cursor-pointer"
+                  >
+                    View Details →
+                  </a>
+
+                  {availability === "available" && app.apkDownloadUrl ? (
+                    <a
+                      href={app.apkDownloadUrl}
+                      download
+                      class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-md transition shadow-xs cursor-pointer"
+                      title="Download APK package asset directly"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      <span>Download APK</span>
+                    </a>
+                  ) : availability === "release_only" && app.githubReleaseUrl ? (
+                    <a
+                      href={app.githubReleaseUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-md transition shadow-xs cursor-pointer"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                      </svg>
+                      <span>View Release</span>
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      disabled
+                      class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-medium text-neutral-400 dark:text-neutral-500 bg-neutral-100 dark:bg-white/5 border border-neutral-200/60 dark:border-white/10 rounded-md cursor-not-allowed opacity-80"
+                      title="Official APK will be linked directly from GitHub Releases"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                      <span>Coming Soon</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
+
+      <!-- Empty State -->
+      <div id="no-app-results" class="hidden text-center py-16 bg-white dark:bg-[#0c0c0c] border border-dashed border-neutral-200 dark:border-white/10 rounded-lg">
+        <div class="w-12 h-12 mx-auto rounded-full bg-neutral-100 dark:bg-white/5 flex items-center justify-center text-neutral-400 mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">No applications match your criteria</p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Try clearing your search term or selecting "All Apps".</p>
+        <button
+          id="reset-app-filter-btn"
+          type="button"
+          class="mt-4 px-4 py-1.5 text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-full cursor-pointer hover:opacity-90 transition"
+        >
+          Reset All Filters
+        </button>
+      </div>
+
+      <!-- Bottom Conversion Band -->
+      <div class="mt-16 p-8 sm:p-10 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 shadow-whisper flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-semibold">
+            ✦ BESPOKE ANDROID SYSTEMS
+          </span>
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mt-1">
+            Need an offline-first or enterprise Android application?
+          </h3>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            We engineer high-performance native Android apps, telemetry monitors, offline-first field tools, and hardware-backed biometric security applications.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <Button variant="primary" href="/contact">
+            Request an App →
+          </Button>
+          <Button variant="secondary" href="/services/app-development">
+            Mobile Services
+          </Button>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </section>
 </BaseLayout>
+
+<script>
+  // Dynamic Client-side Category & Search Filtering
+  const appFilterPills = document.querySelectorAll<HTMLButtonElement>(".app-filter-pill");
+  const appItems = document.querySelectorAll<HTMLElement>(".app-item");
+  const searchInput = document.getElementById("app-search-input") as HTMLInputElement | null;
+  const visibleCountEl = document.getElementById("app-visible-count");
+  const noAppResults = document.getElementById("no-app-results");
+  const resetAppBtn = document.getElementById("reset-app-filter-btn");
+  const resetAppLink = document.getElementById("app-reset-link");
+
+  let currentCategory = "all";
+  let searchQuery = "";
+
+  function applyFilters() {
+    let visible = 0;
+    const query = searchQuery.trim().toLowerCase();
+
+    appItems.forEach((card) => {
+      const category = card.dataset.category || "";
+      const name = card.dataset.name || "";
+      const desc = card.dataset.desc || "";
+      const developer = card.dataset.developer || "";
+
+      const matchCategory = currentCategory === "all" || category.toLowerCase() === currentCategory.toLowerCase();
+      const matchSearch = !query || name.includes(query) || desc.includes(query) || developer.includes(query);
+
+      if (matchCategory && matchSearch) {
+        card.style.display = "flex";
+        visible++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (visibleCountEl) visibleCountEl.textContent = String(visible);
+
+    if (noAppResults) {
+      if (visible === 0) {
+        noAppResults.classList.remove("hidden");
+      } else {
+        noAppResults.classList.add("hidden");
+      }
+    }
+
+    if (resetAppLink) {
+      if (currentCategory !== "all" || query.length > 0) {
+        resetAppLink.classList.remove("hidden");
+      } else {
+        resetAppLink.classList.add("hidden");
+      }
+    }
+  }
+
+  // Category pill listeners
+  appFilterPills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      appFilterPills.forEach((p) => {
+        p.classList.remove("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        p.classList.add("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      });
+
+      pill.classList.add("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+      pill.classList.remove("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+
+      currentCategory = pill.dataset.filter || "all";
+      applyFilters();
+    });
+  });
+
+  // Search input listener
+  searchInput?.addEventListener("input", (e) => {
+    searchQuery = (e.target as HTMLInputElement).value;
+    applyFilters();
+  });
+
+  function resetAll() {
+    currentCategory = "all";
+    searchQuery = "";
+    if (searchInput) searchInput.value = "";
+
+    appFilterPills.forEach((pill) => {
+      const isAll = pill.dataset.filter === "all";
+      if (isAll) {
+        pill.classList.add("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        pill.classList.remove("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      } else {
+        pill.classList.remove("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        pill.classList.add("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      }
+    });
+
+    applyFilters();
+  }
+
+  resetAppBtn?.addEventListener("click", resetAll);
+  resetAppLink?.addEventListener("click", resetAll);
+</script>

@@ -1,0 +1,669 @@
+---
+// src/pages/estimate.astro
+// Prometrion Interactive Service-Based Cost Estimator
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import { estimatorServicesConfig } from "../data/estimatorData";
+import { buildBreadcrumbSchema } from "../utils/seo";
+
+const servicesList = Object.values(estimatorServicesConfig);
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Cost Estimator", url: "/estimate" },
+]);
+---
+
+<BaseLayout
+  title="Cost Estimator — Calculate Indicative Project Pricing | Prometrion"
+  description="Configure your project requirements and receive an immediate indicative cost estimate across websites, mobile apps, SEO/GEO, branding, and maintenance."
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Atmospheric Aurora Glow -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[500px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity">
+    <div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[450px] rounded-full bg-gradient-to-r from-emerald-500/15 via-cyan-500/20 to-sky-500/15 blur-[120px]"></div>
+  </div>
+
+  <!-- Header Section -->
+  <section class="border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707] transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <SectionEyebrow tag="CALCULATOR">TRANSPARENT ESTIMATION</SectionEyebrow>
+          <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-[#171717] dark:text-white mt-2">
+            Project Scope & Cost Estimator
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 max-w-2xl leading-relaxed">
+            Select an engineering discipline, configure your requirements, and receive an instant, itemized indicative breakdown based on our published catalog.
+          </p>
+        </div>
+
+        <!-- Trust & Policy Badges -->
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-neutral-100 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 text-neutral-700 dark:text-neutral-300">
+            <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            Zero Hidden Fees
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono bg-neutral-100 dark:bg-white/5 border border-neutral-200/80 dark:border-white/10 text-neutral-700 dark:text-neutral-300">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            Grounded in SOW Catalog
+          </span>
+        </div>
+      </div>
+
+      <!-- Step Progress Indicator -->
+      <div class="mt-8 pt-6 border-t border-neutral-100 dark:border-white/10">
+        <div class="flex items-center justify-between max-w-3xl mx-auto">
+          <div id="step-nav-1" class="step-nav-item flex items-center gap-2 cursor-pointer transition">
+            <span class="step-num w-6 h-6 rounded-full bg-neutral-900 text-white dark:bg-white dark:text-black flex items-center justify-center font-bold text-xs">1</span>
+            <span class="step-label text-xs font-medium text-neutral-900 dark:text-white hidden sm:inline">Select Service</span>
+          </div>
+          <div class="flex-1 h-0.5 mx-2 bg-neutral-200 dark:bg-white/10"></div>
+          
+          <div id="step-nav-2" class="step-nav-item flex items-center gap-2 cursor-pointer transition opacity-50">
+            <span class="step-num w-6 h-6 rounded-full bg-neutral-200 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 flex items-center justify-center font-bold text-xs">2</span>
+            <span class="step-label text-xs font-medium text-neutral-600 dark:text-neutral-400 hidden sm:inline">Scope & Specs</span>
+          </div>
+          <div class="flex-1 h-0.5 mx-2 bg-neutral-200 dark:bg-white/10"></div>
+          
+          <div id="step-nav-3" class="step-nav-item flex items-center gap-2 cursor-pointer transition opacity-50">
+            <span class="step-num w-6 h-6 rounded-full bg-neutral-200 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 flex items-center justify-center font-bold text-xs">3</span>
+            <span class="step-label text-xs font-medium text-neutral-600 dark:text-neutral-400 hidden sm:inline">Add-ons</span>
+          </div>
+          <div class="flex-1 h-0.5 mx-2 bg-neutral-200 dark:bg-white/10"></div>
+
+          <div id="step-nav-4" class="step-nav-item flex items-center gap-2 cursor-pointer transition opacity-50">
+            <span class="step-num w-6 h-6 rounded-full bg-neutral-200 dark:bg-white/10 text-neutral-600 dark:text-neutral-400 flex items-center justify-center font-bold text-xs">4</span>
+            <span class="step-label text-xs font-medium text-neutral-600 dark:text-neutral-400 hidden sm:inline">Review & Estimate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Estimator Flow Section -->
+  <section class="py-10 sm:py-16 bg-[#fafafa] dark:bg-black/50 transition-colors min-h-[600px]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- STEP 1: SERVICE SELECTION -->
+      <div id="step-panel-1" class="step-panel space-y-6">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <Badge variant="blue">STEP 01</Badge>
+          <h2 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-2">
+            Which service would you like to configure?
+          </h2>
+          <p class="text-xs sm:text-sm text-neutral-500 dark:text-neutral-400 mt-1">
+            Choose from Prometrion's 7 canonical engineering and digital disciplines.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {servicesList.map((srv) => (
+            <button
+              type="button"
+              class="service-select-btn text-left p-5 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 hover:border-neutral-900 dark:hover:border-white/40 shadow-whisper transition-all duration-150 cursor-pointer group flex flex-col justify-between"
+              data-service-id={srv.serviceId}
+            >
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300">
+                    {srv.billingBasis === "monthly" ? "Retainer" : srv.billingBasis === "per-session" ? "Per Session" : "Sprint"}
+                  </span>
+                  <span class="text-xs font-semibold text-neutral-900 dark:text-white font-mono">
+                    {srv.basePriceFormatted}
+                  </span>
+                </div>
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white group-hover:text-[#0070f3] dark:group-hover:text-cyan-400 transition">
+                  {srv.serviceName}
+                </h3>
+                <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-2 leading-relaxed line-clamp-3">
+                  {srv.defaultDescription}
+                </p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/5 flex items-center justify-between text-xs font-medium text-[#0070f3] dark:text-cyan-400">
+                <span>Configure Options</span>
+                <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- STEP 2: REQUIREMENTS CONFIGURATION -->
+      <div id="step-panel-2" class="step-panel hidden space-y-8">
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-200/60 dark:border-white/10">
+          <div>
+            <Badge variant="blue">STEP 02</Badge>
+            <h2 id="step-2-service-title" class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-1">
+              Configure Requirements
+            </h2>
+            <p id="step-2-service-desc" class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5"></p>
+          </div>
+          <button
+            type="button"
+            id="back-to-step-1"
+            class="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
+          >
+            ← Change Service
+          </button>
+        </div>
+
+        <!-- Dynamic Questions Container -->
+        <div id="questions-container" class="space-y-8"></div>
+
+        <!-- Step Navigation Buttons -->
+        <div class="pt-6 border-t border-neutral-200/60 dark:border-white/10 flex items-center justify-between">
+          <button
+            type="button"
+            id="btn-back-step-2"
+            class="px-5 py-2 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/10 rounded-full transition cursor-pointer"
+          >
+            ← Back
+          </button>
+          <button
+            type="button"
+            id="btn-next-step-2"
+            class="px-6 py-2.5 text-xs font-semibold rounded-full bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition shadow-sm cursor-pointer"
+          >
+            Continue to Add-ons →
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: ADD-ONS SELECTION -->
+      <div id="step-panel-3" class="step-panel hidden space-y-6">
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-200/60 dark:border-white/10">
+          <div>
+            <Badge variant="emerald">STEP 03</Badge>
+            <h2 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-1">
+              Select Compatible Add-ons (Optional)
+            </h2>
+            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">
+              Enhance your deployment with verified analytics, speed optimization, and infrastructure add-ons.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="back-to-step-2"
+            class="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
+          >
+            ← Edit Scope
+          </button>
+        </div>
+
+        <!-- Dynamic Addons List -->
+        <div id="addons-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+
+        <div class="pt-6 border-t border-neutral-200/60 dark:border-white/10 flex items-center justify-between">
+          <button
+            type="button"
+            id="btn-back-step-3"
+            class="px-5 py-2 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/10 rounded-full transition cursor-pointer"
+          >
+            ← Back to Scope
+          </button>
+          <button
+            type="button"
+            id="btn-next-step-3"
+            class="px-6 py-2.5 text-xs font-semibold rounded-full bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition shadow-sm cursor-pointer"
+          >
+            Calculate Estimate →
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: PROJECT SUMMARY & INDICATIVE ESTIMATE -->
+      <div id="step-panel-4" class="step-panel hidden space-y-8">
+        
+        <!-- Printable Reference Card Header -->
+        <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-8 shadow-whisper relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-neutral-100 dark:border-white/10">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-neutral-900 dark:bg-white text-white dark:text-black" id="summary-estimate-ref">
+                  EST-2026-0000
+                </span>
+                <span class="text-xs font-mono text-neutral-500 dark:text-neutral-400" id="summary-date"></span>
+              </div>
+              <h2 id="summary-service-name" class="text-2xl font-semibold text-neutral-900 dark:text-white mt-2">
+                Project Estimate Summary
+              </h2>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                Grounded in Prometrion Engineering Catalog & Published Pricing Tiers
+              </p>
+            </div>
+
+            <!-- Cost Highlight Box -->
+            <div class="p-4 rounded-lg bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/80 dark:border-white/10 text-right shrink-0 min-w-[200px]">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 block font-semibold">
+                INDICATIVE TOTAL
+              </span>
+              <div id="summary-total-primary" class="text-2xl sm:text-3xl font-bold font-mono text-neutral-900 dark:text-white mt-1">
+                ₹0
+              </div>
+              <div id="summary-total-recurring" class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-medium mt-0.5"></div>
+            </div>
+          </div>
+
+          <!-- Non-Binding Regulatory Notice as required -->
+          <div class="my-6 p-3.5 rounded-[6px] bg-amber-500/10 border border-amber-500/20 text-xs text-amber-800 dark:text-amber-300 flex items-start gap-2.5">
+            <svg class="w-4 h-4 shrink-0 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+              <strong class="font-semibold">Indicative Estimate — Final Pricing Subject to Scope Confirmation.</strong>
+              <p class="mt-0.5 text-[11px] text-amber-700 dark:text-amber-400 leading-relaxed">
+                This calculation represents an architectural starting baseline. Formal binding quotations are issued following technical scoping and SOW review.
+              </p>
+            </div>
+          </div>
+
+          <!-- Itemized Breakdown Table -->
+          <div class="space-y-4">
+            <h3 class="text-xs font-mono uppercase tracking-wider text-neutral-500 dark:text-neutral-400 font-semibold">
+              Itemized Calculation Breakdown
+            </h3>
+            <div class="border border-neutral-100 dark:border-white/10 rounded-lg overflow-hidden">
+              <div class="divide-y divide-neutral-100 dark:divide-white/5" id="summary-items-list"></div>
+            </div>
+          </div>
+
+          <!-- Important Assumptions & Exclusions -->
+          <div class="mt-6 pt-6 border-t border-neutral-100 dark:border-white/10">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-2">Important Assumptions</h4>
+            <ul class="space-y-1.5 text-[11px] text-neutral-500 dark:text-neutral-400 list-disc list-inside">
+              <li>Includes direct production deployment on modern edge CDN infrastructure.</li>
+              <li>Prometrion does not apply arbitrary percentage markups or unsupported platform taxes.</li>
+              <li>Third-party subscription licenses (e.g. Apple Developer Account, domain registrar fees) are billed directly to client.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Next Action CTAs (Section 5 compliance) -->
+        <div class="p-6 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 shadow-whisper space-y-4">
+          <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">
+            Next Actions for this Project Scope:
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <!-- Action A: Request Formal Quote -->
+            <button
+              type="button"
+              id="action-request-quote"
+              class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition shadow-sm cursor-pointer"
+            >
+              <span>Request Formal Quote →</span>
+            </button>
+
+            <!-- Action B: Book a Consultation -->
+            <button
+              type="button"
+              id="action-book-consultation"
+              class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-semibold bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/20 text-neutral-900 dark:text-white transition cursor-pointer"
+            >
+              <span>Book a Consultation ↗</span>
+            </button>
+
+            <!-- Action C: Download / Print Estimate -->
+            <button
+              type="button"
+              id="action-print-estimate"
+              class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs font-medium border border-neutral-200 dark:border-white/15 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition cursor-pointer"
+            >
+              <svg class="w-4 h-4 text-neutral-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+              </svg>
+              <span>Print / Save as PDF</span>
+            </button>
+          </div>
+
+          <div class="pt-2 text-center">
+            <button
+              type="button"
+              id="btn-edit-selections"
+              class="text-xs font-mono text-neutral-500 hover:text-neutral-900 dark:hover:text-white cursor-pointer"
+            >
+              ← Edit Project Requirements
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { estimatorServicesConfig, calculateEstimate } from "../data/estimatorData";
+
+  // State management
+  let activeStep = 1;
+  let selectedServiceKey = "website";
+  let selectedOptions: string[] = [];
+  let selectedAddons: string[] = [];
+  let estimateReference = "";
+
+  // Elements
+  const stepPanels = document.querySelectorAll<HTMLElement>(".step-panel");
+  const stepNavItems = document.querySelectorAll<HTMLElement>(".step-nav-item");
+
+  function generateRef() {
+    const randomHex = Math.floor(1000 + Math.random() * 9000);
+    return `EST-2026-${randomHex}`;
+  }
+
+  function goToStep(step: number) {
+    activeStep = step;
+
+    stepPanels.forEach((p, idx) => {
+      if (idx + 1 === step) {
+        p.classList.remove("hidden");
+      } else {
+        p.classList.add("hidden");
+      }
+    });
+
+    stepNavItems.forEach((nav, idx) => {
+      const stepIndex = idx + 1;
+      const numEl = nav.querySelector(".step-num");
+      const labelEl = nav.querySelector(".step-label");
+
+      if (stepIndex <= step) {
+        nav.classList.remove("opacity-50");
+        if (numEl) {
+          numEl.classList.add("bg-neutral-900", "text-white", "dark:bg-white", "dark:text-black");
+          numEl.classList.remove("bg-neutral-200", "dark:bg-white/10", "text-neutral-600", "dark:text-neutral-400");
+        }
+        if (labelEl) {
+          labelEl.classList.add("text-neutral-900", "dark:text-white");
+          labelEl.classList.remove("text-neutral-600", "dark:text-neutral-400");
+        }
+      } else {
+        nav.classList.add("opacity-50");
+        if (numEl) {
+          numEl.classList.remove("bg-neutral-900", "text-white", "dark:bg-white", "dark:text-black");
+          numEl.classList.add("bg-neutral-200", "dark:bg-white/10", "text-neutral-600", "dark:text-neutral-400");
+        }
+        if (labelEl) {
+          labelEl.classList.remove("text-neutral-900", "dark:text-white");
+          labelEl.classList.add("text-neutral-600", "dark:text-neutral-400");
+        }
+      }
+    });
+
+    window.scrollTo({ top: 150, behavior: "smooth" });
+  }
+
+  // Render questions for Step 2
+  function renderStep2() {
+    const config = estimatorServicesConfig[selectedServiceKey];
+    if (!config) return;
+
+    const titleEl = document.getElementById("step-2-service-title");
+    const descEl = document.getElementById("step-2-service-desc");
+    const container = document.getElementById("questions-container");
+
+    if (titleEl) titleEl.textContent = `${config.serviceName} Requirements`;
+    if (descEl) descEl.textContent = config.defaultDescription;
+
+    if (!container) return;
+
+    container.innerHTML = config.questions.map((q) => {
+      const isSingle = q.type === "single-choice";
+
+      const optionsHtml = q.options.map((opt, idx) => {
+        const isChecked = selectedOptions.includes(opt.id) || (isSingle && idx === 0 && !selectedOptions.some(o => q.options.map(x => x.id).includes(o)));
+        if (isChecked && !selectedOptions.includes(opt.id)) {
+          selectedOptions.push(opt.id);
+        }
+
+        return `
+          <label class="option-card flex items-start gap-3 p-4 rounded-lg bg-white dark:bg-[#0c0c0c] border ${isChecked ? 'border-neutral-900 dark:border-white ring-1 ring-neutral-900 dark:ring-white' : 'border-[#ebebeb] dark:border-white/10'} hover:border-neutral-400 dark:hover:border-white/30 transition cursor-pointer">
+            <input
+              type="${isSingle ? 'radio' : 'checkbox'}"
+              name="${q.id}"
+              value="${opt.id}"
+              ${isChecked ? 'checked' : ''}
+              class="option-input mt-1 accent-black dark:accent-white"
+            />
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-semibold text-xs text-neutral-900 dark:text-white">${opt.label}</span>
+                <span class="text-[11px] font-mono text-neutral-500 dark:text-neutral-400 shrink-0">${opt.priceFormatted || ''}</span>
+              </div>
+              ${opt.description ? `<p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-1 leading-relaxed">${opt.description}</p>` : ''}
+            </div>
+          </label>
+        `;
+      }).join("");
+
+      return `
+        <div class="question-block space-y-3">
+          <div>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">${q.question}</h3>
+            ${q.helpText ? `<p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5">${q.helpText}</p>` : ''}
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            ${optionsHtml}
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    // Add option change listeners
+    container.querySelectorAll<HTMLInputElement>(".option-input").forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        const qName = target.name;
+        const qConfig = config.questions.find(x => x.id === qName);
+
+        if (qConfig?.type === "single-choice") {
+          // Remove other options of this question
+          const qOptIds = qConfig.options.map(x => x.id);
+          selectedOptions = selectedOptions.filter(id => !qOptIds.includes(id));
+          if (target.checked) selectedOptions.push(target.value);
+        } else {
+          // Multi choice
+          if (target.checked) {
+            if (!selectedOptions.includes(target.value)) selectedOptions.push(target.value);
+          } else {
+            selectedOptions = selectedOptions.filter(id => id !== target.value);
+          }
+        }
+
+        renderStep2();
+      });
+    });
+  }
+
+  // Render add-ons for Step 3
+  function renderStep3() {
+    const config = estimatorServicesConfig[selectedServiceKey];
+    const container = document.getElementById("addons-container");
+    if (!container || !config) return;
+
+    if (!config.compatibleAddons || config.compatibleAddons.length === 0) {
+      container.innerHTML = `<p class="text-xs text-neutral-400 col-span-2">No additional add-ons required for this discipline.</p>`;
+      return;
+    }
+
+    container.innerHTML = config.compatibleAddons.map((addon) => {
+      const isChecked = selectedAddons.includes(addon.id);
+
+      return `
+        <label class="addon-card flex items-start gap-3 p-4 rounded-lg bg-white dark:bg-[#0c0c0c] border ${isChecked ? 'border-neutral-900 dark:border-white ring-1 ring-neutral-900 dark:ring-white' : 'border-[#ebebeb] dark:border-white/10'} hover:border-neutral-400 dark:hover:border-white/30 transition cursor-pointer">
+          <input
+            type="checkbox"
+            value="${addon.id}"
+            ${isChecked ? 'checked' : ''}
+            class="addon-input mt-1 accent-black dark:accent-white"
+          />
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-semibold text-xs text-neutral-900 dark:text-white">${addon.name}</span>
+              <span class="text-xs font-mono font-semibold text-emerald-600 dark:text-emerald-400">${addon.priceFormatted}</span>
+            </div>
+            <span class="text-[10px] font-mono text-neutral-400 capitalize mt-0.5 block">${addon.billingBasis} charge</span>
+          </div>
+        </label>
+      `;
+    }).join("");
+
+    container.querySelectorAll<HTMLInputElement>(".addon-input").forEach((input) => {
+      input.addEventListener("change", (e) => {
+        const target = e.target as HTMLInputElement;
+        if (target.checked) {
+          if (!selectedAddons.includes(target.value)) selectedAddons.push(target.value);
+        } else {
+          selectedAddons = selectedAddons.filter(id => id !== target.value);
+        }
+        renderStep3();
+      });
+    });
+  }
+
+  // Render Step 4 summary & breakdown
+  function renderStep4() {
+    const result = calculateEstimate(selectedServiceKey, selectedOptions, selectedAddons);
+    if (!estimateReference) estimateReference = generateRef();
+
+    const refEl = document.getElementById("summary-estimate-ref");
+    const dateEl = document.getElementById("summary-date");
+    const srvNameEl = document.getElementById("summary-service-name");
+    const totalPrimaryEl = document.getElementById("summary-total-primary");
+    const totalRecurringEl = document.getElementById("summary-total-recurring");
+    const itemsListEl = document.getElementById("summary-items-list");
+
+    if (refEl) refEl.textContent = estimateReference;
+    if (dateEl) dateEl.textContent = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+    if (srvNameEl) srvNameEl.textContent = `${result.serviceName} Scope`;
+
+    if (totalPrimaryEl) {
+      if (result.oneTimeTotal > 0) {
+        totalPrimaryEl.textContent = `₹${result.oneTimeTotal.toLocaleString("en-IN")}${result.hasCustomQuote ? "+" : ""}`;
+      } else if (result.perSessionTotal > 0) {
+        totalPrimaryEl.textContent = `₹${result.perSessionTotal.toLocaleString("en-IN")} / session`;
+      } else if (result.monthlyTotal > 0) {
+        totalPrimaryEl.textContent = `₹${result.monthlyTotal.toLocaleString("en-IN")} / month`;
+      }
+    }
+
+    if (totalRecurringEl) {
+      const parts: string[] = [];
+      if (result.monthlyTotal > 0 && result.oneTimeTotal > 0) {
+        parts.push(`+ ₹${result.monthlyTotal.toLocaleString("en-IN")} / mo ongoing`);
+      }
+      if (result.annualTotal > 0) {
+        parts.push(`+ ₹${result.annualTotal.toLocaleString("en-IN")} / yr`);
+      }
+      totalRecurringEl.textContent = parts.join(" • ");
+    }
+
+    if (itemsListEl) {
+      itemsListEl.innerHTML = result.itemizedBreakdown.map((item) => `
+        <div class="p-3.5 flex items-center justify-between text-xs bg-white dark:bg-[#0c0c0c]">
+          <div>
+            <span class="font-medium text-neutral-900 dark:text-white">${item.title}</span>
+            ${item.description ? `<p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">${item.description}</p>` : ''}
+          </div>
+          <span class="font-mono text-xs font-semibold ${item.isCustom ? 'text-amber-500' : 'text-neutral-900 dark:text-white'} shrink-0 ml-4">
+            ${item.amountFormatted}
+          </span>
+        </div>
+      `).join("");
+    }
+  }
+
+  // Setup Step 1 service buttons
+  document.querySelectorAll<HTMLButtonElement>(".service-select-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const srvId = btn.dataset.serviceId;
+      if (srvId) {
+        selectedServiceKey = srvId;
+        selectedOptions = [];
+        selectedAddons = [];
+        renderStep2();
+        goToStep(2);
+      }
+    });
+  });
+
+  // Navigation handlers
+  document.getElementById("btn-next-step-2")?.addEventListener("click", () => {
+    renderStep3();
+    goToStep(3);
+  });
+
+  document.getElementById("btn-back-step-2")?.addEventListener("click", () => goToStep(1));
+  document.getElementById("back-to-step-1")?.addEventListener("click", () => goToStep(1));
+
+  document.getElementById("btn-next-step-3")?.addEventListener("click", () => {
+    renderStep4();
+    goToStep(4);
+  });
+
+  document.getElementById("btn-back-step-3")?.addEventListener("click", () => goToStep(2));
+  document.getElementById("back-to-step-2")?.addEventListener("click", () => goToStep(2));
+  document.getElementById("btn-edit-selections")?.addEventListener("click", () => goToStep(2));
+
+  // Top step nav clicks
+  document.getElementById("step-nav-1")?.addEventListener("click", () => goToStep(1));
+  document.getElementById("step-nav-2")?.addEventListener("click", () => {
+    if (activeStep > 2) goToStep(2);
+  });
+  document.getElementById("step-nav-3")?.addEventListener("click", () => {
+    if (activeStep > 3) goToStep(3);
+  });
+
+  // Actions in Step 4
+  document.getElementById("action-request-quote")?.addEventListener("click", () => {
+    const result = calculateEstimate(selectedServiceKey, selectedOptions, selectedAddons);
+    const params = new URLSearchParams({
+      service: selectedServiceKey,
+      estimateRef: estimateReference,
+      oneTime: String(result.oneTimeTotal),
+      monthly: String(result.monthlyTotal),
+      options: selectedOptions.join(","),
+      addons: selectedAddons.join(","),
+    });
+    window.location.href = `/request-quote?${params.toString()}`;
+  });
+
+  document.getElementById("action-book-consultation")?.addEventListener("click", () => {
+    const params = new URLSearchParams({
+      service: selectedServiceKey,
+      estimateRef: estimateReference,
+    });
+    window.location.href = `/book-consultation?${params.toString()}`;
+  });
+
+  document.getElementById("action-print-estimate")?.addEventListener("click", () => {
+    window.print();
+  });
+
+  // Check URL query params for preselection (e.g. /estimate?service=website-development)
+  const queryParams = new URLSearchParams(window.location.search);
+  const requestedService = queryParams.get("service");
+  if (requestedService) {
+    let matchedKey = "";
+    if (requestedService.includes("website")) matchedKey = "website";
+    else if (requestedService.includes("app")) matchedKey = "app";
+    else if (requestedService.includes("seo")) matchedKey = "seo-geo";
+    else if (requestedService.includes("presence")) matchedKey = "presence";
+    else if (requestedService.includes("branding")) matchedKey = "branding";
+    else if (requestedService.includes("consult")) matchedKey = "consultancy";
+    else if (requestedService.includes("maint")) matchedKey = "maintenance";
+
+    if (matchedKey && estimatorServicesConfig[matchedKey]) {
+      selectedServiceKey = matchedKey;
+      renderStep2();
+      goToStep(2);
+    }
+  }
+</script>

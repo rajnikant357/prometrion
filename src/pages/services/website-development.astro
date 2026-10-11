@@ -1,58 +1,182 @@
 ---
-// services/website-development.astro - Complete Website Development Service Page
+// services/website-development.astro - Complete Canonical Website Development Service Page
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
+import { getServicesByCategory } from "../../data/servicesCatalog";
+
+const webServices = getServicesByCategory("website");
 
 const websiteTypes = [
-  { title: "Business Websites", desc: "Corporate credibility, authoritative branding, and seamless lead funnels for modern enterprises." },
-  { title: "SaaS & App Landing Pages", desc: "High-conversion product showcases with live interactive previews, pricing matrices, and auth." },
-  { title: "Headless E-Commerce", desc: "Sub-second product catalog loading, instant cart drawers, and secure payment gateway integrations." },
-  { title: "Portfolio & Creator Sites", desc: "Minimalist, Swiss-inspired portfolios crafted for agencies, architects, designers, and founders." },
-  { title: "Institutional & School Portals", desc: "Role-based dashboards, student/parent portals, notice boards, and accessible directories." },
-  { title: "Healthcare & Clinic Portals", desc: "Doctor scheduling, appointment calendars, patient intake forms, and HIPAA-compliant architecture." },
+  {
+    title: "Starter / Portfolio Website",
+    price: "₹5,000+",
+    turnaround: "3–6 days",
+    badge: "Starter Tier",
+    persona: "Photographers, artists, freelancers, job seekers, and solo practitioners.",
+    problem: "Need an immediate, credible digital presence without complex setups or high overhead.",
+    scope: ["Up to 3 showcase pages", "Curated image/work gallery", "Bio and credentials overview", "Contact form + WhatsApp button", "Mobile responsive design", "Basic Google indexing"],
+  },
+  {
+    title: "Small & Local Business Website",
+    price: "₹6,000+",
+    turnaround: "5–7 days",
+    badge: "Standard Tier",
+    persona: "Retail shops, salons, clinics, workshops, local service providers, and contractors.",
+    problem: "Losing local customer calls to neighborhood competitors who appear higher on Google search.",
+    scope: ["Up to 5 structured pages", "Service and pricing overview", "Click-to-call mobile header", "WhatsApp direct chat integration", "Google Maps location pin", "Basic local SEO metadata"],
+  },
+  {
+    title: "Professional Corporate Website",
+    price: "₹9,999 – ₹14,999+",
+    turnaround: "5–12 days",
+    badge: "Growth Tier",
+    persona: "Established private firms, manufacturing agencies, legal practices, and institutions.",
+    problem: "Outdated legacy website undermines corporate authority and fails to generate qualified inbound inquiries.",
+    scope: ["Up to 8–12 custom pages", "Detailed service breakdowns", "Team bios, credentials & FAQ", "Advanced quote inquiry routing", "Search Console + analytics setup", "Sub-second loading architecture"],
+  },
+  {
+    title: "Business Catalogue Website",
+    price: "₹12,000 – ₹14,999+",
+    turnaround: "7–12 days",
+    badge: "Growth Tier",
+    persona: "Wholesalers, distributors, showroom owners, machinery suppliers, and garment vendors.",
+    problem: "High manual WhatsApp coordination overhead sharing unorganized PDFs and pricing sheets.",
+    scope: ["Organized catalogue up to 50 items", "Category tags & filter navigation", "Product detail pages with specs", "1-click WhatsApp item inquiry", "Search bar and quote list", "Ready for future e-commerce upgrade"],
+  },
+  {
+    title: "Booking & Appointment Website",
+    price: "₹14,999+",
+    turnaround: "7–12 days",
+    badge: "Growth Tier",
+    persona: "Clinics, diagnostic labs, salons, consultants, tutors, and boutique hotels.",
+    problem: "Manual phone bookings cause schedule mix-ups, missed appointments, and wasted reception time.",
+    scope: ["Interactive calendar slot booking", "Service & specialist selector", "Automated email confirmation", "Customer intake questionnaires", "WhatsApp & call direct routing", "Google Maps directions"],
+  },
+  {
+    title: "E-Commerce Digital Storefront",
+    price: "₹19,999 – ₹30,000+",
+    turnaround: "10–20 days",
+    badge: "Growth / Advanced",
+    persona: "Boutiques, direct-to-consumer brands, specialty retailers, and merchandise shops.",
+    problem: "Relying solely on third-party marketplaces with high commissions and zero brand ownership.",
+    scope: ["Product catalogue with variants (size/color)", "Slide-out shopping cart drawer", "Razorpay / Stripe payment gateway", "Customer account purchase history", "Order confirmation notifications", "Discount coupons & pin check"],
+  },
+  {
+    title: "Startup Launch & SaaS Landing",
+    price: "₹12,000 – ₹15,000+",
+    turnaround: "7–12 days",
+    badge: "Growth Tier",
+    persona: "Tech founders, innovators, product creators, and VC-backed ventures.",
+    problem: "Need high-converting waitlist momentum, investor presentation readiness, and clean product story.",
+    scope: ["High-impact value proposition hero", "Interactive feature bento grid", "Monthly/annual pricing toggle", "Waitlist signup with webhook sync", "Investor deck link & changelog", "Light/dark mode design tokens"],
+  },
+  {
+    title: "SaaS MVP & Custom Web App",
+    price: "₹39,999 – ₹75,000+",
+    turnaround: "20–45 days",
+    badge: "Advanced / Bespoke",
+    persona: "Founders validating software ideas with paying users, and enterprises needing internal portals.",
+    problem: "Generic off-the-shelf software cannot accommodate unique business logic or multi-tenant workflows.",
+    scope: ["User authentication (OAuth/Passwordless)", "Role-based administrative dashboard", "Subscription billing & webhook triggers", "PostgreSQL database architecture", "Staging sandbox & API documentation", "Full IP ownership upon handover"],
+  },
+];
+
+const scopeInclusions = [
+  "Custom responsive layout designed for mobile, tablet, and desktop",
+  "Astro 7 + Tailwind CSS v4 architecture for sub-second loading",
+  "Clean semantic HTML5 markup with 0.00 Cumulative Layout Shift (CLS)",
+  "Fast Anycast edge deployment with automated SSL/TLS encryption",
+  "Direct WhatsApp chat button and mobile click-to-call header",
+  "Google Maps interactive location pin embed",
+  "Google Search Console registration and XML sitemap submission",
+  "100% full source code ownership in private Git repository",
+];
+
+const scopeExclusions = [
+  "Domain name registration & hosting renewal fees (billed at direct third-party cost)",
+  "Third-party payment gateway transaction fees (Razorpay, Stripe, Cashfree)",
+  "Commercial copywriting beyond included scope (available as add-on at ₹1,000/page)",
+  "Ongoing monthly maintenance retainers after post-launch warranty period",
+  "Custom API microservices or third-party CRM licensing unless explicitly quoted",
+];
+
+const webAddons = [
+  { name: "Extra Website Page", price: "₹750", time: "1–2 days", desc: "Additional custom page matching existing design tokens." },
+  { name: "Professional Content Writing", price: "₹1,000 / page", time: "1–2 days", desc: "300–500 words of SEO-formatted commercial copy." },
+  { name: "Extra Design Section", price: "₹750", time: "1 day", desc: "Bespoke section (FAQ, testimonials, or pricing table)." },
+  { name: "Online Payment Gateway", price: "₹2,000+", time: "2–3 days", desc: "Razorpay, Stripe, or UPI integration with live callback verification." },
+  { name: "Booking System Module", price: "₹5,000+", time: "3–5 days", desc: "Calendar appointment booking with email notifications." },
+  { name: "Speed Optimization Sprint", price: "₹2,000", time: "1–2 days", desc: "Image compression, WebP tuning, and 95+ PageSpeed target." },
 ];
 
 const processSteps = [
-  { step: "01", name: "Discovery & Strategy", desc: "We map your audience personas, commercial goals, competitor gaps, and conversion funnel architecture." },
-  { step: "02", name: "Swiss-Inspired UX/UI Design", desc: "We create precision Figma design tokens based on the Geist aesthetic: clean typography, 1px borders, and high contrast." },
-  { step: "03", name: "High-Speed Frontend Engineering", desc: "We build on Astro 7 and Tailwind v4, ensuring 0.00 CLS, sub-100ms TTFB, and 95+ Core Web Vitals." },
-  { step: "04", name: "SEO / GEO & AI Optimization", desc: "We inject rich schema markup, semantic entity maps, and AI citation graphs so you dominate Google and ChatGPT." },
-  { step: "05", name: "Global Edge Launch & Support", desc: "We deploy to Anycast edge networks, configure SSL/TLS, setup analytics, and provide 30-day post-launch warranty." },
+  { step: "01", name: "Requirements Discovery & Architecture", desc: "We review your commercial model, catalog structure, audience personas, and conversion goals to map an exact page blueprint." },
+  { step: "02", name: "Geist UI/UX Design System", desc: "We formulate precision typography, high-contrast layouts, and responsive components matching your brand identity." },
+  { step: "03", name: "Performant Frontend Engineering", desc: "We build on Astro 7 and Tailwind v4, verifying zero layout shifts, sub-100ms TTFB, and 95+ Core Web Vitals." },
+  { step: "04", name: "SEO & Conversion Setup", desc: "We embed structured JSON-LD schema, local meta tags, analytics hooks, and direct lead capture channels." },
+  { step: "05", name: "Staging Sign-Off & Edge Launch", desc: "We deploy to private staging for client review, complete DNS and SSL cutover, and hand over 100% source code." },
 ];
 
+import { buildServiceSchema, buildBreadcrumbSchema, buildFaqSchema } from "../../utils/seo";
+
 const faqs = [
-  { q: "How fast can you build and launch my website?", a: "Standard business websites launch within 7–14 business days. Complex custom SaaS platforms or e-commerce systems typically take 3–4 weeks." },
-  { q: "Do you build custom designs or use generic templates?", a: "Every Prometrion website is bespoke. We design custom Figma tokens based on your brand identity and code clean, semantic markup from scratch." },
-  { q: "Will our website score 90+ on Google PageSpeed and Core Web Vitals?", a: "Yes. We guarantee 90+ mobile and desktop scores on Core Web Vitals (LCP, INP, CLS) as part of our engineering SLA." },
-  { q: "Can we update content ourselves after launch?", a: "Absolutely. We integrate headless CMS solutions or provide an intuitive content management interface so your team can publish with zero code." },
+  { q: "How long does it take to launch a website?", a: "Starter and small business websites launch within 3–7 business days. Complex catalog platforms, e-commerce storefronts, and SaaS web applications take 10–30 business days depending on feature scope." },
+  { q: "Do you use generic website templates?", a: "No. Every Prometrion website is built from clean, bespoke code with custom typography and design tokens tailored specifically to your business." },
+  { q: "Do I own my website and code?", a: "Yes, 100%. Upon final milestone sign-off, all source code, graphic assets, and configuration files are transferred directly to your private repository with zero platform lock-in." },
+  { q: "What are the recurring costs after launch?", a: "Because we use serverless edge architectures, basic hosting and SSL remain free or under ₹500/year for standard business sites. Ongoing maintenance care plans are completely optional starting at ₹999/month." },
 ];
+
+const serviceSchema = buildServiceSchema({
+  name: "Website Development Services",
+  description: "High-performance website development for businesses, startups, clinics, catalogs, and stores. Engineered with Astro 7, Tailwind v4, and transparent INR pricing.",
+  serviceType: "Web Development",
+  url: "/services/website-development",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Website Development", url: "/services/website-development" },
+]);
+
+const faqSchema = buildFaqSchema(faqs.map((f) => ({ question: f.q, answer: f.a })));
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+    faqSchema,
+  ],
+};
 ---
 
 <BaseLayout
   title="Website Development Services — Prometrion"
-  description="High-performance enterprise website development: Corporate, SaaS, E-Commerce, and Healthcare web platforms engineered for speed and conversion."
+  description="High-performance website development for businesses, startups, clinics, catalogs, and stores. Engineered with Astro 7, Tailwind v4, and transparent INR pricing."
+  jsonLd={jsonLd}
 >
   <!-- Compact Header -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
-        <SectionEyebrow tag="SERVICE SPECIFICATION">WEBSITE DEVELOPMENT</SectionEyebrow>
+        <SectionEyebrow tag="SERVICE 01">WEBSITE DEVELOPMENT</SectionEyebrow>
         <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
           Websites engineered for speed, authority, and conversion.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          High-performance digital flagship platforms utilizing modern Astro 7, Tailwind v4, and edge-native infrastructure.
+          From lean starter portals to full-scale digital storefronts and custom web applications. Built on Astro 7 and Anycast edge networks.
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/contact" size="sm">
-          Schedule Consultation
+        <Button variant="primary" href="/contact?service=website-development" size="sm">
+          Commission a Website
         </Button>
         <Button variant="secondary" href="/services/packages" size="sm">
-          Website Packages
+          Compare Packages
         </Button>
       </div>
     </div>
@@ -64,50 +188,75 @@ const faqs = [
       <div><span class="font-bold text-neutral-900 dark:text-white">&lt; 100ms</span> <span class="text-neutral-500">Global TTFB</span></div>
       <div><span class="font-bold text-emerald-600">98+</span> <span class="text-neutral-500">Core Web Vitals</span></div>
       <div><span class="font-bold text-neutral-900 dark:text-white">0.00</span> <span class="text-neutral-500">Layout Shift (CLS)</span></div>
-      <div><span class="font-bold text-neutral-900 dark:text-white">100%</span> <span class="text-neutral-500">GEO AI Optimized</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">100%</span> <span class="text-neutral-500">Code Ownership</span></div>
     </div>
   </div>
 
-  <!-- 2. Website Types We Build -->
+  <!-- Section 1: Typology & Pricing Grid -->
   <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <SectionEyebrow tag="TYPOLOGY">WHAT WE BUILD</SectionEyebrow>
-        <h2 class="text-3xl font-semibold tracking-tight text-[#171717]">
-          Tailored web solutions for every business model
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL CATALOG">WHAT WE BUILD</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Tailored web solutions for every business stage
         </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Every solution is delivered with fixed scope deliverables, concrete delivery windows, and transparent baseline pricing.
+        </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {websiteTypes.map((t) => (
-          <Card variant="default">
-            <h3 class="text-base font-semibold text-neutral-900">{t.title}</h3>
-            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{t.desc}</p>
-          </Card>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. Engineering Process Timeline -->
-  <section class="py-20 bg-white border-b border-[#ebebeb]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <SectionEyebrow tag="EXECUTION">OUR 5-STAGE PROCESS</SectionEyebrow>
-        <h2 class="text-3xl font-semibold tracking-tight text-[#171717]">
-          From strategy blueprint to edge deployment
-        </h2>
-      </div>
-
-      <div class="space-y-6">
-        {processSteps.map((p) => (
-          <div class="flex items-start gap-4 p-5 rounded-[6px] border border-[#ebebeb] bg-[#fafafa] shadow-whisper">
-            <span class="font-mono text-sm font-bold text-[#0070f3] bg-blue-50 px-2.5 py-1 rounded shrink-0">
-              {p.step}
-            </span>
+          <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating transition-all">
             <div>
-              <h3 class="text-sm font-semibold text-neutral-900">{p.name}</h3>
-              <p class="text-xs text-neutral-600 mt-1 leading-relaxed">{p.desc}</p>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={t.badge.includes('Starter') ? 'neutral' : t.badge.includes('Growth') ? 'blue' : 'purple'}>
+                  {t.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  ⚡ {t.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{t.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{t.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">Starting baseline</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Target Audience</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{t.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Solved</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{t.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Core Deliverables</span>
+                <ul class="space-y-1 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {t.scope.slice(0, 4).map((item) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant="primary-sm"
+                href={`/contact?service=website-development&model=${encodeURIComponent(t.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {t.title.split(' ')[0]}
+              </Button>
             </div>
           </div>
         ))}
@@ -115,55 +264,149 @@ const faqs = [
     </div>
   </section>
 
-  <!-- 4. Technology Stack -->
-  <section class="py-16 bg-[#fafafa] border-b border-[#ebebeb]">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <SectionEyebrow tag="TECH STACK">MODERN TOOLING</SectionEyebrow>
-      <h2 class="text-2xl font-semibold text-neutral-900 mb-8">
-        Built with the most performant frameworks on the web
-      </h2>
-      <div class="flex flex-wrap justify-center gap-4 text-xs font-mono text-neutral-700">
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Astro 7 (Zero-JS Islands)</span>
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Tailwind CSS v4</span>
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">TypeScript</span>
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">React & Next.js</span>
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">PostgreSQL & Edge DBs</span>
-        <span class="px-4 py-2 bg-white rounded-lg border border-[#ebebeb] shadow-whisper">Anycast Global CDN</span>
+  <!-- Section 2: Scope Inclusions & Exclusions -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="STANDARDS">SCOPE BOUNDARIES</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Absolute Commercial Clarity
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          We specify exactly what is built into every project and what items require separate third-party accounts or custom scoping.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Inclusions Card -->
+        <div class="p-6 rounded-[6px] border border-emerald-200 dark:border-emerald-950/60 bg-emerald-50/30 dark:bg-emerald-950/20">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">✔</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Included in Every Website Project</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {scopeInclusions.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✔</span>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Exclusions Card -->
+        <div class="p-6 rounded-[6px] border border-amber-200 dark:border-amber-950/60 bg-amber-50/30 dark:bg-amber-950/20">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold">!</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Important Scope Boundaries & Exclusions</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {scopeExclusions.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold mt-0.5">✕</span>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. FAQ Accordion Section -->
-  <section class="py-20 bg-white border-b border-[#ebebeb]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-xl mx-auto mb-12">
-        <SectionEyebrow tag="FAQ">FREQUENTLY ASKED QUESTIONS</SectionEyebrow>
-        <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">
-          Everything you need to know about our web builds
-        </h2>
+  <!-- Section 3: Relevant Add-ons Strip -->
+  <section class="py-14 bg-[#fafafa] dark:bg-black/30 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <SectionEyebrow tag="MODULAR UPGRADES">RELEVANT ADD-ONS</SectionEyebrow>
+          <h2 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-1">
+            Extend your website anytime
+          </h2>
+          <p class="text-xs text-neutral-500 mt-1">Add specialized functionality to any base website build at established itemized rates.</p>
+        </div>
+        <a href="/services/catalog" class="text-xs font-mono text-[#0070f3] dark:text-cyan-400 hover:underline shrink-0">
+          Explore complete 30+ item catalog →
+        </a>
       </div>
 
-      <div class="space-y-4">
-        {faqs.map((faq) => (
-          <div class="border border-[#ebebeb] rounded-[6px] p-5 bg-[#fafafa]">
-            <h3 class="text-sm font-semibold text-neutral-900">{faq.q}</h3>
-            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{faq.a}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {webAddons.map((addon) => (
+          <div class="p-4 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 flex items-center justify-between gap-3 shadow-whisper">
+            <div>
+              <div class="font-medium text-xs text-neutral-900 dark:text-white">{addon.name}</div>
+              <p class="text-[11px] text-neutral-500 mt-0.5 leading-snug">{addon.desc}</p>
+              <span class="text-[10px] font-mono text-neutral-400 mt-1 inline-block">⚡ {addon.time}</span>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-mono text-sm font-bold text-neutral-900 dark:text-white block">{addon.price}</span>
+              <a href={`/contact?addon=${encodeURIComponent(addon.name)}`} class="text-[10px] text-[#0070f3] dark:text-cyan-400 hover:underline">
+                Add +
+              </a>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- 6. Bottom CTA Band -->
-  <section class="py-16 bg-[#fafafa] text-center">
+  <!-- Section 4: Engineering Process -->
+  <section class="py-16 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="EXECUTION">OUR 5-STAGE PROCESS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          From strategy blueprint to edge deployment
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {processSteps.map((p) => (
+          <div class="flex items-start gap-4 p-5 rounded-[6px] border border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-white/[0.02] shadow-whisper">
+            <span class="font-mono text-sm font-bold text-[#0070f3] dark:text-cyan-400 bg-blue-50 dark:bg-white/10 px-2.5 py-1 rounded shrink-0">
+              {p.step}
+            </span>
+            <div>
+              <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">{p.name}</h3>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-1 leading-relaxed">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: FAQs -->
+  <section class="py-16 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <SectionEyebrow tag="FAQ">FREQUENTLY ASKED QUESTIONS</SectionEyebrow>
+        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-white mt-1">
+          Clear answers regarding website delivery
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-5 bg-white dark:bg-[#0c0c0c]">
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">{faq.q}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Bottom CTA Band -->
+  <section class="py-16 bg-white dark:bg-[#070707] text-center">
     <div class="max-w-2xl mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">Ready to build your flagship website?</h2>
-      <p class="text-xs sm:text-sm text-neutral-600 mt-2">
-        Contact our team for a detailed scope document and milestone estimate within 24 hours.
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Ready to commission your website?</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Contact our team for a detailed scope document and milestone delivery schedule within 24 hours.
       </p>
-      <div class="mt-6 flex justify-center gap-3">
-        <Button variant="primary" href="/contact">Request Proposal</Button>
-        <Button variant="secondary" href="/services/packages">View Packages</Button>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/request-quote?service=website-development">Get a Quote →</Button>
+        <Button variant="secondary" href="/estimate?service=website">Calculate Estimate</Button>
+        <Button variant="ghost" href="/book-consultation?service=website">Book Consultation</Button>
       </div>
     </div>
   </section>

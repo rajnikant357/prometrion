@@ -1,0 +1,375 @@
+---
+// src/pages/book-consultation.astro
+// Prometrion Strategic Advisory & Consultation Booking Workflow
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+import Badge from "../components/ui/Badge.astro";
+import Button from "../components/ui/Button.astro";
+import { buildBreadcrumbSchema } from "../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Book a Consultation", url: "/book-consultation" },
+]);
+---
+
+<BaseLayout
+  title="Book a Consultation — Engineering Advisory | Prometrion"
+  description="Schedule a 1-on-1 strategic consultation session with Prometrion architects. Discuss tech stacks, architecture design, digital growth, or system scoping."
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Ambient Atmospheric Aurora Glow -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[500px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity">
+    <div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[450px] rounded-full bg-gradient-to-r from-emerald-500/15 via-cyan-500/20 to-sky-500/15 blur-[120px]"></div>
+  </div>
+
+  <!-- Header Strip -->
+  <section class="border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707] transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <nav class="flex items-center gap-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-2">
+            <a href="/" class="hover:text-neutral-900 dark:hover:text-white transition">Home</a>
+            <span>/</span>
+            <a href="/services/digital-consultancy" class="hover:text-neutral-900 dark:hover:text-white transition">Consultancy</a>
+            <span>/</span>
+            <span class="text-neutral-900 dark:text-white font-medium">Book Consultation</span>
+          </nav>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+            Schedule a Strategic Consultation
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            Book a dedicated session with Prometrion's engineering and growth advisors to evaluate technical architectures and project roadmaps.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <Button variant="secondary" href="/services/digital-consultancy" size="sm">
+            Advisory Services
+          </Button>
+          <Button variant="ghost" href="/contact" size="sm">
+            Direct Desk
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Booking Interface -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/50 transition-colors">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-10 shadow-whisper">
+        <form id="consultation-form" class="space-y-6 text-xs text-neutral-800 dark:text-neutral-200">
+          
+          <!-- Section 1: Participant Information -->
+          <div>
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              01. Participant Details
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="book-name" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Full Name *</label>
+                <input
+                  id="book-name"
+                  type="text"
+                  required
+                  placeholder="Jane Doe"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-book-name" class="hidden text-[10px] text-red-500 mt-1 block">Please enter your name.</span>
+              </div>
+
+              <div>
+                <label for="book-email" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Email Address (for Google Meet invite) *</label>
+                <input
+                  id="book-email"
+                  type="email"
+                  required
+                  placeholder="jane@company.com"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-book-email" class="hidden text-[10px] text-red-500 mt-1 block">Please enter a valid email address.</span>
+              </div>
+
+              <div>
+                <label for="book-phone" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Phone / WhatsApp Number *</label>
+                <input
+                  id="book-phone"
+                  type="tel"
+                  required
+                  placeholder="+91 70842 02503"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-book-phone" class="hidden text-[10px] text-red-500 mt-1 block">Please provide a phone number for meeting reminders.</span>
+              </div>
+
+              <div>
+                <label for="book-org" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Organization or Venture Name (Optional)</label>
+                <input
+                  id="book-org"
+                  type="text"
+                  placeholder="Acme Labs"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Session Topic & Schedule -->
+          <div class="pt-4 border-t border-neutral-100 dark:border-white/10">
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              02. Consultation Topic & Preferred Timing
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="book-topic" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Consultation Focus *</label>
+                <select
+                  id="book-topic"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                >
+                  <option value="tech-selection">Technology Selection & Website Architecture</option>
+                  <option value="mobile-scoping">Mobile App Architecture (Android / Cross-Platform)</option>
+                  <option value="seo-geo-strategy">SEO & Generative Engine Visibility (GEO Blueprint)</option>
+                  <option value="digital-growth">90-Day Digital Growth Strategy & Lead Capture</option>
+                  <option value="code-audit">Security Review, Uptime & Codebase Audit</option>
+                  <option value="custom">General Technical Advisory Session</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="book-tz" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Time Zone</label>
+                <select
+                  id="book-tz"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                >
+                  <option value="IST (UTC+5:30)" selected>India Standard Time (IST / UTC+5:30)</option>
+                  <option value="UTC">Coordinated Universal Time (UTC)</option>
+                  <option value="EST (UTC-5)">Eastern Standard Time (EST / UTC-5)</option>
+                  <option value="PST (UTC-8)">Pacific Standard Time (PST / UTC-8)</option>
+                  <option value="BST (UTC+1)">British Summer Time (BST / UTC+1)</option>
+                  <option value="SGT (UTC+8)">Singapore Time (SGT / UTC+8)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="book-date" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Preferred Date *</label>
+                <input
+                  id="book-date"
+                  type="date"
+                  required
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                />
+                <span id="err-book-date" class="hidden text-[10px] text-red-500 mt-1 block">Please select an upcoming business date.</span>
+              </div>
+
+              <div>
+                <label for="book-slot" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">Preferred Time Window *</label>
+                <select
+                  id="book-slot"
+                  class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+                >
+                  <option value="Morning (10:00 AM – 1:00 PM IST)">Morning Slot (10:00 AM – 1:00 PM IST)</option>
+                  <option value="Afternoon (2:00 PM – 5:00 PM IST)" selected>Afternoon Slot (2:00 PM – 5:00 PM IST)</option>
+                  <option value="Evening (6:00 PM – 8:30 PM IST)">Evening Slot (6:00 PM – 8:30 PM IST)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Discussion Context -->
+          <div class="pt-4 border-t border-neutral-100 dark:border-white/10">
+            <h2 class="text-sm font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 mb-3 font-semibold">
+              03. Discussion Context & Objectives
+            </h2>
+            <div>
+              <label for="book-notes" class="block font-medium mb-1 text-neutral-700 dark:text-neutral-300">What specific challenge or roadmap item would you like to review? *</label>
+              <textarea
+                id="book-notes"
+                rows="4"
+                required
+                placeholder="Briefly describe your existing system, current blockers, or questions for the consultation..."
+                class="w-full px-3.5 py-2.5 bg-[#fafafa] dark:bg-[#141414] border border-[#ebebeb] dark:border-white/15 rounded-lg focus:outline-none focus:border-neutral-900 dark:focus:border-cyan-400 text-neutral-900 dark:text-white"
+              ></textarea>
+              <span id="err-book-notes" class="hidden text-[10px] text-red-500 mt-1 block">Please outline your topic of discussion.</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button
+              type="submit"
+              id="submit-book-btn"
+              class="w-full py-3.5 px-6 rounded-full text-xs font-semibold bg-[#171717] dark:bg-white text-white dark:text-black hover:opacity-90 transition shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Submit Consultation Request →</span>
+            </button>
+            <p class="text-[11px] text-neutral-500 dark:text-neutral-400 text-center mt-2.5">
+              Prometrion confirms appointment slots within 24 business hours. Google Meet invitation sent upon confirmation.
+            </p>
+          </div>
+
+          <!-- Success State Notification -->
+          <div id="booking-success-box" class="hidden p-6 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-center space-y-3">
+            <div class="w-10 h-10 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto font-bold text-lg">
+              ✓
+            </div>
+            <div>
+              <h3 class="font-semibold text-sm text-emerald-950 dark:text-emerald-100">
+                Consultation Request Submitted
+              </h3>
+              <p class="text-xs text-emerald-800 dark:text-emerald-300 mt-1" id="booking-ref-notice">
+                Booking Reference: BK-2026-0000
+              </p>
+            </div>
+            <p class="text-xs text-neutral-600 dark:text-neutral-300 max-w-md mx-auto leading-relaxed">
+              We have received your requested date and slot. Our engineering team will review calendar availability and confirm the Google Meet invitation to your email.
+            </p>
+            <div class="pt-1 flex justify-center gap-2">
+              <a
+                id="booking-whatsapp-link"
+                href="https://wa.me/917084202503"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium bg-[#25D366] text-black hover:opacity-90 transition"
+              >
+                Notify Desk via WhatsApp (+91 7084202503) ↗
+              </a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById("consultation-form") as HTMLFormElement;
+  const nameInput = document.getElementById("book-name") as HTMLInputElement;
+  const emailInput = document.getElementById("book-email") as HTMLInputElement;
+  const phoneInput = document.getElementById("book-phone") as HTMLInputElement;
+  const orgInput = document.getElementById("book-org") as HTMLInputElement;
+  const topicSelect = document.getElementById("book-topic") as HTMLSelectElement;
+  const tzSelect = document.getElementById("book-tz") as HTMLSelectElement;
+  const dateInput = document.getElementById("book-date") as HTMLInputElement;
+  const slotSelect = document.getElementById("book-slot") as HTMLSelectElement;
+  const notesInput = document.getElementById("book-notes") as HTMLTextAreaElement;
+
+  const errName = document.getElementById("err-book-name");
+  const errEmail = document.getElementById("err-book-email");
+  const errPhone = document.getElementById("err-book-phone");
+  const errDate = document.getElementById("err-book-date");
+  const errNotes = document.getElementById("err-book-notes");
+  const successBox = document.getElementById("booking-success-box");
+  const submitBtn = document.getElementById("submit-book-btn") as HTMLButtonElement;
+
+  // Set min date to tomorrow
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDateStr = tomorrow.toISOString().split("T")[0];
+  if (dateInput) {
+    dateInput.min = minDateStr;
+  }
+
+  // Read URL params
+  const params = new URLSearchParams(window.location.search);
+  const serviceParam = params.get("service");
+  const estimateRef = params.get("estimateRef");
+
+  if (serviceParam && topicSelect) {
+    if (serviceParam.includes("website")) topicSelect.value = "tech-selection";
+    else if (serviceParam.includes("app")) topicSelect.value = "mobile-scoping";
+    else if (serviceParam.includes("seo")) topicSelect.value = "seo-geo-strategy";
+    else if (serviceParam.includes("growth")) topicSelect.value = "digital-growth";
+  }
+
+  if (estimateRef && notesInput && !notesInput.value) {
+    notesInput.value = `Discussing requirements formulated under Estimator Reference [${estimateRef}].`;
+  }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let valid = true;
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const date = dateInput.value;
+    const notes = notesInput.value.trim();
+
+    if (!name) {
+      errName?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errName?.classList.add("hidden");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      errEmail?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errEmail?.classList.add("hidden");
+    }
+
+    if (!phone) {
+      errPhone?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errPhone?.classList.add("hidden");
+    }
+
+    if (!date) {
+      errDate?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errDate?.classList.add("hidden");
+    }
+
+    if (!notes) {
+      errNotes?.classList.remove("hidden");
+      valid = false;
+    } else {
+      errNotes?.classList.add("hidden");
+    }
+
+    if (!valid) return;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `<span>Submitting Request...</span>`;
+
+    const bookingId = `BK-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const org = orgInput.value.trim() || "Not specified";
+    const topic = topicSelect.options[topicSelect.selectedIndex].text;
+    const tz = tzSelect.value;
+    const slot = slotSelect.value;
+
+    const bookingPayload = `*Consultation Booking Request [${bookingId}] — Prometrion*\n\n` +
+      `👤 *Client:* ${name}\n` +
+      `🏢 *Company:* ${org}\n` +
+      `📧 *Email:* ${email}\n` +
+      `📞 *Phone / WhatsApp:* ${phone}\n` +
+      `🎯 *Topic:* ${topic}\n` +
+      `📅 *Preferred Date:* ${date}\n` +
+      `⏰ *Preferred Slot:* ${slot} (${tz})\n` +
+      (estimateRef ? `🔖 *Estimator Ref:* ${estimateRef}\n` : '') +
+      `\n📝 *Context:*\n${notes}\n\n` +
+      `— Submitted via Prometrion.com Booking Portal`;
+
+    const waLink = document.getElementById("booking-whatsapp-link") as HTMLAnchorElement | null;
+    const encoded = encodeURIComponent(bookingPayload);
+    const waUrl = `https://wa.me/917084202503?text=${encoded}`;
+
+    if (waLink) waLink.href = waUrl;
+
+    const refNotice = document.getElementById("booking-ref-notice");
+    if (refNotice) refNotice.textContent = `Booking Request ID: ${bookingId}`;
+
+    successBox?.classList.remove("hidden");
+    successBox?.scrollIntoView({ behavior: "smooth" });
+
+    window.open(waUrl, "_blank");
+  });
+</script>

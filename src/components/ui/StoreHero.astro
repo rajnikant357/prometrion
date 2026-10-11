@@ -1,0 +1,73 @@
+---
+// StoreHero.astro - Clean, Minimal Prometrion Store Hero & Navbuttons
+interface Props {
+  activeTab: "hub" | "webstore" | "appstore";
+}
+
+const { activeTab = "hub" } = Astro.props;
+
+const navItems = [
+  { id: "hub", label: "Store Hub", href: "/store" },
+  { id: "webstore", label: "Webstore", href: "/store/webstore" },
+  { id: "appstore", label: "Appstore", href: "/store/appstore" },
+];
+---
+
+<section class="border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707] transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
+    
+    <!-- Title & Verification Badges -->
+    <div>
+      <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+        Websites & Applications Store
+      </h1>
+
+      <div class="mt-2 flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono text-neutral-500 dark:text-neutral-400">
+        <span class="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300">
+          <svg class="w-3.5 h-3.5 text-emerald-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+          Edge CDN Delivery
+        </span>
+        <span class="text-neutral-300 dark:text-neutral-700">•</span>
+        <span class="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300">
+          <svg class="w-3.5 h-3.5 text-[#0070f3] dark:text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+          Production Audited
+        </span>
+        <span class="text-neutral-300 dark:text-neutral-700">•</span>
+        <span class="flex items-center gap-1.5 text-neutral-700 dark:text-neutral-300">
+          <svg class="w-3.5 h-3.5 text-purple-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+          100% Source Included
+        </span>
+      </div>
+    </div>
+
+    <!-- Store Navbuttons (Unified across store pages) -->
+    <div class="p-1 rounded-full bg-neutral-100 dark:bg-white/[0.06] border border-neutral-200/80 dark:border-white/10 flex items-center gap-1 overflow-x-auto max-w-full shrink-0 shadow-whisper">
+      {navItems.map((item) => {
+        const isActive = item.id === activeTab;
+        return (
+          <a
+            href={item.href}
+            class={`inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-medium rounded-full transition whitespace-nowrap cursor-pointer ${
+              isActive
+                ? "bg-[#171717] dark:bg-white text-white dark:text-[#171717] font-semibold shadow-sm"
+                : "text-neutral-600 dark:text-neutral-300 hover:text-black dark:hover:text-white hover:bg-white/60 dark:hover:bg-white/10"
+            }`}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {isActive && (
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 dark:bg-emerald-500 animate-pulse"></span>
+            )}
+            <span>{item.label}</span>
+          </a>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

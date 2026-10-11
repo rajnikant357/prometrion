@@ -1,89 +1,340 @@
 ---
-// services/seo-geo.astro - SEO & Generative Engine Optimization (GEO)
+// services/seo-geo.astro - Canonical SEO & Generative Engine Optimization (GEO) Service Page
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
+
+const seoOfferings = [
+  {
+    title: "SEO Foundation",
+    price: "₹4,999 – ₹5,000",
+    billing: "one-time",
+    turnaround: "3–7 days",
+    badge: "Starter Tier",
+    persona: "New websites, freshly redesigned sites, and local businesses launching online.",
+    problem: "Search engines haven't indexed your pages or display messy, missing metadata in search snippets.",
+    scope: [
+      "Page title and meta description tag optimization",
+      "Google & Bing Search Console indexing submission",
+      "Automated XML sitemap & robots.txt generation",
+      "Mobile-friendly responsiveness audit",
+      "Social share image (OpenGraph & Twitter Card) tags",
+      "Broken link review and canonical redirect check"
+    ],
+    notes: "Essential technical starting point before ongoing monthly campaigns."
+  },
+  {
+    title: "Local SEO Retainer",
+    price: "₹5,000 – ₹5,999",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Standard Retainer",
+    persona: "Neighborhood retailers, clinics, restaurants, repair services, and local professionals.",
+    problem: "Competitors down the street capture nearby customers simply by ranking in the Google Maps top 3 pack.",
+    scope: [
+      "Google Business Profile weekly maintenance & updates",
+      "Local neighborhood keyword tracking & ranking checks",
+      "Local business directory citation updates (NAP consistency)",
+      "Location-focused content recommendations",
+      "Customer review response strategy & advice",
+      "Monthly search visibility & impression report"
+    ],
+    notes: "Focuses on local Google Maps 3-pack discovery and mobile calls."
+  },
+  {
+    title: "SEO Growth Retainer",
+    price: "₹7,999 – ₹8,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Growth Retainer",
+    persona: "Growing service businesses, regional companies, and expanding practices.",
+    problem: "Traffic plateaus because high-intent commercial keywords are captured by regional competitors.",
+    scope: [
+      "In-depth buyer intent keyword strategy",
+      "Monthly on-page content and header optimization",
+      "Technical Core Web Vitals health checks",
+      "Competitor search gap analysis & opportunities",
+      "Internal linking structure optimization",
+      "Monthly ranking progress & performance report"
+    ],
+    notes: "Recommended minimum 3-month engagement for measurable progress."
+  },
+  {
+    title: "AI Search Visibility (GEO)",
+    price: "₹7,999 – ₹8,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Generative Engine",
+    persona: "Modern brands, tech companies, and agencies wanting presence in AI answers.",
+    problem: "Customers ask ChatGPT, Claude, and Perplexity for vendor recommendations, but your brand is invisible or hallucinated.",
+    scope: [
+      "Brand entity structuring and knowledge graph alignment",
+      "Conversational FAQ schema and statistical table formatting",
+      "Authoritative citation cross-referencing",
+      "AI knowledge audit to mitigate LLM hallucinations",
+      "AI-search-focused content formatting for RAG systems",
+      "Conversational visibility monitoring & sentiment checks"
+    ],
+    notes: "Optimizes for ChatGPT, Perplexity, Gemini, and AI Overview summaries."
+  },
+  {
+    title: "Full SEO Optimization",
+    price: "₹11,999 – ₹12,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Advanced Retainer",
+    persona: "Competitive industries, e-commerce stores, and high-volume commercial services.",
+    problem: "Requires comprehensive hands-on SEO leadership covering technical architecture, content rewrites, and link authority.",
+    scope: [
+      "Comprehensive multi-cluster keyword roadmap",
+      "Priority landing page rewrites & conversion polish",
+      "Local SEO + map pack ongoing maintenance",
+      "Deep technical audits and schema improvements",
+      "Link-building strategy & publisher outreach",
+      "Bi-weekly ranking reports with dedicated manager"
+    ],
+    notes: "Dedicated search campaign manager assigned to your account."
+  },
+  {
+    title: "SEO + GEO Complete Search Visibility",
+    price: "₹14,999 – ₹15,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Enterprise Unified",
+    persona: "Market leaders, corporate brands, and ambitious enterprises dominating modern discovery.",
+    problem: "Search is split between traditional Google clicks and AI conversational summaries; managing them separately causes fragmented messaging.",
+    scope: [
+      "Complete organic SEO roadmap + full AI positioning",
+      "Dual-channel entity building (Google + ChatGPT/Perplexity)",
+      "Google Business Profile full local optimization",
+      "Executive search visibility dashboard",
+      "Voice search & conversational query readiness",
+      "Monthly strategic executive briefing & roadmap"
+    ],
+    notes: "Unified strategy delivering maximum authority across all modern search channels."
+  },
+];
+
+const specializedSeo = [
+  { name: "Google Ranking Campaign", price: "₹10,000/month+", desc: "Targeted organic search visibility drive focusing on specific commercial keyword clusters.", terms: "Goal is improved visibility; no guaranteed #1 position." },
+  { name: "Backlink Building Retainer", price: "₹4,999 – ₹5,000/month+", desc: "Contextual brand citations, niche directory references, and competitor link profile matching.", terms: "Strictly adheres to white-hat safety guidelines; no spam schemes." },
+  { name: "Guest Posting Service", price: "₹2,000/post+", desc: "High-quality 800+ word informative editorial article published on relevant publisher websites.", terms: "Priced per approved published article; quality over quantity." },
+];
+
+const transparentDisclaimers = [
+  "No credible engineering firm can guarantee a #1 ranking on Google. Search engine algorithms change frequently, and competitors continually update their websites.",
+  "Prometrion campaigns focus on durable, white-hat technical foundations, structured JSON-LD entity graphs, verifiable citations, and Core Web Vitals performance.",
+  "Monthly retainers are billed on a 30-day cycle with no lock-in contracts. You may pause or adjust retainers with 15 days notice before the next billing cycle.",
+  "All rankings and impression metrics are verified using official Google Search Console and Google Business Profile APIs, not vanity third-party estimators.",
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "SEO & GEO Search Visibility Services",
+  description: "Search Engine Optimization and Generative Engine Optimization (GEO). Ensure your business dominates Google search and is cited by ChatGPT, Claude, and Perplexity.",
+  serviceType: "SEO and GEO",
+  url: "/services/seo-geo",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "SEO & GEO", url: "/services/seo-geo" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
 ---
 
 <BaseLayout
   title="SEO & GEO Services — Prometrion"
-  description="Search Engine Optimization and Generative Engine Optimization (GEO) ensuring your business dominates Google, ChatGPT, and AI discovery engines."
+  description="Search Engine Optimization and Generative Engine Optimization (GEO). Ensure your business dominates Google search and is cited by ChatGPT, Claude, and Perplexity in INR."
+  jsonLd={jsonLd}
 >
+  <!-- Compact Header -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
-        <SectionEyebrow tag="NEXT-GEN SEARCH">SEO & GEO OPTIMIZATION</SectionEyebrow>
+        <SectionEyebrow tag="SERVICE 03">NEXT-GEN SEARCH & DISCOVERY</SectionEyebrow>
         <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
-          Discoverable by search engines. Cited by AI.
+          Discovered by search engines. Cited by AI assistants.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          Search engine dominance paired with conversational AI synthesis across ChatGPT, Claude, Perplexity, and Gemini.
+          Search engine dominance paired with conversational AI synthesis across Google, ChatGPT, Claude, Perplexity, and Gemini.
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/contact" size="sm">Request GEO Audit</Button>
-        <Button variant="secondary" href="/services/packages" size="sm">View Packages</Button>
+        <Button variant="primary" href="/contact?service=seo-geo" size="sm">
+          Request Search Audit
+        </Button>
+        <Button variant="secondary" href="/services/packages" size="sm">
+          View Retainers
+        </Button>
       </div>
     </div>
   </div>
 
-  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <!-- SEO Pillar -->
-        <Card variant="default">
-          <Badge variant="blue">Traditional Search</Badge>
-          <h2 class="text-2xl font-semibold text-neutral-900 mt-3">Technical & Local SEO</h2>
-          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Ensure your website ranks #1 for target buyer intent queries across search engines.
-          </p>
-
-          <ul class="mt-6 space-y-3 text-xs text-neutral-700">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>Core Web Vitals SLA:</strong> 95+ scores on LCP, INP, and CLS to prevent algorithmic rank penalties.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>Deep Schema & JSON-LD:</strong> Full structured markup for Organizations, Products, FAQs, and Articles.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>Local Google Maps Dominance:</strong> Google Business Profile optimization, local citations, and NAP consistency.</span>
-            </li>
-          </ul>
-        </Card>
-
-        <!-- GEO Pillar -->
-        <Card variant="default">
-          <Badge variant="purple">Generative Search</Badge>
-          <h2 class="text-2xl font-semibold text-neutral-900 mt-3">Generative Engine Optimization (GEO)</h2>
-          <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Position your brand as the canonical authority cited in AI-generated answers.
-          </p>
-
-          <ul class="mt-6 space-y-3 text-xs text-neutral-700">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>Semantic Entity Engineering:</strong> Linking your brand with Wikidata, industry ontologies, and authority graphs.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>AI Citation Density:</strong> Formatting content with statistical tables, structured facts, and verified quotes for LLM ingestion.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-500 font-bold">✔</span>
-              <span><strong>Multimodal Vector Discovery:</strong> Structuring assets so retrieval-augmented generation (RAG) agents index your products.</span>
-            </li>
-          </ul>
-        </Card>
-
-      </div>
-
+  <!-- Dual Pillar Callout Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">Google & Bing</span> <span class="text-neutral-500">Traditional SEO</span></div>
+      <div><span class="font-bold text-cyan-500">ChatGPT & Claude</span> <span class="text-neutral-500">GEO Authority</span></div>
+      <div><span class="font-bold text-emerald-600">Local Maps</span> <span class="text-neutral-500">3-Pack Dominance</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">JSON-LD</span> <span class="text-neutral-500">Deep Entity Schema</span></div>
     </div>
   </div>
+
+  <!-- Section 1: Offerings Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL RETAINERS">SEARCH PACKAGES & PLANS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Structured search visibility plans in INR
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          From foundational setup to full multi-channel enterprise search optimization.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {seoOfferings.map((plan) => (
+          <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={plan.badge.includes('Generative') ? 'purple' : plan.badge.includes('Enterprise') ? 'blue' : 'emerald'}>
+                  {plan.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  {plan.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{plan.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{plan.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">/{plan.billing}</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Target Persona</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{plan.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Solved</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{plan.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Deliverables Breakdown</span>
+                <ul class="space-y-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {plan.scope.map((item) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {plan.notes && (
+                <div class="mt-4 p-2 rounded bg-neutral-50 dark:bg-white/[0.03] text-[11px] font-mono text-neutral-500 border border-neutral-100 dark:border-white/5">
+                  ⓘ {plan.notes}
+                </div>
+              )}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant="primary-sm"
+                href={`/contact?service=seo-geo&plan=${encodeURIComponent(plan.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {plan.title}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Specialized SEO Services -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <SectionEyebrow tag="SPECIALIZED CAMPAIGNS">A-LA-CARTE AUTHORITY SERVICES</SectionEyebrow>
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Targeted Organic Campaigns
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {specializedSeo.map((item) => (
+          <div class="p-6 rounded-[6px] border border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-white/[0.02] shadow-whisper flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{item.name}</h3>
+              </div>
+              <div class="font-mono text-sm font-bold text-neutral-900 dark:text-white my-2">{item.price}</div>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">{item.desc}</p>
+              <div class="mt-4 text-[11px] font-mono text-neutral-500 bg-white dark:bg-white/5 p-2 rounded border border-neutral-200 dark:border-white/10">
+                {item.terms}
+              </div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-neutral-200 dark:border-white/10">
+              <Button variant="ghost-sm" href={`/contact?service=seo-geo&special=${encodeURIComponent(item.name)}`} class="w-full justify-center">
+                Inquire Campaign →
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Commercial Transparency Disclaimer -->
+  <section class="py-14 bg-[#fafafa] dark:bg-black/30 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-6 sm:p-8 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/10 shadow-whisper">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">i</span>
+          <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Prometrion Commercial Transparency Standard</h3>
+        </div>
+        <ul class="space-y-3 text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          {transparentDisclaimers.map((disc) => (
+            <li class="flex items-start gap-2">
+              <span class="text-neutral-400 font-mono mt-0.5">•</span>
+              <span>{disc}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Bottom CTA -->
+  <section class="py-16 bg-white dark:bg-[#070707] text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Ready to elevate your search discoverability?</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Let our search engineers conduct a comprehensive audit of your technical schema, local citations, and AI entity presence.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact?service=seo-geo">Book Search Consultation</Button>
+        <Button variant="secondary" href="/services/packages">Compare Packages</Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

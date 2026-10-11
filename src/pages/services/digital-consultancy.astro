@@ -1,0 +1,266 @@
+---
+// services/digital-consultancy.astro - Canonical Digital Consultancy Service Page
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { getServicesByCategory } from "../../data/servicesCatalog";
+
+const consultancyServices = getServicesByCategory("consultancy");
+
+const consultancyOfferings = [
+  {
+    title: "1-on-1 Digital Consultation",
+    price: "₹5,000+",
+    billing: "per session",
+    turnaround: "1–2 days",
+    badge: "Advisory Session",
+    persona: "Founders, business owners, and managers planning a digital upgrade or pivot.",
+    problem: "Uncertain which tech stack or marketing channel to prioritize, risking costly missteps.",
+    scope: [
+      "60-minute intensive private video advisory session",
+      "Live review of current website, app, or concept specs",
+      "Concise written takeaway document with action items",
+      "Technology stack and framework recommendations",
+      "Competitor digital footprint and gap analysis"
+    ],
+    notes: "Payment required in advance to confirm consultation slot."
+  },
+  {
+    title: "Digital Growth Plan",
+    price: "₹8,000+",
+    billing: "one-time",
+    turnaround: "5–7 days",
+    badge: "Strategic Roadmap",
+    persona: "Growing businesses ready to expand digital customer acquisition systematically.",
+    problem: "Scattered spending across ads, social, and web tools with no coherent 90-day plan.",
+    scope: [
+      "Written 90-day strategic execution blueprint",
+      "Channel prioritization matrix (Web, Mobile, Local, Social)",
+      "Realistic marketing budget allocation recommendations",
+      "Tool-stack and software recommendations",
+      "Key performance metric (KPI) tracking template"
+    ],
+    notes: "Provides an unbiased blueprint before investing in development."
+  },
+  {
+    title: "Comprehensive Digital Strategy",
+    price: "₹15,000+",
+    billing: "one-time",
+    turnaround: "10–14 days",
+    badge: "Executive Blueprint",
+    persona: "Established enterprises, multi-branch stores, and funded startup ventures.",
+    problem: "Disjointed legacy systems, lack of unified multi-channel architecture, and leadership alignment gaps.",
+    scope: [
+      "Comprehensive end-to-end business digital audit",
+      "Customer journey mapping and conversion funnel blueprint",
+      "Multi-channel marketing & technical architecture",
+      "Executive slide deck presentation for board/stakeholders",
+      "Detailed implementation milestone roadmap",
+      "Vendor and agency quote review guidance"
+    ],
+    notes: "Delivered as an executive strategy document and presentation."
+  },
+  {
+    title: "Monthly Digital Advisor",
+    price: "₹10,000+",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Retained Advisory",
+    persona: "Busy founders and executive teams needing senior digital direction without a full-time hire.",
+    problem: "Making critical software decisions without an experienced engineering leader on staff.",
+    scope: [
+      "Two 60-minute monthly strategic governance meetings",
+      "Vetting of third-party vendor proposals and software quotes",
+      "Monthly digital marketing and traffic performance audits",
+      "On-call messaging advisory support for tactical decisions",
+      "Quarterly growth review and hiring interview assistance"
+    ],
+    notes: "Provides experienced agency perspective for ongoing commercial choices."
+  },
+];
+
+const consultancyPillars = [
+  { title: "Commercial Pragmatism", desc: "We advise based on what actually drives revenue, operational efficiency, and customer acquisition — never tech for tech's sake." },
+  { title: "Vendor-Neutral Guidance", desc: "We recommend tools, cloud hosts, and frameworks based on your specific scale and budget, completely free from affiliate bias." },
+  { title: "Actionable Written Deliverables", desc: "Every session and strategy concludes with clean, structured documentation and prioritized checklists you can execute immediately." },
+  { title: "Risk Mitigation", desc: "Avoid spending lakhs on bloated agency proposals by getting independent technical scrutiny before signing contracts." },
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "Digital Consultancy Services",
+  description: "Strategic digital advisory, 1-on-1 consultations, 90-day growth plans, and executive digital direction for founders and businesses in INR.",
+  serviceType: "Digital Strategy & Consultancy",
+  url: "/services/digital-consultancy",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Digital Consultancy", url: "/services/digital-consultancy" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
+---
+
+<BaseLayout
+  title="Digital Consultancy Services — Prometrion"
+  description="Strategic digital advisory, 1-on-1 consultations, 90-day growth plans, and executive digital direction for founders and businesses in INR."
+  jsonLd={jsonLd}
+>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE 06">STRATEGIC ADVISORY & ARCHITECTURE</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Strategic clarity before investing in code.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Independent digital advisory, technology stack selection, vendor quote vetting, and 90-day growth roadmaps for founders and leadership teams.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact?service=digital-consultancy" size="sm">
+          Book Consultation
+        </Button>
+        <Button variant="secondary" href="/pricing" size="sm">
+          Pricing Matrix
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Advisory Signals Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">60-Min</span> <span class="text-neutral-500">Intensive Sessions</span></div>
+      <div><span class="font-bold text-emerald-600">90-Day</span> <span class="text-neutral-500">Action Blueprints</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Vendor Vetting</span> <span class="text-neutral-500">Quote Audits</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Written</span> <span class="text-neutral-500">Action Takeaways</span></div>
+    </div>
+  </div>
+
+  <!-- Section 1: Offerings Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL OFFERINGS">CONSULTANCY SERVICES</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Structured advisory engagements in INR
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          From single strategy sessions to ongoing monthly digital advisor retainers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {consultancyOfferings.map((item) => (
+          <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={item.badge.includes('Session') ? 'neutral' : item.badge.includes('Retained') ? 'blue' : 'purple'}>
+                  {item.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  ⚡ {item.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{item.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{item.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">/{item.billing}</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Best For</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{item.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Core Problem</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{item.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Deliverables</span>
+                <ul class="space-y-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {item.scope.map((s) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {item.notes && (
+                <div class="mt-4 p-2 rounded bg-neutral-50 dark:bg-white/[0.03] text-[11px] font-mono text-neutral-500 border border-neutral-100 dark:border-white/5">
+                  ⓘ {item.notes}
+                </div>
+              )}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant="primary-sm"
+                href={`/contact?service=digital-consultancy&type=${encodeURIComponent(item.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {item.title.split(' ')[0]}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Consultancy Pillars -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <SectionEyebrow tag="METHODOLOGY">ADVISORY PRINCIPLES</SectionEyebrow>
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Why Founders Consult Prometrion
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {consultancyPillars.map((cp) => (
+          <div class="p-6 rounded-[6px] bg-[#fafafa] dark:bg-white/[0.02] border border-[#ebebeb] dark:border-white/10 shadow-whisper">
+            <span class="text-[#0070f3] dark:text-cyan-400 font-bold text-sm block mb-2">✦</span>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white mb-2">{cp.title}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{cp.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Bottom CTA -->
+  <section class="py-16 bg-[#fafafa] dark:bg-black/20 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Get experienced direction on your next digital move</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Schedule a 1-on-1 strategy session or commission an unbiased 90-day execution blueprint before committing your development budget.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact?service=digital-consultancy">Schedule Strategy Session</Button>
+        <Button variant="secondary" href="/pricing">Compare Pricing Matrix</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

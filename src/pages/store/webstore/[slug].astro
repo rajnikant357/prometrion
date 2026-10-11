@@ -1,0 +1,274 @@
+---
+// src/pages/store/webstore/[slug].astro
+// Dynamic Project Detail Page for Prometrion Webstore
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Button from "../../../components/ui/Button.astro";
+import Badge from "../../../components/ui/Badge.astro";
+import SectionEyebrow from "../../../components/ui/SectionEyebrow.astro";
+import { webstoreProjects, type WebstoreProject } from "../../../data/webstoreProjects";
+
+export function getStaticPaths() {
+  const paths = webstoreProjects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+
+  // Backwards compatibility alias for previous 'study-academy' route
+  const sa1 = webstoreProjects.find((p) => p.slug === "study-academy-1");
+  if (sa1) {
+    paths.push({
+      params: { slug: "study-academy" },
+      props: { project: sa1 },
+    });
+  }
+
+  return paths;
+}
+
+import { buildBreadcrumbSchema } from "../../../utils/seo";
+
+const { project } = Astro.props;
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Store", url: "/store" },
+  { name: "Webstore", url: "/store/webstore" },
+  { name: project.name, url: `/store/webstore/${project.slug}` },
+]);
+---
+
+<BaseLayout
+  title={`${project.name} — Webstore Portfolio | Prometrion`}
+  description={project.shortDesc}
+  canonical={`https://www.prometrion.com/store/webstore/${project.slug}`}
+  jsonLd={breadcrumbSchema}
+>
+  <!-- Ambient Atmospheric Aurora Glow -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[500px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity">
+    <div class="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[800px] h-[450px] rounded-full bg-gradient-to-r from-emerald-500/15 via-cyan-500/20 to-sky-500/15 blur-[120px]"></div>
+  </div>
+
+  <!-- Breadcrumbs & Header Strip -->
+  <section class="border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707] transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <nav class="flex items-center gap-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-3">
+        <a href="/store" class="hover:text-neutral-900 dark:hover:text-white transition">Store</a>
+        <span>/</span>
+        <a href="/store/webstore" class="hover:text-neutral-900 dark:hover:text-white transition">Webstore</a>
+        <span>/</span>
+        <span class="text-neutral-900 dark:text-white font-medium">{project.name}</span>
+      </nav>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
+              {project.name}
+            </h1>
+            <Badge variant="blue">{project.category}</Badge>
+            {project.statusNote && (
+              <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
+                Notice: Offline Deployment
+              </span>
+            )}
+          </div>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 max-w-2xl leading-relaxed">
+            {project.shortDesc}
+          </p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-white bg-[#171717] hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 rounded-full transition shadow-sm cursor-pointer"
+          >
+            <span>Live Demo</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          <Button
+            variant="secondary"
+            href={`/request-quote?project=${encodeURIComponent(project.name)}`}
+            size="sm"
+          >
+            Request Similar Website
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/50 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left: Large Preview Showcase (8 cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] overflow-hidden shadow-whisper">
+            <!-- Browser Mockup Window Chrome -->
+            <div class="px-4 py-3 border-b border-neutral-100 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.02] flex items-center justify-between">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80 inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80 inline-block"></span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1 rounded bg-white dark:bg-black/40 border border-neutral-200/80 dark:border-white/10 text-[11px] font-mono text-neutral-500 dark:text-neutral-400 max-w-sm truncate">
+                <svg class="w-3 h-3 text-neutral-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <span class="truncate">{project.url}</span>
+              </div>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[11px] font-mono text-[#0070f3] dark:text-cyan-400 hover:underline"
+              >
+                Open ↗
+              </a>
+            </div>
+
+            <!-- Preview Visual Area -->
+            {project.image ? (
+              <div class="relative bg-neutral-900 group">
+                <img
+                  src={project.image}
+                  alt={`Screenshot preview of ${project.name}`}
+                  class="w-full h-auto object-cover max-h-[580px] block transition duration-300 group-hover:scale-[1.01]"
+                  loading="eager"
+                />
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span class="px-4 py-2 bg-white dark:bg-black text-neutral-900 dark:text-white rounded-full text-xs font-medium shadow-lg">
+                    Click "Live Demo" to Explore Real Experience ↗
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div class="aspect-video bg-gradient-to-br from-neutral-900 via-[#0e0e0e] to-neutral-950 p-8 sm:p-12 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white mb-4 shadow-sm">
+                  <svg class="w-7 h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-white tracking-tight">{project.name}</h3>
+                <p class="text-xs text-neutral-400 font-mono mt-1">{project.category}</p>
+                <p class="text-xs text-neutral-500 max-w-md mt-3 leading-relaxed">
+                  Interactive preview unavailable. Launch the live demo directly to interact with the production application.
+                </p>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-6 inline-flex items-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-white text-black hover:bg-neutral-200 transition shadow-sm"
+                >
+                  <span>Launch Live Demo ↗</span>
+                </a>
+              </div>
+            )}
+          </div>
+
+          <!-- Deep Project Narrative -->
+          <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-8 shadow-whisper space-y-4">
+            <SectionEyebrow tag="01. OVERVIEW">PROJECT DETAILS</SectionEyebrow>
+            <h2 class="text-lg sm:text-xl font-semibold text-neutral-900 dark:text-white">
+              About {project.name}
+            </h2>
+            <p class="text-sm text-neutral-600 dark:text-neutral-300 leading-relaxed">
+              {project.fullDesc}
+            </p>
+            {project.statusNote && (
+              <div class="p-3.5 rounded-[6px] bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-300">
+                <strong>Audit Verification Note:</strong> {project.statusNote}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Right: Specifications & CTA Card (4 cols) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Key Features Card -->
+          <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 shadow-whisper space-y-4">
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white font-mono uppercase tracking-wider">
+              Verified Features
+            </h3>
+            <ul class="space-y-2.5 text-xs text-neutral-600 dark:text-neutral-300">
+              {project.features.map((feature) => (
+                <li class="flex items-start gap-2.5 leading-relaxed">
+                  <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Verified Tech Stack -->
+          <div class="bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 shadow-whisper space-y-3">
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white font-mono uppercase tracking-wider">
+              Verified Technologies
+            </h3>
+            <div class="flex flex-wrap gap-1.5">
+              {project.stack.map((tech) => (
+                <span class="text-[11px] font-mono px-2.5 py-1 rounded bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-white/10">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Business Conversion CTA Box -->
+          <div class="bg-gradient-to-br from-neutral-900 to-black text-white rounded-[6px] p-6 border border-neutral-800 shadow-xl space-y-4 relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <span class="text-[10px] font-mono uppercase tracking-widest text-cyan-400 block font-semibold">
+              ✦ CUSTOM ENGINEERING
+            </span>
+            <h4 class="text-base font-semibold leading-snug">
+              Want a high-performance system like {project.name}?
+            </h4>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              We design, develop, and deploy production software tailored to your specific business requirements, brand identity, and operational workflows.
+            </p>
+            <div class="pt-2 flex flex-col gap-2">
+              <a
+                href={`/request-quote?project=${encodeURIComponent(project.name)}`}
+                class="btn-white-solid inline-flex items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-semibold rounded-full transition shadow-sm cursor-pointer"
+                style="background-color: #ffffff !important; color: #000000 !important;"
+              >
+                Request a Similar Project →
+              </a>
+              <a
+                href="/pricing"
+                class="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-medium rounded-full bg-white/10 text-neutral-300 hover:text-white hover:bg-white/20 transition"
+              >
+                View Pricing & Retainers
+              </a>
+            </div>
+          </div>
+
+          <!-- Back to Webstore Link -->
+          <div class="pt-2 text-center">
+            <a
+              href="/store/webstore"
+              class="text-xs font-mono text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition inline-flex items-center gap-1"
+            >
+              ← Back to All {webstoreProjects.length} Webstore Projects
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

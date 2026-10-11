@@ -1,107 +1,915 @@
 ---
-// about.astro - About Prometrion
+// src/pages/about.astro - Encyclopedic Archive: Rajnikant Gaurav & Prometrion Platform
+// A synthesis of Wikipedia's authoritative encyclopedic structure and Prometrion's luminous dark-first aesthetic.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
-import Card from "../components/ui/Card.astro";
-import Button from "../components/ui/Button.astro";
-import Badge from "../components/ui/Badge.astro";
+import { buildBreadcrumbSchema } from "../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "About", url: "/about" },
+  { name: "Rajnikant Gaurav", url: "/about#article" },
+]);
+
+// Encyclopedic Schema.org Graph combining Person, Organization, and Article
+const encyclopedicSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    breadcrumbSchema,
+    {
+      "@type": "Person",
+      "@id": "https://www.prometrion.com/about#rajnikant-gaurav",
+      "name": "Rajnikant Gaurav",
+      "image": "https://www.prometrion.com/rajnikant.png",
+      "birthDate": "2005-09-20",
+      "birthPlace": {
+        "@type": "Place",
+        "name": "Dadar, Ballia, Uttar Pradesh, India",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "25.7583",
+          "longitude": "84.1482"
+        }
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Bachelor of Technology in Computer Science and Engineering"
+      },
+      "jobTitle": "Founder & Chief Executive Officer",
+      "worksFor": {
+        "@type": "Organization",
+        "@id": "https://www.prometrion.com/#organization",
+        "name": "Prometrion"
+      },
+      "knowsAbout": [
+        "Software Engineering",
+        "Full-Stack Web Development",
+        "Artificial Intelligence",
+        "Autonomous Agent Systems",
+        "Distributed Systems",
+        "React",
+        "Node.js",
+        "Python",
+        "PostgreSQL",
+        "Tailwind CSS"
+      ],
+      "sameAs": [
+        "https://www.rajnikantg.in",
+        "https://www.prometrion.com"
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.prometrion.com/#organization",
+      "name": "Prometrion",
+      "url": "https://www.prometrion.com",
+      "foundingDate": "2025-11",
+      "founder": {
+        "@id": "https://www.prometrion.com/about#rajnikant-gaurav"
+      },
+      "description": "Software company and digital engineering platform established in November 2025 by Rajnikant Gaurav as an independent initiative, evolving into his ultimate flagship technology enterprise."
+    },
+    {
+      "@type": "Article",
+      "@id": "https://www.prometrion.com/about#article",
+      "headline": "Rajnikant Gaurav — Encyclopedic Profile & Prometrion History",
+      "description": "Biographical article documenting software engineer Rajnikant Gaurav and the history, architectural evolution, and software product ecosystem of Prometrion.",
+      "image": "https://www.prometrion.com/rajnikant.png",
+      "author": {
+        "@type": "Organization",
+        "name": "Prometrion Encyclopedia Desk"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Prometrion"
+      },
+      "datePublished": "2025-11-01",
+      "dateModified": "2026-10-11"
+    }
+  ]
+};
 ---
 
 <BaseLayout
-  title="About — Prometrion Mission & Philosophy"
-  description="Learn why Prometrion exists, our engineering philosophy, our products, and our mission to build technology for what's next."
+  title="Rajnikant Gaurav — Encyclopedic Archive & Prometrion Platform History"
+  description="Biographical and architectural encyclopedia entry for Rajnikant Gaurav, founder and CEO of Prometrion, established in November 2025 as a side project and built fully on his own."
+  image="/rajnikant.png"
+  type="profile"
+  jsonLd={encyclopedicSchema}
 >
-  <!-- Compact Header -->
-  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <SectionEyebrow tag="ABOUT PROMETRION">OUR MISSION</SectionEyebrow>
-        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
-          Building technology that moves the world forward.
-        </h1>
-        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
-          Products, digital services, marketplaces, and ecosystems for builders and businesses.
-        </p>
+  <!-- Ambient Luminous Background Aura (Prometrion Brand Atmosphere) -->
+  <div class="relative bg-[#fafafa] dark:bg-[#070709] min-h-screen text-[#202122] dark:text-[#eaecf0] py-8 sm:py-14 transition-colors overflow-hidden">
+    
+    <!-- Background Aurora Mesh Glows -->
+    <div class="pointer-events-none absolute top-10 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-radial from-cyan-500/10 via-emerald-500/5 to-transparent blur-3xl -z-10"></div>
+    <div class="pointer-events-none absolute bottom-40 right-10 w-[500px] h-[500px] bg-radial from-purple-500/5 to-transparent blur-3xl -z-10"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- ==========================================
+           WIKIPEDIA x PROMETRION HEADER BANNER
+           ========================================== -->
+      <header class="bg-white/90 dark:bg-[#0e0e12]/90 backdrop-blur-md border border-neutral-200 dark:border-white/10 rounded-t-xl shadow-whisper px-5 sm:px-8 pt-6 pb-4 relative overflow-hidden">
+        
+        <!-- Subtle Top Hairline Beam -->
+        <div class="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-80"></div>
+
+        <!-- Top Encyclopedia Meta Breadcrumb -->
+        <div class="flex flex-wrap items-center justify-between text-xs text-neutral-500 dark:text-neutral-400 pb-3 border-b border-neutral-100 dark:border-white/5 gap-3 font-sans">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-cyan-500/10 text-[#0070f3] dark:text-cyan-400 font-serif font-bold text-xs">
+              W
+            </span>
+            <span class="font-medium text-neutral-800 dark:text-neutral-200">The Free Software & Startup Encyclopedia</span>
+            <span class="text-neutral-300 dark:text-neutral-700">•</span>
+            <span class="font-mono text-[11px] text-neutral-500 dark:text-neutral-400">Dadar, Ballia, Uttar Pradesh • Prometrion</span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-50 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              Verified Article
+            </span>
+            <button id="view-source-trigger" class="text-cyan-600 dark:text-cyan-400 hover:underline flex items-center gap-1 cursor-pointer font-mono text-[11px]">
+              <span>[View source wikitext]</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Article Headline & Tagline -->
+        <div class="pt-5 pb-2">
+          <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+            <h1 id="article-title" class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-neutral-900 dark:text-white tracking-tight">
+              Rajnikant Gaurav
+            </h1>
+            <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">
+              EST. NOVEMBER 2025 • PROMETRION
+            </span>
+          </div>
+          
+          <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mt-1 font-serif italic">
+            From the encyclopedia of software developers and startup founders
+          </p>
+          
+          <div class="text-xs font-mono text-neutral-500 dark:text-neutral-400 mt-2 flex flex-wrap items-center gap-2">
+            <span class="flex items-center gap-1">
+              <span class="text-red-500">📍</span> Dadar, Ballia, Uttar Pradesh, India
+            </span>
+            <span>•</span>
+            <a href="https://geohack.toolforge.org/geohack.php?params=25.7583_N_84.1482_E" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline">
+              Coordinates: 25.7583° N, 84.1482° E ↗
+            </a>
+            <span>•</span>
+            <span class="text-emerald-600 dark:text-emerald-400">Founder & CEO, Prometrion</span>
+          </div>
+        </div>
+
+        <!-- Wikipedia Action Tabs Bar with Prometrion Luminous Active States -->
+        <div class="flex flex-wrap items-center justify-between border-b border-neutral-200 dark:border-white/10 pt-4 text-xs font-sans">
+          <!-- Left Action Tabs -->
+          <div class="flex items-center space-x-1 sm:space-x-2 -mb-px">
+            <span class="px-4 py-2 font-bold border-b-2 border-cyan-500 text-neutral-900 dark:text-white bg-neutral-50/80 dark:bg-white/[0.04] rounded-t-sm">
+              Article
+            </span>
+            <a href="#references" class="px-4 py-2 text-neutral-500 dark:text-neutral-400 hover:text-cyan-500 dark:hover:text-cyan-300 transition">
+              Talk (0)
+            </a>
+          </div>
+
+          <!-- Right Action Tabs -->
+          <div class="flex items-center space-x-1 sm:space-x-3 -mb-px text-xs">
+            <span class="px-3 py-2 font-bold border-b-2 border-cyan-500 text-neutral-900 dark:text-white">
+              Read
+            </span>
+            <button id="view-source-tab" class="px-3 py-2 text-neutral-500 dark:text-neutral-400 hover:text-cyan-500 dark:hover:text-cyan-300 cursor-pointer transition">
+              View source
+            </button>
+            <button id="view-history-tab" class="px-3 py-2 text-neutral-500 dark:text-neutral-400 hover:text-cyan-500 dark:hover:text-cyan-300 cursor-pointer transition">
+              View history
+            </button>
+            <div class="hidden md:flex items-center pl-2 text-neutral-400 text-[11px] font-mono">
+              <span>Tools ▾</span>
+            </div>
+          </div>
+        </div>
+
+      </header>
+
+      <!-- ==========================================
+           MAIN ENCYCLOPEDIC BODY SHEET
+           ========================================== -->
+      <main class="bg-white dark:bg-[#0c0c0f] border-x border-b border-neutral-200 dark:border-white/10 rounded-b-xl shadow-floating px-5 sm:px-10 py-8 sm:py-12 relative">
+
+        <!-- Wikipedia Disambiguation / Hatnote Callout with Prometrion Neon Edge -->
+        <div class="mb-6 p-4 bg-neutral-50/90 dark:bg-white/[0.02] border-l-3 border-cyan-400 dark:border-cyan-400 text-xs text-neutral-600 dark:text-neutral-300 italic rounded-r-lg shadow-whisper">
+          This biographical article documents independent software engineer and entrepreneur <strong>Rajnikant Gaurav</strong>, and chronicles the founding, architectural evolution, and multi-product ecosystem of <strong>Prometrion</strong>.
+        </div>
+
+        <!-- ==========================================
+             WIKIPEDIA x PROMETRION FLOATING INFOBOX (VCARD)
+             ========================================== -->
+        <aside class="w-full sm:w-[320px] md:w-[350px] sm:float-right sm:ml-8 mb-6 bg-neutral-50/90 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 rounded-lg p-4 text-xs leading-normal shadow-whisper hover:shadow-floating transition-all duration-300 font-sans">
+            
+            <!-- Infobox Top Banner -->
+            <div class="bg-neutral-100 dark:bg-white/[0.05] py-2 px-3 text-center font-bold text-sm text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 rounded-t tracking-tight">
+              Rajnikant Gaurav
+            </div>
+
+            <!-- Image 1: Authentic Photo of Rajnikant Gaurav -->
+            <div class="p-2.5 bg-white dark:bg-[#09090c] border border-neutral-200 dark:border-white/10 rounded my-3 text-center group">
+              <div class="w-full aspect-[4/5] rounded overflow-hidden bg-neutral-900 relative shadow-md">
+                <img
+                  src="/rajnikant.png"
+                  alt="Rajnikant Gaurav — Founder & CEO of Prometrion"
+                  class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105"
+                  loading="eager"
+                />
+                <!-- Subtle Gradient Vignette at bottom of portrait -->
+                <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-2 left-2 right-2 text-center text-white text-[11px] font-mono">
+                  <span class="px-2 py-0.5 rounded bg-black/60 backdrop-blur-xs border border-white/20">
+                    Rajnikant Gaurav (2025)
+                  </span>
+                </div>
+              </div>
+              
+              <div class="text-[11px] text-neutral-600 dark:text-neutral-400 italic pt-2 mt-1">
+                Rajnikant Gaurav in formal attire<br />
+                <span class="font-normal not-italic text-[10px] text-neutral-500 dark:text-neutral-400">Formal portrait (2025)</span>
+              </div>
+            </div>
+
+            <!-- Image 2: Workspace & Coffee Card -->
+            <div class="p-2.5 bg-white dark:bg-[#09090c] border border-neutral-200 dark:border-white/10 rounded mb-3 text-center">
+              <div class="p-2.5 rounded bg-neutral-100 dark:bg-white/[0.03] font-mono text-[11px] text-neutral-700 dark:text-neutral-300 flex items-center justify-center gap-2 border border-neutral-200/80 dark:border-white/5">
+                <span>💻 Code</span>
+                <span class="text-neutral-400">•</span>
+                <span>☕ Coffee</span>
+                <span class="text-neutral-400">•</span>
+                <span>🚀 Build</span>
+              </div>
+              <div class="text-[11px] text-neutral-600 dark:text-neutral-400 pt-1.5 font-sans">
+                Rajnikant Gaurav working with coffee<br />
+                <span class="font-semibold text-neutral-900 dark:text-white">Built with 💻 & ☕</span>
+              </div>
+            </div>
+
+            <!-- Subheader Banner -->
+            <div class="bg-neutral-100 dark:bg-white/[0.05] py-1.5 px-3 text-center font-semibold text-xs text-neutral-800 dark:text-neutral-200 border-y border-neutral-200 dark:border-white/10">
+              Founder of Prometrion
+            </div>
+
+            <!-- Key-Value Metadata Table -->
+            <table class="w-full text-left border-collapse my-2">
+              <tbody>
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 w-28 align-top">
+                    Born
+                  </th>
+                  <td class="py-2 text-neutral-800 dark:text-neutral-200 align-top">
+                    20 September 2005 (age 20)<br />
+                    <span class="text-neutral-500 dark:text-neutral-400">Dadar, Ballia, Uttar Pradesh, India</span>
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Coordinates
+                  </th>
+                  <td class="py-2 font-mono text-[11px] text-cyan-600 dark:text-cyan-400 align-top">
+                    <a href="https://geohack.toolforge.org/geohack.php?params=25.7583_N_84.1482_E" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                      25.7583° N, 84.1482° E
+                    </a>
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Alma mater
+                  </th>
+                  <td class="py-2 text-neutral-800 dark:text-neutral-200 align-top">
+                    Bachelor of Technology (B.Tech)<br />
+                    <span class="text-neutral-500 dark:text-neutral-400">Computer Science and Engineering</span>
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Occupation
+                  </th>
+                  <td class="py-2 text-neutral-800 dark:text-neutral-200 align-top">
+                    Independent software developer • technology entrepreneur • AI builder
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Known for
+                  </th>
+                  <td class="py-2 text-neutral-800 dark:text-neutral-200 align-top space-y-1">
+                    <div class="font-medium">• Founder of Prometrion</div>
+                    <div>• Prometrion AI</div>
+                    <div>• LocalLink Marketplace</div>
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Organization
+                  </th>
+                  <td class="py-2 font-medium text-cyan-600 dark:text-cyan-400 align-top">
+                    <a href="#prometrion-company" class="hover:underline">Prometrion</a>
+                  </td>
+                </tr>
+
+                <tr class="border-b border-neutral-200/70 dark:border-white/5">
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Key stack
+                  </th>
+                  <td class="py-2 font-mono text-[10.5px] text-neutral-700 dark:text-neutral-300 leading-tight align-top">
+                    JavaScript, React, Node.js, Express.js, Python, PostgreSQL, Tailwind CSS, Git, Cloud APIs, LLMs
+                  </td>
+                </tr>
+
+                <tr>
+                  <th scope="row" class="py-2 pr-2 font-bold text-neutral-700 dark:text-neutral-300 align-top">
+                    Websites
+                  </th>
+                  <td class="py-2 text-cyan-600 dark:text-cyan-400 space-y-0.5 align-top">
+                    <div>
+                      <a href="https://www.rajnikantg.in" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                        rajnikantg.in ↗
+                      </a>
+                    </div>
+                    <div>
+                      <a href="https://www.prometrion.com" class="hover:underline">
+                        prometrion.com
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </aside>
+
+          <!-- ==========================================
+               LEAD INTRODUCTORY PARAGRAPHS
+               ========================================== -->
+          <div class="space-y-4 text-base sm:text-lg leading-relaxed text-neutral-800 dark:text-neutral-200 font-sans mb-8">
+            
+            <!-- Platform Lead: November 2025 Side Project Genesis & Single-Handed Authorship -->
+            <p class="text-neutral-900 dark:text-neutral-100 font-normal">
+              <strong>Prometrion</strong> is an independent software company, technology platform, and digital solutions ecosystem dedicated to engineering high-performance digital products, automation systems, applied artificial intelligence software, and modern web applications. Established in <strong>November 2025 as a side project</strong> by software engineer <strong>Rajnikant Gaurav</strong>, the initiative rapidly developed from an exploratory engineering sandbox into Gaurav's <strong>ultimate company</strong> and primary corporate vehicle. Crucially, Rajnikant Gaurav has built Prometrion <strong>fully on his own</strong> as a solo builder and chief architect—originating the system design, developing full-stack source code, integrating cloud edge runtimes, and engineering its complete digital product catalog without external engineering dependencies.
+            </p>
+
+            <!-- Founder Biographical Lead -->
+            <p>
+              <strong>Rajnikant Gaurav</strong> (born 20 September 2005) is an independent software developer, technology enthusiast, AI explorer, open-source contributor, and entrepreneur from Uttar Pradesh, India. His career and development philosophy are centered on one primary principle: <em>learn technology, build with it, and turn ideas into real products.</em>
+            </p>
+
+            <p>
+              Born in Dadar, Ballia, Uttar Pradesh, Gaurav demonstrated an early curiosity toward computing and software systems. This interest matured into a structured pursuit of computer science, full-stack engineering, practical artificial intelligence applications, and startup entrepreneurship.
+            </p>
+
+            <p>
+              He is currently active as an independent engineer and the founder of Prometrion, a software company dedicated to engineering digital products, automation systems, and applied artificial intelligence software. His portfolio and technical developments are documented at his personal domain, <a href="https://www.rajnikantg.in" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 font-medium hover:underline">www.rajnikantg.in</a>.
+            </p>
+          </div>
+
+        <!-- ==========================================
+             SECTION 1: EARLY LIFE AND COMPUTER SCIENCE
+             ========================================== -->
+        <section id="early-life" class="scroll-mt-24 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between overflow-hidden">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">01.</span>
+              <span>Early life and computer science</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Rajnikant Gaurav pursued a Bachelor of Technology in Computer Science and Engineering, during which his initial curiosity toward programming evolved into a broader discipline of software engineering.
+            </p>
+            <p>
+              Rather than treating computer science solely as an academic curriculum, Gaurav approached it as an avenue to master digital architectures and build software autonomously. Throughout his engineering studies, he gained practical proficiency across modern stacks including:
+            </p>
+
+            <!-- Luminous Stack Capsule -->
+            <div class="my-4 p-4 bg-neutral-50 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 text-xs sm:text-sm font-mono text-neutral-800 dark:text-neutral-200 rounded-lg shadow-whisper overflow-hidden">
+              <div class="text-[11px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-semibold mb-2">Technical Toolchain & Environments</div>
+              <p class="leading-relaxed text-cyan-700 dark:text-cyan-300">
+                JavaScript • React • Node.js • Express.js • Python • PostgreSQL • Tailwind CSS • Git • REST APIs • Relational Databases • Modern Cloud Deployment
+              </p>
+            </div>
+
+            <p>
+              He quickly shifted from passive study to active project execution, creating web applications, full-stack backends, experimental AI implementations, developer tooling, and business concepts with market viability. This transition—from absorbing technology to manufacturing solutions with it—formed the foundational core of his career.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 2: INDEPENDENT DEVELOPER AND BUILDER MINDSET
+             ========================================== -->
+        <section id="builder-mindset" class="scroll-mt-24 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between overflow-hidden">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">02.</span>
+              <span>Independent developer and builder mindset</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-4 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Gaurav distinguishes between the conventional definition of a programmer and that of an independent builder. While a developer writes software to specification, a builder analyzes the problem holistically by evaluating six fundamental operational questions:
+            </p>
+
+            <!-- 6 Questions Bento Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 my-4 overflow-hidden">
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">01. THE PROBLEM</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">What problem am I solving?</p>
+              </div>
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">02. AUDIENCE</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">Who needs the solution?</p>
+              </div>
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">03. FUNCTIONALITY</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">How should the product work?</p>
+              </div>
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">04. ERGONOMICS</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">How should it be designed?</p>
+              </div>
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">05. SCALABILITY</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">How will the technology scale?</p>
+              </div>
+              <div class="p-4 rounded-lg bg-neutral-50/80 dark:bg-white/[0.03] border border-neutral-200 dark:border-white/10 shadow-whisper">
+                <span class="text-xs font-mono text-cyan-600 dark:text-cyan-400 font-bold block mb-1">06. COMMERCIAL MODEL</span>
+                <p class="font-medium text-neutral-900 dark:text-white text-sm">How can it become a sustainable business?</p>
+              </div>
+            </div>
+
+            <p>
+              This mindset directed Gaurav toward the broader parameters of software commercialization, including Software-as-a-Service (SaaS), product strategy, automation, brand identity, and technology entrepreneurship.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 3: PROMETRION
+             ========================================== -->
+        <section id="prometrion-company" class="scroll-mt-24 pt-8 clear-both border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">03.</span>
+              <span>Prometrion</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-4 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              A central milestone in Gaurav's entrepreneurial work is the founding of Prometrion, a software company established to architect software products and modern digital solutions. Rather than developing isolated, disconnected applications, Gaurav designed Prometrion as an umbrella entity and product ecosystem capable of launching and maintaining multiple software offerings.
+            </p>
+
+            <!-- Prometrion Luminous Quote Block -->
+            <blockquote class="my-5 p-5 border-l-3 border-cyan-400 bg-cyan-500/[0.03] dark:bg-cyan-500/[0.06] rounded-r-lg italic text-neutral-900 dark:text-white text-base shadow-whisper">
+              "Build useful technology, turn ideas into products, and create software that can grow into meaningful businesses."
+            </blockquote>
+
+            <!-- Subsection 3.1: Genesis -->
+            <div id="prometrion-genesis" class="pt-4 scroll-mt-24">
+              <h3 class="text-lg font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-1.5 flex items-center justify-between">
+                <span>3.1 Genesis: From November 2025 side project to ultimate company</span>
+                <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+              </h3>
+              <p class="mt-2.5">
+                Prometrion originated in <strong>November 2025 as a focused side project</strong> initiated by Rajnikant Gaurav during his personal explorations into distributed web architectures, high-performance edge networks, and agentic workflows. What began as a personal engineering environment rapidly coalesced into a comprehensive technology ecosystem as Gaurav engineered successive product modules, internal tooling, client engineering desks, and public marketplace systems.
+              </p>
+              <p class="mt-2.5">
+                Recognizing the compounding potential of uniting his varied software endeavors under a unified operational banner, Gaurav transitioned Prometrion from an ad-hoc side endeavor into his <strong>ultimate flagship company</strong>. Engineered <strong>fully on his own</strong>, the platform stands as a testament to single-handed software craftsmanship—spanning custom UI design, full-stack application development, database architecture, and global serverless deployment without outside developer teams.
+              </p>
+            </div>
+
+            <!-- Subsection 3.2: Prometrion AI -->
+            <div id="prometrion-ai" class="pt-4 scroll-mt-24">
+              <h3 class="text-lg font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-1.5 flex items-center justify-between">
+                <span>3.2 Prometrion AI</span>
+                <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+              </h3>
+              <p class="mt-2.5">
+                Within Prometrion's pipeline, Prometrion AI serves as the primary artificial intelligence product division. Rather than incorporating AI purely as an ancillary feature, Prometrion AI investigates machine intelligence as a core substrate for digital productivity.
+              </p>
+              <p class="mt-2.5">
+                Gaurav's technical experimentation under this initiative encompasses:
+              </p>
+              <ul class="list-disc pl-6 space-y-1.5 text-neutral-800 dark:text-neutral-200">
+                <li>Large language model (LLM) workflows and prompting architectures</li>
+                <li>Autonomous AI agentic systems and tool calling</li>
+                <li>Local model inference and on-device execution</li>
+                <li>Conversational and voice-enabled user interfaces</li>
+                <li>Developer productivity tooling and workflow automation</li>
+                <li>Intelligent, self-orchestrating business software</li>
+              </ul>
+            </div>
+
+            <!-- Subsection 3.3: Multi-product ecosystem architecture -->
+            <div id="multi-product-ecosystem" class="pt-4 scroll-mt-24">
+              <h3 class="text-lg font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-1.5 flex items-center justify-between">
+                <span>3.3 Multi-product ecosystem architecture</span>
+                <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+              </h3>
+              <p class="mt-2.5">
+                Prometrion operates with a multi-product holding structure:
+              </p>
+
+              <!-- Prometrion Holding Tree Diagram -->
+              <div class="my-4 p-5 bg-neutral-50 dark:bg-[#101014] border border-neutral-200 dark:border-white/10 rounded-lg font-mono text-xs sm:text-sm text-center leading-relaxed shadow-whisper">
+                <div class="inline-block px-4 py-2 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 font-bold shadow-md">
+                  Prometrion (Parent Software Company)
+                </div>
+                <div class="text-cyan-500 font-bold my-2 text-base">↓</div>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800/60 font-semibold">
+                  Prometrion AI (Applied Machine Intelligence Product)
+                </div>
+                <div class="text-cyan-500 font-bold my-2 text-base">↓</div>
+                <div class="inline-block px-4 py-1.5 rounded-full bg-neutral-100 dark:bg-white/[0.05] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">
+                  Future Software Products & Ecosystem Verticals (LocalLink, Store, Practice Desks)
+                </div>
+              </div>
+
+              <p>
+                This setup allows Gaurav the operational flexibility to explore diverse technological verticals while centralizing brand equity, software components, and long-term vision under a single organization.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 4: PRODUCT ENGINEERING: LOCALLINK
+             ========================================== -->
+        <section id="locallink" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">04.</span>
+              <span>Product engineering: LocalLink</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Among Gaurav's practical full-stack projects is <strong>LocalLink</strong>, an online service marketplace platform designed to bridge local gig professionals and service providers with consumers.
+            </p>
+            <p>
+              The platform was constructed using a modern full-stack stack: <strong>React, Vite, Tailwind CSS, Node.js, Express, and PostgreSQL</strong>. Key architectural capabilities engineered within the system include:
+            </p>
+
+            <!-- Capabilities Matrix -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm font-mono my-3 p-4 bg-neutral-50 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 rounded-lg shadow-whisper">
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Geo-aware service discovery</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Provider portfolio profiles</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Appointment scheduling engine</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Direct client-to-provider messaging</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Real-time notification dispatch</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Customer reviews and verified ratings</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Role-based authentication & security</div>
+              <div class="flex items-center gap-2"><span class="text-emerald-500 font-bold">✓</span> Administrative management dashboard</div>
+            </div>
+
+            <p>
+              LocalLink consolidated an essential lesson in Gaurav's development career: building production software involves user interaction, operational security, data modeling, edge case handling, and deployment logistics far beyond routine code generation.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 5: ARTIFICIAL INTELLIGENCE RESEARCH
+             ========================================== -->
+        <section id="ai-research" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">05.</span>
+              <span>Artificial intelligence research</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Gaurav's engagement with artificial intelligence spans practical machine learning, computer vision, local model deployments, and large language model architectures. He advocates for combining traditional deterministic programming with probabilistic generative AI systems to build tools that were previously cost-prohibitive or technically infeasible for individual developers.
+            </p>
+
+            <!-- Focus Callout Box -->
+            <div class="p-4 bg-cyan-50/70 dark:bg-cyan-950/30 border-l-3 border-cyan-400 rounded-r-lg text-xs sm:text-sm font-mono font-semibold text-cyan-900 dark:text-cyan-200 shadow-whisper">
+              Core Focus: Software Engineering + Artificial Intelligence + Technology Entrepreneurship
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 6: OPEN SOURCE AND DEVELOPER ECOSYSTEM
+             ========================================== -->
+        <section id="open-source" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">06.</span>
+              <span>Open source and developer ecosystem</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Open-source development has provided Gaurav with real-world exposure to collaborative engineering methodologies, strict version control protocols, code auditing, issue triaging, and documentation standards. For an independent developer, open-source communities serve as a decentralized peer environment where code quality and architectural trade-offs are refined through real-world usage.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 7: TECHNOLOGY ENTREPRENEURSHIP AND BUSINESS STRATEGY
+             ========================================== -->
+        <section id="business-strategy" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">07.</span>
+              <span>Technology entrepreneurship and business strategy</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Gaurav's interests encompass the entire lifecycle of software commercialization:
+            </p>
+
+            <div class="my-3 p-4 bg-neutral-50 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 rounded-lg font-mono text-xs sm:text-sm text-center text-neutral-800 dark:text-neutral-200 shadow-whisper leading-relaxed">
+              Research → Product Strategy → Design → Development → Deployment → Marketing → Distribution → Business
+            </div>
+
+            <p>
+              His ongoing research includes SaaS pricing models, organic customer acquisition, developer ergonomics, conversion analytics, and brand development for software enterprises. In his view, software craftsmanship and entrepreneurial acumen are complementary disciplines.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 8: EXPERIMENTATION AND PUBLIC BUILDING
+             ========================================== -->
+        <section id="experimentation" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">08.</span>
+              <span>Experimentation and public building</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-3.5 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Recognizing that not every experimental prototype succeeds in the market, Gaurav follows an iterative "building in public" approach. Every project, whether a successful utility, a failed experiment, or a technical exploratory script, produces compounding knowledge. Rather than delaying execution until all variables are solved, he builds prototypes to accelerate learning.
+            </p>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 9: VISION AND FUTURE TRAJECTORY
+             ========================================== -->
+        <section id="vision" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">09.</span>
+              <span>Vision and future trajectory</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-4 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              The fundamental objective behind Gaurav's trajectory is attaining autonomy through technology—authoring software rather than merely consuming it, and building original companies around meaningful societal and enterprise challenges.
+            </p>
+            <p>
+              From his birthplace in Dadar, Ballia, to studying computer science and establishing Prometrion, his work continues to evolve across software engineering, artificial intelligence, and startup operations.
+            </p>
+
+            <blockquote class="my-5 p-5 border-l-3 border-emerald-400 bg-emerald-500/[0.03] dark:bg-emerald-500/[0.06] rounded-r-lg italic text-neutral-900 dark:text-white text-base shadow-whisper">
+              "The journey is still being built—one idea, one line of code, and one product at a time."
+            </blockquote>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 10: PROFILE SUMMARY AND COMPANY PORTAL
+             ========================================== -->
+        <section id="profile-summary" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">10.</span>
+              <span>Profile summary and company portal</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <div class="mt-4 space-y-4 text-sm sm:text-base leading-relaxed text-neutral-700 dark:text-neutral-300 font-sans">
+            <p>
+              Rajnikant Gaurav continues his active technical work as an independent developer and founder of Prometrion. His public repositories, technical notes, and corporate updates are maintained at his verified web properties:
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3 text-xs sm:text-sm font-sans">
+              <div class="p-5 bg-neutral-50 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 rounded-lg shadow-whisper">
+                <span class="font-bold text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block mb-1">Official Portfolio</span>
+                <span class="text-neutral-900 dark:text-white font-semibold text-base block">Rajnikant Gaurav</span>
+                <a href="https://www.rajnikantg.in" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline font-mono mt-2 inline-flex items-center gap-1">
+                  www.rajnikantg.in ↗
+                </a>
+              </div>
+              <div class="p-5 bg-neutral-50 dark:bg-[#121216] border border-neutral-200 dark:border-white/10 rounded-lg shadow-whisper">
+                <span class="font-bold text-xs uppercase tracking-wider text-neutral-400 dark:text-neutral-500 block mb-1">Company Portal</span>
+                <span class="text-neutral-900 dark:text-white font-semibold text-base block">Prometrion Platform</span>
+                <a href="https://www.prometrion.com" class="text-cyan-600 dark:text-cyan-400 hover:underline font-mono mt-2 inline-flex items-center gap-1">
+                  Prometrion.com ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 11: REFERENCES AND EXTERNAL LINKS
+             ========================================== -->
+        <section id="references" class="scroll-mt-24 pt-8 border-t border-neutral-200/70 dark:border-white/10 mb-8">
+          <h2 class="text-xl sm:text-2xl font-serif sm:font-sans font-bold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-white/10 pb-2 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <span class="text-sm font-mono text-cyan-600 dark:text-cyan-400">11.</span>
+              <span>References and external links</span>
+            </span>
+            <span class="text-xs font-mono font-normal text-cyan-600 dark:text-cyan-400 hover:underline cursor-pointer select-none">[edit]</span>
+          </h2>
+
+          <ol class="mt-4 list-decimal pl-6 space-y-2.5 text-xs text-neutral-600 dark:text-neutral-400 font-sans">
+            <li>
+              <span class="font-medium text-neutral-800 dark:text-neutral-200">Personal Website:</span>
+              <a href="https://www.rajnikantg.in" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+                Rajnikant Gaurav - Official Portfolio & Projects
+              </a>
+            </li>
+            <li>
+              <span class="font-medium text-neutral-800 dark:text-neutral-200">Corporate Registry:</span>
+              <a href="https://www.prometrion.com" class="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+                Prometrion Software & Digital Solutions (Established November 2025)
+              </a>
+            </li>
+            <li>
+              <span class="font-medium text-neutral-800 dark:text-neutral-200">Biographical Registry:</span>
+              <a href="https://geohack.toolforge.org/geohack.php?params=25.7583_N_84.1482_E" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+                Dadar, Ballia, Uttar Pradesh, India (Geo: 25.7583° N, 84.1482° E)
+              </a>
+            </li>
+            <li>
+              <span class="font-medium text-neutral-800 dark:text-neutral-200">Product Documentation:</span>
+              <a href="https://new-locallink.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+                LocalLink Full-Stack Marketplace (React, Node, Express, PostgreSQL)
+              </a>
+            </li>
+            <li>
+              <span class="font-medium text-neutral-800 dark:text-neutral-200">Initiatives:</span>
+              <a href="https://ai.prometrion.com/" target="_blank" rel="noopener noreferrer" class="text-cyan-600 dark:text-cyan-400 hover:underline ml-1">
+                Prometrion AI - Research into Autonomous Agents and Practical AI Tools
+              </a>
+            </li>
+          </ol>
+        </section>
+
+        <!-- ==========================================
+             WIKIPEDIA x PROMETRION CATEGORIES FOOTER
+             ========================================== -->
+        <footer class="mt-12 pt-6 border-t border-neutral-200 dark:border-white/10">
+          <div class="bg-neutral-50/80 dark:bg-white/[0.02] border border-neutral-200 dark:border-white/10 p-4 rounded-lg shadow-whisper text-xs leading-relaxed">
+            <div class="flex items-center gap-2 mb-2 font-mono font-semibold text-neutral-700 dark:text-neutral-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+              <span>CATEGORIES:</span>
+            </div>
+            <div class="flex flex-wrap gap-1.5 text-xs font-mono">
+              <a href="#article-title" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                2005 births
+              </a>
+              <a href="#article-title" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Living people
+              </a>
+              <a href="#article-title" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                People from Ballia district
+              </a>
+              <a href="#early-life" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Indian software developers
+              </a>
+              <a href="#prometrion-company" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Indian technology company founders
+              </a>
+              <a href="#early-life" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Full-stack web developers
+              </a>
+              <a href="#ai-research" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Artificial intelligence explorers
+              </a>
+              <a href="#prometrion-genesis" class="px-2.5 py-1 rounded-full bg-white dark:bg-white/[0.05] border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:border-cyan-400 hover:text-cyan-500 transition">
+                Companies established in 2025
+              </a>
+            </div>
+          </div>
+        </footer>
+
+      </main>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MODAL: WIKIPEDIA VIEW SOURCE (RAW WIKITEXT)
+       ========================================== -->
+  <div id="wikitext-modal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#121216] border border-neutral-200 dark:border-white/10 max-w-3xl w-full rounded-xl shadow-floating flex flex-col max-h-[85vh] overflow-hidden">
+      <div class="px-5 py-3.5 border-b border-neutral-200 dark:border-white/10 flex items-center justify-between font-sans bg-neutral-50 dark:bg-white/[0.02]">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+          <h3 class="font-bold text-sm text-neutral-900 dark:text-white">
+            Viewing source for: Rajnikant Gaurav
+          </h3>
+        </div>
+        <button id="close-source-modal" class="text-neutral-400 hover:text-black dark:hover:text-white text-lg font-bold px-2 py-0.5 cursor-pointer">
+          ✕
+        </button>
       </div>
-      <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/contact" size="sm">Contact Us</Button>
-        <Button variant="secondary" href="/products" size="sm">Our Products</Button>
+      <div class="p-5 overflow-y-auto font-mono text-xs">
+        <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-3">
+          Raw wikitext source representing this encyclopedic entry:
+        </p>
+        <pre class="bg-neutral-900 text-neutral-200 p-4 rounded-lg border border-neutral-800 text-[11px] overflow-x-auto whitespace-pre-wrap select-all font-mono leading-relaxed">
+&#123;&#123;Infobox person
+| name = Rajnikant Gaurav
+| image = rajnikant.png
+| caption = Rajnikant Gaurav in formal attire (2025)
+| image2 = Rajnikant_Gaurav_workspace.jpg
+| caption2 = Built with 💻 & ☕
+| birth_date = &#123;&#123;birth date and age|2005|9|20&#125;&#125;
+| birth_place = Dadar, Ballia, Uttar Pradesh, India
+| coordinates = 25.7583° N, 84.1482° E
+| alma_mater = Bachelor of Technology (B.Tech), Computer Science and Engineering
+| occupation = Independent software developer, technology entrepreneur, AI builder
+| known_for = Founder of Prometrion, Prometrion AI, LocalLink Marketplace
+| organization = Prometrion
+| key_stack = JavaScript, React, Node.js, Express.js, Python, PostgreSQL, Tailwind CSS, Git, Cloud APIs, LLMs
+| website = https://www.rajnikantg.in
+&#125;&#125;
+
+'''Rajnikant Gaurav''' (born 20 September 2005) is an independent software developer, technology enthusiast, AI explorer, open-source contributor, and entrepreneur from Uttar Pradesh, India...
+
+== Early life and computer science ==
+Rajnikant Gaurav pursued a Bachelor of Technology in Computer Science and Engineering...
+
+== Prometrion ==
+Established in November 2025 as a side project, Prometrion became the ultimate company of Rajnikant Gaurav, built fully on his own...
+        </pre>
+      </div>
+      <div class="px-5 py-3 bg-neutral-50 dark:bg-white/[0.02] border-t border-neutral-200 dark:border-white/10 flex justify-end">
+        <button id="close-modal-btn" class="px-4 py-1.5 bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-lg text-xs font-semibold cursor-pointer shadow-sm hover:opacity-90 transition">
+          Close
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- Content Narrative Sections -->
-  <section class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-      
-      <!-- 1. Who We Are -->
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-4">
-        <SectionEyebrow tag="01. IDENTITY">WHO WE ARE</SectionEyebrow>
-        <h2 class="text-2xl font-semibold text-neutral-900">An engineered company with a long-term horizon.</h2>
-        <p class="text-sm text-neutral-600 leading-relaxed">
-          Prometrion was founded on a simple realization: the web has become bloated with slow scripts, fragmented agency models, and fragile software architectures. We exist to provide an antidote.
-        </p>
-        <p class="text-sm text-neutral-600 leading-relaxed">
-          We operate across three unified dimensions: proprietary software products (such as Taluq AI), high-performance digital services (web, app, GEO), and an open developer marketplace and guild (Coders Club).
-        </p>
-      </div>
+  <!-- Client-Side Scripts for Wikipedia Interactions -->
+  <script is:inline>
+    // View Source Modal Toggle
+    const sourceModal = document.getElementById('wikitext-modal');
+    const openSourceBtn1 = document.getElementById('view-source-trigger');
+    const openSourceBtn2 = document.getElementById('view-source-tab');
+    const closeSourceBtn1 = document.getElementById('close-source-modal');
+    const closeSourceBtn2 = document.getElementById('close-modal-btn');
 
-      <!-- 2. Our Philosophy -->
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-6">
-        <SectionEyebrow tag="02. PRINCIPLES">OUR PHILOSOPHY</SectionEyebrow>
-        <h2 class="text-2xl font-semibold text-neutral-900">The Prometrion Creed</h2>
+    function openModal() {
+      if (sourceModal) sourceModal.classList.remove('hidden'), sourceModal.classList.add('flex');
+    }
+    function closeModal() {
+      if (sourceModal) sourceModal.classList.add('hidden'), sourceModal.classList.remove('flex');
+    }
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs leading-relaxed">
-          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
-            <h3 class="font-bold text-neutral-900 text-sm mb-1">Subtractive Discipline</h3>
-            <p class="text-neutral-600">We remove unnecessary decoration and bloated JavaScript. Every element, 1px border, and font tracking setting must earn its place.</p>
-          </div>
-          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
-            <h3 class="font-bold text-neutral-900 text-sm mb-1">Tactile Performance</h3>
-            <p class="text-neutral-600">Speed is an emotional attribute. Sub-second TTFB and zero layout shift signal software craft and respect for user attention.</p>
-          </div>
-          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
-            <h3 class="font-bold text-neutral-900 text-sm mb-1">Autonomous Future</h3>
-            <p class="text-neutral-600">We don't build software just for human clicks—we architect data models and interfaces ready for autonomous AI agents and multimodal discovery.</p>
-          </div>
-          <div class="p-4 rounded-[6px] bg-neutral-50 border border-neutral-100">
-            <h3 class="font-bold text-neutral-900 text-sm mb-1">Radical Transparency</h3>
-            <p class="text-neutral-600">Fixed packages, public pricing, verified authenticated reviews, and clear timelines. No hidden retainers or ambiguous scopes.</p>
-          </div>
-        </div>
-      </div>
+    if (openSourceBtn1) openSourceBtn1.addEventListener('click', openModal);
+    if (openSourceBtn2) openSourceBtn2.addEventListener('click', openModal);
+    if (closeSourceBtn1) closeSourceBtn1.addEventListener('click', closeModal);
+    if (closeSourceBtn2) closeSourceBtn2.addEventListener('click', closeModal);
 
-      <!-- 3. Leadership & Founders -->
-      <div class="bg-white border border-[#ebebeb] rounded-[6px] p-8 sm:p-10 shadow-whisper space-y-4">
-        <SectionEyebrow tag="03. LEADERSHIP">OUR FOUNDATION</SectionEyebrow>
-        <h2 class="text-2xl font-semibold text-neutral-900">Led by builders for builders</h2>
-        <p class="text-sm text-neutral-600 leading-relaxed">
-          Founded and led by <strong>Rajnikant</strong> alongside a world-class team of distributed systems engineers and product designers, Prometrion combines deep engineering capability with commercial rigor.
-        </p>
-        <div class="pt-4 flex gap-4">
-          <Button variant="secondary" href="/articles/people">
-            Meet the Full Team →
-          </Button>
-          <Button variant="ghost-sm" href="/articles/achievements">
-            View Company Milestones →
-          </Button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-16 bg-white text-center border-t border-[#ebebeb]">
-    <div class="max-w-2xl mx-auto px-4">
-      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">Partner with Prometrion</h2>
-      <p class="text-xs sm:text-sm text-neutral-600 mt-2">
-        Let's discuss how our products and engineering capabilities can elevate your digital roadmap.
-      </p>
-      <div class="mt-6 flex justify-center gap-3">
-        <Button variant="primary" href="/contact">Start a Conversation</Button>
-        <Button variant="secondary" href="/products">Explore Products</Button>
-      </div>
-    </div>
-  </section>
+    // Close on backdrop click
+    if (sourceModal) {
+      sourceModal.addEventListener('click', (e) => {
+        if (e.target === sourceModal) closeModal();
+      });
+    }
+  </script>
 </BaseLayout>

@@ -1,0 +1,287 @@
+---
+// media/blogs/[slug].astro - Individual Dynamic Blog Article & Guide Page (3-Column Split Layout)
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../../components/ui/SectionEyebrow.astro";
+import Card from "../../../components/ui/Card.astro";
+import Button from "../../../components/ui/Button.astro";
+import Badge from "../../../components/ui/Badge.astro";
+import OnThisPage from "../../../components/ui/OnThisPage.astro";
+import { getPublishedArticles, type BlogPost } from "../../../data/blogsData";
+import { servicesCatalog } from "../../../data/servicesCatalog";
+import { webstoreProjects } from "../../../data/webstoreProjects";
+import { buildArticleSchema, buildBreadcrumbSchema, buildFaqSchema } from "../../../utils/seo";
+
+export function getStaticPaths() {
+  const articles = getPublishedArticles();
+  return articles.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+
+// Fetch related service items if defined
+const relatedServiceItems = post.relatedServices
+  ? servicesCatalog.filter((s) => post.relatedServices?.includes(s.slug) || post.relatedServices?.includes(s.category))
+  : [];
+
+// Fetch related portfolio projects if defined
+const relatedProjectItems = post.relatedProjects
+  ? webstoreProjects.filter((p) => post.relatedProjects?.includes(p.slug))
+  : [];
+
+// Generate dynamic headings for "On this page" TOC
+const blogHeadings = post.sections
+  .filter((sec) => Boolean(sec.heading))
+  .map((sec) => ({
+    id: sec.heading!.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+    text: sec.heading!,
+  }));
+
+if (post.faqs && post.faqs.length > 0) {
+  blogHeadings.push({
+    id: "frequently-asked-questions",
+    text: "Frequently Asked Questions",
+  });
+}
+
+// Build Schema.org Graph
+const articleSchema = buildArticleSchema({
+  title: post.title,
+  description: post.excerpt,
+  slug: post.slug,
+  datePublished: post.datePublished,
+  dateModified: post.dateModified,
+  authorName: post.author.name,
+  authorRole: post.author.role,
+  image: post.featuredImage,
+  category: post.category,
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Media", url: "/media" },
+  {
+    name: post.category === "Guides & Insights" ? "Guides & Insights" : "Blogs",
+    url: post.category === "Guides & Insights" ? "/media/guides" : "/media/blogs",
+  },
+  { name: post.title, url: `/media/blogs/${post.slug}` },
+]);
+
+const faqSchema = post.faqs ? buildFaqSchema(post.faqs) : null;
+
+const fullJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    articleSchema,
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+  ],
+};
+---
+
+<BaseLayout
+  title={post.seoTitle || `${post.title} — Prometrion`}
+  description={post.metaDescription || post.excerpt}
+  type="article"
+  publishedTime={post.datePublished}
+  modifiedTime={post.dateModified}
+  author={post.author.name}
+  image={post.featuredImage}
+  imageAlt={post.featuredImageAlt || post.title}
+  jsonLd={fullJsonLd}
+>
+  <!-- Article Header Top Banner -->
+  <header class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 mb-3">
+        <a href="/" class="hover:text-black dark:hover:text-white transition">Home</a>
+        <span>/</span>
+        <a href="/media" class="hover:text-black dark:hover:text-white transition">Media</a>
+        <span>/</span>
+        <a 
+          href={post.category === "Guides & Insights" ? "/media/guides" : "/media/blogs"} 
+          class="hover:text-black dark:hover:text-white transition"
+        >
+          {post.category === "Guides & Insights" ? "Guides" : "Blogs"}
+        </a>
+        <span>/</span>
+        <span class="text-neutral-900 dark:text-neutral-200 truncate max-w-[200px] sm:max-w-none">{post.title}</span>
+      </nav>
+
+      <!-- Category & Reading Time -->
+      <div class="flex items-center gap-2.5 mb-2">
+        <Badge variant={post.category === "Guides & Insights" ? "emerald" : "blue"}>
+          {post.category}
+        </Badge>
+        <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">{post.pubDate} • {post.readTime}</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-2xl sm:text-4xl font-semibold tracking-tight text-[#171717] dark:text-white max-w-4xl leading-tight">
+        {post.title}
+      </h1>
+
+      <!-- Excerpt -->
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 max-w-3xl leading-relaxed">
+        {post.excerpt}
+      </p>
+
+      <!-- Author Attribution Row -->
+      <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between text-xs text-neutral-600 dark:text-neutral-400">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black flex items-center justify-center font-bold text-xs font-mono">
+            {post.author.avatarInitial}
+          </div>
+          <div>
+            <span class="font-semibold text-neutral-900 dark:text-white">{post.author.name}</span>
+            <span class="text-neutral-400 dark:text-neutral-500 hidden sm:inline"> — {post.author.role}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <Button variant="ghost-sm" href={post.category === "Guides & Insights" ? "/media/guides" : "/media/blogs"}>
+            ← All {post.category === "Guides & Insights" ? "Guides" : "Blogs"}
+          </Button>
+          <Button variant="primary-sm" href="/request-quote">Request a Quote</Button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 3-Column Split Content Container -->
+  <div class="py-8 sm:py-10 bg-[#fafafa] dark:bg-black min-h-screen">
+    <div class="max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-6 lg:gap-8 xl:gap-10 items-start">
+        
+        <!-- Center Column: Main Long-Form Article Body -->
+        <main class="flex-1 min-w-0 bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-6 sm:p-10 shadow-whisper">
+          
+          <article class="prose prose-neutral dark:prose-invert max-w-none text-neutral-800 dark:text-neutral-200 text-sm sm:text-base leading-relaxed space-y-8">
+            {post.sections.map((section) => {
+              const sectionId = section.heading
+                ? section.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+                : undefined;
+
+              return (
+                <section id={sectionId} class="space-y-4 scroll-mt-24">
+                  {section.heading && (
+                    <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white pt-2 border-b border-neutral-100 dark:border-white/10 pb-2">
+                      {section.heading}
+                    </h2>
+                  )}
+
+                  {section.content.map((paragraph) => (
+                    <p class="text-neutral-700 dark:text-neutral-300 leading-relaxed text-xs sm:text-sm">
+                      {paragraph}
+                    </p>
+                  ))}
+
+                  {section.list && (
+                    <ul class="my-4 space-y-2 pl-4 list-disc text-xs sm:text-sm text-neutral-700 dark:text-neutral-300">
+                      {section.list.map((item) => (
+                        <li class="leading-relaxed">{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              );
+            })}
+
+            <!-- FAQ Section if Defined -->
+            {post.faqs && post.faqs.length > 0 && (
+              <section id="frequently-asked-questions" class="space-y-4 pt-6 border-t border-neutral-200 dark:border-white/10 scroll-mt-24">
+                <h2 class="text-xl sm:text-2xl font-semibold tracking-tight text-[#171717] dark:text-white">
+                  Frequently Asked Questions
+                </h2>
+                <div class="space-y-4 not-prose mt-4">
+                  {post.faqs.map((faq) => (
+                    <div class="p-5 rounded-lg border border-neutral-200 dark:border-white/10 bg-neutral-50/50 dark:bg-white/[0.02]">
+                      <h3 class="text-sm font-semibold text-neutral-900 dark:text-white">
+                        {faq.question}
+                      </h3>
+                      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            <!-- Related Services & Portfolio Linkages -->
+            {(relatedServiceItems.length > 0 || relatedProjectItems.length > 0) && (
+              <section class="not-prose pt-8 border-t border-neutral-200 dark:border-white/10 space-y-4">
+                <h3 class="text-xs font-mono uppercase tracking-wider text-neutral-400 font-semibold">
+                  Related Services & Live Projects
+                </h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {relatedServiceItems.slice(0, 2).map((srv) => (
+                    <a 
+                      href={`/services/${srv.category === "website" ? "website-development" : srv.category === "seo" ? "seo-geo" : srv.category === "app" ? "app-development" : "catalog"}`}
+                      class="p-4 rounded-lg border border-neutral-200 dark:border-white/10 hover:border-neutral-400 dark:hover:border-white/30 transition block bg-neutral-50 dark:bg-white/[0.02]"
+                    >
+                      <div class="flex items-center justify-between text-xs font-mono text-[#0070f3] dark:text-cyan-400 mb-1">
+                        <span>SERVICE CAPABILITY</span>
+                        <span>{srv.price}</span>
+                      </div>
+                      <h4 class="text-sm font-semibold text-neutral-900 dark:text-white">{srv.name}</h4>
+                      <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">{srv.shortDesc}</p>
+                    </a>
+                  ))}
+
+                  {relatedProjectItems.slice(0, 2).map((proj) => (
+                    <a 
+                      href={`/store/webstore/${proj.slug}`}
+                      class="p-4 rounded-lg border border-neutral-200 dark:border-white/10 hover:border-neutral-400 dark:hover:border-white/30 transition block bg-neutral-50 dark:bg-white/[0.02]"
+                    >
+                      <div class="flex items-center justify-between text-xs font-mono text-emerald-600 dark:text-emerald-400 mb-1">
+                        <span>PORTFOLIO SHOWCASE</span>
+                        <span>{proj.stack?.[0] || 'Web'}</span>
+                      </div>
+                      <h4 class="text-sm font-semibold text-neutral-900 dark:text-white">{proj.name}</h4>
+                      <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">{proj.shortDesc}</p>
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
+          </article>
+
+          <!-- Bottom Article Callout & Next Step -->
+          <div class="mt-12 pt-8 border-t border-neutral-100 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-neutral-50 dark:bg-white/[0.02] -mx-6 -mb-6 sm:-mx-10 sm:-mb-10 p-6 sm:p-8 rounded-b-[6px]">
+            <div>
+              <span class="text-[11px] font-mono text-[#0070f3] dark:text-cyan-400 font-semibold uppercase tracking-wider block">Recommended Next Step</span>
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white mt-0.5">{post.cta.text}</h3>
+              <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Review transparent specs or speak with our engineering desk.</p>
+            </div>
+            <div class="shrink-0 flex items-center gap-2">
+              <Button variant="primary" href={post.cta.href}>
+                Proceed →
+              </Button>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- Right Column: Sticky "On This Page" Table of Contents -->
+        {blogHeadings.length > 0 && (
+          <aside class="hidden xl:block w-64 shrink-0 text-xs">
+            <div class="sticky top-20">
+              <OnThisPage headings={blogHeadings} />
+            </div>
+          </aside>
+        )}
+
+      </div>
+    </div>
+  </div>
+</BaseLayout>

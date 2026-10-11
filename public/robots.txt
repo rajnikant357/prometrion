@@ -1,0 +1,9 @@
+# https://www.prometrion.com robots.txt
+User-agent: *
+Allow: /
+
+# Disallow internal account utilities and private routes
+Disallow: /account/
+
+# XML Sitemap
+Sitemap: https://www.prometrion.com/sitemap.xml

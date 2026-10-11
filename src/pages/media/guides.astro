@@ -1,0 +1,105 @@
+---
+// src/pages/media/guides.astro - Prometrion Guides & Strategic Insights
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Badge from "../../components/ui/Badge.astro";
+import Button from "../../components/ui/Button.astro";
+import { getPublishedGuides } from "../../data/blogsData";
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+const guides = getPublishedGuides();
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Media", url: "/media" },
+  { name: "Guides & Insights", url: "/media/guides" },
+]);
+---
+
+<BaseLayout
+  title="Guides & Implementation Blueprints — Prometrion Media"
+  description="Practical, step-by-step guides on website planning, development cost factors, mobile app strategy, custom architecture vs templates, and project scoping."
+  jsonLd={breadcrumbSchema}
+>
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <SectionEyebrow tag="MEDIA / GUIDES & INSIGHTS">PRACTICAL KNOWLEDGE</SectionEyebrow>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+            Practical Guides & Implementation Blueprints
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            In-depth architectural frameworks, cost evaluations, and planning methodologies for business owners, founders, and leaders.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="/media" class="px-3 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 transition">
+            ← All Media
+          </a>
+          <Button variant="primary" href="/estimate" size="sm">
+            Cost Estimator →
+          </Button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
+        <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm">All Guides ({guides.length})</span>
+        <a href="/media/blogs" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Strategic Essays</a>
+        <a href="/media/news" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Official News</a>
+        <a href="/media/achievements" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Achievements</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      {guides.map((post) => (
+        <Card variant="interactive" href={`/media/blogs/${post.slug}`} class="flex flex-col md:flex-row md:items-center justify-between gap-6 p-7">
+          <div class="space-y-2 max-w-2xl">
+            <div class="flex items-center gap-2">
+              <Badge variant="blue">{post.tags[0] || "Implementation Guide"}</Badge>
+              <span class="text-xs font-mono text-neutral-400">{post.pubDate} • {post.readTime}</span>
+            </div>
+            
+            <h2 class="text-xl font-semibold text-neutral-900 dark:text-white group-hover:text-[#0070f3] dark:group-hover:text-cyan-400 transition">
+              {post.title}
+            </h2>
+            
+            <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed line-clamp-2">
+              {post.excerpt}
+            </p>
+
+            <div class="pt-2 text-xs font-mono text-neutral-500 dark:text-neutral-400 flex items-center gap-2">
+              <span>By <strong class="text-neutral-800 dark:text-neutral-200 font-sans">{post.author.name}</strong></span>
+              <span>•</span>
+              <span class="text-neutral-400">{post.tags.slice(0, 3).map(t => `#${t}`).join(' ')}</span>
+            </div>
+          </div>
+
+          <div class="shrink-0 flex items-center gap-1 text-xs font-semibold text-[#0070f3] dark:text-cyan-400 group-hover:translate-x-1 transition-transform">
+            <span>Read Guide</span>
+            <span>→</span>
+          </div>
+        </Card>
+      ))}
+
+      <!-- Conversion Callout -->
+      <div class="mt-12 p-8 rounded-xl bg-white dark:bg-[#0c0c0c] border border-neutral-200 dark:border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-whisper">
+        <div class="max-w-xl">
+          <span class="text-xs font-mono text-[#0070f3] dark:text-cyan-400 uppercase tracking-wider font-semibold block mb-1">Interactive Planning</span>
+          <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Ready to plan your next web or mobile system?</h3>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1">
+            Configure your technical requirements with our interactive cost estimator or submit a brief for an engineer-reviewed quotation.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <Button variant="secondary" href="/request-quote">Request a Quote</Button>
+          <Button variant="primary" href="/estimate">Open Estimator →</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

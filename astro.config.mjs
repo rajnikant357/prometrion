@@ -4,10 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.prometrion.com',
   devToolbar: {
     enabled: false,
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      chunkSizeWarningLimit: 700,
+    },
   },
 });

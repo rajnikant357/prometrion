@@ -1,0 +1,85 @@
+---
+// src/pages/404.astro
+// Custom 404 Error Page for Prometrion
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Prometrion"
+  description="The requested page could not be located. Explore Prometrion's digital services, live webstore, mobile apps, or contact engineering."
+  noindex={true}
+>
+  <!-- Ambient Atmospheric Aurora Glow -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 -z-10 h-[550px] overflow-hidden opacity-0 dark:opacity-100 transition-opacity">
+    <div class="absolute -top-[250px] left-1/2 -translate-x-1/2 w-[850px] h-[500px] rounded-full bg-gradient-to-r from-red-500/10 via-amber-500/15 to-cyan-500/15 blur-[120px]"></div>
+  </div>
+
+  <section class="min-h-[75vh] flex items-center justify-center py-20 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center space-y-6">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-red-500/10 text-red-600 dark:text-red-400 border border-red-500/20">
+        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+        <span>ERROR 404 // ROUTE NOT FOUND</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-semibold tracking-tight text-[#171717] dark:text-white font-sans">
+        Lost in digital space?
+      </h1>
+
+      <p class="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-lg mx-auto leading-relaxed">
+        The link you followed may be outdated, the project slug may have changed, or the route does not exist. Use the links below to navigate back to Prometrion's primary hubs.
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+        <Button variant="primary" href="/" size="md">
+          ← Return to Home
+        </Button>
+        <Button variant="secondary" href="/services" size="md">
+          Explore Services
+        </Button>
+        <Button variant="ghost" href="/store" size="md">
+          Prometrion Store
+        </Button>
+      </div>
+
+      <!-- Quick Navigation Grid -->
+      <div class="pt-8 border-t border-neutral-200/60 dark:border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left">
+        <a
+          href="/work"
+          class="p-3 rounded-lg bg-white dark:bg-white/[0.03] border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-cyan-400/40 transition group"
+        >
+          <span class="text-xs font-semibold text-neutral-900 dark:text-white block group-hover:text-[#0070f3] dark:group-hover:text-cyan-400">Our Work</span>
+          <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Case studies & portfolio</span>
+        </a>
+
+        <a
+          href="/pricing"
+          class="p-3 rounded-lg bg-white dark:bg-white/[0.03] border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-cyan-400/40 transition group"
+        >
+          <span class="text-xs font-semibold text-neutral-900 dark:text-white block group-hover:text-[#0070f3] dark:group-hover:text-cyan-400">Pricing Matrix</span>
+          <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Transparent plans & rates</span>
+        </a>
+
+        <a
+          href="/estimate"
+          class="p-3 rounded-lg bg-white dark:bg-white/[0.03] border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-cyan-400/40 transition group"
+        >
+          <span class="text-xs font-semibold text-neutral-900 dark:text-white block group-hover:text-[#0070f3] dark:group-hover:text-cyan-400">Cost Estimator</span>
+          <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Configure scope & price</span>
+        </a>
+
+        <a
+          href="/contact"
+          class="p-3 rounded-lg bg-white dark:bg-white/[0.03] border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-cyan-400/40 transition group"
+        >
+          <span class="text-xs font-semibold text-neutral-900 dark:text-white block group-hover:text-[#0070f3] dark:group-hover:text-cyan-400">Contact Desk</span>
+          <span class="text-[11px] text-neutral-500 dark:text-neutral-400">Inquiries & support</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

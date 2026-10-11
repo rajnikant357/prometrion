@@ -1,153 +1,310 @@
 ---
-// store/webstore.astro - Prometrion Webstore
+// src/pages/store/webstore.astro
+// Prometrion Webstore — Live Websites, Web Applications & Digital Experiences
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
-import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
+import StoreHero from "../../components/ui/StoreHero.astro";
+import { webstoreProjects, webstoreCategories } from "../../data/webstoreProjects";
+import { buildBreadcrumbSchema } from "../../utils/seo";
 
-const webProducts = [
-  {
-    id: "apex-saas",
-    title: "Apex SaaS & Platform Starter",
-    category: "SaaS",
-    desc: "Production-ready enterprise SaaS template with authentication, subscription billing, and dark/light themes.",
-    price: "$79",
-    stack: ["Astro 7", "Tailwind v4", "TypeScript"],
-    rating: "4.9 (42 reviews)",
-  },
-  {
-    id: "mono-agency",
-    title: "Mono Creative Studio",
-    category: "Agency",
-    desc: "High-contrast minimalist agency template inspired by Swiss typography with animated case studies.",
-    price: "$49",
-    stack: ["Astro", "Tailwind", "Framer Motion"],
-    rating: "5.0 (28 reviews)",
-  },
-  {
-    id: "lumen-commerce",
-    title: "Lumen Headless Commerce",
-    category: "E-Commerce",
-    desc: "Blazing-fast e-commerce storefront with instant cart drawer, Stripe hooks, and sub-100ms page transitions.",
-    price: "$99",
-    stack: ["Next.js", "Tailwind", "Shopify/Stripe"],
-    rating: "4.8 (63 reviews)",
-  },
-  {
-    id: "horizon-clinic",
-    title: "Horizon Health & Clinic Portal",
-    category: "Healthcare",
-    desc: "Doctor appointments booking, patient intake form, doctor profiles, and HIPAA-compliant layout schema.",
-    price: "$59",
-    stack: ["Astro", "Tailwind", "JSON-LD"],
-    rating: "4.9 (19 reviews)",
-  },
-  {
-    id: "veritas-consulting",
-    title: "Veritas Executive Advisory",
-    category: "Business",
-    desc: "Authoritative corporate website for law firms, accounting practices, and venture funds with lead capture.",
-    price: "$69",
-    stack: ["Astro 7", "Tailwind", "Responsive"],
-    rating: "5.0 (31 reviews)",
-  },
-  {
-    id: "devpulse-docs",
-    title: "DevPulse Developer Hub",
-    category: "Docs & Tech",
-    desc: "Full technical documentation and API reference theme with Cmd+K search and multi-language code tabs.",
-    price: "$39",
-    stack: ["Astro Starlight", "Tailwind"],
-    rating: "4.9 (84 reviews)",
-  },
-];
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Store", url: "/store" },
+  { name: "Webstore", url: "/store/webstore" },
+]);
 ---
 
 <BaseLayout
-  title="Webstore — Prometrion Marketplace"
-  description="Explore production-grade website templates, SaaS frontends, and turnkey digital web packages."
+  title="Webstore — Live Websites & Web Applications | Prometrion"
+  description="Explore live websites, web applications, and digital experiences built and showcased by Prometrion. Discover real architectures and request custom solutions."
+  jsonLd={breadcrumbSchema}
 >
-  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <SectionEyebrow tag="MARKETPLACE / WEBSTORE">WEBSITE PRODUCTS</SectionEyebrow>
-          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
-            Production Websites & Templates
-          </h1>
-          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
-            Sub-second page loads, accessible semantic HTML, and pre-configured SEO schema.
-          </p>
-        </div>
-        <div class="flex items-center gap-2 shrink-0">
-          <Button variant="secondary" href="/services/packages" size="sm">Custom Build</Button>
-          <Button variant="primary" href="/contact" size="sm">Hire Team</Button>
-        </div>
+  <!-- Unified Prometrion Store Hero & Tabs -->
+  <StoreHero activeTab="webstore" />
+
+  <!-- Webstore Secondary Nav & Filter Toolbar (Aligned with Appstore layout) -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-[#0a0a0a] sticky top-16 z-30 transition-colors shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <!-- Category Filter Navbuttons / Pills -->
+      <div id="category-pills-container" class="flex items-center gap-1.5 overflow-x-auto text-xs font-medium scrollbar-none" data-lenis-prevent>
+        <button
+          type="button"
+          data-category="all"
+          class="cat-filter-pill active px-3.5 py-1.5 rounded-full text-xs font-medium bg-[#171717] dark:bg-white text-white dark:text-[#171717] whitespace-nowrap shadow-xs transition cursor-pointer"
+        >
+          All Projects ({webstoreProjects.length})
+        </button>
+        {webstoreCategories.map((cat) => {
+          const count = webstoreProjects.filter((p) => p.category === cat).length;
+          return (
+            <button
+              type="button"
+              data-category={cat}
+              class="cat-filter-pill px-3.5 py-1.5 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400 dark:hover:border-white/30 whitespace-nowrap transition cursor-pointer"
+            >
+              {cat} ({count})
+            </button>
+          );
+        })}
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
-        <button class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm">All Templates</button>
-        <button class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">SaaS & Apps</button>
-        <button class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Agency & Portfolio</button>
-        <button class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">E-Commerce</button>
-        <button class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Healthcare & Clinic</button>
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact" size="sm">
+          Request a Custom Website →
+        </Button>
+        <Button variant="secondary" href="/pricing" size="sm">
+          View Service Pricing
+        </Button>
       </div>
     </div>
   </div>
 
-  <!-- Products Grid -->
-  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+  <!-- Projects Grid Section -->
+  <section class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {webProducts.map((p) => (
-          <Card variant="interactive" class="flex flex-col justify-between">
+      
+      <!-- Status bar -->
+      <div class="flex items-center justify-between pb-4 mb-6 border-b border-neutral-200/60 dark:border-white/10 text-xs text-neutral-500 dark:text-neutral-400">
+        <span id="results-count-text">
+          Showing <strong class="text-neutral-900 dark:text-white font-mono" id="visible-count">{webstoreProjects.length}</strong> of {webstoreProjects.length} verified projects
+        </span>
+        <button
+          id="clear-filters-btn"
+          type="button"
+          class="hidden text-[11px] font-mono text-[#0070f3] dark:text-cyan-400 hover:underline cursor-pointer"
+        >
+          Reset Filters
+        </button>
+      </div>
+      
+      <!-- Responsive Grid Container -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {webstoreProjects.map((p) => (
+          <article
+            class="project-card flex flex-col justify-between bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-5 shadow-whisper hover:shadow-floating transition-all duration-200 group"
+            data-name={p.name.toLowerCase()}
+            data-category={p.category}
+            data-stack={p.stack.join(" ").toLowerCase()}
+            data-desc={p.shortDesc.toLowerCase()}
+          >
             <div>
-              <div class="aspect-video bg-neutral-100 rounded-lg mb-4 flex items-center justify-center text-neutral-400 font-mono text-xs border border-neutral-200/60 relative overflow-hidden group-hover:border-neutral-300">
-                <div class="absolute inset-0 flex items-center justify-center bg-neutral-900/5 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span class="px-3 py-1 bg-white text-black font-sans text-xs font-medium rounded-full shadow-sm">
-                    Live Demo ↗
+              <!-- Project Preview Visual -->
+              <a
+                href={`/store/webstore/${p.slug}`}
+                class="block aspect-[16/10] bg-neutral-100 dark:bg-neutral-900 rounded-[4px] mb-4 overflow-hidden border border-neutral-200/60 dark:border-white/10 relative group-hover:border-neutral-400 dark:group-hover:border-white/20 transition cursor-pointer"
+                title={`View ${p.name} details`}
+              >
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`Live preview screenshot of ${p.name}`}
+                    class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-neutral-900 to-black text-white relative">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center mb-2">
+                      <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <span class="text-xs font-semibold">{p.name}</span>
+                    <span class="text-[10px] font-mono text-neutral-400 mt-0.5">{p.category}</span>
+                  </div>
+                )}
+                
+                <!-- Hover Overlay Badge -->
+                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span class="px-3 py-1 bg-white/95 dark:bg-black/90 text-neutral-900 dark:text-white rounded-full text-[11px] font-medium shadow-md backdrop-blur-xs">
+                    Inspect Architecture ↗
                   </span>
                 </div>
-                <span>[ {p.category} Preview ]</span>
-              </div>
+              </a>
 
-              <div class="flex items-center justify-between text-xs mb-1">
+              <!-- Category Badge & Optional Status Notice -->
+              <div class="flex items-center justify-between text-xs mb-2">
                 <Badge variant="blue">{p.category}</Badge>
-                <span class="text-neutral-500 font-mono text-[11px]">★ {p.rating}</span>
+                {p.statusNote && (
+                  <span class="text-[10px] font-mono text-amber-500 font-medium" title={p.statusNote}>
+                    Offline Notice
+                  </span>
+                )}
               </div>
 
-              <h3 class="font-semibold text-base text-neutral-900 mt-2">
-                {p.title}
-              </h3>
-              <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-                {p.desc}
+              <!-- Title -->
+              <h2 class="font-semibold text-base text-neutral-900 dark:text-white leading-snug">
+                <a href={`/store/webstore/${p.slug}`} class="hover:text-[#0070f3] dark:hover:text-cyan-400 transition">
+                  {p.name}
+                </a>
+              </h2>
+
+              <!-- Short Description -->
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed line-clamp-3">
+                {p.shortDesc}
               </p>
 
+              <!-- Verified Technology Tags -->
               <div class="mt-4 flex flex-wrap gap-1.5">
-                {p.stack.map(tech => (
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 text-neutral-600">
+                {p.stack.slice(0, 3).map((tech) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300 border border-neutral-200/50 dark:border-white/5">
                     {tech}
                   </span>
                 ))}
+                {p.stack.length > 3 && (
+                  <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-transparent text-neutral-400">
+                    +{p.stack.length - 3}
+                  </span>
+                )}
               </div>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
-              <span class="text-lg font-mono font-bold text-[#171717]">{p.price}</span>
-              <div class="flex gap-2">
-                <Button variant="ghost-sm" href="/contact">
-                  Preview
-                </Button>
-                <Button variant="primary-sm" href="/contact">
-                  Get Template
-                </Button>
-              </div>
+            <!-- Card Actions -->
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10 flex items-center justify-between gap-2">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0070f3] dark:text-cyan-400 hover:underline cursor-pointer"
+              >
+                <span>Live Demo</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+
+              <a
+                href={`/store/webstore/${p.slug}`}
+                class="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-neutral-800 bg-neutral-50 hover:bg-neutral-100 dark:bg-[#141414] dark:text-neutral-200 dark:hover:bg-[#1f1f1f] border border-[#ebebeb] dark:border-[#262626] rounded-md transition cursor-pointer"
+              >
+                View Details →
+              </a>
             </div>
-          </Card>
+          </article>
         ))}
       </div>
+
+      <!-- Empty Filter State -->
+      <div id="no-projects-found" class="hidden text-center py-16 bg-white dark:bg-[#0c0c0c] border border-dashed border-neutral-200 dark:border-white/10 rounded-lg">
+        <div class="w-12 h-12 mx-auto rounded-full bg-neutral-100 dark:bg-white/5 flex items-center justify-center text-neutral-400 mb-3">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-sm font-semibold text-neutral-800 dark:text-neutral-200">No matching projects found</p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Try clearing your search query or selecting a different category.</p>
+        <button
+          id="empty-reset-btn"
+          type="button"
+          class="mt-4 px-4 py-1.5 text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 rounded-full cursor-pointer hover:opacity-90 transition"
+        >
+          Reset All Filters
+        </button>
+      </div>
+
+      <!-- Bottom Business Conversion Band -->
+      <div class="mt-16 p-8 sm:p-10 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 shadow-whisper flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-semibold">
+            ✦ TAILORED ARCHITECTURES
+          </span>
+          <h3 class="text-xl font-semibold text-neutral-900 dark:text-white mt-1">
+            Need a website tailored to your business model?
+          </h3>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            From e-commerce stores and corporate portfolios to dynamic AI applications and SaaS platforms, we architect, design, and deploy production software.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <Button variant="primary" href="/contact">
+            Request a Quote →
+          </Button>
+          <Button variant="secondary" href="/pricing">
+            Explore Packages
+          </Button>
+        </div>
+      </div>
+
     </div>
-  </div>
+  </section>
 </BaseLayout>
+
+<script>
+  // Dynamic Client-side Category Filtering
+  const categoryPills = document.querySelectorAll<HTMLButtonElement>(".cat-filter-pill");
+  const projectCards = document.querySelectorAll<HTMLElement>(".project-card");
+  const visibleCountEl = document.getElementById("visible-count");
+  const noProjectsState = document.getElementById("no-projects-found");
+  const clearFiltersBtn = document.getElementById("clear-filters-btn");
+  const emptyResetBtn = document.getElementById("empty-reset-btn");
+
+  let activeCategory = "all";
+
+  function filterProjects() {
+    let visible = 0;
+
+    projectCards.forEach((card) => {
+      const cardCategory = card.dataset.category || "";
+      const matchesCat = activeCategory === "all" || cardCategory.toLowerCase() === activeCategory.toLowerCase();
+
+      if (matchesCat) {
+        card.style.display = "flex";
+        visible++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    if (visibleCountEl) visibleCountEl.textContent = String(visible);
+
+    if (noProjectsState) {
+      if (visible === 0) {
+        noProjectsState.classList.remove("hidden");
+      } else {
+        noProjectsState.classList.add("hidden");
+      }
+    }
+
+    if (clearFiltersBtn) {
+      if (activeCategory !== "all") {
+        clearFiltersBtn.classList.remove("hidden");
+      } else {
+        clearFiltersBtn.classList.add("hidden");
+      }
+    }
+  }
+
+  categoryPills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      categoryPills.forEach((p) => {
+        p.classList.remove("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        p.classList.add("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      });
+
+      pill.classList.add("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+      pill.classList.remove("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+
+      activeCategory = pill.dataset.category || "all";
+      filterProjects();
+    });
+  });
+
+  function resetAll() {
+    activeCategory = "all";
+    categoryPills.forEach((pill) => {
+      const isAll = pill.dataset.category === "all";
+      if (isAll) {
+        pill.classList.add("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        pill.classList.remove("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      } else {
+        pill.classList.remove("active", "bg-[#171717]", "dark:bg-white", "text-white", "dark:text-[#171717]");
+        pill.classList.add("bg-white", "dark:bg-white/[0.06]", "text-neutral-700", "dark:text-neutral-300");
+      }
+    });
+    filterProjects();
+  }
+
+  clearFiltersBtn?.addEventListener("click", resetAll);
+  emptyResetBtn?.addEventListener("click", resetAll);
+</script>

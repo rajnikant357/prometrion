@@ -5,11 +5,18 @@ import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
 import Card from "../components/ui/Card.astro";
 import Button from "../components/ui/Button.astro";
 import Badge from "../components/ui/Badge.astro";
+import { buildBreadcrumbSchema } from "../utils/seo";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Contact", url: "/contact" },
+]);
 ---
 
 <BaseLayout
   title="Contact Us — Prometrion Multi-Channel Desk"
   description="Connect with Prometrion: Contact Form, Direct Phone Call, WhatsApp Desk, and 24/7 AI Chatbot Assistant."
+  jsonLd={breadcrumbSchema}
 >
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070708]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -70,7 +77,7 @@ import Badge from "../components/ui/Badge.astro";
         <!-- Channel 3: WhatsApp Button -->
         <Card variant="default" class="text-center p-6">
           <div class="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3">
-            <svg class="w-5 h-5 fill-currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 fill-current" fill="currentColor" viewBox="0 0 24 24">
               <path d="M17.472 14.382c-.301-.15-1.781-.879-2.057-.98-.276-.1-.477-.15-.678.15-.2.301-.777.98-.953 1.18-.176.2-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.798-1.498-1.784-1.674-2.085-.176-.301-.019-.464.132-.614.136-.135.301-.351.451-.527.15-.176.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.234-.244-.587-.492-.507-.677-.517-.176-.01-.376-.01-.577-.01-.2 0-.526.075-.802.376-.276.301-1.053 1.029-1.053 2.509 0 1.48 1.078 2.909 1.229 3.109.15.2 2.122 3.241 5.141 4.545.718.31 1.279.495 1.716.634.721.23 1.378.197 1.897.12.578-.087 1.781-.727 2.032-1.43.251-.702.251-1.304.176-1.43-.076-.126-.276-.201-.577-.351z"/>
               <path d="M12 2C6.477 2 2 6.477 2 12c0 1.892.525 3.663 1.438 5.176L2 22l4.981-1.399C8.423 21.496 10.158 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.273c-1.628 0-3.14-.5-4.402-1.359l-.316-.214-2.955.83.844-2.88-.235-.333C4.017 14.992 3.5 13.541 3.5 12c0-4.687 3.813-8.5 8.5-8.5s8.5 3.813 8.5 8.5-3.813 8.5-8.5 8.5z"/>
             </svg>
@@ -95,6 +102,22 @@ import Badge from "../components/ui/Badge.astro";
           </button>
         </Card>
 
+      </div>
+
+      <!-- Quick Conversion Pathways Banner -->
+      <div class="max-w-2xl mx-auto mb-8 p-4 rounded-lg bg-neutral-50 dark:bg-white/[0.03] border border-neutral-200/80 dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div>
+          <span class="font-semibold text-neutral-900 dark:text-white block">Need tailored pricing or technical advisory?</span>
+          <p class="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">Use our self-guided estimator or schedule a direct Google Meet session.</p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a href="/estimate" class="px-3 py-1.5 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:opacity-90 transition shadow-xs">
+            Cost Estimator →
+          </a>
+          <a href="/book-consultation" class="px-3 py-1.5 rounded-full text-xs font-medium border border-neutral-200 dark:border-white/15 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/10 transition">
+            Book Session
+          </a>
+        </div>
       </div>
 
       <!-- Main Structured Form Section -->
@@ -138,8 +161,11 @@ import Badge from "../components/ui/Badge.astro";
                 <option value="website">Website Development (Portfolio, Corporate, Catalogue, E-Com)</option>
                 <option value="app">Mobile Application (Android / Cross-Platform)</option>
                 <option value="seo-geo">SEO & Generative Engine Optimization (GEO)</option>
+                <option value="digital-presence">Digital Presence (Google Business, Maps, WhatsApp)</option>
+                <option value="digital-branding">Digital Branding (Logo, Cards, Brand Kit)</option>
+                <option value="digital-consultancy">Digital Consultancy (1-on-1 Advisory, 90-Day Plan)</option>
+                <option value="maintenance">Maintenance & Support (Monthly Care & SLAs)</option>
                 <option value="taluq-ai">Taluq AI & Autonomous Reasoning Agents</option>
-                <option value="maintenance">Monthly Care & Ongoing Retainer</option>
                 <option value="other">Bespoke Custom Statement of Work</option>
               </select>
             </div>
@@ -208,18 +234,39 @@ import Badge from "../components/ui/Badge.astro";
   const packageParam = urlParams.get("package");
   const tierParam = urlParams.get("tier");
   const planParam = urlParams.get("plan");
+  const addonParam = urlParams.get("addon");
+  const modelParam = urlParams.get("model");
+  const retainerParam = urlParams.get("retainer");
 
   if (packageParam && serviceSelect) {
     if (packageParam === "combo-starter") serviceSelect.value = "combo-starter";
     else if (packageParam === "combo-business") serviceSelect.value = "combo-business";
     else if (packageParam === "combo-growth") serviceSelect.value = "combo-growth";
     else if (packageParam === "combo-complete") serviceSelect.value = "combo-complete";
-  } else if (serviceParam && projectDetails) {
-    projectDetails.value = `I am inquiring about the "${serviceParam}" solution from the catalog. Please share availability and delivery timeframe.`;
+  }
+
+  if (serviceParam && serviceSelect) {
+    if (serviceParam === "website-development") serviceSelect.value = "website";
+    else if (serviceParam === "app-development") serviceSelect.value = "app";
+    else if (serviceParam === "seo-geo") serviceSelect.value = "seo-geo";
+    else if (serviceParam === "digital-presence") serviceSelect.value = "digital-presence";
+    else if (serviceParam === "digital-branding") serviceSelect.value = "digital-branding";
+    else if (serviceParam === "digital-consultancy") serviceSelect.value = "digital-consultancy";
+    else if (serviceParam === "maintenance-support") serviceSelect.value = "maintenance";
+  }
+
+  if (addonParam && projectDetails) {
+    projectDetails.value = `I am interested in adding the "${addonParam}" add-on to my project scope.`;
+  } else if (modelParam && projectDetails) {
+    projectDetails.value = `I am inquiring about the "${modelParam}" service model specifications.`;
+  } else if (planParam && projectDetails) {
+    projectDetails.value = `I would like to subscribe to the "${planParam}" plan.`;
+  } else if (retainerParam && projectDetails) {
+    projectDetails.value = `I would like to activate the "${retainerParam}" monthly retainer.`;
   } else if (tierParam && projectDetails) {
     projectDetails.value = `I am interested in initiating a ${tierParam.toUpperCase()} tier sprint for my business.`;
-  } else if (planParam && projectDetails) {
-    projectDetails.value = `I would like to subscribe to the "${planParam}" ongoing retainer.`;
+  } else if (serviceParam && projectDetails) {
+    projectDetails.value = `I am inquiring about ${serviceParam.replace(/-/g, ' ')}. Please share scope details and availability.`;
   }
 
   form?.addEventListener("submit", (e) => {

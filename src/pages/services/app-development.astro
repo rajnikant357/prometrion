@@ -1,87 +1,391 @@
 ---
-// services/app-development.astro - Prometrion App Development Services
+// services/app-development.astro - Canonical Mobile App Development Service Page
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
 import Card from "../../components/ui/Card.astro";
 import Button from "../../components/ui/Button.astro";
 import Badge from "../../components/ui/Badge.astro";
 
-const appOfferings = [
+const appTypes = [
   {
-    title: "Native Android Engineering",
-    desc: "Kotlin-first native architectures taking full advantage of Android Jetpack, material tokens, foreground services, and hardware crypto accelerators.",
-    tag: "Native Android",
+    title: "App Prototype & Planning",
+    price: "₹7,999",
+    turnaround: "3–7 days",
+    badge: "Starter Tier",
+    persona: "Founders, entrepreneurs, and teams with an app idea who need validation before coding.",
+    problem: "Unclear feature scope and jumping straight to coding without architectural plans leads to budget blowouts.",
+    scope: ["Requirements discovery & idea evaluation", "Feature backlog prioritization", "Screen flow & user journey diagrams", "Basic UI/UX design direction", "Comprehensive development cost estimate", "Architecture roadmap document"],
   },
   {
-    title: "Cross-Platform Mobile Apps",
-    desc: "Single codebase, dual ecosystem parity across Android and iOS. Built with React Native or Flutter without sacrificing 60fps gesture animations.",
-    tag: "Multi-Platform",
+    title: "Static / Information App",
+    price: "₹14,999 – ₹15,000+",
+    turnaround: "7–15 days",
+    badge: "Standard Tier",
+    persona: "Clubs, schools, restaurants, institutions, directories, and corporate portfolios.",
+    problem: "Need an official presence on Android home screens and offline readability without ongoing server costs.",
+    scope: ["Multiple structured screens", "Company/institution profile & services", "High-res gallery & media", "One-tap Call + WhatsApp routing", "Basic offline content caching", "Google Play Store bundle (AAB/APK)"],
   },
   {
-    title: "Internal Operations & Field Apps",
-    desc: "Mission-critical internal tooling for inventory, logistics tracking, field agent verification, and offline-first barcode scanning.",
-    tag: "Enterprise Ops",
+    title: "Business Customer App",
+    price: "₹20,000 – ₹24,999+",
+    turnaround: "14–20 days",
+    badge: "Standard / Growth",
+    persona: "Local businesses, clinics, service contractors, and customer-facing brands.",
+    problem: "Customers forget to re-order or engage because phone coordination is fragmented.",
+    scope: ["User registration and login", "Customer profile & interaction history", "Service catalogue & pricing breakdown", "Direct enquiry & lead submission", "Automated push notification alerts", "Android native responsive build"],
   },
   {
-    title: "Customer Portal & Booking Apps",
-    desc: "Consumer-facing self-service apps featuring push notifications, customer support chat, loyalty points, and unified billing.",
-    tag: "Consumer Apps",
+    title: "Dynamic App with Cloud Backend",
+    price: "₹30,000 – ₹34,999+",
+    turnaround: "20–25 days",
+    badge: "Growth Tier",
+    persona: "Content publishers, educational apps, service marketplaces, and collaborative portals.",
+    problem: "Need real-time data sync, dynamic content updates, and a central admin dashboard to manage data.",
+    scope: ["Real-time cloud database synchronization", "Customer & administrative dashboards", "Orders & booking management", "Push notification triggers", "Role-based user permissions", "Web admin control panel"],
+  },
+  {
+    title: "E-Commerce Mobile Shopping App",
+    price: "₹35,000 – ₹39,999+",
+    turnaround: "25–35 days",
+    badge: "Advanced Tier",
+    persona: "Online retailers, consumer brands, supermarkets, and fashion stores.",
+    problem: "Mobile browsers have high checkout abandonment; native shopping apps drive higher repeat conversion.",
+    scope: ["Product catalogue with search & filter tags", "Native shopping cart & wishlist drawer", "Online payment gateway integration", "Order tracking & live delivery status", "Customer profile & address book", "Promotional push alert triggers"],
+  },
+  {
+    title: "On-Demand Booking & Service App",
+    price: "₹35,000+",
+    turnaround: "25–35 days",
+    badge: "Advanced Tier",
+    persona: "Salons, diagnostic centers, repair specialists, fitness trainers, and home services.",
+    problem: "Manual scheduling over phone leads to double bookings and high administrative overhead.",
+    scope: ["Service menu & category selection", "Interactive calendar & time-slot picker", "Booking confirmation & cancellation flows", "Automated SMS/WhatsApp reminders", "In-app payment integration", "Service provider status updates"],
+  },
+  {
+    title: "Custom Enterprise & SaaS App",
+    price: "₹40,000 – ₹50,000+",
+    turnaround: "30–50 days",
+    badge: "Enterprise Bespoke",
+    persona: "Tech startups, enterprises with field staff, logistics operations, and proprietary workflows.",
+    problem: "Off-the-shelf software cannot accommodate unique business logic, offline field data, or complex role hierarchies.",
+    scope: ["Bespoke workflow architecture", "Offline-first SQLite data synchronization", "Hardware sensor / GPS integration", "Enterprise role permissions & audit logging", "Testing, staging sandbox & Play Store launch", "Comprehensive API documentation"],
   },
 ];
+
+const platformOptions = [
+  { name: "Android Platform Build", price: "Included in Base Package", desc: "Complete Android build responsive across smartphones and tablets with Google Play Store bundle." },
+  { name: "Android + iOS Cross-Platform", price: "+₹10,000 onwards", desc: "Simultaneous Android and iOS releases with shared backend logic and platform-specific styling." },
+  { name: "iOS Version Build Only", price: "+₹10,000 onwards", desc: "Apple Human Interface Guidelines alignment, TestFlight beta distribution, and App Store readiness." },
+  { name: "Offline-First Data Sync", price: "+₹5,000 onwards", desc: "Local SQLite caching mechanism and automatic background sync when internet connection reconnects." },
+];
+
+const appAddons = [
+  { name: "Login / Registration (OTP/Email)", price: "₹3,000+", time: "2–3 days", desc: "Secure authentication flow with SMS OTP or email verification." },
+  { name: "User Profile & Settings", price: "₹2,000+", time: "1–2 days", desc: "Editable profile screen, avatar upload, and saved addresses." },
+  { name: "Push Notifications Engine", price: "₹3,000+", time: "2–3 days", desc: "Targeted push alert triggers, messaging templates, and device registry." },
+  { name: "In-App Payment Gateway", price: "₹4,000+", time: "2–4 days", desc: "Razorpay or Stripe integration with instant transaction callbacks." },
+  { name: "Booking & Scheduling Engine", price: "₹5,000+", time: "3–5 days", desc: "Date/time slot picker, capacity checks, and provider sync." },
+  { name: "Product Catalogue Module", price: "₹5,000+", time: "3–5 days", desc: "Product list view, detailed item screen, image gallery, and filters." },
+  { name: "Native Shopping Cart", price: "₹5,000+", time: "3–5 days", desc: "Cart drawer, quantity selector, coupons, and checkout route." },
+  { name: "Real-Time Customer Chat", price: "₹7,500+", time: "5–7 days", desc: "In-app 1-on-1 messaging window, read status receipts, and media sharing." },
+  { name: "Web Administrative Panel", price: "₹7,500+", time: "5–7 days", desc: "Secure browser dashboard to manage users, orders, and content updates." },
+];
+
+const appStandards = [
+  { title: "Offline First Architecture", desc: "Local Room/SQLite database caching ensures core app functionality remains fluid even in poor network conditions." },
+  { title: "Biometric Hardware Security", desc: "Fingerprint and Face Unlock integrations backed by Android Keystore cryptography for sensitive user data." },
+  { title: "Battery & Thermal Efficiency", desc: "WorkManager background execution prevents aggressive battery drain and background thermal throttling." },
+  { title: "Material You & Modern UI", desc: "Precision tactile feedback, dynamic contrast, 60fps animations, and responsive screen adaptation." },
+];
+
+const appInclusions = [
+  "Complete compile build for target platform (Android APK & Google Play AAB)",
+  "Responsive screen design adapting across varying smartphone aspect ratios",
+  "Offline content caching and local SQLite data store",
+  "1-tap WhatsApp chat and phone call direct action intents",
+  "Google Play submission assistance and signing key configuration",
+  "30-day post-launch warranty with dedicated bug-fix support",
+];
+
+const appExclusions = [
+  "Google Play Console one-time developer fee ($25, payable directly to Google by client)",
+  "Apple Developer Program annual account fee ($99/year, payable directly to Apple by client)",
+  "Third-party SMS OTP gateway credits (billed at direct cost)",
+  "Dedicated server or cloud hosting (Firebase / AWS) monthly subscriptions beyond free tier",
+  "Third-party map API billing (Google Maps) if query quotas are exceeded",
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "Mobile Application Development Services",
+  description: "Native Android and cross-platform mobile application development for startups, businesses, and enterprises. Clean architecture, offline sync, and transparent INR pricing.",
+  serviceType: "Mobile App Development",
+  url: "/services/app-development",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Mobile App Development", url: "/services/app-development" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
 ---
 
 <BaseLayout
-  title="App Development Services — Prometrion"
-  description="Native Android and cross-platform mobile application development for startups and enterprise systems."
+  title="Mobile App Development Services — Prometrion"
+  description="Native Android and cross-platform mobile application development for startups, businesses, and enterprises. Clean architecture, offline sync, and transparent INR pricing."
+  jsonLd={jsonLd}
 >
+  <!-- Compact Header -->
   <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
       <div>
-        <SectionEyebrow tag="SERVICE SPECIFICATION">APP DEVELOPMENT</SectionEyebrow>
+        <SectionEyebrow tag="SERVICE 02">MOBILE APP DEVELOPMENT</SectionEyebrow>
         <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
           Native Android and cross-platform mobile systems.
         </h1>
         <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
-          From consumer applications to mission-critical field operations, engineered to be resilient, fluid, and battery-efficient.
+          From customer interaction apps and catalogues to complex dynamic software with cloud backends. Battery-efficient, secure, and offline-resilient.
         </p>
       </div>
       <div class="flex flex-wrap items-center gap-2 shrink-0">
-        <Button variant="primary" href="/contact" size="sm">Commission an App</Button>
-        <Button variant="secondary" href="/store/appstore" size="sm">Explore Appstore</Button>
+        <Button variant="primary" href="/contact?service=app-development" size="sm">
+          Commission an App
+        </Button>
+        <Button variant="secondary" href="/store/appstore" size="sm">
+          Explore Appstore
+        </Button>
       </div>
     </div>
   </div>
 
-  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {appOfferings.map((item) => (
-          <Card variant="default">
-            <Badge variant="emerald">{item.tag}</Badge>
-            <h2 class="text-lg font-semibold text-neutral-900 mt-3">{item.title}</h2>
-            <p class="text-xs text-neutral-600 mt-2 leading-relaxed">{item.desc}</p>
-          </Card>
-        ))}
+  <!-- Engineering Signals Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">Kotlin / Flutter</span> <span class="text-neutral-500">Core Stack</span></div>
+      <div><span class="font-bold text-emerald-600">60 FPS</span> <span class="text-neutral-500">Fluid Gestures</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Offline-First</span> <span class="text-neutral-500">SQLite Caching</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Play Store</span> <span class="text-neutral-500">Release Ready</span></div>
+    </div>
+  </div>
+
+  <!-- Section 1: App Types & Pricing Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="APP TYPOLOGY">CHOOSE YOUR APPLICATION TYPE</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Engineered for fluid smartphone experiences
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Start with the core app type; platform coverage and advanced functional modules can be expanded cleanly.
+        </p>
       </div>
 
-      <!-- App Standards Matrix -->
-      <div class="mt-12 bg-white border border-[#ebebeb] rounded-[6px] p-8 shadow-whisper">
-        <h3 class="text-base font-semibold text-neutral-900 mb-4">Prometrion Mobile Standards</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-neutral-600">
-          <div>
-            <span class="font-semibold text-neutral-900 block mb-1">✔ Offline First</span>
-            <p>Local SQLite/Room caching ensures full app functionality without internet connectivity.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {appTypes.map((app) => (
+          <div class="rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 p-6 flex flex-col justify-between shadow-whisper hover:shadow-floating transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={app.badge.includes('Starter') ? 'neutral' : app.badge.includes('Growth') ? 'blue' : 'purple'}>
+                  {app.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  ⚡ {app.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{app.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{app.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">Starting baseline</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Best For</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{app.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Addressed</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{app.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Core Deliverables</span>
+                <ul class="space-y-1 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {app.scope.slice(0, 4).map((item) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant="primary-sm"
+                href={`/contact?service=app-development&model=${encodeURIComponent(app.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {app.title.split(' ')[0]}
+              </Button>
+            </div>
           </div>
-          <div>
-            <span class="font-semibold text-neutral-900 block mb-1">✔ Biometric Security</span>
-            <p>Fingerprint and face authentication integrated with Android Keystore encryption.</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Platform & Functionality Options -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CROSS-PLATFORM">PLATFORM OPTIONS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Choose target ecosystems seamlessly
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Android serves as our canonical baseline platform; add iOS or advanced offline caching with transparent pricing.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {platformOptions.map((opt) => (
+          <div class="p-6 rounded-[6px] border border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-white/[0.02] shadow-whisper flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{opt.name}</h3>
+                <span class="text-xs font-mono font-bold text-neutral-900 dark:text-white bg-white dark:bg-white/10 px-2 py-1 rounded border border-neutral-200 dark:border-white/10">
+                  {opt.price}
+                </span>
+              </div>
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">{opt.desc}</p>
+            </div>
           </div>
-          <div>
-            <span class="font-semibold text-neutral-900 block mb-1">✔ Battery Efficient</span>
-            <p>WorkManager background batching prevents background drain and thermal throttling.</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Prometrion Mobile Engineering Standards -->
+  <section class="py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="ENGINEERING RIGOR">MOBILE STANDARDS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Architectural principles built into every app
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {appStandards.map((std) => (
+          <div class="p-6 rounded-[6px] bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 shadow-whisper">
+            <span class="text-emerald-500 font-bold text-sm block mb-2">✔</span>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white mb-2">{std.title}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{std.desc}</p>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: App Add-ons List -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <SectionEyebrow tag="MODULAR MODULES">COMMON APP ADD-ONS</SectionEyebrow>
+          <h2 class="text-xl sm:text-2xl font-semibold text-neutral-900 dark:text-white mt-1">
+            Itemized Mobile Capabilities
+          </h2>
+          <p class="text-xs text-neutral-500 mt-1">Plug authentication, push notifications, chats, and payment gateways into any app.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {appAddons.map((addon) => (
+          <div class="p-4 rounded-[6px] bg-[#fafafa] dark:bg-white/[0.02] border border-[#ebebeb] dark:border-white/10 flex items-center justify-between gap-3 shadow-whisper">
+            <div>
+              <div class="font-medium text-xs text-neutral-900 dark:text-white">{addon.name}</div>
+              <p class="text-[11px] text-neutral-500 mt-0.5 leading-snug">{addon.desc}</p>
+              <span class="text-[10px] font-mono text-neutral-400 mt-1 inline-block">⚡ {addon.time}</span>
+            </div>
+            <div class="text-right shrink-0">
+              <span class="font-mono text-sm font-bold text-neutral-900 dark:text-white block">{addon.price}</span>
+              <a href={`/contact?addon=${encodeURIComponent(addon.name)}`} class="text-[10px] text-[#0070f3] dark:text-cyan-400 hover:underline">
+                Add +
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Inclusions & Scope Boundaries -->
+  <section class="py-14 bg-[#fafafa] dark:bg-black/30 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Inclusions -->
+        <div class="p-6 rounded-[6px] border border-emerald-200 dark:border-emerald-950/60 bg-white dark:bg-[#0c0c0c]">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">✔</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Included in Mobile Deliverables</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {appInclusions.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✔</span>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Exclusions -->
+        <div class="p-6 rounded-[6px] border border-amber-200 dark:border-amber-950/60 bg-white dark:bg-[#0c0c0c]">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold">!</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Account Fees & Scope Boundaries</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {appExclusions.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold mt-0.5">✕</span>
+                <span class="leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Section 6: Bottom CTA -->
+  <section class="py-16 bg-white dark:bg-[#070707] text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Ready to commission your mobile app?</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Discuss your feature requirements, target platforms, and user flows with our software engineering team.
+      </p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <Button variant="primary" href="/request-quote?service=app-development">Get a Quote →</Button>
+        <Button variant="secondary" href="/estimate?service=app">Calculate Estimate</Button>
+        <Button variant="ghost" href="/store/appstore">Explore Appstore</Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

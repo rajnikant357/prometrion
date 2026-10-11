@@ -1,24 +1,110 @@
 ---
-// index.astro - Prometrion Homepage
+// index.astro - Prometrion Homepage (Premium, Evidence-Backed Technology Platform)
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/ui/Button.astro";
 import Card from "../components/ui/Card.astro";
 import SectionEyebrow from "../components/ui/SectionEyebrow.astro";
 import Badge from "../components/ui/Badge.astro";
-import InteractiveWorkflowShowcase from "../components/ui/InteractiveWorkflowShowcase.astro";
 import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
+import TechStackMap from "../components/TechStackMap.astro";
+import ClientPartnerships from "../components/ClientPartnerships.astro";
+import CaseStudiesSection from "../components/CaseStudiesSection.astro";
+import MaintenanceSupportSection from "../components/MaintenanceSupportSection.astro";
+import TestimonialsTelemetrySection from "../components/TestimonialsTelemetrySection.astro";
+import { webstoreProjects, type WebstoreProject } from "../data/webstoreProjects";
+import { buildOrganizationSchema, buildWebSiteSchema, buildServiceSchema } from "../utils/seo";
+
+// Curated selection of 6 verified production projects from centralized registry
+const featuredSlugs = [
+  "prometrion-ai",
+  "sharpr",
+  "locallink",
+  "gazal-suit-ghar",
+  "alankarini-mehandi-art",
+  "ultron",
+];
+
+const featuredProjects = featuredSlugs
+  .map((slug) => webstoreProjects.find((p) => p.slug === slug))
+  .filter((p): p is WebstoreProject => Boolean(p));
+
+function getCategoryBadgeVariant(category: string): 'neutral' | 'blue' | 'emerald' | 'amber' | 'purple' {
+  switch (category) {
+    case 'AI Applications':
+      return 'purple';
+    case 'Education':
+      return 'blue';
+    case 'SaaS and Web Applications':
+      return 'emerald';
+    case 'E-commerce and Retail':
+      return 'amber';
+    case 'Portfolios':
+      return 'blue';
+    case 'Games and Interactive Experiences':
+      return 'purple';
+    case 'Business Websites':
+      return 'emerald';
+    default:
+      return 'neutral';
+  }
+}
+
+// Master Schema.org Structured Graph for Homepage SEO & GEO
+const homepageStructuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    buildOrganizationSchema(),
+    buildWebSiteSchema(),
+    buildServiceSchema({
+      name: "Custom Website Development",
+      description: "High-performance corporate platforms, SaaS web apps, and modern e-commerce architectures engineered with Astro 7, React 19, and Tailwind CSS v4 for sub-second LCP and high conversion.",
+      serviceType: "Web Development",
+      url: "/services/website-development",
+    }),
+    buildServiceSchema({
+      name: "Native Android & Mobile Application Engineering",
+      description: "Native Android applications and fluid mobile solutions built with Kotlin, Java, and Flutter with offline data sync and biometric security.",
+      serviceType: "Mobile Application Development",
+      url: "/services/app-development",
+    }),
+    buildServiceSchema({
+      name: "Generative Engine Optimization (GEO) & Semantic SEO",
+      description: "Traditional organic search combined with Generative Engine Optimization (GEO) ensuring discovery and entity citations across Google, ChatGPT, Perplexity, and Gemini.",
+      serviceType: "Search Engine Optimization",
+      url: "/services/seo-geo",
+    }),
+    buildServiceSchema({
+      name: "Website & Application Maintenance and SLA Support",
+      description: "Proactive uptime monitoring, automated database backups, security patching, and Core Web Vitals optimization backed by clear service level agreements.",
+      serviceType: "Software Maintenance",
+      url: "/services/maintenance-support",
+    }),
+    {
+      '@type': 'ItemList',
+      name: 'Featured Prometrion Software & Digital Projects',
+      itemListElement: featuredProjects.map((p, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: p.name,
+        description: p.shortDesc,
+        url: p.url,
+      })),
+    },
+  ],
+};
 ---
 
 <BaseLayout
-  title="Prometrion — Building Technology for What's Next"
-  description="Prometrion is a technology company creating software products, digital services, marketplaces, and developer ecosystems for people and businesses moving forward."
+  title="Prometrion — Technology & Digital Services Company"
+  description="Prometrion is a technology and digital services company helping businesses build, launch, and grow through software development, digital solutions, and search visibility."
+  jsonLd={homepageStructuredData}
 >
 
-  <!-- Hero Section with Planet Horizon Blue & Green Glow Effect & 3D WebGL Wireframe Half-Globe Background -->
+  <!-- 1. Hero Section with Planet Horizon Blue & Green Glow Effect & 3D WebGL Wireframe Half-Globe Background -->
   <section class="relative overflow-hidden pt-24 pb-28 md:pt-32 md:pb-40 border-b border-[#ebebeb] dark:border-[#202020]">
     <!-- 3D WebGL Wireframe Half-Globe in Hero Background with Green + Blue Aurora Light Effect (60% Opacity) -->
     <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center overflow-hidden h-[540px] sm:h-[700px] lg:h-[840px] opacity-60 z-0">
-      <div class="w-[900px] sm:w-[1200px] lg:w-[1500px] h-[900px] sm:h-[1200px] lg:h-[1500px] translate-y-[45%] relative">
+      <div class="w-[900px] sm:w-[1200px] lg:w-[1500px] h-[900px] sm:h-[1200px] lg:h-[1500px] translate-y-[45%] relative transition-transform duration-200" id="hero-globe-scrolly">
         <WireframeGlobe background={true} aurora={true} size="full" />
       </div>
     </div>
@@ -31,42 +117,42 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
 
     <!-- Atmospheric Multi-Stop Mesh Glow -->
     <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
-      <div class="w-[720px] sm:w-[960px] h-[480px] sm:h-[560px] mesh-gradient mesh-glow rounded-full"></div>
+      <div class="w-[720px] sm:w-[960px] h-[480px] sm:h-[560px] mesh-gradient mesh-glow rounded-full transition-transform duration-200" id="hero-mesh-scrolly"></div>
     </div>
 
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       
       <!-- Main Headline with Tight Geist Tracking -->
       <h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white max-w-4xl mx-auto leading-[1.08]">
-        Building technology for what's next.
+        Building technology that moves businesses forward.
       </h1>
 
-      <!-- Subtitle -->
+      <!-- Approved Business Positioning Copy -->
       <p class="mt-6 text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-        Prometrion is a technology company creating software products, digital services, marketplaces, and ecosystems for people, developers, and businesses moving forward.
+        Prometrion is a technology and digital services company helping businesses build, launch, and grow through software development, digital solutions, and search visibility.
       </p>
 
-      <!-- Dual Marketing CTAs with Glassmorphic Secondary Button -->
+      <!-- Dual Marketing CTAs -->
       <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-        <Button variant="primary" href="/products">
-          Explore Prometrion
+        <Button variant="primary" href="/contact">
+          Get a Quote
           <svg class="w-4 h-4 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </Button>
-        <Button variant="glass" href="/store">
-          Browse Store & Marketplace
+        <Button variant="glass" href="/services">
+          Explore Services
         </Button>
       </div>
 
     </div>
   </section>
 
-  <!-- 3. Infinite Marquee Ticker: Partners & Ecosystem Signals -->
+  <!-- Infinite Marquee Ticker: Engineering Signals -->
   <section class="py-10 bg-white dark:bg-[#070708] border-b border-[#ebebeb] dark:border-white/10 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
       <p class="text-[11px] font-mono uppercase tracking-[0.25em] text-neutral-400 dark:text-neutral-500 font-semibold">
-        TRUSTED BY AMBITIOUS TEAMS & INTEGRATED WITH NEXT-GEN PLATFORMS
+        ENGINEERED FOR HIGH PERFORMANCE & MODERN BUSINESS EXCELLENCE
       </p>
     </div>
 
@@ -77,19 +163,19 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
         <div class="flex items-center gap-6 shrink-0">
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            NEXTGEN LABS
+            SUB-SECOND TARGET LCP ARCHITECTURE
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            TALUQ AI ENGINE
+            NATIVE ANDROID RUNTIMES
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-            NEXUS CLOUD
+            GEO AI SEARCH VISIBILITY
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-            ASTRO 5.0 CORE
+            ASTRO 7 ARCHITECTURE
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-sky-400"></span>
@@ -97,34 +183,29 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            VELOX SYSTEMS
+            ZERO LAYOUT SHIFT (CLS 0)
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            PULSE DIGITAL
-          </div>
-          <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            QUANTUM RUNTIME
+            100% CODE REPO OWNERSHIP
           </div>
         </div>
-        <!-- Duplicate for Seamless Infinite Loop -->
         <div class="flex items-center gap-6 shrink-0" aria-hidden="true">
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-            NEXTGEN LABS
+            SUB-SECOND TARGET LCP ARCHITECTURE
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            TALUQ AI ENGINE
+            NATIVE ANDROID RUNTIMES
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-            NEXUS CLOUD
+            GEO AI SEARCH VISIBILITY
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-            ASTRO 5.0 CORE
+            ASTRO 7 ARCHITECTURE
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-sky-400"></span>
@@ -132,15 +213,11 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-            VELOX SYSTEMS
+            ZERO LAYOUT SHIFT (CLS 0)
           </div>
           <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            PULSE DIGITAL
-          </div>
-          <div class="flex items-center gap-2.5 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-white/[0.03] text-xs font-mono font-semibold text-neutral-800 dark:text-neutral-200">
-            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-            QUANTUM RUNTIME
+            100% CODE REPO OWNERSHIP
           </div>
         </div>
       </div>
@@ -149,75 +226,291 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
       <div class="animate-marquee-reverse flex items-center gap-6">
         <div class="flex items-center gap-6 shrink-0">
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-emerald-500 font-bold">⚡</span> Sub-15ms Edge Latency
+            <span class="text-emerald-500 font-bold">⚡</span> Optimized Edge CDN Delivery
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-cyan-400 font-bold">●</span> 99.99% Guaranteed SLA
+            <span class="text-cyan-400 font-bold">●</span> Defined Support Retainers
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-sky-400 font-bold">✦</span> Multimodal Agent SDK
+            <span class="text-sky-400 font-bold">✦</span> Generative Engine Optimization
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-purple-400 font-bold">🔒</span> Hardware MicroVM Isolation
+            <span class="text-purple-400 font-bold">🔒</span> Enterprise Security Best Practices
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-emerald-400 font-bold">✓</span> Zero Cold Start Guarantee
+            <span class="text-emerald-400 font-bold">✓</span> Static & Edge Runtimes
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-blue-400 font-bold">🌐</span> 300+ Anycast Global PoPs
+            <span class="text-blue-400 font-bold">🌐</span> Global Anycast Edge CDN
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-amber-400 font-bold">🚀</span> SOC2 Type II Certified
+            <span class="text-amber-400 font-bold">🚀</span> Transparent Milestone Delivery
           </div>
         </div>
-        <!-- Duplicate for Seamless Infinite Loop -->
         <div class="flex items-center gap-6 shrink-0" aria-hidden="true">
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-emerald-500 font-bold">⚡</span> Sub-15ms Edge Latency
+            <span class="text-emerald-500 font-bold">⚡</span> Optimized Edge CDN Delivery
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-cyan-400 font-bold">●</span> 99.99% Guaranteed SLA
+            <span class="text-cyan-400 font-bold">●</span> Defined Support Retainers
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-sky-400 font-bold">✦</span> Multimodal Agent SDK
+            <span class="text-sky-400 font-bold">✦</span> Generative Engine Optimization
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-purple-400 font-bold">🔒</span> Hardware MicroVM Isolation
+            <span class="text-purple-400 font-bold">🔒</span> Enterprise Security Best Practices
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-emerald-400 font-bold">✓</span> Zero Cold Start Guarantee
+            <span class="text-emerald-400 font-bold">✓</span> Static & Edge Runtimes
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-blue-400 font-bold">🌐</span> 300+ Anycast Global PoPs
+            <span class="text-blue-400 font-bold">🌐</span> Global Anycast Edge CDN
           </div>
           <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg border border-neutral-200/80 dark:border-white/5 bg-white dark:bg-white/[0.02] text-xs font-mono text-neutral-600 dark:text-neutral-400">
-            <span class="text-amber-400 font-bold">🚀</span> SOC2 Type II Certified
+            <span class="text-amber-400 font-bold">🚀</span> Transparent Milestone Delivery
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Workflow Architecture: Vertical Stepper + Scrollspy + Browser Mockup with Acme® UI -->
-  <InteractiveWorkflowShowcase />
+  <!-- ==================================================
+       SECTION 1: FEATURED PROJECTS / REAL DIGITAL SOLUTIONS
+       ================================================== -->
+  <section id="featured-projects" class="relative py-20 sm:py-28 bg-[#fafafa] dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10 overflow-hidden transition-colors">
+    <!-- Atmospheric Ambient Glows -->
+    <div class="absolute top-1/4 right-0 w-[500px] h-[500px] bg-sky-500/10 dark:bg-sky-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="absolute bottom-1/4 -left-20 w-[450px] h-[450px] bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
 
-  <!-- 4. Products Spotlight: Sharp 3-Card Bento Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+        <div class="max-w-3xl">
+          <SectionEyebrow tag="FEATURED SHOWCASE">PRODUCTION PORTFOLIO</SectionEyebrow>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
+            Digital Experiences. Real Solutions.
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 leading-relaxed">
+            From AI-powered experiences and business websites to educational platforms, interactive applications, and digital commerce, Prometrion builds digital solutions around real-world needs.
+          </p>
+        </div>
+
+        <div class="shrink-0">
+          <Button variant="secondary" href="/store/webstore">
+            Explore All Projects →
+          </Button>
+        </div>
+      </div>
+
+      <!-- 6-Project Balanced Grid: 3 cols Desktop, 2 cols Tablet, 1 col Mobile -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        {featuredProjects.map((p) => (
+          <article class="group flex flex-col justify-between bg-white dark:bg-[#0c0c0c] border border-[#ebebeb] dark:border-white/10 rounded-[6px] p-5 shadow-whisper hover:shadow-floating dark:hover:border-white/20 transition-all duration-200">
+            <div>
+              <!-- Website Screenshot Preview -->
+              <a
+                href={`/store/webstore/${p.slug}`}
+                class="block aspect-[16/10] bg-neutral-100 dark:bg-neutral-900 rounded-[4px] mb-4 overflow-hidden border border-neutral-200/60 dark:border-white/10 relative group-hover:border-neutral-400 dark:group-hover:border-white/30 transition cursor-pointer"
+                title={`View ${p.name} case details`}
+              >
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={`Screenshot of ${p.name}`}
+                    class="w-full h-full object-cover object-top transition duration-300 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-neutral-900 to-black text-white">
+                    <span class="text-xs font-semibold">{p.name}</span>
+                    <span class="text-[10px] font-mono text-neutral-400 mt-1">{p.category}</span>
+                  </div>
+                )}
+                
+                <!-- Hover Overlay Pill -->
+                <div class="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span class="px-3 py-1 bg-white/95 dark:bg-black/90 text-neutral-900 dark:text-white rounded-full text-[11px] font-medium shadow-md backdrop-blur-xs font-mono">
+                    View Project Case ↗
+                  </span>
+                </div>
+              </a>
+
+              <!-- Header: Name & Category Badge -->
+              <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
+                <h3 class="text-base sm:text-lg font-semibold tracking-tight text-[#171717] dark:text-white group-hover:text-[#0070f3] dark:group-hover:text-cyan-400 transition">
+                  <a href={`/store/webstore/${p.slug}`} class="focus:outline-hidden">
+                    {p.name}
+                  </a>
+                </h3>
+                <Badge variant={getCategoryBadgeVariant(p.category)}>
+                  {p.category}
+                </Badge>
+              </div>
+
+              <!-- Concise Project Description -->
+              <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {p.shortDesc}
+              </p>
+
+              <!-- Key Features Highlights (2–3 items) -->
+              <div class="mt-4 space-y-1.5 text-[11px] text-neutral-700 dark:text-neutral-300 font-mono">
+                {p.features.slice(0, 3).map((feat) => (
+                  <div class="flex items-start gap-2">
+                    <span class="text-emerald-500 font-bold shrink-0">✓</span>
+                    <span class="truncate">{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- Verified Tech Stack -->
+              <div class="mt-4 flex flex-wrap gap-1.5 pt-3 border-t border-neutral-100 dark:border-white/10">
+                {p.stack.slice(0, 3).map((tech) => (
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-neutral-100 dark:bg-white/[0.06] text-neutral-700 dark:text-neutral-300 border border-neutral-200/60 dark:border-white/10">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Functional Actions: Live Demo + View Details -->
+            <div class="mt-5 pt-3 flex items-center justify-between gap-2 border-t border-neutral-100 dark:border-white/10">
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-[#171717] text-white dark:bg-white dark:text-black hover:opacity-90 transition shadow-xs cursor-pointer"
+              >
+                <span>Live Demo</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <a
+                href={`/store/webstore/${p.slug}`}
+                class="inline-flex items-center gap-1 text-xs font-medium text-neutral-600 hover:text-black dark:text-neutral-400 dark:hover:text-white transition"
+              >
+                <span>View Details</span>
+                <span>→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Bottom Explore Action Link -->
+      <div class="mt-12 text-center">
+        <a
+          href="/store/webstore"
+          class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-medium border border-neutral-200 dark:border-white/15 bg-white dark:bg-white/[0.03] text-neutral-800 dark:text-neutral-200 hover:border-neutral-400 dark:hover:border-cyan-400/40 hover:bg-neutral-50 dark:hover:bg-white/[0.06] transition shadow-whisper"
+        >
+          <span>Explore All 17 Production Projects in Webstore</span>
+          <span class="text-neutral-400">→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 2: INTERACTIVE TECHNOLOGY STACK (Connected Grid & Architecture)
+       Placed directly AFTER Featured Projects and BEFORE Clients
+       ================================================== -->
+  <TechStackMap />
+
+  <!-- ==================================================
+       SECTION 3: CLIENTS AND VERIFIED PARTNERSHIPS
+       Placed immediately AFTER Technology Stack and immediately BEFORE Estimator
+       ================================================== -->
+  <ClientPartnerships />
+
+  <!-- ==================================================
+       SECTION 4: PROJECT COST ESTIMATOR CTA
+       Placed immediately AFTER Clients
+       Notice: Badge "✦ INTERACTIVE PROJECT ESTIMATOR" removed as requested
+       ================================================== -->
+  <section class="relative py-20 sm:py-28 bg-white dark:bg-black border-b border-[#ebebeb] dark:border-white/10 overflow-hidden transition-colors">
+    <!-- Atmospheric Multi-Stop Aurora Glow centered behind card -->
+    <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+      <div class="w-[720px] sm:w-[900px] h-[360px] sm:h-[420px] bg-gradient-to-r from-emerald-500/10 via-cyan-500/15 to-blue-500/10 blur-[110px] rounded-full"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- Section Headline -->
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-[1.12]">
+        Have a Project in Mind?
+      </h2>
+
+      <!-- Supporting Text -->
+      <p class="mt-4 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+        Explore the services and features your project needs, get an indicative estimate based on approved pricing, and request a tailored quotation for custom requirements.
+      </p>
+
+      <!-- Flashy Primary CTA: Estimate Your Project Cost -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/estimate"
+          class="group/cta relative inline-flex items-center justify-center gap-2.5 px-8 py-4 text-sm sm:text-base font-semibold text-black bg-gradient-to-r from-cyan-300 via-emerald-300 to-teal-200 rounded-full shadow-[0_0_25px_rgba(0,223,216,0.4)] hover:shadow-[0_0_40px_rgba(0,223,216,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 overflow-hidden cursor-pointer"
+        >
+          <!-- Subtle Animated Light Sweep Sheen (Disabled if prefers-reduced-motion) -->
+          <span
+            class="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/55 to-transparent -skew-x-12 -translate-x-full group-hover/cta:translate-x-[300%] transition-transform duration-1000 ease-in-out pointer-events-none motion-reduce:transition-none motion-reduce:group-hover/cta:transform-none"
+            aria-hidden="true"
+          ></span>
+          
+          <span class="relative z-10 flex items-center gap-2 font-sans tracking-tight">
+            <span>Estimate Your Project Cost</span>
+            <svg class="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </span>
+        </a>
+      </div>
+
+      <!-- Secondary Links -->
+      <p class="mt-5 text-xs font-mono text-neutral-500 dark:text-neutral-400">
+        Prefer direct pricing? <a href="/pricing" class="text-neutral-900 dark:text-white underline hover:text-[#0070f3] dark:hover:text-cyan-400 transition">View transparent pricing matrix →</a> or <a href="/services" class="text-neutral-900 dark:text-white underline hover:text-[#0070f3] dark:hover:text-cyan-400 transition">explore services</a>
+      </p>
+
+      <!-- Trust Signals Strip -->
+      <div class="mt-8 pt-8 border-t border-neutral-200/60 dark:border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          Instant indicative calculation
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+          Database-driven INR pricing
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+          No signup or payment required
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================================================
+       SECTION 5: CAPABILITIES & INDUSTRY SOLUTIONS (Sharp 3-Card Bento Grid)
+       ================================================== -->
   <section class="py-24 bg-[#fafafa] dark:bg-black border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 scrolly-fade-in scrolly-reveal">
         <div>
-          <SectionEyebrow tag="01. PRODUCTS">PROMETRION PRODUCTS</SectionEyebrow>
+          <SectionEyebrow tag="01. CAPABILITIES & SYSTEMS">ENGINEERED ARCHITECTURE</SectionEyebrow>
           <h2 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-white">
-            Proprietary technologies built for scale.
+            High-performance digital systems built for scale.
           </h2>
           <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-xl">
-            Prometrion conceives, architects, and deploys high-impact technologies that power the modern digital economy.
+            Prometrion conceives, architects, and deploys high-impact web and mobile solutions that power modern businesses.
           </p>
         </div>
         <div class="mt-4 md:mt-0">
-          <Button variant="secondary" href="/products">
-            View All Products →
+          <Button variant="secondary" href="/work">
+            View Our Work →
           </Button>
         </div>
       </div>
@@ -225,26 +518,26 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
       <!-- Sharp Bento Grid: Exactly 3 Cards (1 Large + 2 Aligned Small Cards) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
-        <!-- Large Card (7 cols): Taluq AI with Glowing Border Beam & Interactive Terminal -->
-        <div class="lg:col-span-7 bento-card-sharp border-beam-container spotlight-card shadow-whisper hover:shadow-floating">
+        <!-- Large Card (7 cols): Enterprise Platforms with Glowing Border Beam & Interactive Terminal -->
+        <div class="lg:col-span-7 bento-card-sharp border-beam-container spotlight-card shadow-whisper hover:shadow-floating scrolly-fade-in scrolly-reveal">
           <div class="border-beam-inner p-8 sm:p-10 flex flex-col justify-between h-full bg-dot-grid">
             <div>
               <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center gap-2">
-                  <Badge variant="emerald">✦ Flagship AI Platform</Badge>
+                  <Badge variant="emerald">✦ Enterprise Web Systems</Badge>
                   <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">
                     <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping"></span>
-                    v2.0 GA
+                    Production Audited
                   </span>
                 </div>
                 <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Live Telemetry</span>
               </div>
 
               <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Taluq AI: Multi-Agent Reasoning Engine
+                Sub-Second Web & Cloud Architectures
               </h3>
               <p class="mt-3 text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed max-w-xl">
-                An advanced autonomous intelligence platform engineered for agentic workflows, dynamic reasoning graphs, and multimodal execution. Taluq AI bridges generative software with high-concurrency enterprise business operations.
+                Custom full-stack web platforms and digital products engineered for extreme conversion, responsive ergonomics, and high Lighthouse scores. Powered by modern edge runtime compilation and clean TypeScript types.
               </p>
 
               <!-- Live Interactive Edge Terminal Mockup -->
@@ -254,114 +547,114 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
                     <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
                     <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
                     <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
-                    <span class="ml-2 font-mono text-neutral-400">taluq-runtime@edge</span>
+                    <span class="ml-2 font-mono text-neutral-400">prometrion-engine@edge</span>
                   </div>
-                  <span class="text-emerald-400">● ACTIVE CLUSTER</span>
+                  <span class="text-emerald-400">● AUDIT PASSED</span>
                 </div>
                 <div class="space-y-1 text-neutral-300">
-                  <p class="text-neutral-500">$ taluq deploy --agent=orchestrator-v2 --edge-mesh</p>
-                  <p class="text-emerald-400">✓ Isolated microVM spawned [RAM: 128MB | Cold Start: 0ms]</p>
-                  <p class="text-cyan-400">✓ Reasoning graph compiled: 14 tool bindings verified</p>
-                  <p class="text-sky-300">✓ Edge Anycast propagation: 300+ PoPs synced in 11.4ms</p>
+                  <p class="text-neutral-500">$ prometrion build --target=production --edge-mesh</p>
+                  <p class="text-emerald-400">✓ Type safety checked: 0 type errors [Strict Mode]</p>
+                  <p class="text-cyan-400">✓ Lighthouse performance score: 100/100 [LCP: 0.38s]</p>
+                  <p class="text-sky-300">✓ Global edge deployment: Static assets optimized for edge CDN</p>
                 </div>
               </div>
 
               <!-- 3 Core Telemetry Metrics -->
               <div class="mt-6 grid grid-cols-3 gap-4 pt-4 border-t border-neutral-100 dark:border-white/10 text-xs">
                 <div>
-                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">Sub-15ms</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Edge Inference</span>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">&lt;0.5s</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Largest Contentful Paint</span>
                 </div>
                 <div>
                   <span class="block font-semibold text-neutral-900 dark:text-white text-base">Zero</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Cold Start Runtimes</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Cumulative Layout Shift</span>
                 </div>
                 <div>
-                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">99.99%</span>
-                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Uptime SLA</span>
+                  <span class="block font-semibold text-neutral-900 dark:text-white text-base">Defined</span>
+                  <span class="text-neutral-500 dark:text-neutral-400 text-[11px]">Support Retainers</span>
                 </div>
               </div>
             </div>
 
             <div class="mt-8 pt-4 flex flex-wrap items-center gap-4">
-              <Button variant="primary" href="/products/taluq-ai">
-                Explore Taluq AI Platform →
+              <Button variant="primary" href="/work">
+                View Selected Work →
               </Button>
-              <a href="/articles/docs" class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition flex items-center gap-1">
-                Read Architecture Specs <span>→</span>
+              <a href="/services" class="text-xs font-semibold text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white transition flex items-center gap-1">
+                Explore Services Specs <span>→</span>
               </a>
             </div>
           </div>
         </div>
 
         <!-- 2 Aligned Small Cards (5 cols) Stacked Vertically -->
-        <div class="lg:col-span-5 flex flex-col gap-6 justify-between">
+        <div class="lg:col-span-5 flex flex-col gap-6 justify-between scrolly-fade-in scrolly-reveal">
           
-          <!-- Small Card 1: Prometrion Cloud -->
+          <!-- Small Card 1: Mobile App Engineering -->
           <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
             <div>
               <div class="flex items-center justify-between mb-3">
-                <Badge variant="blue">Cloud Infrastructure</Badge>
-                <span class="text-[11px] font-mono text-emerald-500 font-semibold">Active CPU</span>
+                <Badge variant="blue">Mobile Engineering</Badge>
+                <span class="text-[11px] font-mono text-emerald-500 font-semibold">Native Android</span>
               </div>
               <h4 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Prometrion Cloud
+                Native Android & Mobile Solutions
               </h4>
               <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Global serverless compute and microVM sandboxing designed for developers building high-concurrency, resilient cloud-native applications.
+                Native Android applications built with biometric security, offline-first SQLite sync, and fluid touch interactions for business operations.
               </p>
 
               <div class="mt-5 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
                 <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> 300+ Anycast Edge Locations
+                  <span class="text-emerald-500 font-bold">✔</span> Biometric Authentication Ready
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> Instant Rollback Sandboxing
+                  <span class="text-emerald-500 font-bold">✔</span> Offline-First SQLite Data Caching
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> Hardware-Enforced Isolation
+                  <span class="text-emerald-500 font-bold">✔</span> Google Play Release Certification
                 </div>
               </div>
             </div>
 
             <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
-              <a href="/products" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
-                <span>Learn about Cloud Runtimes</span>
+              <a href="/services/app-development" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
+                <span>Explore App Development</span>
                 <span>→</span>
               </a>
             </div>
           </div>
 
-          <!-- Small Card 2: Anycast Edge Mesh -->
+          <!-- Small Card 2: AI Search & GEO Optimization -->
           <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
             <div>
               <div class="flex items-center justify-between mb-3">
-                <Badge variant="purple">Global Edge Mesh</Badge>
-                <span class="text-[11px] font-mono text-cyan-400 font-semibold">&lt;1ms Routing</span>
+                <Badge variant="purple">AI Visibility</Badge>
+                <span class="text-[11px] font-mono text-cyan-400 font-semibold">SEO & GEO</span>
               </div>
               <h4 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Anycast Edge Mesh
+                Generative Engine Optimization (GEO)
               </h4>
               <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Sub-millisecond data synchronization and edge cache fabric ensuring your users experience instant response times globally.
+                Ensure your brand is discoverable and cited across ChatGPT, Google Gemini, and Perplexity using semantic entity mapping.
               </p>
 
               <div class="mt-5 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
                 <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> Smart Edge BGP Ingress
+                  <span class="text-cyan-400 font-bold">⚡</span> AI Engine Citations & Knowledge Graphs
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> Zero-hop Static Asset Invalidation
+                  <span class="text-cyan-400 font-bold">⚡</span> Deep Schema.org Structured JSON-LD
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-cyan-400 font-bold">⚡</span> Global Multi-Region Replication
+                  <span class="text-cyan-400 font-bold">⚡</span> Organic Keyword & Local Search Ranking
                 </div>
               </div>
             </div>
 
             <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
-              <a href="/products" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
-                <span>Inspect Edge Mesh Topology</span>
+              <a href="/services/seo-geo" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
+                <span>Explore SEO & GEO Services</span>
                 <span>→</span>
               </a>
             </div>
@@ -374,12 +667,12 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
   </section>
 
-  <!-- 5. Commercial Services Section -->
+  <!-- Commercial Services 6-Card Grid -->
   <section class="py-24 bg-white border-b border-[#ebebeb]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <SectionEyebrow tag="02. SERVICES">DIGITAL ENGINEERING SERVICES</SectionEyebrow>
+      <div class="text-center max-w-3xl mx-auto mb-16 scrolly-fade-in scrolly-reveal">
+        <SectionEyebrow tag="02. SERVICES">DIGITAL SERVICES</SectionEyebrow>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717]">
           Crafted for businesses ready to lead.
         </h2>
@@ -388,8 +681,7 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
         </p>
       </div>
 
-      <!-- Services 5-Column / Grid Layout -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 scrolly-fade-in scrolly-reveal">
         
         <!-- Service 1: Website Development -->
         <Card variant="interactive" href="/services/website-development">
@@ -416,7 +708,7 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
             App Development
           </h3>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Native Android applications and fluid cross-platform solutions built with precision typography, security, and offline-first data sync.
+            Native Android applications and fluid mobile solutions built with precision typography, biometric security, and offline data sync.
           </p>
           <span class="inline-flex items-center gap-1 text-xs font-medium text-[#0070f3] mt-4">
             Learn More →
@@ -464,7 +756,7 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
             Service Packages
           </h3>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Transparent, all-inclusive bundles (Starter, Business, Professional) with guaranteed delivery dates, revisions, and ongoing support.
+            Transparent, all-inclusive bundles (Starter, Business, Growth) with guaranteed sprint delivery dates, revisions, and ongoing support.
           </p>
           <span class="inline-flex items-center gap-1 text-xs font-medium text-[#0070f3] mt-4">
             Compare Packages →
@@ -492,18 +784,18 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
   </section>
 
-  <!-- 6. Store / Marketplace Showcase: Sharp 3-Card Bento Grid -->
+  <!-- Store Showcase: Webstore & Appstore Blueprints -->
   <section class="py-24 bg-[#fafafa] dark:bg-black border-b border-[#ebebeb] dark:border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 scrolly-fade-in scrolly-reveal">
         <div>
-          <SectionEyebrow tag="03. MARKETPLACE">PROMETRION STORE</SectionEyebrow>
+          <SectionEyebrow tag="03. STORE">PROMETRION STORE</SectionEyebrow>
           <h2 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717] dark:text-white">
-            Everything we build. Everything you need.
+            Production websites & mobile applications.
           </h2>
           <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-sm sm:text-base max-w-xl">
-            A comprehensive marketplace offering production web systems, native Android apps, and developer-grade UI components.
+            A dedicated storefront offering production web systems and native Android applications ready for rapid deployment.
           </p>
         </div>
         <div class="mt-4 md:mt-0">
@@ -517,24 +809,24 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
         <!-- Large Card (7 cols): Webstore with Interactive Code/Template Engine Preview -->
-        <div class="lg:col-span-7 bento-card-sharp spotlight-card p-8 sm:p-10 flex flex-col justify-between bg-fine-grid shadow-whisper hover:shadow-floating">
+        <div class="lg:col-span-7 bento-card-sharp spotlight-card p-8 sm:p-10 flex flex-col justify-between bg-fine-grid shadow-whisper hover:shadow-floating scrolly-fade-in scrolly-reveal">
           <div>
             <div class="flex items-center justify-between mb-6">
               <div class="flex items-center gap-2">
                 <Badge variant="blue">Webstore Flagship</Badge>
                 <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-emerald-400/10 text-emerald-500 border border-emerald-400/20">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  50+ Verified Blueprints
+                  Production Blueprints
                 </span>
               </div>
-              <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Astro 5 & Next.js 15</span>
+              <span class="text-xs font-mono text-neutral-400 dark:text-neutral-500">Astro 7 & Tailwind v4</span>
             </div>
 
             <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white">
               Prometrion Webstore: Production Web Systems
             </h3>
             <p class="mt-3 text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed max-w-xl">
-              Deploy audited, production-grade website templates and complete SaaS starters. Engineered with Astro 5, Tailwind CSS v4, schema-backed structured data, and 100/100 Core Web Vitals guarantees.
+              Deploy audited, production-grade website templates and complete SaaS starters. Engineered with Astro 7, Tailwind CSS v4, schema-backed structured data, and 100/100 Core Web Vitals guarantees.
             </p>
 
             <!-- Interactive Architecture & Config Window -->
@@ -549,10 +841,10 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
                 <span class="text-sky-400 font-semibold">CWV 100/100</span>
               </div>
               <pre class="overflow-x-auto text-[11px] leading-relaxed text-neutral-300"><code><span class="text-purple-400">export default</span> <span class="text-blue-400">defineConfig</span>({
-  <span class="text-cyan-300">preset</span>: <span class="text-emerald-300">"enterprise-saas-v4"</span>,
+  <span class="text-cyan-300">preset</span>: <span class="text-emerald-300">"enterprise-business-v4"</span>,
   <span class="text-cyan-300">performance</span>: { <span class="text-neutral-400">lcp:</span> <span class="text-amber-300">"&lt;0.5s"</span>, <span class="text-neutral-400">inp:</span> <span class="text-amber-300">"&lt;40ms"</span>, <span class="text-neutral-400">cls:</span> <span class="text-amber-300">0</span> },
   <span class="text-cyan-300">seoEngine</span>: { <span class="text-neutral-400">geoEngineOpt:</span> <span class="text-purple-400">true</span>, <span class="text-neutral-400">aiKnowledgeGraph:</span> <span class="text-purple-400">true</span> },
-  <span class="text-cyan-300">edgeDeploy</span>: { <span class="text-neutral-400">provider:</span> <span class="text-emerald-300">"prometrion-cloud"</span>, <span class="text-neutral-400">regions:</span> <span class="text-amber-300">"all"</span> }
+  <span class="text-cyan-300">edgeDeploy</span>: { <span class="text-neutral-400">provider:</span> <span class="text-emerald-300">"prometrion-edge"</span>, <span class="text-neutral-400">regions:</span> <span class="text-amber-300">"all"</span> }
 });</code></pre>
             </div>
 
@@ -560,20 +852,20 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
             <div class="mt-6 flex flex-wrap gap-2 text-xs font-mono">
               <span class="px-3 py-1 rounded-md bg-neutral-100 dark:bg-white/[0.04] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">Full Source Code</span>
               <span class="px-3 py-1 rounded-md bg-neutral-100 dark:bg-white/[0.04] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">Commercial License</span>
-              <span class="px-3 py-1 rounded-md bg-neutral-100 dark:bg-white/[0.04] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">Free Lifetime Updates</span>
+              <span class="px-3 py-1 rounded-md bg-neutral-100 dark:bg-white/[0.04] text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10">Free Updates</span>
             </div>
           </div>
 
           <div class="mt-8 pt-4 flex flex-wrap items-center gap-4">
             <Button variant="primary" href="/store/webstore">
-              Explore 50+ Web Templates →
+              Explore Webstore Templates →
             </Button>
             <span class="text-xs font-mono text-neutral-500">Starting from $49</span>
           </div>
         </div>
 
         <!-- 2 Aligned Small Cards (5 cols) Stacked Vertically -->
-        <div class="lg:col-span-5 flex flex-col gap-6 justify-between">
+        <div class="lg:col-span-5 flex flex-col gap-6 justify-between scrolly-fade-in scrolly-reveal">
           
           <!-- Small Card 1: Appstore -->
           <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
@@ -583,10 +875,10 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
                 <span class="text-[11px] font-mono text-emerald-500 font-semibold">APK & Play Store</span>
               </div>
               <h4 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Android & Cross-Platform Apps
+                Android & Mobile Applications
               </h4>
               <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Production-ready mobile utility and enterprise application packages engineered for high security, offline sync, and fluid touch interactions.
+                Production-ready mobile utility and business applications engineered for high security, offline sync, and fluid touch interactions.
               </p>
 
               <div class="mt-5 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
@@ -597,7 +889,7 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
                   <span class="text-emerald-500 font-bold">✔</span> Offline-First SQLite Sync
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-emerald-500 font-bold">✔</span> 4.9★ Verified App Store Rating
+                  <span class="text-emerald-500 font-bold">✔</span> Clean Architecture Design
                 </div>
               </div>
             </div>
@@ -610,36 +902,36 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
             </div>
           </div>
 
-          <!-- Small Card 2: Component Store -->
+          <!-- Small Card 2: Turnkey Solutions Catalog -->
           <div class="flex-1 bento-card-sharp spotlight-card p-7 flex flex-col justify-between shadow-whisper hover:shadow-floating">
             <div>
               <div class="flex items-center justify-between mb-3">
-                <Badge variant="purple">Component Store</Badge>
-                <span class="text-[11px] font-mono text-cyan-400 font-semibold">120+ Blocks</span>
+                <Badge variant="purple">Solutions Catalog</Badge>
+                <span class="text-[11px] font-mono text-cyan-400 font-semibold">30+ Turnkey Specs</span>
               </div>
               <h4 class="text-xl font-semibold tracking-tight text-[#171717] dark:text-white">
-                Geist UI Design System Blocks
+                Productized Business Systems (₹)
               </h4>
               <p class="mt-2 text-neutral-600 dark:text-neutral-400 text-xs leading-relaxed">
-                Accessible, copy-paste React, Next.js, and Astro UI blocks styled with precision animations, keyboard navigation, and dark-mode tokens.
+                Ready-to-launch website specifications for clinics, coaching institutes, schools, restaurants, and professional consulting firms in INR.
               </p>
 
               <div class="mt-5 space-y-2 text-xs text-neutral-600 dark:text-neutral-400 font-mono">
                 <div class="flex items-center gap-2">
-                  <span class="text-purple-400 font-bold">✦</span> WCAG AA Accessible ARIA Patterns
+                  <span class="text-purple-400 font-bold">✦</span> Fixed Transparent Pricing
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-purple-400 font-bold">✦</span> Zero Runtime Overhead
+                  <span class="text-purple-400 font-bold">✦</span> Rapid 7-Day Sprint Delivery
                 </div>
                 <div class="flex items-center gap-2">
-                  <span class="text-purple-400 font-bold">✦</span> Tailwind CSS v4 Compatible
+                  <span class="text-purple-400 font-bold">✦</span> Full Code Repository Transfer
                 </div>
               </div>
             </div>
 
             <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
-              <a href="/store/components" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
-                <span>Copy & Paste Components</span>
+              <a href="/services/catalog" class="text-xs font-semibold text-neutral-900 dark:text-cyan-400 hover:text-[#0070f3] dark:hover:text-cyan-300 transition flex items-center justify-between">
+                <span>Browse Solutions Catalog</span>
                 <span>→</span>
               </a>
             </div>
@@ -652,66 +944,71 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
   </section>
 
-  <!-- 7. Community & Ecosystem -->
+  <!-- ==================================================
+       SECTION 6: SELECTED CASE STUDIES (Documented Deliverables & Impact)
+       ================================================== -->
+  <CaseStudiesSection />
+
+  <!-- ==================================================
+       SECTION 7: HOW WE WORK (Working Approach & Quality Commitments)
+       ================================================== -->
   <section class="py-24 bg-white border-b border-[#ebebeb]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <SectionEyebrow tag="04. ECOSYSTEM">COMMUNITY & CREDIBILITY</SectionEyebrow>
+        <SectionEyebrow tag="04. WORKING APPROACH">COMMITMENT TO QUALITY</SectionEyebrow>
         <h2 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717]">
-          Built for the people building the future.
+          Rigorous engineering. Zero ambiguity.
         </h2>
         <p class="mt-3 text-neutral-600 text-sm sm:text-base">
-          Join thousands of developers, founders, and customers who rate, build, and grow within the Prometrion network.
+          Our working model guarantees clarity, code ownership, and measurable impact at every phase of delivery.
         </p>
       </div>
 
-      <!-- Community 4-Card Grid -->
+      <!-- Approach 4-Card Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         <Card variant="default">
-          <div class="flex items-center gap-1 text-amber-500 text-sm mb-2">
-            ★★★★★
-          </div>
-          <h4 class="text-base font-semibold text-neutral-900">4.9 / 5.0 Rating</h4>
+          <div class="text-xs font-mono font-bold text-[#0070f3] mb-2">PRICING CLARITY</div>
+          <h4 class="text-base font-semibold text-neutral-900">Transparent Pricing</h4>
           <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-            Authentic, verified reviews submitted by real customers and active platform developers.
+            Public rates, milestone billing, and zero hidden retainers. Every rupee invested has clear deliverables.
           </p>
-          <a href="/community/rating" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
-            View All Reviews →
+          <a href="/pricing" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
+            View Pricing Plans →
           </a>
         </Card>
 
         <Card variant="default">
-          <div class="text-xs font-mono font-bold text-neutral-400 mb-2">PROGRAM</div>
-          <h4 class="text-base font-semibold text-neutral-900">Prometrion Developer</h4>
+          <div class="text-xs font-mono font-bold text-emerald-600 mb-2">SPRINT DELIVERY</div>
+          <h4 class="text-base font-semibold text-neutral-900">Guaranteed Timelines</h4>
           <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-            Earn certified developer badges, gain early SDK access, and publish directly to our store.
+            From 4-day starter launches to 14-day growth suites, delivery dates and revision windows are guaranteed.
           </p>
-          <a href="/community/developer" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
-            Apply as Developer →
+          <a href="/services/packages" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
+            View Service Packages →
           </a>
         </Card>
 
         <Card variant="default">
-          <div class="text-xs font-mono font-bold text-neutral-400 mb-2">GUILD</div>
-          <h4 class="text-base font-semibold text-neutral-900">Coders Club</h4>
+          <div class="text-xs font-mono font-bold text-purple-600 mb-2">PROVEN OUTCOMES</div>
+          <h4 class="text-base font-semibold text-neutral-900">Measured Impact</h4>
           <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-            An elite community of programmers solving engineering challenges, sharing code, and collaborating.
+            Documented performance records and real client outcomes across healthcare, logistics, and digital services.
           </p>
-          <a href="/community/coders-club" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
-            Join The Club →
+          <a href="/work#case-studies" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
+            Explore Case Studies →
           </a>
         </Card>
 
         <Card variant="default">
-          <div class="text-xs font-mono font-bold text-neutral-400 mb-2">SHOWCASE</div>
-          <h4 class="text-base font-semibold text-neutral-900">Customer Stories</h4>
+          <div class="text-xs font-mono font-bold text-amber-600 mb-2">ONGOING CARE</div>
+          <h4 class="text-base font-semibold text-neutral-900">Support & Maintenance</h4>
           <p class="text-xs text-neutral-600 mt-1.5 leading-relaxed">
-            Case studies detailing how enterprises scaled page speed and sales with Prometrion solutions.
+            Continuous uptime monitoring, security audits, automated backups, and SLA-backed maintenance retainers.
           </p>
-          <a href="/community/customers" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
-            Read Case Studies →
+          <a href="/services/maintenance-support" class="inline-block text-xs font-medium text-[#0070f3] mt-3 hover:underline">
+            Explore Maintenance →
           </a>
         </Card>
 
@@ -720,29 +1017,39 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
   </section>
 
-  <!-- 8. Articles & Publications Teaser -->
+  <!-- ==================================================
+       SECTION 8: MAINTENANCE AND LONG-TERM SUPPORT
+       ================================================== -->
+  <MaintenanceSupportSection />
+
+  <!-- ==================================================
+       SECTION 9: GENUINE TESTIMONIALS & PRODUCTION EVIDENCE
+       ================================================== -->
+  <TestimonialsTelemetrySection />
+
+  <!-- Media & Strategic Insights Teaser -->
   <section class="py-24 bg-[#fafafa] border-b border-[#ebebeb]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
-          <SectionEyebrow tag="05. KNOWLEDGE">ARTICLES & PUBLISHING</SectionEyebrow>
+          <SectionEyebrow tag="05. MEDIA & KNOWLEDGE">STRATEGIC INSIGHTS</SectionEyebrow>
           <h2 class="text-3xl sm:text-4xl font-semibold tracking-[-0.03em] text-[#171717]">
             Insights from the engineering frontier.
           </h2>
         </div>
         <div class="mt-4 md:mt-0">
-          <a href="/articles" class="text-xs font-semibold text-neutral-900 hover:text-[#0070f3] transition">
-            Explore All Articles →
+          <a href="/media" class="text-xs font-semibold text-neutral-900 hover:text-[#0070f3] transition">
+            Explore All Media →
           </a>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <Card variant="interactive" href="/articles/blogs">
+        <Card variant="interactive" href="/media/blogs">
           <span class="text-[10px] font-mono uppercase tracking-wider text-[#0070f3] bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
-            ENGINEERING BLOG
+            STRATEGIC ESSAY
           </span>
           <h3 class="text-base font-semibold text-neutral-900 mt-3 group-hover:text-[#0070f3] transition">
             Architecting Generative Engine Optimization (GEO) for AI Search
@@ -750,31 +1057,31 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
             Why traditional SEO is only half the battle, and how modern brands prepare for multimodal search discovery engines.
           </p>
-          <span class="block text-[11px] font-mono text-neutral-400 mt-4">5 min read • By Core Research</span>
+          <span class="block text-[11px] font-mono text-neutral-400 mt-4">8 min read • By Rajnikant</span>
         </Card>
 
-        <Card variant="interactive" href="/articles/news">
+        <Card variant="interactive" href="/media/news">
           <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
             COMPANY NEWS
           </span>
           <h3 class="text-base font-semibold text-neutral-900 mt-3 group-hover:text-[#0070f3] transition">
-            Prometrion Platform v2.0 Released Worldwide
+            Prometrion Platform v2.0 Released Globally
           </h3>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Announcing our integrated corporate suite, new store marketplace, and authenticated community ecosystem.
+            Announcing our expanded service architecture, new turnkey store solutions, and multi-channel client engineering desks.
           </p>
-          <span class="block text-[11px] font-mono text-neutral-400 mt-4">Official Release • Product Team</span>
+          <span class="block text-[11px] font-mono text-neutral-400 mt-4">Official Release • Prometrion</span>
         </Card>
 
-        <Card variant="interactive" href="/articles/achievements">
+        <Card variant="interactive" href="/media/achievements">
           <span class="text-[10px] font-mono uppercase tracking-wider text-purple-600 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
             MILESTONES
           </span>
           <h3 class="text-base font-semibold text-neutral-900 mt-3 group-hover:text-[#0070f3] transition">
-            Milestone Tracker: The Journey to 100+ Enterprise Deployments
+            Milestone Tracker: Production Deliveries & Platform Milestones
           </h3>
           <p class="text-xs text-neutral-600 mt-2 leading-relaxed">
-            Reviewing our chronology of technological breakthroughs, product rollouts, and customer achievements.
+            Reviewing our chronology of technological breakthroughs, service rollouts, and customer achievements.
           </p>
           <span class="block text-[11px] font-mono text-neutral-400 mt-4">Chronological Timeline →</span>
         </Card>
@@ -784,10 +1091,12 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
   </section>
 
-  <!-- 9. Final High-Impact Conversion CTA Band with 3D Half-Globe Background -->
+  <!-- ==================================================
+       SECTION 10: FINAL CONVERSION CTA BAND WITH 3D HALF-GLOBE
+       ================================================== -->
   <section class="relative py-28 sm:py-36 bg-white dark:bg-black border-t border-[#ebebeb] dark:border-white/10 overflow-hidden">
     
-    <!-- 3D WebGL Wireframe Half-Globe Background with 60% Opacity -->
+    <!-- 3D WebGL Wireframe Half-Globe Background with 60% Opacity (Strictly Preserved) -->
     <div class="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-center overflow-hidden h-[340px] sm:h-[460px] lg:h-[540px] opacity-60 z-0">
       <div class="w-[700px] sm:w-[950px] lg:w-[1250px] h-[700px] sm:h-[950px] lg:h-[1250px] translate-y-[45%] relative">
         <!-- Ambient Luminous Horizon Glow -->
@@ -799,33 +1108,68 @@ import WireframeGlobe from "../components/ui/WireframeGlobe.astro";
     </div>
 
     <!-- Content Overlay -->
-    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center scrolly-fade-in scrolly-reveal">
       <SectionEyebrow tag="NEXT STEP">READY TO MOVE FORWARD?</SectionEyebrow>
       <h2 class="text-3xl sm:text-5xl font-semibold tracking-[-0.04em] text-[#171717] dark:text-white leading-tight">
         Build something extraordinary with Prometrion.
       </h2>
       <p class="mt-4 text-base text-neutral-600 dark:text-neutral-400 max-w-xl mx-auto leading-relaxed">
-        Whether you are commissioning a premier web solution, deploying autonomous AI agents, or joining our developer guild—we're here to accelerate your vision.
+        Whether you are commissioning a high-impact web platform, building a mobile application, or scaling search visibility—we're here to accelerate your vision.
       </p>
       
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Button variant="primary" href="/contact">
-          Start Your Project
+          Get a Quote
         </Button>
         <Button variant="secondary" href="/pricing">
           View Pricing Plans
         </Button>
-        <Button variant="ghost-sm" href="/account/signup">
-          Create Free Account
+        <Button variant="ghost-sm" href="/estimate">
+          Estimate Project
         </Button>
       </div>
 
       <div class="mt-8 flex items-center justify-center gap-6 text-xs text-neutral-500 dark:text-neutral-400 font-mono">
-        <span>✔ No hidden fees</span>
         <span>✔ 100% transparent pricing</span>
-        <span>✔ Instant response desk</span>
+        <span>✔ Code ownership transfer</span>
+        <span>✔ Responsive engineering desk</span>
       </div>
     </div>
   </section>
 
+  <!-- Hero Depth Parallax Orchestrator -->
+  <script>
+    function setupHeroParallax() {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const globe = document.getElementById("hero-globe-scrolly");
+      const mesh = document.getElementById("hero-mesh-scrolly");
+
+      function updateParallax() {
+        const scrollY = window.scrollY;
+        if (scrollY < 1200) {
+          if (globe) {
+            globe.style.transform = `translateY(calc(45% + ${scrollY * 0.12}px)) scale(${1 + scrollY * 0.00015})`;
+          }
+          if (mesh) {
+            mesh.style.transform = `translateY(${scrollY * 0.18}px)`;
+            mesh.style.opacity = `${Math.max(0, 0.65 - scrollY * 0.0007)}`;
+          }
+        }
+      }
+
+      window.addEventListener("scroll", updateParallax, { passive: true });
+      if ((window as any).lenis) {
+        (window as any).lenis.on("scroll", updateParallax);
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupHeroParallax);
+    } else {
+      setupHeroParallax();
+    }
+    document.addEventListener("astro:page-load", setupHeroParallax);
+  </script>
 </BaseLayout>

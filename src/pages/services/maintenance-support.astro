@@ -1,0 +1,273 @@
+---
+// services/maintenance-support.astro - Canonical Maintenance & Support Service Page
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { getServicesByCategory } from "../../data/servicesCatalog";
+
+const maintenanceServices = getServicesByCategory("maintenance");
+
+const carePlans = [
+  {
+    title: "Website Basic Care",
+    price: "₹999 – ₹1,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Starter Care",
+    persona: "Standard business websites, portfolios, and clinics needing essential peace of mind.",
+    problem: "Outdated phone numbers, broken links, and zero backups if a hosting failure occurs.",
+    scope: [
+      "Monthly automated offsite cloud backups",
+      "24/7 continuous uptime monitoring & downtime alerts",
+      "Contact information, phone, and WhatsApp link updates",
+      "Minor text and image replacements",
+      "Up to 30 minutes of minor developer edits per month",
+      "Quarterly SSL certificate and domain status check"
+    ],
+    notes: "Unused maintenance time does not roll over to subsequent months."
+  },
+  {
+    title: "Website Business Care",
+    price: "₹1,999 – ₹2,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Standard Care",
+    persona: "Commercial businesses, catalogs, appointment portals, and active lead generators.",
+    problem: "Plugins fall out of date, security vulnerabilities emerge, and website slowly loses speed.",
+    scope: [
+      "Everything included in Website Basic Care",
+      "Weekly automated cloud backups with restore guarantee",
+      "Core framework and dependency security updates",
+      "Monthly vulnerability and malware security scan",
+      "Basic SEO title/description maintenance",
+      "Up to 2 hours of dedicated minor edits & content updates per month"
+    ],
+    notes: "Ensures website remains fresh, fast, and secure year-round."
+  },
+  {
+    title: "Mobile App Maintenance",
+    price: "₹2,999 – ₹3,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "App Support",
+    persona: "Commercial Android and cross-platform apps deployed on app stores.",
+    problem: "New Android OS versions break features, user crashes go unnoticed, and Play Store policies shift.",
+    scope: [
+      "Crashlytics error log monitoring & diagnostics",
+      "Android OS update compatibility reviews",
+      "Bug fixes and minor performance patches",
+      "Google Play Console store status & compliance checks",
+      "Critical crash fixes addressed within 24–48 business hours",
+      "Monthly app health & stability report"
+    ],
+    notes: "Keeps apps compliant with latest Google Play Store target SDK policies."
+  },
+  {
+    title: "Priority Care & SLA Plan",
+    price: "₹12,000",
+    billing: "per month",
+    turnaround: "Ongoing monthly",
+    badge: "Priority SLA",
+    persona: "High-traffic e-commerce stores, mission-critical SaaS, and multi-location retail chains.",
+    problem: "Downtime directly loses money; need guaranteed emergency response SLAs and active speed tuning.",
+    scope: [
+      "Bi-weekly cloud backups and staging validation",
+      "Core Web Vitals monthly speed tuning & database vacuuming",
+      "4 hours priority code/content edits per month",
+      "24/7 uptime monitoring with 2-hour emergency SLA response",
+      "Priority developer access via dedicated Slack/WhatsApp channel",
+      "Monthly executive technical health and security report"
+    ],
+    notes: "Designed for commercial platforms where high uptime is critical."
+  },
+];
+
+const careTerms = [
+  { title: "No Long-Term Lock-In", desc: "All maintenance retainers operate on a straightforward month-to-month cycle. Cancel or adjust tiers with 15 days notice." },
+  { title: "24–48 Hour Response SLA", desc: "Standard requests are processed within 1–2 business days. Emergency priority plans have a 2-hour response window." },
+  { title: "Scope Discipline", desc: "Retainer hours cover content updates, text changes, link fixes, and security patches. Major feature additions are quoted transparently." },
+  { title: "Roll-Over Policy", desc: "Monthly allocated editing hours do not accumulate or roll over to keep dedicated developer scheduling predictable." },
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "Website & App Maintenance Services",
+  description: "Keep your website or mobile app updated, secure, and fast without paying for a full rebuild. Monthly care retainers starting at ₹999/month.",
+  serviceType: "Website Maintenance & Support",
+  url: "/services/maintenance-support",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Maintenance & Support", url: "/services/maintenance-support" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
+---
+
+<BaseLayout
+  title="Maintenance & Support Services — Prometrion"
+  description="Keep your website or mobile app updated, secure, and fast without paying for a full rebuild. Monthly care retainers starting at ₹999/month."
+  jsonLd={jsonLd}
+>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE 07">LIFECYCLE CARE & SLA</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Keep your website and app running at peak performance.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Automated cloud backups, continuous uptime tracking, security scans, and dedicated developer edit hours without paying for a rebuild.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact?service=maintenance-support" size="sm">
+          Activate Care Plan
+        </Button>
+        <Button variant="secondary" href="/pricing" size="sm">
+          Compare Retainers
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operational Signals Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">24/7</span> <span class="text-neutral-500">Uptime Checks</span></div>
+      <div><span class="font-bold text-emerald-600">Offsite</span> <span class="text-neutral-500">Cloud Backups</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Security</span> <span class="text-neutral-500">Monthly Scans</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">Zero Lock-in</span> <span class="text-neutral-500">Month-to-Month</span></div>
+    </div>
+  </div>
+
+  <!-- Section 1: Offerings Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL RETAINERS">CARE & SUPPORT PLANS</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Predictable monthly plans in INR
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Choose the right operational support tier to ensure your digital platform stays secure and current.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {carePlans.map((item) => (
+          <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between shadow-whisper transition-all ${
+            item.badge.includes('Priority')
+              ? 'border-[#0070f3] dark:border-cyan-500/50 ring-1 ring-[#0070f3]/20 dark:ring-cyan-500/20 shadow-floating'
+              : 'border-[#ebebeb] dark:border-white/10 hover:shadow-floating'
+          }`}>
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={item.badge.includes('Priority') ? 'blue' : item.badge.includes('App') ? 'purple' : 'emerald'}>
+                  {item.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  Monthly
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{item.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{item.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">/{item.billing}</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Best For</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{item.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Solved</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{item.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Deliverables</span>
+                <ul class="space-y-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {item.scope.map((s) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {item.notes && (
+                <div class="mt-4 p-2 rounded bg-neutral-50 dark:bg-white/[0.03] text-[11px] font-mono text-neutral-500 border border-neutral-100 dark:border-white/5">
+                  ⓘ {item.notes}
+                </div>
+              )}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant={item.badge.includes('Priority') ? 'primary-sm' : 'secondary-sm'}
+                href={`/contact?service=maintenance-support&plan=${encodeURIComponent(item.title)}`}
+                class="w-full justify-center"
+              >
+                Select {item.title.split(' ')[0]}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Care Terms & SLA Policies -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <SectionEyebrow tag="GOVERNANCE">OPERATIONAL TERMS</SectionEyebrow>
+        <h2 class="text-2xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Transparent Service Standards
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {careTerms.map((ct) => (
+          <div class="p-6 rounded-[6px] bg-[#fafafa] dark:bg-white/[0.02] border border-[#ebebeb] dark:border-white/10 shadow-whisper">
+            <span class="text-emerald-500 font-bold text-sm block mb-2">✔</span>
+            <h3 class="text-sm font-semibold text-neutral-900 dark:text-white mb-2">{ct.title}</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">{ct.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Bottom CTA -->
+  <section class="py-16 bg-[#fafafa] dark:bg-black/20 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Protect your digital asset with regular care</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Activate a monthly maintenance plan starting at ₹999/month and enjoy peace of mind with continuous backups and prompt developer support.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact?service=maintenance-support">Activate Care Plan</Button>
+        <Button variant="secondary" href="/pricing">Compare Pricing Matrix</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

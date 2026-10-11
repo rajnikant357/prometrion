@@ -196,7 +196,7 @@ const result = await runSkill('taluq-reasoning', {
     name: "Anycast Edge Cache Invalidator",
     category: "DevOps & Edge",
     status: "Configurable",
-    summary: "Triggers instant global edge cache purging across 300+ Anycast Points of Presence.",
+    summary: "Triggers instant global edge cache purging across Anycast Points of Presence.",
     description: "Ensures newly published blog posts, catalog items, and service updates reflect worldwide within 200 milliseconds.",
     parameters: [
       { name: "routes", type: "string[]", desc: "Array of route paths to invalidate, e.g. ['/articles/blogs', '/services/catalog']" }

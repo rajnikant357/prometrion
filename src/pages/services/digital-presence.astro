@@ -1,0 +1,306 @@
+---
+// services/digital-presence.astro - Canonical Digital Presence Service Page
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Button from "../../components/ui/Button.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { getServicesByCategory } from "../../data/servicesCatalog";
+
+const presenceServices = getServicesByCategory("presence");
+
+const presenceOfferings = [
+  {
+    title: "Google Business Profile Setup",
+    price: "₹1,999 – ₹2,000+",
+    turnaround: "2–3 days",
+    badge: "Local Discovery",
+    persona: "Local shops, service providers, clinics, restaurants, and offices wanting walk-in and phone leads.",
+    problem: "Customers in your area search 'near me' on Google Maps and find your competitors instead of you.",
+    scope: [
+      "Profile setup and ownership claim assistance",
+      "Business category and subcategory mapping",
+      "Operating hours, contact phone, and holiday timing",
+      "Services and product catalog listing configuration",
+      "High-resolution store/office photo and logo uploads",
+      "Review generation QR code flyer layout"
+    ],
+    notes: "Client must cooperate with Google postal/video verification procedure."
+  },
+  {
+    title: "Social Media Business Setup",
+    price: "₹1,999 – ₹2,500+",
+    turnaround: "3–4 days",
+    badge: "Social Channels",
+    persona: "Businesses establishing official social media profiles for credible customer reach.",
+    problem: "Disjointed, personal social profiles confuse potential customers looking for official business info.",
+    scope: [
+      "Facebook Business Page setup and verification check",
+      "Instagram Professional / Business account migration",
+      "Professional bio copywriting and direct contact CTAs",
+      "Branded cover banner and profile avatar integration",
+      "Automated greeting message configuration",
+      "Optional LinkedIn Company Page setup"
+    ],
+    notes: "Ensures all business contact numbers and direct message channels are operational."
+  },
+  {
+    title: "Google Maps Integration",
+    price: "₹499+",
+    turnaround: "1–2 days",
+    badge: "Location Access",
+    persona: "Any physical shop, showroom, hospital, or corporate office with customer visitors.",
+    problem: "Website visitors cannot find directions or get lost navigating to the wrong landmark.",
+    scope: [
+      "Map coordinates and pin placement verification",
+      "Responsive, touch-friendly website map embed",
+      "1-tap 'Get Directions' route link for smartphones",
+      "Name, Address, Phone (NAP) consistency audit"
+    ],
+    notes: "Provides instant mobile turn-by-turn navigation for website visitors."
+  },
+  {
+    title: "WhatsApp Business Setup & Guidance",
+    price: "₹999+",
+    turnaround: "2–3 days",
+    badge: "Customer Chat",
+    persona: "Retailers, consultants, trades, and direct-to-consumer businesses wanting instant inquiries.",
+    problem: "Manual phone calls get missed, while slow email responses cause high customer drop-off.",
+    scope: [
+      "WhatsApp Business app configuration and profile verification",
+      "Product/service in-app catalog showcase with pricing",
+      "Automated welcome greeting and away message rules",
+      "Quick-reply shortcuts for frequently asked customer questions",
+      "Direct click-to-chat web link and floating website button"
+    ],
+    notes: "Accelerates lead response times directly on India's primary messaging platform."
+  },
+  {
+    title: "Complete Digital Presence Setup",
+    price: "₹5,999 – ₹7,500+",
+    turnaround: "5–7 days",
+    badge: "Turnkey Bundle",
+    persona: "New businesses or traditional offline companies moving into digital operations for the first time.",
+    problem: "Fragmented accounts, missing Google verification, and zero coherent branding across channels.",
+    scope: [
+      "Full Google Business Profile setup and map pin verification",
+      "Facebook Business Page + Instagram Professional configuration",
+      "WhatsApp Business catalog and automated greeting workflows",
+      "Responsive Google Maps integration on company website",
+      "Local citation registration in core business directories",
+      "Customer review generation kit (print-ready QR card)"
+    ],
+    notes: "Establishes immediate multi-channel discoverability across all customer touchpoints."
+  },
+];
+
+const inclusions = [
+  "End-to-end setup and verified configuration across selected platforms",
+  "Professional, concise copywriting for bios, descriptions, and hours",
+  "High-resolution graphic assets formatted to exact platform dimensions",
+  "Direct action buttons tested across Android, iPhone, and desktop browsers",
+  "Step-by-step handover guidance for updating hours and responding to reviews",
+];
+
+const exclusions = [
+  "Client must provide dedicated SIM/phone number for WhatsApp and OTP verifications",
+  "Google postal letter or video verification requires client presence at physical location",
+  "Third-party paid advertising ad spend (Meta Ads, Google Ads) not included",
+  "Physical printing of review flyers or QR cards (print-ready digital PDFs provided)",
+];
+
+import { buildServiceSchema, buildBreadcrumbSchema } from "../../utils/seo";
+
+const serviceSchema = buildServiceSchema({
+  name: "Digital Presence Services",
+  description: "Local discovery, Google Business Profile setup, Google Maps, social business profiles, and WhatsApp Business configuration in INR.",
+  serviceType: "Digital Presence & Local Discovery",
+  url: "/services/digital-presence",
+});
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services" },
+  { name: "Digital Presence", url: "/services/digital-presence" },
+]);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    serviceSchema,
+    breadcrumbSchema,
+  ],
+};
+---
+
+<BaseLayout
+  title="Digital Presence Services — Prometrion"
+  description="Local discovery, Google Business Profile setup, Google Maps, social business profiles, and WhatsApp Business configuration in INR."
+  jsonLd={jsonLd}
+>
+  <!-- Compact Header -->
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <SectionEyebrow tag="SERVICE 04">LOCAL & MULTI-CHANNEL DISCOVERY</SectionEyebrow>
+        <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Complete Digital Presence beyond a website.
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-2xl">
+          Be found where your customers look first: Google Maps, neighborhood search, WhatsApp communication, and verified social channels.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2 shrink-0">
+        <Button variant="primary" href="/contact?service=digital-presence" size="sm">
+          Setup Digital Presence
+        </Button>
+        <Button variant="secondary" href="/services/packages" size="sm">
+          Combo Packages
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Channel Badges Strip -->
+  <div class="border-b border-[#ebebeb] dark:border-white/10 bg-[#fafafa] dark:bg-black/50 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-4 gap-4 font-mono text-xs">
+      <div><span class="font-bold text-neutral-900 dark:text-white">Google Maps</span> <span class="text-neutral-500">Local Pinning</span></div>
+      <div><span class="font-bold text-emerald-600">WhatsApp</span> <span class="text-neutral-500">Instant Chat</span></div>
+      <div><span class="font-bold text-blue-600">Meta & Social</span> <span class="text-neutral-500">Business Setup</span></div>
+      <div><span class="font-bold text-neutral-900 dark:text-white">QR Reviews</span> <span class="text-neutral-500">Customer Proof</span></div>
+    </div>
+  </div>
+
+  <!-- Section 1: Offerings Grid -->
+  <section class="py-10 sm:py-14 bg-[#fafafa] dark:bg-black/20 border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <SectionEyebrow tag="CANONICAL OFFERINGS">PRESENCE CAPABILITIES</SectionEyebrow>
+        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+          Everything your business needs to be reachable
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+          Transparent one-time setup services ensuring your business identity is verified and easy to contact.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {presenceOfferings.map((item) => (
+          <div class={`rounded-[6px] bg-white dark:bg-[#0c0c0c] border p-6 flex flex-col justify-between shadow-whisper transition-all ${
+            item.badge.includes('Turnkey')
+              ? 'border-[#0070f3] dark:border-cyan-500/50 ring-1 ring-[#0070f3]/20 dark:ring-cyan-500/20 shadow-floating'
+              : 'border-[#ebebeb] dark:border-white/10 hover:shadow-floating'
+          }`}>
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <Badge variant={item.badge.includes('Turnkey') ? 'blue' : 'emerald'}>
+                  {item.badge}
+                </Badge>
+                <span class="text-[11px] font-mono text-neutral-500 bg-neutral-100 dark:bg-white/10 px-2 py-0.5 rounded">
+                  ⚡ {item.turnaround}
+                </span>
+              </div>
+
+              <h3 class="text-base font-semibold text-neutral-900 dark:text-white">{item.title}</h3>
+              
+              <div class="my-3 p-2.5 rounded bg-neutral-50 dark:bg-white/[0.04] border border-neutral-100 dark:border-white/10 flex items-baseline justify-between">
+                <span class="text-xl font-mono font-bold text-neutral-900 dark:text-white">{item.price}</span>
+                <span class="text-[10px] font-mono text-neutral-500">One-time fee</span>
+              </div>
+
+              <div class="space-y-2 mt-4 text-xs">
+                <div>
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Best For</span>
+                  <p class="text-neutral-700 dark:text-neutral-300 leading-snug">{item.persona}</p>
+                </div>
+                <div class="pt-2 border-t border-neutral-100 dark:border-white/10">
+                  <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-0.5">Problem Solved</span>
+                  <p class="text-neutral-600 dark:text-neutral-400 leading-snug">{item.problem}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-neutral-100 dark:border-white/10">
+                <span class="text-[11px] font-mono uppercase text-neutral-400 block mb-2">Deliverables</span>
+                <ul class="space-y-1.5 text-[11px] text-neutral-600 dark:text-neutral-400">
+                  {item.scope.map((s) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-emerald-500 font-bold shrink-0">✔</span>
+                      <span class="leading-tight">{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {item.notes && (
+                <div class="mt-4 p-2 rounded bg-neutral-50 dark:bg-white/[0.03] text-[11px] font-mono text-neutral-500 border border-neutral-100 dark:border-white/5">
+                  ⓘ {item.notes}
+                </div>
+              )}
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-neutral-100 dark:border-white/10">
+              <Button
+                variant={item.badge.includes('Turnkey') ? 'primary-sm' : 'secondary-sm'}
+                href={`/contact?service=digital-presence&item=${encodeURIComponent(item.title)}`}
+                class="w-full justify-center"
+              >
+                Inquire for {item.title.split(' ')[0]}
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Inclusions & Scope Boundaries -->
+  <section class="py-14 bg-white dark:bg-[#070707] border-b border-[#ebebeb] dark:border-white/10">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-6 rounded-[6px] border border-emerald-200 dark:border-emerald-950/60 bg-emerald-50/30 dark:bg-emerald-950/20">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold">✔</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Included in Digital Presence Services</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {inclusions.map((inc) => (
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-600 font-bold mt-0.5">✔</span>
+                <span class="leading-relaxed">{inc}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-[6px] border border-amber-200 dark:border-amber-950/60 bg-amber-50/30 dark:bg-amber-950/20">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="w-6 h-6 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs font-bold">!</span>
+            <h3 class="text-base font-semibold text-neutral-900 dark:text-white">Verification Norms & Boundaries</h3>
+          </div>
+          <ul class="space-y-2.5 text-xs text-neutral-700 dark:text-neutral-300">
+            {exclusions.map((exc) => (
+              <li class="flex items-start gap-2">
+                <span class="text-amber-600 font-bold mt-0.5">✕</span>
+                <span class="leading-relaxed">{exc}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Bottom CTA -->
+  <section class="py-16 bg-[#fafafa] dark:bg-black/20 text-center">
+    <div class="max-w-2xl mx-auto px-4">
+      <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900 dark:text-white">Launch your complete digital presence</h2>
+      <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2">
+        Let our team configure your Google Maps listing, social channels, and WhatsApp communication hub in 5–7 business days.
+      </p>
+      <div class="mt-6 flex justify-center gap-3">
+        <Button variant="primary" href="/contact?service=digital-presence">Request Presence Setup</Button>
+        <Button variant="secondary" href="/services/packages">View Combo Bundles</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

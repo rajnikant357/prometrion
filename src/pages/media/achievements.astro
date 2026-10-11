@@ -1,0 +1,123 @@
+---
+// media/achievements.astro - Prometrion Company Achievements & Timeline
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SectionEyebrow from "../../components/ui/SectionEyebrow.astro";
+import Card from "../../components/ui/Card.astro";
+import Badge from "../../components/ui/Badge.astro";
+import { buildBreadcrumbSchema } from "../../utils/seo";
+
+// Verified milestones from existing records (Do not invent)
+const milestones = [
+  {
+    year: "2026",
+    quarter: "Q3",
+    title: "Prometrion Platform Redesign & Architecture Evolution",
+    desc: "Unification of corporate digital engineering services, turnkey web solutions, and mobile application practice.",
+    highlight: "Platform Evolution",
+  },
+  {
+    year: "2026",
+    quarter: "Q2",
+    title: "Autonomous Agent & AI Discovery Runtimes",
+    desc: "Deploying Generative Engine Optimization (GEO) protocols and structured entity graphs for client visibility across AI search engines.",
+    highlight: "GEO Protocols",
+  },
+  {
+    year: "2026",
+    quarter: "Q1",
+    title: "Multi-Platform Deliveries & Webstore Architecture",
+    desc: "Expanded production deployments across modern web apps, Android native platforms, and turnkey digital storefronts.",
+    highlight: "Production Deployments",
+  },
+  {
+    year: "2025",
+    quarter: "Q4",
+    title: "Multi-Channel Client Engineering Desk Launch",
+    desc: "Launched our real-time engineering consultation desks, direct inquiry routing, and rapid sprint delivery models.",
+    highlight: "Client Engineering Desk",
+  },
+  {
+    year: "2025",
+    quarter: "Q2",
+    title: "Prometrion Incorporated",
+    desc: "Founded with the mission to build software platforms and digital solutions helping businesses build, launch, and grow.",
+    highlight: "Genesis",
+  },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Media", url: "/media" },
+  { name: "Achievements", url: "/media/achievements" },
+]);
+---
+
+<BaseLayout
+  title="Company Achievements & Milestones — Prometrion Media"
+  description="Explore the chronological timeline of Prometrion's architectural breakthroughs, service rollouts, and verified corporate milestones."
+  jsonLd={breadcrumbSchema}
+>
+  <div class="py-6 sm:py-8 border-b border-[#ebebeb] dark:border-white/10 bg-white dark:bg-[#070707]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <SectionEyebrow tag="MEDIA / ACHIEVEMENTS">COMPANY MILESTONES</SectionEyebrow>
+          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-[#171717] dark:text-white mt-1">
+            The Chronology of Innovation
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1 max-w-xl">
+            A verified record of Prometrion's architectural breakthroughs, service rollouts, and customer achievements.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 shrink-0">
+          <a href="/media" class="px-3 py-1.5 rounded-full text-xs font-medium bg-neutral-100 dark:bg-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 transition">
+            ← Media Hub
+          </a>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="mt-4 flex flex-wrap gap-2 pt-4 border-t border-neutral-100 dark:border-white/10">
+        <a href="/media" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">All Channels</a>
+        <a href="/media/blogs" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Blogs</a>
+        <a href="/media/guides" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Guides & Insights</a>
+        <a href="/media/news" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">Official News</a>
+        <span class="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 shadow-sm">Achievements ({milestones.length})</span>
+        <a href="/media/people" class="px-3 py-1 rounded-full text-xs font-medium bg-white dark:bg-white/[0.06] text-neutral-600 dark:text-neutral-300 border border-[#ebebeb] dark:border-white/10 hover:border-neutral-400">People</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="py-8 sm:py-12 bg-[#fafafa] dark:bg-black/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Vertical Timeline Track -->
+      <div class="relative pl-6 sm:pl-8 border-l border-neutral-200 dark:border-white/10 space-y-10">
+        {milestones.map((m) => (
+          <div class="relative group">
+            <!-- Timeline Dot -->
+            <div class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-black border-2 border-[#0070f3] dark:border-cyan-400 group-hover:scale-125 transition-transform"></div>
+
+            <div class="bento-card-sharp spotlight-card p-6 shadow-whisper hover:shadow-floating">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-neutral-100 dark:border-white/10">
+                <div class="flex items-center gap-2">
+                  <span class="font-mono text-xs font-bold text-[#0070f3] dark:text-cyan-400">{m.year} {m.quarter}</span>
+                  <Badge variant="blue">{m.highlight}</Badge>
+                </div>
+              </div>
+
+              <h2 class="text-base sm:text-lg font-semibold text-neutral-900 dark:text-white mt-3">
+                {m.title}
+              </h2>
+
+              <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-2 leading-relaxed">
+                {m.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
