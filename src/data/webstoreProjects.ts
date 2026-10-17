@@ -78,7 +78,7 @@ export const webstoreProjects: WebstoreProject[] = [
   {
     id: "paperfolio",
     slug: "paperfolio",
-    name: "Paperfolio",
+    name: "Rajnikant Portfolio",
     category: "Portfolios",
     shortDesc: "Interactive software engineering portfolio of Rajnikant Gaurav featuring conversational AI retrieval and project showcases.",
     fullDesc: "The official personal and engineering portfolio of Rajnikant Gaurav. Combines an innovative conversational assistant capable of retrieving background, skills, and projects on demand with a high-contrast minimalist interface.",
@@ -90,6 +90,142 @@ export const webstoreProjects: WebstoreProject[] = [
       "Interactive showcase of production software and web experiments",
       "Clean Swiss-inspired typography with instant theme responsiveness",
       "Direct GitHub repository and contact desk connections"
+    ]
+  },
+  {
+    id: "alankarini-mehandi-art",
+    slug: "alankarini-mehandi-art",
+    name: "Alankarini Mehandi Art",
+    category: "Business Websites",
+    shortDesc: "Premier bridal mehandi artist studio in Varanasi with doorstep services, design galleries, and 35-day certified academy.",
+    fullDesc: "The official business website for Sandhya's Alankarini Mehandi Art in Varanasi (Banaras). Features bridal henna design galleries, doorstep home service bookings, customer testimonials, and enrollment for 35-day certified offline and online mehandi masterclasses.",
+    url: "https://alankarini-mehandi-art.vercel.app/",
+    image: "/projects/alankarini-mehandi-art.png",
+    stack: ["React", "Tailwind CSS", "Lucide Icons", "WhatsApp Direct Integration"],
+    features: [
+      "Comprehensive bridal, engagement, and festival henna design galleries",
+      "Doorstep home service booking with direct WhatsApp/Call hotline (+91 9336814631)",
+      "35-day certified mehandi academy course curriculum and fee structure",
+      "Verified local Varanasi client reviews and customer gallery"
+    ]
+  },
+  {
+    id: "study-academy-1",
+    slug: "study-academy-1",
+    name: "Study Academy 1",
+    category: "Education",
+    shortDesc: "Online educational learning academy portal designed for structured course curricula and academic materials.",
+    fullDesc: "A digital education and academic coaching platform created to host course catalogs, lesson schedules, student enrollment resources, and instructor profiles.",
+    url: "https://study-academy-1.vercel.app/",
+    image: "/projects/study-academy-1.png",
+    stack: ["Modern Web", "HTML/CSS", "JavaScript", "Responsive UI"],
+    features: [
+      "Academic course catalog with curriculum breakdowns",
+      "Student learning tracks and syllabus guides",
+      "Course registration and online inquiry forms",
+      "Responsive education portal design"
+    ]
+  },
+  {
+    id: "gazal-suit-ghar",
+    slug: "gazal-suit-ghar",
+    name: "Gazal Suit Ghar",
+    category: "E-commerce and Retail",
+    shortDesc: "Traditional Indian ethnic wear boutique and retail storefront specializing in Banarasi silk sarees, suits, and kurtis.",
+    fullDesc: "An ethnic fashion e-commerce catalog showcasing handcrafted Banarasi silk sarees, Anarkali designer suit sets with dupattas, and festive kurtis with prices in INR. Includes dynamic product variant selection, image galleries, and cart state management.",
+    url: "https://gazal-suit-ghar.vercel.app/",
+    image: "/projects/gazal-suit-ghar.png",
+    stack: ["React 19", "Tailwind CSS", "Vite", "Context API Store"],
+    features: [
+      "Product showcase across Sarees, Kurtis, and Suits in INR",
+      "Handcrafted Banarasi silk and designer Anarkali collections",
+      "Size and color variant selectors with live stock indicators",
+      "Interactive shopping cart drawer with checkout calculation"
+    ]
+  },
+  {
+    id: "qualytics-ai",
+    slug: "qualytics-ai",
+    name: "Qualytics AI",
+    category: "AI Applications",
+    shortDesc: "Enterprise AI-powered data quality and observability platform catching data issues before impacting business operations.",
+    fullDesc: "An AI-powered data observability platform modeled around proactive enterprise data hygiene. Empowers data teams to construct intelligent validation rules, establish continuous monitoring pipelines, and prevent downstream analytics anomalies.",
+    url: "https://rajnikant357.github.io/qualytics-ai-clone/",
+    image: "/projects/qualytics-ai.png",
+    stack: ["React", "HTML5", "CSS3", "JavaScript"],
+    features: [
+      "Proactive automated data quality anomaly detection",
+      "Intelligent rule builder for relational and lakehouse pipelines",
+      "Enterprise workflow integrations and alerting webhooks",
+      "Interactive data health dashboard and quality scoring"
+    ]
+  },
+  {
+    id: "study-academy-2",
+    slug: "study-academy-2",
+    name: "Study Academy 2",
+    category: "Education",
+    shortDesc: "Comprehensive educational learning platform featuring interactive curriculum pathways and student admission portals.",
+    fullDesc: "An advanced digital learning academy portal (Edition 2) engineered to host course curricula, interactive learning modules, student enrollment portals, and instructor coaching resources.",
+    url: "https://study-academy-2.vercel.app/",
+    image: "/projects/study-academy-2.png",
+    stack: ["Modern Web", "React", "Tailwind CSS", "JavaScript"],
+    features: [
+      "Interactive academic course tracks and syllabus explorer",
+      "Student enrollment portal and admission application forms",
+      "Faculty directory and scheduled lecture timings",
+      "High-performance responsive portal interface"
+    ]
+  },
+  {
+    id: "zacson",
+    slug: "zacson",
+    name: "Zacson",
+    category: "Business Websites",
+    shortDesc: "High-energy personal fitness training and gym workout template with course offerings and consultation booking.",
+    fullDesc: "A bold, modern fitness trainer and gym studio website template. Showcases personalized training programs, group workout schedules, client transformation galleries, and clear pricing options for athletic coaches.",
+    url: "https://rajnikant357.github.io/Zacson/",
+    image: "/projects/zacson.png",
+    stack: ["HTML5", "CSS3", "JavaScript", "Responsive Grid"],
+    features: [
+      "Personal and group fitness training program modules",
+      "Trainer biography and coaching credentials overview",
+      "Photo gallery showcasing gym facilities and workout regimens",
+      "Direct consultation inquiry form and pricing breakdown"
+    ]
+  },
+  {
+    id: "pankaj-consultancy",
+    slug: "pankaj-consultancy",
+    name: "Pankaj Consultancy",
+    category: "Consultancy",
+    shortDesc: "Professional real estate and property consultancy firm providing title verification, buyer representation, and loan advisory.",
+    fullDesc: "The official web presence of Pankaj Kumar's real estate and property advisory practice. Offers clients legal property title searches, buyer representation during negotiations, home loan approval assistance, and investment consulting with a structured consultation intake form.",
+    url: "https://pankaj-consultancy-123.vercel.app/",
+    image: "/projects/pankaj-consultancy.png",
+    stack: ["React 19", "Tailwind CSS", "Vite", "Lucide Icons"],
+    features: [
+      "Property buying assistance and pre-market listing advisory",
+      "Legal verification, document scrutiny, and title search assistance",
+      "Step-by-step home loan approval and disbursement guidance",
+      "Direct contact desk with phone, official email, and consultation intake form"
+    ]
+  },
+  {
+    id: "locallink",
+    slug: "locallink",
+    name: "LocalLink",
+    category: "SaaS and Web Applications",
+    shortDesc: "Hyperlocal on-demand marketplace connecting homeowners with verified electricians, carpenters, plumbers, and technicians.",
+    fullDesc: "A digital service platform operating in Sikandarpur, Ballia, connecting local residents with vetted service professionals. Enables instant discovery of tradespeople, direct phone contact, verified credentials, and streamlined booking.",
+    url: "https://new-locallink.vercel.app/",
+    image: "/projects/locallink.png",
+    stack: ["React 19", "Tailwind CSS", "REST API", "Vite", "Render Cloud"],
+    features: [
+      "Service provider directory (electricians, carpenters, tailors, technicians)",
+      "Hyperlocal area filtering for instant nearby provider discovery",
+      "Direct phone and WhatsApp booking actions",
+      "RESTful API architecture connected to backend microservice"
     ]
   },
   {
@@ -145,40 +281,6 @@ export const webstoreProjects: WebstoreProject[] = [
     ]
   },
   {
-    id: "qualytics-ai",
-    slug: "qualytics-ai",
-    name: "Qualytics AI",
-    category: "AI Applications",
-    shortDesc: "Enterprise AI-powered data quality and observability platform catching data issues before impacting business operations.",
-    fullDesc: "An AI-powered data observability platform modeled around proactive enterprise data hygiene. Empowers data teams to construct intelligent validation rules, establish continuous monitoring pipelines, and prevent downstream analytics anomalies.",
-    url: "https://rajnikant357.github.io/qualytics-ai-clone/",
-    image: "/projects/qualytics-ai.png",
-    stack: ["React", "HTML5", "CSS3", "JavaScript"],
-    features: [
-      "Proactive automated data quality anomaly detection",
-      "Intelligent rule builder for relational and lakehouse pipelines",
-      "Enterprise workflow integrations and alerting webhooks",
-      "Interactive data health dashboard and quality scoring"
-    ]
-  },
-  {
-    id: "locallink",
-    slug: "locallink",
-    name: "LocalLink",
-    category: "SaaS and Web Applications",
-    shortDesc: "Hyperlocal on-demand marketplace connecting homeowners with verified electricians, carpenters, plumbers, and technicians.",
-    fullDesc: "A digital service platform operating in Sikandarpur, Ballia, connecting local residents with vetted service professionals. Enables instant discovery of tradespeople, direct phone contact, verified credentials, and streamlined booking.",
-    url: "https://new-locallink.vercel.app/",
-    image: "/projects/locallink.png",
-    stack: ["React 19", "Tailwind CSS", "REST API", "Vite", "Render Cloud"],
-    features: [
-      "Service provider directory (electricians, carpenters, tailors, technicians)",
-      "Hyperlocal area filtering for instant nearby provider discovery",
-      "Direct phone and WhatsApp booking actions",
-      "RESTful API architecture connected to backend microservice"
-    ]
-  },
-  {
     id: "pacman-clone",
     slug: "pac-man-clone",
     name: "Pac Man Clone",
@@ -213,57 +315,6 @@ export const webstoreProjects: WebstoreProject[] = [
     ]
   },
   {
-    id: "study-academy-1",
-    slug: "study-academy-1",
-    name: "Study Academy 1",
-    category: "Education",
-    shortDesc: "Online educational learning academy portal designed for structured course curricula and academic materials.",
-    fullDesc: "A digital education and academic coaching platform created to host course catalogs, lesson schedules, student enrollment resources, and instructor profiles.",
-    url: "https://study-academy-1.vercel.app/",
-    image: "/projects/study-academy-1.png",
-    stack: ["Modern Web", "HTML/CSS", "JavaScript", "Responsive UI"],
-    features: [
-      "Academic course catalog with curriculum breakdowns",
-      "Student learning tracks and syllabus guides",
-      "Course registration and online inquiry forms",
-      "Responsive education portal design"
-    ]
-  },
-  {
-    id: "study-academy-2",
-    slug: "study-academy-2",
-    name: "Study Academy 2",
-    category: "Education",
-    shortDesc: "Comprehensive educational learning platform featuring interactive curriculum pathways and student admission portals.",
-    fullDesc: "An advanced digital learning academy portal (Edition 2) engineered to host course curricula, interactive learning modules, student enrollment portals, and instructor coaching resources.",
-    url: "https://study-academy-2.vercel.app/",
-    image: "/projects/study-academy-2.png",
-    stack: ["Modern Web", "React", "Tailwind CSS", "JavaScript"],
-    features: [
-      "Interactive academic course tracks and syllabus explorer",
-      "Student enrollment portal and admission application forms",
-      "Faculty directory and scheduled lecture timings",
-      "High-performance responsive portal interface"
-    ]
-  },
-  {
-    id: "gazal-suit-ghar",
-    slug: "gazal-suit-ghar",
-    name: "Gazal Suit Ghar",
-    category: "E-commerce and Retail",
-    shortDesc: "Traditional Indian ethnic wear boutique and retail storefront specializing in Banarasi silk sarees, suits, and kurtis.",
-    fullDesc: "An ethnic fashion e-commerce catalog showcasing handcrafted Banarasi silk sarees, Anarkali designer suit sets with dupattas, and festive kurtis with prices in INR. Includes dynamic product variant selection, image galleries, and cart state management.",
-    url: "https://gazal-suit-ghar.vercel.app/",
-    image: "/projects/gazal-suit-ghar.png",
-    stack: ["React 19", "Tailwind CSS", "Vite", "Context API Store"],
-    features: [
-      "Product showcase across Sarees, Kurtis, and Suits in INR",
-      "Handcrafted Banarasi silk and designer Anarkali collections",
-      "Size and color variant selectors with live stock indicators",
-      "Interactive shopping cart drawer with checkout calculation"
-    ]
-  },
-  {
     id: "skribble-clone",
     slug: "skribble-clone",
     name: "Skribble Clone",
@@ -278,57 +329,6 @@ export const webstoreProjects: WebstoreProject[] = [
       "Real-time guess detection with scoring and leaderboards",
       "Multiplayer private room creation and global lobbies",
       "Multi-language word packs supporting over 20 languages"
-    ]
-  },
-  {
-    id: "alankarini-mehandi-art",
-    slug: "alankarini-mehandi-art",
-    name: "Alankarini Mehandi Art",
-    category: "Business Websites",
-    shortDesc: "Premier bridal mehandi artist studio in Varanasi with doorstep services, design galleries, and 35-day certified academy.",
-    fullDesc: "The official business website for Sandhya's Alankarini Mehandi Art in Varanasi (Banaras). Features bridal henna design galleries, doorstep home service bookings, customer testimonials, and enrollment for 35-day certified offline and online mehandi masterclasses.",
-    url: "https://alankarini-mehandi-art.vercel.app/",
-    image: "/projects/alankarini-mehandi-art.png",
-    stack: ["React", "Tailwind CSS", "Lucide Icons", "WhatsApp Direct Integration"],
-    features: [
-      "Comprehensive bridal, engagement, and festival henna design galleries",
-      "Doorstep home service booking with direct WhatsApp/Call hotline (+91 9336814631)",
-      "35-day certified mehandi academy course curriculum and fee structure",
-      "Verified local Varanasi client reviews and customer gallery"
-    ]
-  },
-  {
-    id: "zacson",
-    slug: "zacson",
-    name: "Zacson",
-    category: "Business Websites",
-    shortDesc: "High-energy personal fitness training and gym workout template with course offerings and consultation booking.",
-    fullDesc: "A bold, modern fitness trainer and gym studio website template. Showcases personalized training programs, group workout schedules, client transformation galleries, and clear pricing options for athletic coaches.",
-    url: "https://rajnikant357.github.io/Zacson/",
-    image: "/projects/zacson.png",
-    stack: ["HTML5", "CSS3", "JavaScript", "Responsive Grid"],
-    features: [
-      "Personal and group fitness training program modules",
-      "Trainer biography and coaching credentials overview",
-      "Photo gallery showcasing gym facilities and workout regimens",
-      "Direct consultation inquiry form and pricing breakdown"
-    ]
-  },
-  {
-    id: "pankaj-consultancy",
-    slug: "pankaj-consultancy",
-    name: "Pankaj Consultancy",
-    category: "Consultancy",
-    shortDesc: "Professional real estate and property consultancy firm providing title verification, buyer representation, and loan advisory.",
-    fullDesc: "The official web presence of Pankaj Kumar's real estate and property advisory practice. Offers clients legal property title searches, buyer representation during negotiations, home loan approval assistance, and investment consulting with a structured consultation intake form.",
-    url: "https://pankaj-consultancy-123.vercel.app/",
-    image: "/projects/pankaj-consultancy.png",
-    stack: ["React 19", "Tailwind CSS", "Vite", "Lucide Icons"],
-    features: [
-      "Property buying assistance and pre-market listing advisory",
-      "Legal verification, document scrutiny, and title search assistance",
-      "Step-by-step home loan approval and disbursement guidance",
-      "Direct contact desk with phone, official email, and consultation intake form"
     ]
   }
 ];
